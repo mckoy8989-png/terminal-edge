@@ -1,0 +1,50 @@
+title,description,estimate_hours,priority,sprint
+"Project scaffolding","Initialize monorepo (Next.js frontend + Node/Express API), configure TypeScript, ESLint, Prettier, Husky",8,P0,1
+"Docker Compose dev stack","Postgres, Redis, Qdrant, n8n, Ollama, API server — with schema auto-init",6,P0,1
+"Database schema & migrations","Implement schema.sql (users, services, orders, quotes, payments, messages, reviews, bots, workflows, audit_logs); set up migration tool",12,P0,1
+"Auth — customer registration & login","JWT-based auth with email/password, email verification, token rotation",12,P0,1
+"Auth — admin login & middleware","Admin role check middleware, separate admin auth, session management",6,P0,1
+"CI pipeline","GitHub Actions: lint, test, build, security scan (Trivy), Docker build & push",8,P0,1
+"Service catalog — data model & API","CRUD API for services (admin creates/edits), public GET endpoints, category filtering, search",10,P0,2
+"Service catalog — storefront UI","Webflow-inspired grid layout, service cards, category tabs, responsive design, hero section",16,P0,2
+"Service detail page","Full service page: description, features, pricing, gallery, reviews, add-ons, order/quote CTA button",14,P0,2
+"Order flow — fixed-price checkout","Customer selects service + add-ons → Stripe Checkout → order created with status=paid",14,P0,2
+"Order flow — quote request","Customer submits requirements form + file uploads → order created with status=quote_requested",10,P0,2
+"Landing page & navigation","Homepage hero, service category showcase, testimonials section, footer, responsive nav",12,P0,2
+"Quote system — admin creates quotes","Admin views quote requests, creates line-item quotes, sets expiry, sends to customer",12,P0,3
+"Quote system — customer accepts & pays","Customer views quote, accepts → Stripe invoice generated → payment → order moves to paid",10,P0,3
+"Order management — admin dashboard","Admin sees all orders by status, filters, search, bulk actions, revenue summary",14,P0,3
+"Order management — status updates","Admin changes order status (in_progress → in_review → delivered), customer gets notified",8,P0,3
+"Delivery system","Admin uploads files/links as deliverables per order; customer downloads from portal",10,P0,3
+"Client portal — order tracking","Customer dashboard: list of orders, status timeline, current status, estimated delivery",12,P0,3
+"Messaging system — per-order threads","Real-time chat per order between customer and operator; file attachments; read receipts",14,P0,4
+"Email notifications","Transactional emails: order confirmation, quote received, status updates, delivery ready, review request",10,P0,4
+"Revision workflow","Customer requests revision (with feedback); operator sees revision queue; revision counter enforced",8,P0,4
+"Reviews & ratings","Post-completion review flow; public display on service pages; avg rating calculation",8,P1,4
+"Stripe webhook handlers","Handle payment.succeeded, payment.failed, invoice.paid, refund events; update order/payment status",8,P0,4
+"Refund processing","Admin initiates refund via dashboard; Stripe refund API; order status updated",6,P1,4
+"Bot manager — CRUD & lifecycle","Operator-side: create/configure/start/stop/delete bots per client order; sandbox container orchestration",14,P0,5
+"Bot sandbox — container orchestration","Docker containers with seccomp, cgroups, network egress proxy for running client bots",16,P0,5
+"Trading bot — CCXT adapter","Exchange connection via CCXT, market data feeds, WebSocket, order submission (paper + live)",20,P0,5
+"Trading bot — risk manager","Max position, daily loss limit, drawdown circuit breaker, kill-switch, risk check logging",16,P0,5
+"Trading bot — backtest engine","Historical data loader, strategy replay, performance metrics (Sharpe, drawdown, win rate), report generation",16,P1,5
+"Trading bot — consent & legal","Trading addendum signing, mandatory paper-trade period, withdrawal-key rejection, legal disclaimers",10,P1,5
+"Scraping bot — core engine","Playwright headless pool, proxy rotation, rate limiting, robots.txt compliance",16,P0,6
+"Scraping bot — PII pipeline","NER + regex PII detection, auto-redaction, compliance logging",10,P1,6
+"Scraping bot — dedup & normalize","Content fingerprinting, fuzzy dedup, schema normalization, JSON/CSV output",8,P1,6
+"AI workflow engine — DAG runner","Topological sort executor, step persistence, retry/backoff, circuit breakers, idempotency tokens",18,P0,6
+"AI workflow engine — n8n integration","Import/export n8n JSON, run n8n flows inside orchestrator or delegate to managed n8n runtime",12,P1,6
+"Local LLM runner integration","Ollama adapter, model management, embedding generation, usage tracking",10,P1,6
+"Observability — structured logging","JSON structured logs, correlation IDs, log aggregation",8,P0,7
+"Observability — metrics & dashboards","Grafana dashboards: revenue, orders, bot PnL, workflow success rate, API latency",10,P0,7
+"Observability — alerting","Alert rules: trading loss limits, high error rate, payment failures; Slack/email notifications",8,P0,7
+"AI guardrails — prompt firewall","Input scanning for injection patterns, blocklist, regex + classifier, logging",10,P0,7
+"AI guardrails — output enforcement","JSON Schema validation on LLM outputs, confidence thresholds, deterministic options (temp=0)",8,P0,7
+"Security hardening","OWASP mitigations, rate limiting, security headers, CSRF, input validation, dependency scanning",10,P0,7
+"Portfolio / case studies page","Showcase completed work with screenshots, descriptions, tags; link from service pages",8,P1,8
+"SEO optimization","Meta tags, Open Graph, sitemap.xml, structured data (JSON-LD), page speed optimization",6,P1,8
+"Red-team testing execution","Run all 14 red-team test cases; document results; remediate findings",14,P0,8
+"Stress testing","k6/Locust load tests on storefront, order flow, payment; chaos tests on bot infrastructure",12,P0,8
+"End-to-end testing suite","Playwright E2E tests: registration, browse, order, pay, messaging, delivery, review",14,P0,8
+"Documentation & operator runbooks","API docs, operator runbooks (incident response, trading loss), deployment guide",8,P1,8
+"Launch checklist & go-live","Final security review, load test sign-off, DNS/SSL setup, Stripe production keys, monitoring verification",6,P0,8

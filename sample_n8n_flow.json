@@ -1,0 +1,196 @@
+{
+  "name": "Terminal Edge — Scrape → LLM Summary → Embed → Paper Trade",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://example.com/market-news",
+        "responseFormat": "text",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "scrape-page",
+      "name": "Scrape Page",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const html = $input.all()[0].json.data;\n// Simple content extraction — strip HTML tags\nconst text = html.replace(/<[^>]*>/g, ' ').replace(/\\s+/g, ' ').trim().substring(0, 4000);\nreturn [{ json: { content: text, scraped_at: new Date().toISOString() } }];"
+      },
+      "id": "extract-content",
+      "name": "Extract Content",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{$env.OPENAI_API_BASE || 'https://api.openai.com'}}/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gpt-4o-mini\",\n  \"temperature\": 0,\n  \"response_format\": { \"type\": \"json_object\" },\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a financial news analyst. Return JSON: {\\\"summary\\\": string, \\\"sentiment\\\": \\\"bullish\\\"|\\\"bearish\\\"|\\\"neutral\\\", \\\"confidence\\\": 0-1, \\\"key_tickers\\\": string[]}\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": {{ JSON.stringify($json.content) }}\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "llm-summarize",
+      "name": "LLM Summarize",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [710, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "openai-cred",
+          "name": "OpenAI API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const resp = $input.all()[0].json;\nconst parsed = JSON.parse(resp.choices[0].message.content);\nreturn [{ json: { ...parsed, raw_content: $('Extract Content').first().json.content, timestamp: new Date().toISOString() } }];"
+      },
+      "id": "parse-llm",
+      "name": "Parse LLM Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [940, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{$env.OPENAI_API_BASE || 'https://api.openai.com'}}/v1/embeddings",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"text-embedding-3-small\",\n  \"input\": {{ JSON.stringify($json.summary) }}\n}",
+        "options": {}
+      },
+      "id": "create-embedding",
+      "name": "Create Embedding",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1170, 200],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "openai-cred",
+          "name": "OpenAI API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{$env.QDRANT_URL || 'http://localhost:6333'}}/collections/market_news/points",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"points\": [{\n    \"id\": {{ Math.floor(Math.random() * 999999999) }},\n    \"vector\": {{ JSON.stringify($json.data[0].embedding) }},\n    \"payload\": {\n      \"summary\": $('Parse LLM Response').first().json.summary,\n      \"sentiment\": $('Parse LLM Response').first().json.sentiment,\n      \"tickers\": $('Parse LLM Response').first().json.key_tickers,\n      \"timestamp\": $('Parse LLM Response').first().json.timestamp\n    }\n  }]\n}",
+        "options": {}
+      },
+      "id": "store-vector",
+      "name": "Store in Qdrant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1400, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $('Parse LLM Response').first().json.sentiment }}",
+              "rightValue": "neutral",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "leftValue": "={{ $('Parse LLM Response').first().json.confidence }}",
+              "rightValue": 0.7,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "confidence-gate",
+      "name": "Confidence Gate",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1170, 420]
+    },
+    {
+      "parameters": {
+        "url": "={{$env.TERMINAL_EDGE_API || 'http://localhost:3000'}}/api/v1/bots/paper-trade",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"action\": \"paper_trade\",\n  \"exchange\": \"binance\",\n  \"symbol\": {{ JSON.stringify($('Parse LLM Response').first().json.key_tickers[0] + '/USDT') }},\n  \"side\": {{ $('Parse LLM Response').first().json.sentiment === 'bullish' ? '\"buy\"' : '\"sell\"' }},\n  \"quantity\": 0.01,\n  \"reason\": {{ JSON.stringify($('Parse LLM Response').first().json.summary) }},\n  \"confidence\": {{ $('Parse LLM Response').first().json.confidence }},\n  \"is_paper\": true\n}",
+        "options": {}
+      },
+      "id": "paper-trade",
+      "name": "Paper Trade Action",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1400, 420]
+    },
+    {
+      "parameters": {},
+      "id": "no-trade",
+      "name": "No Trade (Low Confidence)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1400, 560]
+    }
+  ],
+  "connections": {
+    "Scrape Page": {
+      "main": [[{ "node": "Extract Content", "type": "main", "index": 0 }]]
+    },
+    "Extract Content": {
+      "main": [[{ "node": "LLM Summarize", "type": "main", "index": 0 }]]
+    },
+    "LLM Summarize": {
+      "main": [[{ "node": "Parse LLM Response", "type": "main", "index": 0 }]]
+    },
+    "Parse LLM Response": {
+      "main": [
+        [
+          { "node": "Create Embedding", "type": "main", "index": 0 },
+          { "node": "Confidence Gate", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Create Embedding": {
+      "main": [[{ "node": "Store in Qdrant", "type": "main", "index": 0 }]]
+    },
+    "Confidence Gate": {
+      "main": [
+        [{ "node": "Paper Trade Action", "type": "main", "index": 0 }],
+        [{ "node": "No Trade (Low Confidence)", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "templateId": "terminal-edge-scrape-llm-trade-v1",
+    "instanceId": "dev-local"
+  },
+  "tags": [
+    { "name": "terminal-edge" },
+    { "name": "demo" },
+    { "name": "paper-trade" }
+  ]
+}
