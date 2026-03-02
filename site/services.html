@@ -240,6 +240,7 @@
 .sh-pill:hover::after{opacity:1}
 .sh-pill{position:relative;overflow:hidden}
 </style>
+<link rel="stylesheet" href="effects.css"/>
 <script>document.documentElement.classList.add('gsap-ready');</script>
 </head>
 <body>
@@ -1302,5 +1303,6 @@ document.querySelectorAll('.sh-pill').forEach((pill, i) => {
 setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
 
 </script>
+<script src="effects.js"></script>
 </body>
 </html>

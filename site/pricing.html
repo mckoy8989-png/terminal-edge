@@ -168,6 +168,7 @@
 .final-cta-sec{background:var(--bg);position:relative;overflow:hidden}
 .final-cta-sec::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:200px;background:radial-gradient(ellipse,rgba(139,92,246,.06),transparent 60%);pointer-events:none}
 </style>
+<link rel="stylesheet" href="effects.css"/>
 <script>document.documentElement.classList.add('gsap-ready');</script>
 </head>
 <body>
@@ -985,5 +986,6 @@ document.querySelectorAll('.pfaq-it').forEach(item => {
 setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
 
 </script>
+<script src="effects.js"></script>
 </body>
 </html>
