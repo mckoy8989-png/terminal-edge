@@ -14,6 +14,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -269,13 +270,13 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .proc3d-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.65rem;font-family:var(--fm);padding:.25rem .7rem;border-radius:100px;margin-top:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--dim)}
 .proc3d-badge svg{width:10px;height:10px}
 
-/* ── SHOWCASE ── */
+/* ── SHOWCASE — HORIZONTAL SCROLL ── */
 .show-sec{background:var(--bg2);position:relative;overflow:hidden}
 .show-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(59,130,246,.02) 50%,transparent);pointer-events:none}
 .show-sec::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(59,130,246,.2),rgba(139,92,246,.2),transparent)}
-.show-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;position:relative;z-index:1}
-@media(max-width:700px){.show-grid{grid-template-columns:1fr}}
-.show-card{border-radius:var(--r);overflow:hidden;border:1px solid var(--border);background:var(--bg3);transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);position:relative}
+.show-track{display:flex;gap:2rem;width:max-content;position:relative;z-index:1}
+.show-card{min-width:520px;max-width:520px;border-radius:var(--r);overflow:hidden;border:1px solid var(--border);background:var(--bg3);transition:box-shadow .5s var(--ease),border-color .5s var(--ease);position:relative;flex-shrink:0}
+@media(max-width:700px){.show-track{flex-direction:column;width:100%!important}.show-card{min-width:100%;max-width:100%}}
 .show-card::before{content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;opacity:0;transition:opacity .4s;z-index:1;pointer-events:none}
 .show-card:nth-child(1)::before{background:linear-gradient(135deg,transparent 40%,var(--blue),transparent 90%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 .show-card:nth-child(2)::before{background:linear-gradient(135deg,transparent 40%,var(--purple),transparent 90%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
@@ -454,6 +455,29 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .sub-btn:hover{box-shadow:0 8px 25px rgba(59,130,246,.3);transform:translateY(-2px)}
 .sub-btn:hover::after{transform:translateX(100%);transition:transform .6s ease}
 
+/* ── PAGE-LEVEL: Section dividers ── */
+.sec-divider{height:80px;position:relative;overflow:hidden;pointer-events:none}
+.sec-divider svg{position:absolute;width:100%;height:100%}
+
+/* ── PAGE-LEVEL: Section scroll indicators ── */
+.sec-indicator{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:12px;opacity:0;transition:opacity .5s}
+.sec-indicator.visible{opacity:1}
+.sec-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.1);cursor:pointer;transition:all .3s var(--ease);position:relative}
+.sec-dot.active{background:var(--blue);border-color:var(--blue);transform:scale(1.4);box-shadow:0 0 12px rgba(59,130,246,.4)}
+.sec-dot::after{content:attr(data-label);position:absolute;right:20px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:.65rem;font-family:var(--fm);color:var(--muted);opacity:0;transition:opacity .3s;pointer-events:none}
+.sec-dot:hover::after{opacity:1}
+
+/* ── PAGE-LEVEL: Background gradient overlay ── */
+.bg-morph{position:fixed;inset:0;pointer-events:none;z-index:-1;transition:background 1.2s ease}
+
+/* ── PAGE-LEVEL: Horizontal scroll showcase ── */
+.show-sec .ctn{overflow:hidden}
+.show-sec{overflow:hidden}
+
+/* ── PAGE-LEVEL: Section reveal masks ── */
+.sec-reveal{clip-path:inset(8% 4% 8% 4% round 16px);transition:clip-path 0s}
+.sec-revealed{clip-path:inset(0% 0% 0% 0% round 0px)}
+
 /* ── FOOTER ── */
 footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:var(--bg)}
 .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem}
@@ -478,6 +502,22 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <body>
 
 <div class="scroll-bar" id="scrollBar"></div>
+<div class="bg-morph" id="bgMorph"></div>
+
+<!-- Section Navigation Dots -->
+<div class="sec-indicator" id="secNav">
+<div class="sec-dot active" data-label="Home" data-target="hero"></div>
+<div class="sec-dot" data-label="Stats" data-target="stats"></div>
+<div class="sec-dot" data-label="Services" data-target="services"></div>
+<div class="sec-dot" data-label="Features" data-target="features"></div>
+<div class="sec-dot" data-label="Process" data-target="process"></div>
+<div class="sec-dot" data-label="Work" data-target="work"></div>
+<div class="sec-dot" data-label="Tech" data-target="tech"></div>
+<div class="sec-dot" data-label="Pricing" data-target="pricing"></div>
+<div class="sec-dot" data-label="Testimonials" data-target="testimonials"></div>
+<div class="sec-dot" data-label="FAQ" data-target="faq"></div>
+<div class="sec-dot" data-label="Contact" data-target="contact"></div>
+</div>
 
 <!-- NAV -->
 <nav id="navbar">
@@ -521,7 +561,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 </section>
 
 <!-- STATS -->
-<section class="stats sec">
+<section class="stats sec" id="stats">
 <div class="stats-g">
 <div class="gs-hide"><h3><span class="gt" data-count="47">0</span>+</h3><p>Projects Shipped</p></div>
 <div class="gs-hide"><h3><span class="gt2" data-count="99">0</span>%</h3><p>Uptime Guarantee</p></div>
@@ -576,7 +616,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 </section>
 
 <!-- FEATURE HIGHLIGHTS -->
-<section class="sec pad feat-sec">
+<section class="sec pad feat-sec" id="features">
 <div class="ctn">
 <div class="tc gs-hide">
 <span class="lbl">Why Terminal Edge</span>
@@ -591,7 +631,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 </section>
 
 <!-- PROCESS -->
-<section class="sec pad">
+<section class="sec pad" id="process">
 <div class="ctn">
 <div class="tc gs-hide">
 <span class="lbl">Our Process</span>
@@ -683,7 +723,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <h2 class="stitle">Systems We've <span class="gt">Engineered</span></h2>
 <p class="sdesc" style="margin:0 auto 3rem">Real projects. Real results. Every system designed for scale, security, and speed.</p>
 </div>
-<div class="show-grid">
+<div class="show-track" id="showTrack">
 
 <!-- Card 1: E-Commerce -->
 <div class="show-card gs-scale">
@@ -822,7 +862,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 </section>
 
 <!-- TECH -->
-<section class="sec pad tech-sec">
+<section class="sec pad tech-sec" id="tech">
 <div class="ctn">
 <div class="tc gs-hide">
 <span class="lbl">Tech Stack</span>
@@ -903,7 +943,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 </section>
 
 <!-- TESTIMONIALS -->
-<section class="sec pad test-sec">
+<section class="sec pad test-sec" id="testimonials">
 <div class="ctn">
 <div class="tc gs-hide">
 <span class="lbl">Client Results</span>
@@ -1133,6 +1173,7 @@ setTimeout(nextStep,600);
 /* ── GSAP ANIMATIONS ── */
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({force3D:true});
+if(typeof ScrollToPlugin !== 'undefined') gsap.registerPlugin(ScrollToPlugin);
 
 // Hero entrance
 const htl=gsap.timeline({defaults:{ease:'power4.out',force3D:true}});
@@ -1142,19 +1183,20 @@ htl.to('.hero-ct .gs-hide',{opacity:1,y:0,duration:1,stagger:.18})
 /* ── Stats handled by slot machine rollers below ── */
 
 // All gs-hide, gs-left, gs-right, gs-scale elements (batched)
-ScrollTrigger.batch('.gs-hide:not(.hero-ct .gs-hide)',{
+// Exclude elements handled by page-level scroll animations
+ScrollTrigger.batch('.gs-hide:not(.hero-ct .gs-hide):not(.svc-card):not(.feat-card):not(.price-card):not(.test-card):not(.stats-g .gs-hide)',{
   start:'top 90%',once:true,
   onEnter:batch=>gsap.to(batch,{opacity:1,y:0,duration:.9,stagger:.08,ease:'power3.out',force3D:true})
 });
-ScrollTrigger.batch('.gs-left',{
+ScrollTrigger.batch('.gs-left:not(.con-info)',{
   start:'top 90%',once:true,
   onEnter:batch=>gsap.to(batch,{opacity:1,x:0,duration:.9,stagger:.08,ease:'power3.out',force3D:true})
 });
-ScrollTrigger.batch('.gs-right',{
+ScrollTrigger.batch('.gs-right:not(.con-form)',{
   start:'top 90%',once:true,
   onEnter:batch=>gsap.to(batch,{opacity:1,x:0,duration:.9,stagger:.08,ease:'power3.out',force3D:true})
 });
-ScrollTrigger.batch('.gs-scale:not(.hero-ct .gs-scale)',{
+ScrollTrigger.batch('.gs-scale:not(.hero-ct .gs-scale):not(.show-card):not(.cta-box)',{
   start:'top 90%',once:true,
   onEnter:batch=>gsap.to(batch,{opacity:1,scale:1,y:0,duration:.9,stagger:.08,ease:'power3.out',force3D:true})
 });
@@ -1163,7 +1205,285 @@ ScrollTrigger.batch('.gs-scale:not(.hero-ct .gs-scale)',{
 gsap.to('.hg1',{y:-80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1.5}});
 gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1.5}});
 
-/* ── FAQ handled by interactive typewriter section below ── */
+/* ══════════════════════════════════════════════════════════════
+   PAGE-LEVEL INTERACTION 1: SECTION NAVIGATION DOTS
+   Fixed side nav that tracks current section + click to scroll
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  const nav = document.getElementById('secNav');
+  const dots = nav.querySelectorAll('.sec-dot');
+  const sectionIds = Array.from(dots).map(d => d.dataset.target);
+  
+  // Show nav after scrolling past hero
+  ScrollTrigger.create({
+    trigger:'.hero', start:'bottom 80%', end:'bottom 20%',
+    onLeave:()=> nav.classList.add('visible'),
+    onEnterBack:()=> nav.classList.remove('visible')
+  });
+  
+  // Track active section
+  sectionIds.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    ScrollTrigger.create({
+      trigger: el, start:'top center', end:'bottom center',
+      onEnter:()=>{ dots.forEach(d=>d.classList.remove('active')); dots[i].classList.add('active'); },
+      onEnterBack:()=>{ dots.forEach(d=>d.classList.remove('active')); dots[i].classList.add('active'); }
+    });
+  });
+  
+  // Click to scroll
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const target = document.getElementById(dot.dataset.target);
+      if(target) gsap.to(window, {duration:1.2, scrollTo:{y:target, offsetY:60}, ease:'power3.inOut'});
+    });
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE-LEVEL INTERACTION 2: BACKGROUND COLOR MORPHING
+   Background gradient shifts as you scroll through sections
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  const morph = document.getElementById('bgMorph');
+  if(!morph) return;
+  const zones = [
+    {trigger:'#hero', bg:'radial-gradient(ellipse at 30% 20%, rgba(59,130,246,.04), transparent 60%)'},
+    {trigger:'#stats', bg:'radial-gradient(ellipse at 50% 50%, rgba(16,185,129,.03), transparent 50%)'},
+    {trigger:'#services', bg:'radial-gradient(ellipse at 70% 30%, rgba(139,92,246,.04), transparent 60%)'},
+    {trigger:'#features', bg:'radial-gradient(ellipse at 20% 60%, rgba(6,182,212,.04), transparent 55%)'},
+    {trigger:'#process', bg:'radial-gradient(ellipse at 50% 40%, rgba(245,158,11,.03), transparent 50%)'},
+    {trigger:'#work', bg:'radial-gradient(ellipse at 60% 50%, rgba(59,130,246,.05), transparent 60%)'},
+    {trigger:'#tech', bg:'radial-gradient(ellipse at 40% 40%, rgba(139,92,246,.04), transparent 55%)'},
+    {trigger:'#pricing', bg:'radial-gradient(ellipse at 50% 30%, rgba(59,130,246,.04), transparent 55%)'},
+    {trigger:'#testimonials', bg:'radial-gradient(ellipse at 30% 50%, rgba(236,72,153,.03), transparent 55%)'},
+    {trigger:'#faq', bg:'radial-gradient(ellipse at 60% 60%, rgba(6,182,212,.03), transparent 50%)'},
+    {trigger:'#contact', bg:'radial-gradient(ellipse at 50% 50%, rgba(59,130,246,.04), transparent 55%)'}
+  ];
+  zones.forEach(z => {
+    const el = document.querySelector(z.trigger);
+    if(!el) return;
+    ScrollTrigger.create({
+      trigger:el, start:'top 60%', end:'bottom 40%',
+      onEnter:()=>{ morph.style.background = z.bg; },
+      onEnterBack:()=>{ morph.style.background = z.bg; }
+    });
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE-LEVEL INTERACTION 3: HORIZONTAL SCROLL SHOWCASE
+   Section pins while projects scroll horizontally (desktop only)
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  const track = document.getElementById('showTrack');
+  const sec = document.querySelector('.show-sec');
+  if(!track || !sec) return;
+  
+  ScrollTrigger.matchMedia({
+    '(min-width: 701px)': function(){
+      const getScrollDist = () => track.scrollWidth - sec.querySelector('.ctn').offsetWidth;
+      gsap.to(track, {
+        x: () => -getScrollDist(),
+        ease:'none',
+        scrollTrigger:{
+          trigger: sec,
+          pin: true,
+          scrub: 1,
+          end: () => '+=' + getScrollDist(),
+          invalidateOnRefresh: true,
+        }
+      });
+    }
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE-LEVEL INTERACTION 4: SERVICES — STAGGERED FLY-IN
+   Cards fly in from alternating sides as you scroll
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  const cards = document.querySelectorAll('.svc-card');
+  cards.forEach((card, i) => {
+    const fromX = i % 2 === 0 ? -120 : 120;
+    const fromRot = i % 2 === 0 ? -6 : 6;
+    gsap.fromTo(card,
+      {x:fromX, opacity:0, rotateY:fromRot},
+      {x:0, opacity:1, rotateY:0, duration:1.2, ease:'power3.out',
+        scrollTrigger:{trigger:card, start:'top 88%', end:'top 40%', scrub:1}
+      }
+    );
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE-LEVEL INTERACTION 5: FEATURES — SCALE-BURST ENTRANCE
+   Cards burst in from center with staggered scale
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  const cards = document.querySelectorAll('.feat-card');
+  cards.forEach((card, i) => {
+    gsap.fromTo(card,
+      {scale:0.5, opacity:0, y:60, rotateX:15},
+      {scale:1, opacity:1, y:0, rotateX:0, duration:1, ease:'back.out(1.4)',
+        scrollTrigger:{trigger:card, start:'top 92%', toggleActions:'play none none reverse'}
+      }
+    );
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE-LEVEL INTERACTION 6: STATS — DRAMATIC SCALE + SPLIT
+   Section scales up from small and stats spread apart
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  const statsSec = document.getElementById('stats');
+  if(!statsSec) return;
+  const statsInner = statsSec.querySelector('.stats-g');
+  if(!statsInner) return;
+  
+  gsap.fromTo(statsInner,
+    {scale:0.7, opacity:0, y:40},
+    {scale:1, opacity:1, y:0, duration:1.4, ease:'power3.out',
+      scrollTrigger:{trigger:statsSec, start:'top 85%', toggleActions:'play none none reverse'}
+    }
+  );
+  
+  // Each stat item slides in from different direction
+  const items = statsInner.querySelectorAll(':scope > div');
+  items.forEach((item, i) => {
+    const offsets = [{x:-60,r:-10},{x:-30,r:-5},{x:30,r:5},{x:60,r:10}];
+    const o = offsets[i] || {x:0,r:0};
+    gsap.fromTo(item,
+      {x:o.x, opacity:0, rotateZ:o.r},
+      {x:0, opacity:1, rotateZ:0, duration:1, delay:i*.1, ease:'power3.out',
+        scrollTrigger:{trigger:statsSec, start:'top 82%', toggleActions:'play none none reverse'}
+      }
+    );
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE-LEVEL INTERACTION 7: TECH — CASCADE RAIN ENTRANCE
+   Tech items rain in from top with stagger like falling tiles
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  const items = document.querySelectorAll('.tech-i');
+  items.forEach((item, i) => {
+    const randomX = (Math.random() - 0.5) * 80;
+    gsap.fromTo(item,
+      {y:-100, x:randomX, opacity:0, rotation:Math.random()*20-10, scale:0.6},
+      {y:0, x:0, opacity:1, rotation:0, scale:1,
+        duration:0.8, delay:i*0.06, ease:'bounce.out',
+        scrollTrigger:{trigger:'.tech-sec', start:'top 80%', toggleActions:'play none none reverse'}
+      }
+    );
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE-LEVEL INTERACTION 8: PRICING — 3D FLIP ENTRANCE
+   Cards flip in from bottom with stagger
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  const cards = document.querySelectorAll('.price-card');
+  cards.forEach((card, i) => {
+    gsap.fromTo(card,
+      {rotateX:90, opacity:0, y:80, transformOrigin:'bottom center'},
+      {rotateX:0, opacity:1, y:0, duration:1.2, delay:i*0.2, ease:'power3.out',
+        scrollTrigger:{trigger:'.price-sec', start:'top 78%', toggleActions:'play none none reverse'}
+      }
+    );
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE-LEVEL INTERACTION 9: TESTIMONIALS — SLIDE FROM SIDES
+   Left card from left, middle from below, right from right
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  const cards = document.querySelectorAll('.test-card');
+  const entrances = [
+    {x:-150, y:0, rotation:-8},
+    {x:0, y:100, rotation:0},
+    {x:150, y:0, rotation:8}
+  ];
+  cards.forEach((card, i) => {
+    const e = entrances[i] || entrances[0];
+    gsap.fromTo(card,
+      {x:e.x, y:e.y, opacity:0, rotation:e.rotation},
+      {x:0, y: i===1 ? -8 : 0, opacity:1, rotation:0, duration:1.2, delay:i*0.15, ease:'power3.out',
+        scrollTrigger:{trigger:'.test-sec', start:'top 78%', toggleActions:'play none none reverse'}
+      }
+    );
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE-LEVEL INTERACTION 10: CTA — DRAMATIC ZOOM + GLOW
+   CTA section zooms from far away and glows on arrival
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  const cta = document.querySelector('.cta-box');
+  if(!cta) return;
+  gsap.fromTo(cta,
+    {scale:0.6, opacity:0, y:60, boxShadow:'0 0 0 rgba(59,130,246,0)'},
+    {scale:1, opacity:1, y:0, boxShadow:'0 0 80px rgba(59,130,246,.08)', duration:1.5, ease:'power4.out',
+      scrollTrigger:{trigger:cta, start:'top 85%', toggleActions:'play none none reverse'}
+    }
+  );
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE-LEVEL INTERACTION 11: PARALLAX SECTION HEADINGS
+   Section titles move slower than content — depth effect
+   ══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('.stitle').forEach(title => {
+  gsap.to(title, {
+    y: -30,
+    scrollTrigger:{
+      trigger: title.closest('.sec') || title,
+      start:'top bottom', end:'bottom top',
+      scrub:2
+    }
+  });
+});
+document.querySelectorAll('.lbl').forEach(lbl => {
+  gsap.to(lbl, {
+    y: -20, x: 10,
+    scrollTrigger:{
+      trigger: lbl.closest('.sec') || lbl,
+      start:'top bottom', end:'bottom top',
+      scrub:2
+    }
+  });
+});
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE-LEVEL INTERACTION 12: CONTACT — CURTAIN REVEAL
+   Left and right panels slide in from their sides
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  const conInfo = document.querySelector('.con-info');
+  const conForm = document.querySelector('.con-form');
+  if(conInfo){
+    gsap.fromTo(conInfo,
+      {x:-100, opacity:0, rotateY:10},
+      {x:0, opacity:1, rotateY:0, duration:1.2, ease:'power3.out',
+        scrollTrigger:{trigger:'#contact', start:'top 78%', toggleActions:'play none none reverse'}
+      }
+    );
+  }
+  if(conForm){
+    gsap.fromTo(conForm,
+      {x:100, opacity:0, rotateY:-10},
+      {x:0, opacity:1, rotateY:0, duration:1.2, delay:.15, ease:'power3.out',
+        scrollTrigger:{trigger:'#contact', start:'top 78%', toggleActions:'play none none reverse'}
+      }
+    );
+  }
+})();
 
 /* ── CONTACT FORM ── */
 document.getElementById('contactForm').addEventListener('submit',e=>{
