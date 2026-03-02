@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Services — Terminal Edge | Custom Websites, AI, Bots & Apps</title>
+<meta name="description" content="Explore Terminal Edge services: custom websites, AI workflows, trading bots, scraping automation, and full-stack custom applications — engineered for performance."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+/* ══════════════════════════════════════════════
+   SERVICES PAGE — Page-Specific Styles
+   ══════════════════════════════════════════════ */
+
+/* ── SERVICE SECTIONS ── */
+.svc-section{padding:6rem 1.5rem;position:relative;overflow:hidden}
+.svc-section:nth-child(even){background:var(--bg2)}
+.svc-section .ctn{max-width:1200px;margin:0 auto}
+
+/* ── SERVICE HEADER ── */
+.svc-header{display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:3rem}
+.svc-icon{width:64px;height:64px;border-radius:var(--rs);display:grid;place-items:center;flex-shrink:0;font-size:1.6rem;border:1px solid var(--border)}
+.svc-icon.blue{background:rgba(59,130,246,.1);color:var(--blue);box-shadow:0 0 30px rgba(59,130,246,.08)}
+.svc-icon.cyan{background:rgba(6,182,212,.1);color:var(--cyan);box-shadow:0 0 30px rgba(6,182,212,.08)}
+.svc-icon.orange{background:rgba(245,158,11,.1);color:var(--orange);box-shadow:0 0 30px rgba(245,158,11,.08)}
+.svc-icon.purple{background:rgba(139,92,246,.1);color:var(--purple);box-shadow:0 0 30px rgba(139,92,246,.08)}
+.svc-header-text h2{font-family:var(--ff);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;line-height:1.15;margin-bottom:.6rem}
+.svc-header-text p{color:var(--dim);font-size:1.05rem;max-width:640px;line-height:1.8}
+
+/* ── FEATURE GRID ── */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-bottom:2.5rem}
+@media(max-width:900px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr}}
+
+.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);padding:1.6rem;position:relative;overflow:hidden;transition:all .4s var(--ease)}
+.feat-card::before{content:'';position:absolute;inset:-1px;border-radius:var(--rs);padding:1px;background:linear-gradient(135deg,transparent 40%,var(--blue),var(--purple),transparent 90%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s}
+.feat-card:hover{transform:translateY(-3px);background:var(--surface2)}.feat-card:hover::before{opacity:1}
+.feat-card .fc-icon{font-size:1.3rem;margin-bottom:.8rem;display:block}
+.feat-card h4{font-family:var(--ff);font-size:1rem;font-weight:600;margin-bottom:.4rem}
+.feat-card p{font-size:.85rem;color:var(--dim);line-height:1.7}
+
+/* ── TECH PILLS ── */
+.tech-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.tech-pill{font-family:var(--fm);font-size:.72rem;padding:.35rem .8rem;border-radius:100px;border:1px solid var(--border2);color:var(--text);background:rgba(255,255,255,.03);transition:all .3s;display:inline-flex;align-items:center;gap:.4rem}
+.tech-pill:hover{border-color:var(--blue);background:rgba(59,130,246,.08);color:var(--blue)}
+.tech-pill .tp-dot{width:6px;height:6px;border-radius:50%}
+
+/* ── PRICING CALLOUT ── */
+.price-tag{display:inline-flex;align-items:center;gap:.8rem;padding:.7rem 1.4rem;border-radius:var(--rxs);background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(139,92,246,.08));border:1px solid rgba(59,130,246,.15);font-family:var(--ff);font-weight:600;font-size:1rem}
+.price-tag .price-amount{font-size:1.4rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.price-tag .price-from{font-size:.78rem;color:var(--dim);font-weight:400;font-family:var(--fb)}
+
+/* ── CODE MOCKUP ── */
+.code-mockup{background:#0c0d1f;border:1px solid var(--border);border-radius:var(--rs);overflow:hidden;max-width:640px;font-family:var(--fm);font-size:.78rem;line-height:1.8;margin-top:2rem}
+.code-titlebar{display:flex;align-items:center;gap:.5rem;padding:.6rem 1rem;background:rgba(255,255,255,.03);border-bottom:1px solid var(--border)}
+.code-dot{width:10px;height:10px;border-radius:50%}
+.code-dot.r{background:#ef4444}.code-dot.y{background:#f59e0b}.code-dot.g{background:#10b981}
+.code-titlebar span{margin-left:.5rem;font-size:.7rem;color:var(--muted)}
+.code-body{padding:1.2rem 1.4rem;overflow-x:auto;max-height:280px}
+.code-body .ln{color:var(--muted);display:inline-block;width:2rem;text-align:right;margin-right:1rem;user-select:none}
+.code-body .kw{color:#c792ea}.code-body .fn{color:#82aaff}.code-body .str{color:#c3e88d}
+.code-body .cm{color:#545c7e;font-style:italic}.code-body .tag{color:#f07178}
+.code-body .attr{color:#ffcb6b}.code-body .punc{color:#89ddff}.code-body .comp{color:#82aaff}
+.code-body .prop{color:#f78c6c}
+.code-cursor{display:inline-block;width:2px;height:1em;background:var(--blue);animation:blink-cursor 1s step-end infinite;vertical-align:text-bottom}
+@keyframes blink-cursor{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── AI WORKFLOW DIAGRAM ── */
+.workflow-diagram{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;padding:2.5rem 1rem;margin:2.5rem 0;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:var(--r);position:relative;overflow:hidden}
+.workflow-diagram::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(6,182,212,.04),transparent 70%)}
+.wf-node{display:flex;flex-direction:column;align-items:center;gap:.5rem;padding:1rem 1.2rem;position:relative;z-index:1}
+.wf-node-box{width:68px;height:68px;border-radius:var(--rs);display:grid;place-items:center;font-size:1.4rem;border:1px solid var(--border2);background:var(--surface);transition:all .4s var(--ease)}
+.wf-node:hover .wf-node-box{transform:scale(1.08);background:var(--surface2);border-color:var(--cyan)}
+.wf-node span{font-size:.7rem;font-family:var(--fm);color:var(--dim);text-align:center}
+.wf-arrow{display:flex;align-items:center;padding:0 .25rem;color:var(--cyan);font-size:.8rem;z-index:1;position:relative}
+.wf-arrow::after{content:'';position:absolute;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);top:50%;left:0;opacity:.3}
+@media(max-width:640px){.workflow-diagram{gap:.5rem}.wf-node{padding:.6rem .5rem}.wf-node-box{width:52px;height:52px;font-size:1.1rem}.wf-arrow{font-size:.6rem}}
+
+/* ── CAPABILITY LIST ── */
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0}
+@media(max-width:900px){.cap-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.cap-grid{grid-template-columns:1fr}}
+.cap-item{display:flex;align-items:flex-start;gap:.8rem;padding:1rem;border-radius:var(--rxs);background:rgba(255,255,255,.02);border:1px solid transparent;transition:all .3s}
+.cap-item:hover{background:var(--surface);border-color:var(--border)}
+.cap-bullet{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:6px}
+.cap-item h5{font-family:var(--ff);font-size:.9rem;font-weight:600;margin-bottom:.2rem}
+.cap-item p{font-size:.8rem;color:var(--dim);line-height:1.6}
+
+/* ── TRADING DASHBOARD MOCKUP ── */
+.dash-mockup{background:#0a0b1e;border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin:2.5rem 0;overflow:hidden}
+.dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
+.dash-title{font-family:var(--ff);font-size:1rem;font-weight:600;display:flex;align-items:center;gap:.5rem}
+.dash-live{font-size:.65rem;padding:.2rem .5rem;border-radius:100px;background:rgba(16,185,129,.15);color:var(--green);font-family:var(--fm);display:flex;align-items:center;gap:.3rem}
+.dash-live::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+
+.dash-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem}
+@media(max-width:640px){.dash-stats{grid-template-columns:repeat(2,1fr)}}
+.dash-stat{padding:.8rem 1rem;border-radius:var(--rxs);background:var(--surface);border:1px solid var(--border)}
+.dash-stat .ds-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-family:var(--fm);margin-bottom:.3rem}
+.dash-stat .ds-val{font-family:var(--ff);font-size:1.3rem;font-weight:700}
+.dash-stat .ds-val.green{color:var(--green)}.dash-stat .ds-val.blue{color:var(--blue)}.dash-stat .ds-val.orange{color:var(--orange)}.dash-stat .ds-val.cyan{color:var(--cyan)}
+
+.dash-chart{border:1px solid var(--border);border-radius:var(--rxs);padding:1rem;background:rgba(255,255,255,.01)}
+.dash-chart svg{width:100%;height:auto}
+
+/* ── SAFETY CALLOUT ── */
+.safety-box{display:flex;align-items:flex-start;gap:1rem;padding:1.2rem 1.5rem;border-radius:var(--rs);background:rgba(245,158,11,.05);border:1px solid rgba(245,158,11,.2);margin:2rem 0}
+.safety-box .sb-icon{font-size:1.4rem;flex-shrink:0;margin-top:.1rem}
+.safety-box p{font-size:.88rem;color:var(--dim);line-height:1.7}
+.safety-box strong{color:var(--orange)}
+
+/* ── BOT TYPES ── */
+.bot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2rem 0}
+@media(max-width:900px){.bot-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.bot-grid{grid-template-columns:1fr}}
+.bot-type{padding:1.3rem;border-radius:var(--rs);background:var(--surface);border:1px solid var(--border);text-align:center;transition:all .4s var(--ease);position:relative;overflow:hidden}
+.bot-type::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(245,158,11,.06),transparent 60%);opacity:0;transition:opacity .4s}
+.bot-type:hover{transform:translateY(-3px);border-color:var(--border2)}.bot-type:hover::after{opacity:1}
+.bot-type .bt-icon{font-size:1.6rem;margin-bottom:.6rem;display:block;position:relative;z-index:1}
+.bot-type h5{font-family:var(--ff);font-size:.9rem;font-weight:600;margin-bottom:.3rem;position:relative;z-index:1}
+.bot-type p{font-size:.75rem;color:var(--dim);position:relative;z-index:1}
+
+/* ── APP GRID ── */
+.app-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin:2rem 0}
+@media(max-width:900px){.app-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.app-grid{grid-template-columns:1fr}}
+.app-card{padding:2rem;border-radius:var(--r);background:var(--surface);border:1px solid var(--border);transition:all .4s var(--ease);position:relative;overflow:hidden}
+.app-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad3);opacity:0;transition:opacity .4s}
+.app-card:hover{transform:translateY(-3px);background:var(--surface2)}.app-card:hover::before{opacity:1}
+.app-card .ac-icon{font-size:1.8rem;margin-bottom:1rem;display:block}
+.app-card h4{font-family:var(--ff);font-size:1.05rem;font-weight:600;margin-bottom:.4rem}
+.app-card p{font-size:.85rem;color:var(--dim);line-height:1.7}
+
+/* ── DEPTH PILLARS (tech depth) ── */
+.depth-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2.5rem 0}
+@media(max-width:900px){.depth-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.depth-row{grid-template-columns:1fr}}
+.depth-item{padding:1.5rem;border-radius:var(--rs);border:1px solid var(--border);background:rgba(255,255,255,.02);text-align:center;transition:all .3s}
+.depth-item:hover{background:var(--surface);border-color:var(--border2)}
+.depth-item .di-num{font-family:var(--fm);font-size:.7rem;color:var(--purple);margin-bottom:.6rem;display:block}
+.depth-item h5{font-family:var(--ff);font-size:.95rem;font-weight:600;margin-bottom:.3rem}
+.depth-item p{font-size:.78rem;color:var(--dim);line-height:1.6}
+
+/* ── PROCESS SECTION ── */
+.process-track{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:3rem 0;position:relative}
+@media(max-width:768px){.process-track{grid-template-columns:1fr;gap:2rem}}
+.process-track::before{content:'';position:absolute;top:44px;left:5%;right:5%;height:2px;background:linear-gradient(90deg,var(--blue),var(--purple),var(--cyan),var(--green));opacity:.25;z-index:0}
+@media(max-width:768px){.process-track::before{top:0;bottom:0;left:44px;right:auto;width:2px;height:100%}}
+.proc-step{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;padding:0 .5rem}
+@media(max-width:768px){.proc-step{flex-direction:row;text-align:left;align-items:flex-start;gap:1.2rem;padding:0}}
+.proc-num{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-family:var(--ff);font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;flex-shrink:0;border:2px solid var(--border2);background:var(--bg);position:relative;transition:all .4s}
+.proc-step:nth-child(1) .proc-num{border-color:var(--blue);color:var(--blue)}
+.proc-step:nth-child(2) .proc-num{border-color:var(--purple);color:var(--purple)}
+.proc-step:nth-child(3) .proc-num{border-color:var(--cyan);color:var(--cyan)}
+.proc-step:nth-child(4) .proc-num{border-color:var(--green);color:var(--green)}
+.proc-step:hover .proc-num{background:var(--surface);transform:scale(1.1)}
+.proc-step h4{font-family:var(--ff);font-size:1rem;font-weight:600;margin-bottom:.4rem}
+.proc-step p{font-size:.82rem;color:var(--dim);max-width:220px;line-height:1.6}
+@media(max-width:768px){.proc-step p{max-width:none}}
+
+/* ── SECTION DIVIDER ── */
+.svc-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0}
+
+/* ── GLOW ORBS ── */
+.svc-glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:.06;pointer-events:none}
+
+/* ── ANIMATED TYPING IN CODE BOX ── */
+.code-type-line{overflow:hidden;white-space:nowrap;border-right:2px solid var(--blue);animation:type-line 3.5s steps(45) 1s 1 normal both,blink-cursor 1s step-end infinite 4.5s}
+@keyframes type-line{from{width:0}to{width:100%}}
+
+/* ── SERVICE NUMBER TAG ── */
+.svc-num{font-family:var(--fm);font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.2em;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.svc-num::before{content:'';width:20px;height:1px;background:var(--muted)}
+
+/* ── PAGE-HERO ADDITIONS ── */
+.services-hero-sub{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;margin-top:2rem}
+.sh-pill{display:flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.75rem;color:var(--dim);padding:.4rem 1rem;border:1px solid var(--border);border-radius:100px;background:rgba(255,255,255,.02);backdrop-filter:blur(6px)}
+.sh-pill .sp-icon{font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="scroll-bar" id="scrollBar"></div>
+
+<!-- ══ NAV ══ -->
+<nav id="navbar">
+<div class="nav-w">
+<a href="index.html" class="logo"><span class="logo-box">TE</span>Terminal Edge</a>
+<div class="nav-links">
+<a href="services.html" class="active">Services</a>
+<a href="work.html">Work</a>
+<a href="pricing.html">Pricing</a>
+<a href="faq.html">FAQ</a>
+<a href="contact.html" class="nav-cta">Start a Project</a>
+</div>
+<button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+</nav>
+<div class="mob-menu" id="mobMenu">
+<a href="services.html" data-close>Services</a>
+<a href="work.html" data-close>Work</a>
+<a href="pricing.html" data-close>Pricing</a>
+<a href="faq.html" data-close>FAQ</a>
+<a href="contact.html" data-close class="btn1" style="margin-top:.5rem">Start a Project</a>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 1 — PAGE HERO
+     ══════════════════════════════════════════════ -->
+<section class="page-hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-glow" style="background:#3b82f6;width:min(500px,80vw);height:min(500px,80vw);top:-150px;left:-10%"></div>
+  <div class="hero-glow" style="background:#8b5cf6;width:min(400px,70vw);height:min(400px,70vw);bottom:-100px;right:-5%"></div>
+  <div class="page-hero-ct" style="position:relative;z-index:2;text-align:center;max-width:880px">
+    <div class="badge gs-hide"><span class="dot"></span> 4 Core Disciplines</div>
+    <h1 class="gs-hide">What We <span class="gt">Build</span></h1>
+    <p class="gs-hide">From pixel-perfect storefronts to autonomous AI agents — we engineer digital systems that perform, scale, and generate revenue. Every line of code ships with purpose.</p>
+    <div class="services-hero-sub gs-hide">
+      <div class="sh-pill"><span class="sp-icon">🌐</span> Custom Websites</div>
+      <div class="sh-pill"><span class="sp-icon">🤖</span> AI Workflows</div>
+      <div class="sh-pill"><span class="sp-icon">📈</span> Trading Bots</div>
+      <div class="sh-pill"><span class="sp-icon">⚙️</span> Custom Apps</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2 — CUSTOM WEBSITES
+     ══════════════════════════════════════════════ -->
+<section class="svc-section" id="websites">
+  <div class="svc-glow" style="background:var(--blue);width:400px;height:400px;top:-100px;right:-100px"></div>
+  <div class="ctn">
+    <div class="svc-num gs-hide">Service 01 — Web Development</div>
+
+    <div class="svc-header gs-hide">
+      <div class="svc-icon blue">🌐</div>
+      <div class="svc-header-text">
+        <h2>Custom <span class="gt">Websites</span></h2>
+        <p>Lightning-fast, conversion-optimized websites built from scratch — never from generic templates. Every site is hand-crafted with modern frameworks, progressive enhancement, and obsessive attention to Core Web Vitals. Whether you need a one-page storefront or a full e-commerce platform, it ships fast, ranks well, and <em>works</em>.</p>
+      </div>
+    </div>
+
+    <!-- Feature Grid -->
+    <div class="feat-grid">
+      <div class="feat-card gs-hide">
+        <span class="fc-icon">📱</span>
+        <h4>Responsive Design</h4>
+        <p>Fluid layouts that look stunning from 375px mobile screens to 4K ultra-wide monitors. Every breakpoint is intentional — nothing breaks.</p>
+      </div>
+      <div class="feat-card gs-hide">
+        <span class="fc-icon">🔍</span>
+        <h4>SEO Optimization</h4>
+        <p>Structured data, meta tags, OpenGraph, sitemaps, canonical URLs, and semantic HTML — built for search engines from day one, not bolted on later.</p>
+      </div>
+      <div class="feat-card gs-hide">
+        <span class="fc-icon">✏️</span>
+        <h4>CMS Integration</h4>
+        <p>Edit your own content without touching code. WordPress, Sanity, Strapi, or headless setups — your team stays in control after handoff.</p>
+      </div>
+      <div class="feat-card gs-hide">
+        <span class="fc-icon">⚡</span>
+        <h4>Performance</h4>
+        <p>Sub-second load times with lazy loading, image optimization, code splitting, and edge caching. 90+ Lighthouse scores are the baseline, not the goal.</p>
+      </div>
+      <div class="feat-card gs-hide">
+        <span class="fc-icon">🛒</span>
+        <h4>E-Commerce</h4>
+        <p>Shopify storefronts, custom carts, payment gateways (Stripe, PayPal), inventory sync, and abandoned cart recovery — revenue-ready from launch.</p>
+      </div>
+      <div class="feat-card gs-hide">
+        <span class="fc-icon">📊</span>
+        <h4>Analytics</h4>
+        <p>GA4, Plausible, or custom event tracking wired in from the start. Know exactly where your users click, scroll, and convert.</p>
+      </div>
+    </div>
+
+    <!-- Tech Pills -->
+    <div class="tech-row gs-hide">
+      <div class="tech-pill"><span class="tp-dot" style="background:#000"></span> Next.js</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#61dafb"></span> React</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#38bdf8"></span> Tailwind CSS</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#000"></span> Vercel</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#96bf48"></span> Shopify</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#21759b"></span> WordPress</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#f7df1e"></span> JavaScript</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#ff6347"></span> Astro</div>
+    </div>
+
+    <!-- Pricing + Code Mockup side-by-side -->
+    <div style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap">
+      <div style="flex:1;min-width:280px">
+        <div class="price-tag gs-hide">
+          <div><span class="price-from">Starting from</span><br><span class="price-amount">$500</span></div>
+        </div>
+        <p style="margin-top:1rem;font-size:.85rem;color:var(--dim)" class="gs-hide">Includes responsive design, SEO setup, analytics integration, 30-day support, and deployment to your hosting of choice.</p>
+      </div>
+      <div class="code-mockup gs-scale" style="flex:1.3;min-width:300px">
+        <div class="code-titlebar">
+          <span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span>
+          <span>page.tsx — Next.js Component</span>
+        </div>
+        <div class="code-body">
+<div><span class="ln">1</span><span class="kw">import</span> { <span class="fn">Hero</span>, <span class="fn">Services</span> } <span class="kw">from</span> <span class="str">'@/components'</span></div>
+<div><span class="ln">2</span><span class="kw">import</span> { <span class="fn">getProjects</span> } <span class="kw">from</span> <span class="str">'@/lib/api'</span></div>
+<div><span class="ln">3</span></div>
+<div><span class="ln">4</span><span class="kw">export default async function</span> <span class="fn">Home</span>() {</div>
+<div><span class="ln">5</span>  <span class="kw">const</span> projects = <span class="kw">await</span> <span class="fn">getProjects</span>()</div>
+<div><span class="ln">6</span></div>
+<div><span class="ln">7</span>  <span class="kw">return</span> (</div>
+<div><span class="ln">8</span>    <span class="punc">&lt;</span><span class="tag">main</span> <span class="attr">className</span><span class="punc">=</span><span class="str">"min-h-screen"</span><span class="punc">&gt;</span></div>
+<div><span class="ln">9</span>      <span class="punc">&lt;</span><span class="comp">Hero</span> <span class="attr">title</span><span class="punc">=</span><span class="str">"Ship faster"</span> <span class="punc">/&gt;</span></div>
+<div><span class="ln">10</span>      <span class="punc">&lt;</span><span class="comp">Services</span> <span class="attr">data</span><span class="punc">={</span>projects<span class="punc">}</span> <span class="punc">/&gt;</span></div>
+<div><span class="ln">11</span>    <span class="punc">&lt;/</span><span class="tag">main</span><span class="punc">&gt;</span></div>
+<div><span class="ln">12</span>  )</div>
+<div><span class="ln">13</span>}<span class="code-cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="svc-divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3 — AI WORKFLOWS & AGENTS
+     ══════════════════════════════════════════════ -->
+<section class="svc-section" id="ai">
+  <div class="svc-glow" style="background:var(--cyan);width:450px;height:450px;bottom:-150px;left:-120px"></div>
+  <div class="ctn">
+    <div class="svc-num gs-hide">Service 02 — Artificial Intelligence</div>
+
+    <div class="svc-header gs-hide">
+      <div class="svc-icon cyan">🤖</div>
+      <div class="svc-header-text">
+        <h2>AI Workflows <span class="gt2">& Agents</span></h2>
+        <p>Intelligent automation that actually delivers ROI — not buzzword-laden demos. We build production-grade AI pipelines that ingest data, reason about it, and take action. From support agents that resolve tickets to RAG systems that search your proprietary knowledge base, every workflow is tested, monitored, and fail-safe.</p>
+      </div>
+    </div>
+
+    <!-- Workflow Diagram -->
+    <div class="workflow-diagram gs-scale">
+      <div class="wf-node">
+        <div class="wf-node-box" style="border-color:rgba(59,130,246,.3)">📥</div>
+        <span>Input</span>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-node">
+        <div class="wf-node-box" style="border-color:rgba(6,182,212,.3)">⚙️</div>
+        <span>Process</span>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-node">
+        <div class="wf-node-box" style="border-color:rgba(139,92,246,.3)">🧠</div>
+        <span>LLM</span>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-node">
+        <div class="wf-node-box" style="border-color:rgba(245,158,11,.3)">✅</div>
+        <span>Validate</span>
+      </div>
+      <div class="wf-arrow">→</div>
+      <div class="wf-node">
+        <div class="wf-node-box" style="border-color:rgba(16,185,129,.3)">📤</div>
+        <span>Output</span>
+      </div>
+    </div>
+
+    <!-- Capabilities Grid -->
+    <h3 style="font-family:var(--ff);font-size:1.2rem;font-weight:600;margin-bottom:.5rem" class="gs-hide">Capabilities</h3>
+    <div class="cap-grid">
+      <div class="cap-item gs-hide">
+        <span class="cap-bullet" style="background:var(--cyan)"></span>
+        <div>
+          <h5>Content Generation</h5>
+          <p>Blog posts, product descriptions, email sequences, and social copy — generated in your brand voice with human-in-the-loop review.</p>
+        </div>
+      </div>
+      <div class="cap-item gs-hide">
+        <span class="cap-bullet" style="background:var(--blue)"></span>
+        <div>
+          <h5>Data Extraction</h5>
+          <p>Pull structured data from PDFs, invoices, web pages, and unstructured text — with validation and error flagging built in.</p>
+        </div>
+      </div>
+      <div class="cap-item gs-hide">
+        <span class="cap-bullet" style="background:var(--green)"></span>
+        <div>
+          <h5>Customer Support Bots</h5>
+          <p>Conversational agents that resolve 60-80% of tickets autonomously, escalate intelligently, and learn from every interaction.</p>
+        </div>
+      </div>
+      <div class="cap-item gs-hide">
+        <span class="cap-bullet" style="background:var(--purple)"></span>
+        <div>
+          <h5>RAG Systems</h5>
+          <p>Retrieval-Augmented Generation pipelines that search your docs, SOPs, and knowledge base with high precision and source citations.</p>
+        </div>
+      </div>
+      <div class="cap-item gs-hide">
+        <span class="cap-bullet" style="background:var(--pink)"></span>
+        <div>
+          <h5>Document Processing</h5>
+          <p>OCR, classification, entity extraction, and summarization pipelines for contracts, medical records, legal filings, and more.</p>
+        </div>
+      </div>
+      <div class="cap-item gs-hide">
+        <span class="cap-bullet" style="background:var(--orange)"></span>
+        <div>
+          <h5>Sentiment Analysis</h5>
+          <p>Real-time brand monitoring across reviews, social media, and support channels — with alerting on negative trends.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Integrations -->
+    <h3 style="font-family:var(--ff);font-size:1.2rem;font-weight:600;margin:2rem 0 .8rem" class="gs-hide">Integrations & Stack</h3>
+    <div class="tech-row gs-hide">
+      <div class="tech-pill"><span class="tp-dot" style="background:#10a37f"></span> OpenAI</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#d97706"></span> Claude</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#1c3d5a"></span> LangChain</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#ff6d5a"></span> n8n</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#000"></span> Pinecone</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#dc2626"></span> Qdrant</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#3b82f6"></span> Supabase</div>
+      <div class="tech-pill"><span class="tp-dot" style="background:#22c55e"></span> Make</div>
+    </div>
+
+    <div class="price-tag gs-hide" style="margin-top:.5rem">
+      <div><span class="price-from">Starting from</span><br><span class="price-amount" style="background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">$1,500</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="svc-divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 4 — TRADING & SCRAPING BOTS
+     ══════════════════════════════════════════════ -->
+<section class="svc-section" id="bots">
+  <div class="svc-glow" style="background:var(--orange);width:400px;height:400px;top:-80px;left:50%;transform:translateX(-50%)"></div>
+  <div class="ctn">
+    <div class="svc-num gs-hide">Service 03 — Algorithmic Trading & Automation</div>
+
+    <div class="svc-header gs-hide">
+      <div class="svc-icon orange">📈</div>
+      <div class="svc-header-text">
+        <h2>Trading & Scraping <span class="gt4">Bots</span></h2>
+        <p>Precision-engineered algorithms that execute strategies 24/7 with zero emotion. From crypto arbitrage to market-making, grid trading to momentum plays — every bot ships with backtesting results, risk management controls, and a kill switch. Scraping bots gather competitive intelligence, pricing data, and market signals from any source.</p>
+      </div>
+    </div>
+
+    <!-- Dashboard Mockup -->
+    <div class="dash-mockup gs-scale">
+      <div class="dash-header">
+        <div class="dash-title">📊 Bot Dashboard <span class="dash-live">PAPER MODE</span></div>
+        <div style="font-family:var(--fm);font-size:.7rem;color:var(--muted)">Last updated: 2 seconds ago</div>
+      </div>
+
+      <div class="dash-stats">
+        <div class="dash-stat">
+          <div class="ds-label">Total P&L</div>
+          <div class="ds-val green">+$12,847</div>
+        </div>
+        <div class="dash-stat">
+          <div class="ds-label">Win Rate</div>
+          <div class="ds-val blue">68.4%</div>
+        </div>
+        <div class="dash-stat">
+          <div class="ds-label">Total Trades</div>
+          <div class="ds-val cyan">1,247</div>
+        </div>
+        <div class="dash-stat">
+          <div class="ds-label">Max Drawdown</div>
+          <div class="ds-val orange">-4.2%</div>
+        </div>
+      </div>
+
+      <div class="dash-chart">
+        <svg viewBox="0 0 600 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="P&L performance chart">
+          <!-- Grid lines -->
+          <line x1="0" y1="35" x2="600" y2="35" stroke="rgba(255,255,255,.04)" stroke-dasharray="4 4"/>
+          <line x1="0" y1="70" x2="600" y2="70" stroke="rgba(255,255,255,.06)" stroke-dasharray="4 4"/>
+          <line x1="0" y1="105" x2="600" y2="105" stroke="rgba(255,255,255,.04)" stroke-dasharray="4 4"/>
+          <!-- Gradient area -->
+          <defs>
+            <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#10b981" stop-opacity=".25"/>
+              <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#3b82f6"/>
+              <stop offset="50%" stop-color="#10b981"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,110 C30,108 60,95 90,100 C120,105 140,85 170,78 C200,71 220,82 250,70 C280,58 310,65 340,52 C370,39 390,55 420,42 C450,29 470,38 500,30 C530,22 560,28 590,18 L600,16 L600,140 L0,140 Z" fill="url(#chartGrad)"/>
+          <path d="M0,110 C30,108 60,95 90,100 C120,105 140,85 170,78 C200,71 220,82 250,70 C280,58 310,65 340,52 C370,39 390,55 420,42 C450,29 470,38 500,30 C530,22 560,28 590,18" stroke="url(#lineGrad)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Data points -->
+          <circle cx="90" cy="100" r="3" fill="#10b981"/>
+          <circle cx="250" cy="70" r="3" fill="#10b981"/>
+          <circle cx="420" cy="42" r="3" fill="#06b6d4"/>
+          <circle cx="590" cy="18" r="3.5" fill="#06b6d4" stroke="#06b6d4" stroke-width="4" stroke-opacity=".2"/>
+          <!-- Labels -->
+          <text x="10" y="130" fill="#555d74" font-size="9" font-family="JetBrains Mono, monospace">Week 1</text>
+          <text x="190" y="130" fill="#555d74" font-size="9" font-family="JetBrains Mono, monospace">Week 4</text>
+          <text x="375" y="130" fill="#555d74" font-size="9" font-family="JetBrains Mono, monospace">Week 8</text>
+          <text x="545" y="130" fill="#555d74" font-size="9" font-family="JetBrains Mono, monospace">Week 12</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Bot Features -->
+    <div class="feat-grid">
+      <div class="feat-card gs-hide">
+        <span class="fc-icon">🔄</span>
+        <h4>Multi-Exchange Support</h4>
+        <p>Binance, Coinbase, Kraken, Bybit, and more via CCXT. One bot, multiple venues, unified reporting.</p>
+      </div>
+      <div class="feat-card gs-hide">
+        <span class="fc-icon">🛡️</span>
+        <h4>Risk Management</h4>
+        <p>Position sizing, stop-losses, max drawdown limits, daily loss caps, and exposure controls — baked into every strategy.</p>
+      </div>
+      <div class="feat-card gs-hide">
+        <span class="fc-icon">📉</span>
+        <h4>Backtesting Engine</h4>
+        <p>Test strategies against historical data with slippage simulation, fee modeling, and statistical significance reporting.</p>
+      </div>
+      <div class="feat-card gs-hide">
+        <span class="fc-icon">📝</span>
+        <h4>Paper Trading</h4>
+        <p>Every bot starts in simulation mode. Validate performance with real market data before risking a single dollar.</p>
+      </div>
+      <div class="feat-card gs-hide">
+        <span class="fc-icon">🔴</span>
+        <h4>Kill Switch</h4>
+        <p>One-click emergency stop that cancels all orders, closes positions, and notifies you instantly via webhook or SMS.</p>
+      </div>
+      <div class="feat-card gs-hide">
+        <span class="fc-icon">📋</span>
+        <h4>Audit Trail</h4>
+        <p>Every trade, signal, and decision is logged with timestamps and reasoning. Full transparency for compliance and review.</p>
+      </div>
+    </div>
+
+    <!-- Safety Callout -->
+    <div class="safety-box gs-hide">
+      <div class="sb-icon">⚠️</div>
+      <p><strong>Risk Disclosure:</strong> All trading bots start in paper-trade mode by default. Live trading with real capital requires a signed risk acknowledgment and a minimum 2-week paper-trading validation period. Past performance does not guarantee future results. Terminal Edge is not a financial advisor.</p>
+    </div>
+
+    <!-- Bot Types -->
+    <h3 style="font-family:var(--ff);font-size:1.2rem;font-weight:600;margin:2rem 0 .8rem" class="gs-hide">Bot Types We Build</h3>
+    <div class="bot-grid">
+      <div class="bot-type gs-hide">
+        <span class="bt-icon">⚡</span>
+        <h5>Arbitrage</h5>
+        <p>Cross-exchange price discrepancy detection and execution</p>
+      </div>
+      <div class="bot-type gs-hide">
+        <span class="bt-icon">📐</span>
+        <h5>Grid Trading</h5>
+        <p>Automated buy/sell orders at preset price intervals</p>
+      </div>
+      <div class="bot-type gs-hide">
+        <span class="bt-icon">💰</span>
+        <h5>DCA</h5>
+        <p>Dollar-cost averaging with smart timing and thresholds</p>
+      </div>
+      <div class="bot-type gs-hide">
+        <span class="bt-icon">🚀</span>
+        <h5>Momentum</h5>
+        <p>Trend-following strategies with volume confirmation</p>
+      </div>
+      <div class="bot-type gs-hide">
+        <span class="bt-icon">🕷️</span>
+        <h5>Web Scraping</h5>
+        <p>Automated data collection from any website or API</p>
+      </div>
+      <div class="bot-type gs-hide">
+        <span class="bt-icon">👁️</span>
+        <h5>Monitoring</h5>
+        <p>Price alerts, inventory tracking, and change detection</p>
+      </div>
+    </div>
+
+    <div class="price-tag gs-hide" style="margin-top:1rem">
+      <div><span class="price-from">Pricing</span><br><span class="price-amount" style="background:var(--grad4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Custom Quote</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="svc-divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 5 — CUSTOM APPLICATIONS
+     ══════════════════════════════════════════════ -->
+<section class="svc-section" id="apps">
+  <div class="svc-glow" style="background:var(--purple);width:400px;height:400px;bottom:-120px;right:-80px"></div>
+  <div class="ctn">
+    <div class="svc-num gs-hide">Service 04 — Software Engineering</div>
+
+    <div class="svc-header gs-hide">
+      <div class="svc-icon purple">⚙️</div>
+      <div class="svc-header-text">
+        <h2>Custom <span class="gt3">Applications</span></h2>
+        <p>Full-stack software built to solve your exact problem — no bloated SaaS subscriptions, no feature limitations, no vendor lock-in. From internal dashboards and client portals to Chrome extensions and mobile apps, we architect systems that grow with your business and integrate seamlessly with your existing tools.</p>
+      </div>
+    </div>
+
+    <!-- App Type Grid -->
+    <div class="app-grid">
+      <div class="app-card gs-hide">
+        <span class="ac-icon">📊</span>
+        <h4>SaaS Dashboards</h4>
+        <p>Real-time analytics, KPI tracking, user management, billing integration, and role-based access — everything you need to launch a data-driven product.</p>
+      </div>
+      <div class="app-card gs-hide">
+        <span class="ac-icon">🔧</span>
+        <h4>Internal Tools</h4>
+        <p>Admin panels, inventory systems, CRM tools, and workflow managers built specifically for your team's processes — not generic off-the-shelf software.</p>
+      </div>
+      <div class="app-card gs-hide">
+        <span class="ac-icon">🔐</span>
+        <h4>Client Portals</h4>
+        <p>White-labeled portals with secure authentication, file sharing, project tracking, and communication tools that impress your clients.</p>
+      </div>
+      <div class="app-card gs-hide">
+        <span class="ac-icon">🔗</span>
+        <h4>API Integrations</h4>
+        <p>Connect disparate systems with custom middleware, webhooks, data transformers, and real-time sync — making your tech stack work as one.</p>
+      </div>
+      <div class="app-card gs-hide">
+        <span class="ac-icon">📱</span>
+        <h4>Mobile Apps</h4>
+        <p>Cross-platform mobile applications built with React Native or Flutter — native performance, single codebase, rapid iteration.</p>
+      </div>
+      <div class="app-card gs-hide">
+        <span class="ac-icon">🧩</span>
+        <h4>Chrome Extensions</h4>
+        <p>Browser extensions for productivity, data capture, workflow automation, and tool augmentation — published to the Chrome Web Store.</p>
+      </div>
+    </div>
+
+    <!-- Technology Depth -->
+    <h3 style="font-family:var(--ff);font-size:1.2rem;font-weight:600;margin:2rem 0 .8rem" class="gs-hide">Engineering Depth</h3>
+    <div class="depth-row">
+      <div class="depth-item gs-hide">
+        <span class="di-num">LAYER 01</span>
+        <h5>Full-Stack Dev</h5>
+        <p>React, Node.js, Python, Go — frontend to backend, monolith to microservices.</p>
+      </div>
+      <div class="depth-item gs-hide">
+        <span class="di-num">LAYER 02</span>
+        <h5>Database Design</h5>
+        <p>PostgreSQL, MongoDB, Redis, Supabase — schema design, indexing, migrations, backups.</p>
+      </div>
+      <div class="depth-item gs-hide">
+        <span class="di-num">LAYER 03</span>
+        <h5>API Architecture</h5>
+        <p>REST, GraphQL, WebSockets, gRPC — versioned, documented, rate-limited, secured.</p>
+      </div>
+      <div class="depth-item gs-hide">
+        <span class="di-num">LAYER 04</span>
+        <h5>DevOps & CI/CD</h5>
+        <p>Docker, GitHub Actions, Vercel, AWS — automated testing, deployment, and monitoring.</p>
+      </div>
+    </div>
+
+    <div class="price-tag gs-hide">
+      <div><span class="price-from">Starting from</span><br><span class="price-amount" style="background:var(--grad3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">$2,500</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="svc-divider"></div>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 6 — PROCESS
+     ══════════════════════════════════════════════ -->
+<section class="svc-section" id="process" style="background:var(--bg2)">
+  <div class="ctn tc">
+    <div class="lbl gs-hide">How We Work</div>
+    <h2 class="stitle gs-hide">From Idea to <span class="gt">Production</span></h2>
+    <p class="sdesc gs-hide" style="margin-left:auto;margin-right:auto">A battle-tested four-step process that eliminates guesswork, keeps you in the loop, and ships quality code on schedule. No surprises, no scope creep.</p>
+
+    <div class="process-track">
+      <div class="proc-step gs-hide">
+        <div class="proc-num">01</div>
+        <div>
+          <h4>Discovery</h4>
+          <p>We dig into your goals, audience, constraints, and existing systems. A 30-minute call plus a detailed intake form gives us everything we need to scope accurately.</p>
+        </div>
+      </div>
+      <div class="proc-step gs-hide">
+        <div class="proc-num">02</div>
+        <div>
+          <h4>Spec & Quote</h4>
+          <p>You receive a detailed project spec with wireframes, tech stack recommendations, milestones, timeline, and a fixed-price quote — within 48 hours.</p>
+        </div>
+      </div>
+      <div class="proc-step gs-hide">
+        <div class="proc-num">03</div>
+        <div>
+          <h4>Build & Iterate</h4>
+          <p>Development happens in weekly sprints with live preview links. You see progress, give feedback, and steer direction — no black-box development.</p>
+        </div>
+      </div>
+      <div class="proc-step gs-hide">
+        <div class="proc-num">04</div>
+        <div>
+          <h4>Ship & Support</h4>
+          <p>Final QA, performance audit, and deployment. Every project includes 30 days of post-launch support, bug fixes, and a full handoff package with documentation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 7 — CTA
+     ══════════════════════════════════════════════ -->
+<section class="sec pad">
+  <div class="ctn">
+    <div class="cta-box gs-scale">
+      <h2>Ready to <span class="gt">Build?</span></h2>
+      <p>Tell us what you need — we'll scope it, quote it, and start building within a week. No commitments, no BS discovery calls that go nowhere.</p>
+      <a href="contact.html" class="btn1">Start a Project →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+<div class="ft-inner">
+<div class="ft-brand"><div class="logo"><span class="logo-box">TE</span>Terminal Edge</div><p>Elite digital engineering. Custom websites, AI systems, trading bots, and automation — built for performance and scale.</p></div>
+<div class="ft-col"><h5>Services</h5><a href="services.html">Custom Websites</a><a href="services.html">AI Workflows</a><a href="services.html">Trading Bots</a><a href="services.html">Custom Apps</a></div>
+<div class="ft-col"><h5>Company</h5><a href="work.html">Portfolio</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
+<div class="ft-col"><h5>Connect</h5><a href="https://github.com/mckoy8989-png" target="_blank" rel="noopener">GitHub</a><a href="mailto:hello@terminaledge.dev">Email Us</a></div>
+</div>
+<div class="ft-bot"><span>© 2025 Terminal Edge. All rights reserved.</span><span>Engineered with precision.</span></div>
+</footer>
+
+<!-- ══ SCRIPTS ══ -->
+<script>
+(function(){
+'use strict';
+
+/* ── HERO PARTICLE CANVAS ── */
+const cv = document.getElementById('heroCanvas');
+if (cv) {
+  const ctx = cv.getContext('2d');
+  let w, h, particles = [], mouse = { x: null, y: null };
+  const PARTICLE_COUNT = 80;
+  const CONNECT_DIST = 130;
+
+  function resize() {
+    const rect = cv.parentElement.getBoundingClientRect();
+    w = cv.width = rect.width;
+    h = cv.height = rect.height;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = (Math.random() - 0.5) * 0.5;
+      this.r = Math.random() * 2 + 0.5;
+      this.alpha = Math.random() * 0.5 + 0.2;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0 || this.x > w) this.vx *= -1;
+      if (this.y < 0 || this.y > h) this.vy *= -1;
+      // Mouse repulsion
+      if (mouse.x !== null) {
+        const dx = this.x - mouse.x, dy = this.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          this.x += dx * 0.02;
+          this.y += dy * 0.02;
+        }
+      }
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(59,130,246,${this.alpha})`;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => { p.update(); p.draw(); });
+    // Connection lines
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECT_DIST) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(139,92,246,${(1 - dist / CONNECT_DIST) * 0.15})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  cv.addEventListener('mousemove', e => {
+    const rect = cv.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  cv.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+}
+
+/* ── SCROLL PROGRESS BAR ── */
+const sb = document.getElementById('scrollBar');
+window.addEventListener('scroll', () => {
+  sb.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+});
+
+/* ── NAV SCROLL ── */
+const nb = document.getElementById('navbar');
+window.addEventListener('scroll', () => nb.classList.toggle('scrolled', window.scrollY > 50));
+
+/* ── BURGER MENU ── */
+const bg = document.getElementById('burger');
+const mm = document.getElementById('mobMenu');
+bg.addEventListener('click', () => {
+  bg.classList.toggle('on');
+  mm.classList.toggle('open');
+  document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', () => {
+  bg.classList.remove('on');
+  mm.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+/* ── GSAP ANIMATIONS ── */
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero entrance
+const heroEls = document.querySelectorAll('.page-hero-ct .gs-hide, .page-hero-ct .gs-scale');
+gsap.to(heroEls, {
+  opacity: 1, y: 0, scale: 1,
+  duration: 0.8, stagger: 0.15,
+  ease: 'power3.out'
+});
+
+// All gs-hide elements (skip hero — already animated)
+gsap.utils.toArray('.gs-hide').forEach((el, i) => {
+  if (el.closest('.page-hero-ct')) return;
+  gsap.to(el, {
+    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+    opacity: 1, y: 0, duration: 0.7,
+    delay: i % 6 * 0.06,
+    ease: 'power2.out'
+  });
+});
+
+// gs-left
+gsap.utils.toArray('.gs-left').forEach(el => {
+  gsap.to(el, {
+    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+    opacity: 1, x: 0, duration: 0.7, ease: 'power2.out'
+  });
+});
+
+// gs-right
+gsap.utils.toArray('.gs-right').forEach(el => {
+  gsap.to(el, {
+    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+    opacity: 1, x: 0, duration: 0.7, ease: 'power2.out'
+  });
+});
+
+// gs-scale (skip hero)
+gsap.utils.toArray('.gs-scale').forEach(el => {
+  if (el.closest('.page-hero-ct')) return;
+  gsap.to(el, {
+    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+    opacity: 1, scale: 1, y: 0, duration: 0.7, ease: 'power2.out'
+  });
+});
+
+// Parallax glow orbs
+document.querySelectorAll('.svc-glow').forEach(glow => {
+  gsap.to(glow, {
+    y: -60,
+    scrollTrigger: { trigger: glow.closest('.svc-section'), start: 'top bottom', end: 'bottom top', scrub: 1 }
+  });
+});
+
+})();
+</script>
+</body>
+</html>

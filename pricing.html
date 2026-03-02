@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Pricing — Terminal Edge</title>
+<meta name="description" content="Transparent, fixed pricing for custom websites, AI workflows, trading bots, and automation. No hourly billing, no surprises."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+/* ══════════════════════════════════════════════
+   PRICING PAGE — Scoped Styles
+   ══════════════════════════════════════════════ */
+
+/* ── PRICING TIERS ── */
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start}
+@media(max-width:900px){.tier-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}}
+
+.tier-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:all .4s var(--ease);display:flex;flex-direction:column}
+.tier-card::before{content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;background:linear-gradient(135deg,transparent 30%,var(--blue),var(--purple),transparent 80%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .5s}
+.tier-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.tier-card:hover::before{opacity:1}
+
+/* Popular card */
+.tier-card.pop{border-color:rgba(59,130,246,.3);background:linear-gradient(165deg,rgba(59,130,246,.07),rgba(139,92,246,.05),rgba(6,182,212,.03))}
+.tier-card.pop::after{content:'POPULAR';position:absolute;top:18px;right:-32px;background:var(--grad1);color:#fff;font-size:.58rem;font-weight:700;padding:.3rem 2.8rem;transform:rotate(45deg);letter-spacing:.12em;z-index:3}
+
+.tier-label{font-family:var(--fm);font-size:.72rem;color:var(--blue);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.5rem}
+.tier-card.pop .tier-label{color:var(--cyan)}
+.tier-card:nth-child(3) .tier-label{color:var(--purple)}
+
+.tier-name{font-family:var(--ff);font-size:1.25rem;font-weight:700;margin-bottom:.5rem}
+
+.tier-price{font-family:var(--ff);font-size:2.6rem;font-weight:700;margin-bottom:.15rem;line-height:1.1}
+.tier-price span{font-size:.85rem;color:var(--dim);font-weight:400;margin-left:.2rem}
+
+.tier-sub{color:var(--dim);font-size:.85rem;margin-bottom:1.8rem;min-height:44px}
+
+.tier-divider{width:100%;height:1px;background:var(--border);margin-bottom:1.5rem}
+
+.tier-features{list-style:none;margin-bottom:2rem;flex:1}
+.tier-features li{display:flex;align-items:flex-start;gap:.6rem;padding:.4rem 0;font-size:.88rem;color:var(--dim)}
+.tier-features li svg{flex-shrink:0;margin-top:3px;width:16px;height:16px;color:var(--green)}
+.tier-card.pop .tier-features li svg{color:var(--cyan)}
+
+.tier-btn{display:block;width:100%;padding:.85rem;text-align:center;border-radius:var(--rxs);font-weight:600;font-size:.9rem;transition:all .3s;margin-top:auto}
+.tier-btn.fill{background:var(--grad1);color:#fff}
+.tier-btn.fill:hover{box-shadow:0 10px 30px rgba(59,130,246,.35);transform:translateY(-2px)}
+.tier-btn.outline{border:1px solid var(--border2);color:var(--text);background:transparent}
+.tier-btn.outline:hover{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,.05)}
+.tier-btn.glow{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+.tier-btn.glow:hover{box-shadow:0 10px 30px rgba(139,92,246,.35);transform:translateY(-2px)}
+
+/* ── COMPARISON TABLE ── */
+.compare-sec{background:var(--bg2)}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--r);border:1px solid var(--border);scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.table-wrap::-webkit-scrollbar{height:6px}
+.table-wrap::-webkit-scrollbar-track{background:transparent}
+.table-wrap::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+.compare-tbl{width:100%;min-width:680px;border-collapse:collapse}
+.compare-tbl thead{position:sticky;top:0;z-index:2}
+.compare-tbl th{background:var(--bg3);font-family:var(--ff);font-weight:600;font-size:.88rem;padding:1rem 1.2rem;text-align:center;border-bottom:2px solid var(--border2);white-space:nowrap}
+.compare-tbl th:first-child{text-align:left;min-width:200px}
+.compare-tbl th:nth-child(3){color:var(--cyan)}
+
+.compare-tbl td{padding:.85rem 1.2rem;font-size:.88rem;text-align:center;border-bottom:1px solid var(--border);color:var(--dim);transition:background .2s}
+.compare-tbl td:first-child{text-align:left;font-weight:500;color:var(--text);font-family:var(--ff)}
+
+.compare-tbl tbody tr:nth-child(odd){background:rgba(255,255,255,.015)}
+.compare-tbl tbody tr:hover{background:rgba(59,130,246,.04)}
+
+.compare-tbl .check{color:var(--green);font-size:1.1rem}
+.compare-tbl .dash{color:var(--muted);font-size:1rem}
+.compare-tbl .val{font-family:var(--fm);font-size:.8rem;color:var(--text)}
+
+/* ── ADD-ONS ── */
+.addon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+@media(max-width:900px){.addon-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.addon-grid{grid-template-columns:1fr}}
+
+.addon-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.8rem;position:relative;overflow:hidden;transition:all .4s var(--ease)}
+.addon-card::before{content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;background:linear-gradient(135deg,transparent 40%,var(--cyan),var(--green),transparent 85%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s}
+.addon-card:hover{transform:translateY(-4px);background:var(--surface2)}
+.addon-card:hover::before{opacity:1}
+
+.addon-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:1rem;flex-shrink:0}
+.addon-icon svg{width:20px;height:20px}
+.addon-icon.ai1{background:rgba(6,182,212,.12);color:var(--cyan)}
+.addon-icon.ai2{background:rgba(139,92,246,.12);color:var(--purple)}
+.addon-icon.ai3{background:rgba(16,185,129,.12);color:var(--green)}
+.addon-icon.ai4{background:rgba(59,130,246,.12);color:var(--blue)}
+.addon-icon.ai5{background:rgba(245,158,11,.12);color:var(--orange)}
+.addon-icon.ai6{background:rgba(236,72,153,.12);color:var(--pink)}
+
+.addon-card h4{font-family:var(--ff);font-size:1.05rem;font-weight:600;margin-bottom:.3rem}
+.addon-price{font-family:var(--fm);font-size:.78rem;color:var(--green);margin-bottom:.6rem}
+.addon-card>p{color:var(--dim);font-size:.85rem;line-height:1.6}
+
+/* ── PRICING FAQ ── */
+.pfaq-sec{background:var(--bg2)}
+.pfaq-list{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:.75rem}
+
+.pfaq-it{border:1px solid var(--border);border-radius:var(--rs);overflow:hidden;transition:border-color .3s}
+.pfaq-it.open{border-color:var(--border2)}
+
+.pfaq-q{width:100%;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:transparent;color:var(--text);font-family:var(--ff);font-size:.95rem;font-weight:600;text-align:left;cursor:pointer;transition:color .3s}
+.pfaq-q:hover{color:var(--blue)}
+.pfaq-q .chevron{width:20px;height:20px;transition:transform .3s var(--ease);flex-shrink:0;color:var(--muted)}
+.pfaq-it.open .pfaq-q .chevron{transform:rotate(180deg);color:var(--blue)}
+
+.pfaq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.pfaq-a-inner{padding:0 1.5rem 1.2rem;color:var(--dim);font-size:.9rem;line-height:1.8}
+
+/* ── GUARANTEE BOX ── */
+.guarantee-box{max-width:800px;margin:0 auto;text-align:center;padding:3rem 2.5rem;background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(6,182,212,.06));border:1px solid rgba(16,185,129,.2);border-radius:var(--r);position:relative;overflow:hidden}
+.guarantee-box::before{content:'';position:absolute;top:-60%;left:-30%;width:160%;height:160%;background:radial-gradient(ellipse,rgba(16,185,129,.06),transparent 60%);pointer-events:none}
+.guarantee-icon{width:64px;height:64px;border-radius:50%;background:rgba(16,185,129,.12);display:grid;place-items:center;margin:0 auto 1.2rem;position:relative}
+.guarantee-icon svg{width:28px;height:28px;color:var(--green)}
+.guarantee-icon::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(16,185,129,.15);animation:pulse-ring 3s infinite}
+@keyframes pulse-ring{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.12);opacity:.4}}
+.guarantee-box h3{font-family:var(--ff);font-size:1.5rem;font-weight:700;margin-bottom:.6rem;position:relative}
+.guarantee-box p{color:var(--dim);font-size:1rem;line-height:1.7;position:relative;max-width:600px;margin:0 auto}
+.guarantee-box .highlight{color:var(--green);font-weight:600}
+
+/* ── FINAL CTA ── */
+.final-cta-sec{background:var(--bg)}
+</style>
+</head>
+<body>
+
+<div class="scroll-bar" id="scrollBar"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+<div class="nav-w">
+<a href="index.html" class="logo"><span class="logo-box">TE</span>Terminal Edge</a>
+<div class="nav-links">
+<a href="services.html">Services</a>
+<a href="work.html">Work</a>
+<a href="pricing.html" class="active">Pricing</a>
+<a href="faq.html">FAQ</a>
+<a href="contact.html" class="nav-cta">Start a Project</a>
+</div>
+<button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+</nav>
+<div class="mob-menu" id="mobMenu">
+<a href="services.html" data-close>Services</a>
+<a href="work.html" data-close>Work</a>
+<a href="pricing.html" data-close>Pricing</a>
+<a href="faq.html" data-close>FAQ</a>
+<a href="contact.html" data-close class="btn1" style="margin-top:.5rem">Start a Project</a>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE HERO
+     ═══════════════════════════════════════════ -->
+<section class="page-hero sec">
+<canvas id="heroCanvas"></canvas>
+<div class="hero-glow hg1" style="background:#3b82f6;width:min(500px,80vw);height:min(500px,80vw);top:-150px;left:0"></div>
+<div class="hero-glow hg2" style="background:#8b5cf6;width:min(400px,70vw);height:min(400px,70vw);bottom:-100px;right:0"></div>
+<div class="hero-glow" style="background:#06b6d4;width:300px;height:300px;top:40%;left:55%;border-radius:50%;filter:blur(120px);opacity:.1;pointer-events:none"></div>
+<div class="page-hero-ct">
+<div class="badge gs-hide"><span class="dot"></span> Fixed-price builds</div>
+<h1 class="gs-hide">Transparent <span class="gt">Pricing</span></h1>
+<p class="gs-hide">Fixed prices for standard builds. Custom quotes for complex systems. No surprises, ever.</p>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PRICING TIERS
+     ═══════════════════════════════════════════ -->
+<section class="sec pad">
+<div class="ctn">
+<div class="tc gs-hide">
+<span class="lbl">Choose Your Plan</span>
+<h2 class="stitle">Built for Every <span class="gt">Stage</span></h2>
+<p class="sdesc" style="margin:0 auto 3rem">From a single landing page to a full-scale custom platform — pick the scope that fits, or we'll design one together.</p>
+</div>
+
+<div class="tier-grid">
+
+<!-- Starter -->
+<div class="tier-card gs-hide">
+<span class="tier-label">Starter</span>
+<h3 class="tier-name">Landing Page</h3>
+<div class="tier-price">$500<span>one-time</span></div>
+<p class="tier-sub">Perfect for launching your online presence fast.</p>
+<div class="tier-divider"></div>
+<ul class="tier-features">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Mobile-first responsive design</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>SEO optimization &amp; analytics</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Contact form &amp; CMS integration</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>7-day turnaround</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>1 round of revisions</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Basic hosting setup</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Google Analytics integration</li>
+</ul>
+<a href="contact.html" class="tier-btn outline">Get Started →</a>
+</div>
+
+<!-- Professional (Popular) -->
+<div class="tier-card pop gs-hide">
+<span class="tier-label">Professional</span>
+<h3 class="tier-name">Multi-Page + AI</h3>
+<div class="tier-price">$2,500<span>starting</span></div>
+<p class="tier-sub">Full-featured builds with AI and automation baked in.</p>
+<div class="tier-divider"></div>
+<ul class="tier-features">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Everything in Starter</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Up to 10 pages + custom CMS</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>AI chatbot or workflow integration</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>API integrations &amp; automation</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Database design &amp; setup</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>30-day post-launch support</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>3 rounds of revisions</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Performance monitoring setup</li>
+</ul>
+<a href="contact.html" class="tier-btn fill">Start a Project →</a>
+</div>
+
+<!-- Enterprise -->
+<div class="tier-card gs-hide">
+<span class="tier-label">Enterprise</span>
+<h3 class="tier-name">Custom Build</h3>
+<div class="tier-price">Custom<span>pricing</span></div>
+<p class="tier-sub">Bespoke systems built exactly to your specification.</p>
+<div class="tier-divider"></div>
+<ul class="tier-features">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Full architecture &amp; spec document</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Trading bots with risk management</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>AI agents &amp; pipeline engineering</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Priority SLA &amp; dedicated channel</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Ongoing maintenance &amp; monitoring</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Source code &amp; documentation</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Unlimited revisions during build</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Dedicated Slack/Discord channel</li>
+</ul>
+<a href="contact.html" class="tier-btn glow">Request a Quote →</a>
+</div>
+
+</div><!-- /tier-grid -->
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FEATURE COMPARISON TABLE
+     ═══════════════════════════════════════════ -->
+<section class="sec pad compare-sec">
+<div class="ctn">
+<div class="tc gs-hide">
+<span class="lbl">Compare Plans</span>
+<h2 class="stitle">Feature <span class="gt2">Breakdown</span></h2>
+<p class="sdesc" style="margin:0 auto 3rem">Every feature, side by side — so you know exactly what you're getting.</p>
+</div>
+
+<div class="table-wrap gs-scale">
+<table class="compare-tbl">
+<thead>
+<tr>
+<th>Feature</th>
+<th>Starter</th>
+<th>Professional</th>
+<th>Enterprise</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pages</td>
+<td class="val">1</td>
+<td class="val">Up to 10</td>
+<td class="val">Unlimited</td>
+</tr>
+<tr>
+<td>Custom Design</td>
+<td class="val">Template-based</td>
+<td class="val">Fully custom</td>
+<td class="val">Fully custom</td>
+</tr>
+<tr>
+<td>CMS Integration</td>
+<td><span class="check">✓</span></td>
+<td><span class="check">✓</span> Custom</td>
+<td><span class="check">✓</span> Custom</td>
+</tr>
+<tr>
+<td>SEO Optimization</td>
+<td><span class="check">✓</span></td>
+<td><span class="check">✓</span></td>
+<td><span class="check">✓</span> Advanced</td>
+</tr>
+<tr>
+<td>AI Integration</td>
+<td><span class="dash">—</span></td>
+<td><span class="check">✓</span></td>
+<td><span class="check">✓</span> Advanced</td>
+</tr>
+<tr>
+<td>API Integration</td>
+<td><span class="dash">—</span></td>
+<td><span class="check">✓</span></td>
+<td><span class="check">✓</span> Unlimited</td>
+</tr>
+<tr>
+<td>Trading / Bot Features</td>
+<td><span class="dash">—</span></td>
+<td><span class="dash">—</span></td>
+<td><span class="check">✓</span></td>
+</tr>
+<tr>
+<td>Database</td>
+<td><span class="dash">—</span></td>
+<td><span class="check">✓</span></td>
+<td><span class="check">✓</span> Custom</td>
+</tr>
+<tr>
+<td>Hosting Setup</td>
+<td class="val">Basic</td>
+<td class="val">Managed</td>
+<td class="val">Dedicated</td>
+</tr>
+<tr>
+<td>Support Period</td>
+<td class="val">7 days</td>
+<td class="val">30 days</td>
+<td class="val">Ongoing SLA</td>
+</tr>
+<tr>
+<td>Revisions</td>
+<td class="val">1 round</td>
+<td class="val">3 rounds</td>
+<td class="val">Unlimited</td>
+</tr>
+<tr>
+<td>Delivery Timeline</td>
+<td class="val">~7 days</td>
+<td class="val">~3–4 weeks</td>
+<td class="val">Custom scope</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     ADD-ON SERVICES
+     ═══════════════════════════════════════════ -->
+<section class="sec pad">
+<div class="ctn">
+<div class="tc gs-hide">
+<span class="lbl">Extend Your Build</span>
+<h2 class="stitle">Add-On <span class="gt3">Services</span></h2>
+<p class="sdesc" style="margin:0 auto 3rem">Bolt on extra capabilities to any plan. Mix and match to build the exact stack you need.</p>
+</div>
+
+<div class="addon-grid">
+
+<!-- Monthly Maintenance -->
+<div class="addon-card gs-hide">
+<div class="addon-icon ai1">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+</div>
+<h4>Monthly Maintenance</h4>
+<p class="addon-price">$200 – $800/mo</p>
+<p>Ongoing monitoring, security patches, dependency updates, and performance tuning to keep your systems humming.</p>
+</div>
+
+<!-- AI Chatbot -->
+<div class="addon-card gs-hide">
+<div class="addon-icon ai2">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+</div>
+<h4>AI Chatbot Integration</h4>
+<p class="addon-price">$500</p>
+<p>Custom-trained support bot powered by your data — handles FAQs, lead capture, and ticket deflection 24/7.</p>
+</div>
+
+<!-- E-Commerce -->
+<div class="addon-card gs-hide">
+<div class="addon-icon ai3">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+</div>
+<h4>E-Commerce Setup</h4>
+<p class="addon-price">$800</p>
+<p>Stripe or payment gateway integration with product management, checkout flows, and order tracking.</p>
+</div>
+
+<!-- SEO Package -->
+<div class="addon-card gs-hide">
+<div class="addon-icon ai4">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+</div>
+<h4>SEO Package</h4>
+<p class="addon-price">$300</p>
+<p>Deep technical SEO audit, structured data markup, Core Web Vitals optimization, and keyword strategy.</p>
+</div>
+
+<!-- Hosting & DevOps -->
+<div class="addon-card gs-hide">
+<div class="addon-icon ai5">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+</div>
+<h4>Hosting &amp; DevOps</h4>
+<p class="addon-price">$150/mo</p>
+<p>CI/CD pipelines, uptime monitoring, auto-scaling, and infrastructure management — so you never think about servers.</p>
+</div>
+
+<!-- Rush Delivery -->
+<div class="addon-card gs-hide">
+<div class="addon-icon ai6">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+</div>
+<h4>Rush Delivery</h4>
+<p class="addon-price">1.5× base price</p>
+<p>Jump to the front of the queue. Priority build slot with faster turnaround and dedicated daily updates.</p>
+</div>
+
+</div><!-- /addon-grid -->
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PRICING FAQ
+     ═══════════════════════════════════════════ -->
+<section class="sec pad pfaq-sec">
+<div class="ctn">
+<div class="tc gs-hide">
+<span class="lbl">Common Questions</span>
+<h2 class="stitle">Pricing <span class="gt">FAQ</span></h2>
+<p class="sdesc" style="margin:0 auto 3rem">Straight answers to the questions every client asks before we start building.</p>
+</div>
+
+<div class="pfaq-list">
+
+<div class="pfaq-it gs-hide">
+<button class="pfaq-q">What's included in the price?
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</button>
+<div class="pfaq-a"><div class="pfaq-a-inner">Every price listed covers the full scope described in that tier — design, development, testing, deployment, and the specified support window. There are zero hidden costs. You'll receive a detailed scope document before we start, and the final price is locked in unless you request scope changes (which we'll always quote separately before proceeding).</div></div>
+</div>
+
+<div class="pfaq-it gs-hide">
+<button class="pfaq-q">Do you charge hourly or fixed?
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</button>
+<div class="pfaq-a"><div class="pfaq-a-inner">Fixed-price for defined scopes — always. You know the total cost before we write a single line of code. For Enterprise and custom projects, I'll provide a detailed estimate after our discovery call. I don't do hourly billing because it misaligns incentives; you should never pay more just because something took longer.</div></div>
+</div>
+
+<div class="pfaq-it gs-hide">
+<button class="pfaq-q">What payment methods do you accept?
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</button>
+<div class="pfaq-a"><div class="pfaq-a-inner">Bank transfer (ACH/wire), credit/debit cards via Stripe, PayPal, and cryptocurrency (BTC/ETH/USDC). Invoices are sent via email with a secure payment link. For international clients, I accommodate your preferred method whenever possible.</div></div>
+</div>
+
+<div class="pfaq-it gs-hide">
+<button class="pfaq-q">Can I pay in installments?
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</button>
+<div class="pfaq-a"><div class="pfaq-a-inner">Yes. The standard split is 50% upfront to begin work and 50% on delivery. For larger Enterprise projects, we can arrange milestone-based payments — for example, 30% at kickoff, 30% at mid-build review, and 40% on final delivery. We'll agree on the schedule before signing off.</div></div>
+</div>
+
+<div class="pfaq-it gs-hide">
+<button class="pfaq-q">What if the project scope changes?
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</button>
+<div class="pfaq-a"><div class="pfaq-a-inner">Scope changes happen — and that's okay. If you need additional features or pages beyond the original agreement, I'll provide a clear, itemized quote for the extra work before starting. No surprises, no retroactive billing. Small tweaks within reason are usually absorbed; anything significant gets documented and approved by you first.</div></div>
+</div>
+
+<div class="pfaq-it gs-hide">
+<button class="pfaq-q">Do you offer refunds?
+<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</button>
+<div class="pfaq-a"><div class="pfaq-a-inner">Yes. If you're not satisfied within the first 7 days of project kickoff, you'll receive a 100% refund — no questions asked. After the 7-day window, partial refunds may be available based on the percentage of work completed. I stand behind the quality of my work, and I'd rather part ways honestly than deliver something you're unhappy with.</div></div>
+</div>
+
+</div><!-- /pfaq-list -->
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MONEY-BACK GUARANTEE
+     ═══════════════════════════════════════════ -->
+<section class="sec pad">
+<div class="ctn">
+<div class="guarantee-box gs-scale">
+<div class="guarantee-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+</div>
+<h3><span class="gt2">100% Money-Back</span> Guarantee</h3>
+<p>Not satisfied? Get a <span class="highlight">full refund within the first 7 days</span> of project kickoff. No hoops, no forms, no hard feelings. Your investment is protected because I'm betting on my own work.</p>
+</div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FINAL CTA
+     ═══════════════════════════════════════════ -->
+<section class="sec pad final-cta-sec">
+<div class="ctn">
+<div class="cta-box gs-scale">
+<h2>Ready to Invest in Your <span class="gt">Digital Future</span>?</h2>
+<p>Pick a plan that fits or let's scope something custom. Either way, you'll know the cost before we start.</p>
+<a href="contact.html" class="btn1">Start Your Project →</a>
+</div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer>
+<div class="ft-inner">
+<div class="ft-brand">
+<div class="logo"><span class="logo-box">TE</span>Terminal Edge</div>
+<p>Elite digital engineering. Custom websites, AI systems, trading bots, and automation — built for performance and scale.</p>
+</div>
+<div class="ft-col">
+<h5>Services</h5>
+<a href="services.html">Custom Websites</a>
+<a href="services.html">AI Workflows</a>
+<a href="services.html">Trading Bots</a>
+<a href="services.html">Custom Apps</a>
+</div>
+<div class="ft-col">
+<h5>Company</h5>
+<a href="work.html">Portfolio</a>
+<a href="pricing.html">Pricing</a>
+<a href="faq.html">FAQ</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="ft-col">
+<h5>Connect</h5>
+<a href="https://github.com/mckoy8989-png" target="_blank" rel="noopener">GitHub</a>
+<a href="mailto:hello@terminaledge.dev">Email Us</a>
+</div>
+</div>
+<div class="ft-bot">
+<span>&copy; 2025 Terminal Edge. All rights reserved.</span>
+<span>Engineered with precision.</span>
+</div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════ -->
+<script>
+(function(){
+'use strict';
+
+/* ── CANVAS PARTICLES ── */
+const cv = document.getElementById('heroCanvas');
+const cx = cv.getContext('2d');
+let pts = [], mx = { x: null, y: null };
+const PC = innerWidth < 768 ? 30 : 60;
+const CD = 130, MD = 170;
+
+function rsz() {
+  const hero = cv.closest('.page-hero');
+  cv.width = hero.offsetWidth;
+  cv.height = hero.offsetHeight;
+}
+rsz();
+addEventListener('resize', rsz);
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * cv.width;
+    this.y = Math.random() * cv.height;
+    this.vx = (Math.random() - .5) * .35;
+    this.vy = (Math.random() - .5) * .35;
+    this.r = Math.random() * 1.5 + .6;
+  }
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > cv.width) this.vx *= -1;
+    if (this.y < 0 || this.y > cv.height) this.vy *= -1;
+    if (mx.x !== null) {
+      const dx = this.x - mx.x, dy = this.y - mx.y;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d < MD) {
+        const f = (MD - d) / MD * .012;
+        this.vx += dx * f;
+        this.vy += dy * f;
+      }
+    }
+    this.vx *= .99;
+    this.vy *= .99;
+  }
+  draw() {
+    cx.beginPath();
+    cx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    cx.fillStyle = 'rgba(59,130,246,0.4)';
+    cx.fill();
+  }
+}
+
+for (let i = 0; i < PC; i++) pts.push(new Particle);
+
+function drawConnections() {
+  for (let i = 0; i < pts.length; i++) {
+    for (let j = i + 1; j < pts.length; j++) {
+      const dx = pts[i].x - pts[j].x;
+      const dy = pts[i].y - pts[j].y;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d < CD) {
+        cx.beginPath();
+        cx.moveTo(pts[i].x, pts[i].y);
+        cx.lineTo(pts[j].x, pts[j].y);
+        cx.strokeStyle = 'rgba(59,130,246,' + (.1 * (1 - d / CD)) + ')';
+        cx.lineWidth = .5;
+        cx.stroke();
+      }
+    }
+  }
+}
+
+function animate() {
+  cx.clearRect(0, 0, cv.width, cv.height);
+  pts.forEach(function(p) { p.update(); p.draw(); });
+  drawConnections();
+  requestAnimationFrame(animate);
+}
+animate();
+
+cv.addEventListener('mousemove', function(e) {
+  const rect = cv.getBoundingClientRect();
+  mx.x = e.clientX - rect.left;
+  mx.y = e.clientY - rect.top;
+});
+cv.addEventListener('mouseleave', function() { mx.x = null; mx.y = null; });
+
+/* ── SCROLL PROGRESS BAR ── */
+const sb = document.getElementById('scrollBar');
+addEventListener('scroll', function() {
+  const pct = scrollY / (document.documentElement.scrollHeight - innerHeight) * 100;
+  sb.style.width = pct + '%';
+});
+
+/* ── NAV SCROLL ── */
+const nb = document.getElementById('navbar');
+addEventListener('scroll', function() {
+  nb.classList.toggle('scrolled', scrollY > 50);
+});
+
+/* ── BURGER TOGGLE ── */
+const bg = document.getElementById('burger');
+const mm = document.getElementById('mobMenu');
+bg.addEventListener('click', function() {
+  bg.classList.toggle('on');
+  mm.classList.toggle('open');
+  document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('[data-close]').forEach(function(a) {
+  a.addEventListener('click', function() {
+    bg.classList.remove('on');
+    mm.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ── PRICING FAQ ACCORDION ── */
+document.querySelectorAll('.pfaq-q').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.pfaq-a');
+    const isOpen = item.classList.contains('open');
+
+    // Close all others
+    document.querySelectorAll('.pfaq-it.open').forEach(function(o) {
+      o.classList.remove('open');
+      o.querySelector('.pfaq-a').style.maxHeight = '0';
+    });
+
+    // Toggle current
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+
+/* ── GSAP ANIMATIONS ── */
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero entrance
+const heroEls = document.querySelectorAll('.page-hero-ct .gs-hide');
+gsap.fromTo(heroEls,
+  { opacity: 0, y: 30 },
+  { opacity: 1, y: 0, duration: .8, stagger: .15, ease: 'power3.out', delay: .2 }
+);
+
+// Scroll-triggered gs-hide
+gsap.utils.toArray('.gs-hide').forEach(function(el) {
+  if (el.closest('.page-hero-ct')) return;
+  gsap.to(el, {
+    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+    opacity: 1, y: 0, duration: .7, ease: 'power2.out'
+  });
+});
+
+// Scroll-triggered gs-scale
+gsap.utils.toArray('.gs-scale').forEach(function(el) {
+  gsap.to(el, {
+    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+    opacity: 1, scale: 1, y: 0, duration: .7, ease: 'power2.out'
+  });
+});
+
+// Stagger pricing tier cards
+ScrollTrigger.create({
+  trigger: '.tier-grid',
+  start: 'top 85%',
+  once: true,
+  onEnter: function() {
+    gsap.fromTo('.tier-card',
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: .6, stagger: .12, ease: 'power2.out' }
+    );
+  }
+});
+
+// Stagger addon cards
+ScrollTrigger.create({
+  trigger: '.addon-grid',
+  start: 'top 85%',
+  once: true,
+  onEnter: function() {
+    gsap.fromTo('.addon-card',
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: .5, stagger: .08, ease: 'power2.out' }
+    );
+  }
+});
+
+// Parallax glows
+document.querySelectorAll('.hero-glow').forEach(function(g) {
+  gsap.to(g, {
+    y: function() { return (Math.random() - .5) * 120; },
+    scrollTrigger: { trigger: '.page-hero', start: 'top top', end: 'bottom top', scrub: 1 }
+  });
+});
+
+})();
+</script>
+</body>
+</html>
