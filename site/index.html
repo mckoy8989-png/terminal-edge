@@ -160,27 +160,56 @@ nav.scrolled{background:rgba(6,7,20,.88);backdrop-filter:blur(24px) saturate(1.5
 
 /* ── SHOWCASE ── */
 .show-sec{background:var(--bg2)}
-.show-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-@media(max-width:900px){.show-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.show-grid{grid-template-columns:1fr}}
-.show-card{border-radius:var(--r);overflow:hidden;border:1px solid var(--border);background:var(--bg3);transition:all .4s var(--ease);cursor:pointer;position:relative}
-.show-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.4);border-color:var(--border2)}
-.show-img{aspect-ratio:16/10;position:relative;overflow:hidden}
-.show-mock{position:absolute;inset:12px;border-radius:8px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column}
-.show-mock-bar{height:24px;background:rgba(0,0,0,.5);display:flex;align-items:center;gap:4px;padding:0 8px}
-.show-mock-bar .d{width:7px;height:7px;border-radius:50%}
-.show-mock-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:1rem}
-.ml{height:6px;border-radius:3px;background:rgba(255,255,255,.08)}
-.ml.w70{width:70%}.ml.w50{width:50%}.ml.w30{width:30%}
-.mb{width:60px;height:18px;border-radius:4px}
-/* Animated gradient shimmer on hover */
-.show-card:hover .show-mock{border-color:var(--border2)}
-.show-card:hover .ml{animation:shimmer 1.5s infinite}
-@keyframes shimmer{0%{opacity:.3}50%{opacity:1}100%{opacity:.3}}
+.show-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+@media(max-width:700px){.show-grid{grid-template-columns:1fr}}
+.show-card{border-radius:var(--r);overflow:hidden;border:1px solid var(--border);background:var(--bg3);transition:all .4s var(--ease);position:relative}
+.show-card::before{content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;opacity:0;transition:opacity .4s;z-index:1;pointer-events:none}
+.show-card:nth-child(1)::before{background:linear-gradient(135deg,transparent 40%,var(--blue),transparent 90%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.show-card:nth-child(2)::before{background:linear-gradient(135deg,transparent 40%,var(--purple),transparent 90%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.show-card:nth-child(3)::before{background:linear-gradient(135deg,transparent 40%,var(--cyan),transparent 90%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.show-card:nth-child(4)::before{background:linear-gradient(135deg,transparent 40%,var(--green),transparent 90%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.show-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.4)}.show-card:hover::before{opacity:1}
+.show-preview{padding:1.5rem 1.5rem 0;position:relative}
+.show-browser{border-radius:10px 10px 0 0;border:1px solid var(--border);border-bottom:none;overflow:hidden;background:var(--bg)}
+.show-browser-bar{height:28px;background:rgba(0,0,0,.4);display:flex;align-items:center;gap:5px;padding:0 10px}
+.show-browser-bar .d{width:8px;height:8px;border-radius:50%}
+.show-browser-bar .url-bar{flex:1;margin:0 8px;height:16px;border-radius:4px;background:rgba(255,255,255,.06);display:flex;align-items:center;padding:0 6px}
+.show-browser-bar .url-bar span{font-size:.55rem;color:var(--muted);font-family:var(--fm)}
+.show-browser-body{min-height:180px;position:relative;overflow:hidden}
+/* Mockup internals */
+.mock-nav{height:36px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 12px}
+.mock-nav-logo{width:50px;height:10px;border-radius:3px;background:rgba(255,255,255,.12)}
+.mock-nav-links{display:flex;gap:8px}
+.mock-nav-links span{width:28px;height:6px;border-radius:3px;background:rgba(255,255,255,.06)}
+.mock-hero-area{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem 1rem;gap:8px}
+.mock-h{height:10px;border-radius:4px}
+.mock-p{height:6px;border-radius:3px;background:rgba(255,255,255,.06)}
+.mock-btn-m{height:22px;border-radius:4px;display:inline-block}
+.mock-grid-area{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:0 12px 12px}
+.mock-grid-card{height:40px;border-radius:4px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
+.mock-chart-area{padding:12px;display:flex;flex-direction:column;gap:6px}
+.mock-chart{height:60px;position:relative;overflow:hidden}
+.mock-chart svg{width:100%;height:100%}
+.mock-stats-row{display:flex;gap:6px}
+.mock-stat-box{flex:1;height:32px;border-radius:4px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center}
+.mock-stat-box span{font-size:.5rem;font-family:var(--fm);color:var(--muted)}
+.mock-chat-area{padding:12px;display:flex;flex-direction:column;gap:6px}
+.mock-msg{max-width:75%;padding:6px 10px;border-radius:8px;font-size:.5rem;font-family:var(--fm);line-height:1.5}
+.mock-msg.user{align-self:flex-end;background:rgba(59,130,246,.15);color:var(--blue);border-bottom-right-radius:2px}
+.mock-msg.bot{align-self:flex-start;background:rgba(255,255,255,.05);color:var(--dim);border-bottom-left-radius:2px}
+.mock-flow-area{padding:12px;display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap}
+.mock-node{width:48px;height:28px;border-radius:6px;border:1px solid;display:flex;align-items:center;justify-content:center;font-size:.45rem;font-family:var(--fm)}
+.mock-arrow{color:var(--muted);font-size:.6rem}
+/* Hover shimmer */
+.show-card:hover .mock-h,.show-card:hover .mock-p,.show-card:hover .mock-nav-logo,.show-card:hover .mock-nav-links span{animation:shimmer 2s infinite}
+@keyframes shimmer{0%{opacity:.4}50%{opacity:1}100%{opacity:.4}}
 .show-info{padding:1.25rem 1.5rem}
-.show-info h4{font-family:var(--ff);font-weight:600;font-size:1rem;margin-bottom:.2rem}
-.show-info p{font-size:.8rem;color:var(--dim)}
-.show-badge{display:inline-block;font-size:.65rem;font-family:var(--fm);padding:.2rem .5rem;border-radius:4px;margin-top:.5rem;font-weight:500}
+.show-info h4{font-family:var(--ff);font-weight:600;font-size:1.05rem;margin-bottom:.3rem}
+.show-info p{font-size:.85rem;color:var(--dim);line-height:1.6;margin-bottom:.6rem}
+.show-meta{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+.show-badge{font-size:.65rem;font-family:var(--fm);padding:.25rem .6rem;border-radius:4px;font-weight:500}
+.show-stat{font-size:.7rem;font-family:var(--fm);color:var(--muted);display:flex;align-items:center;gap:.3rem}
+.show-stat svg{width:12px;height:12px}
 
 /* ── TECH ── */
 .tech-wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem}
@@ -422,33 +451,139 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <p class="sdesc" style="margin:0 auto 3rem">Real projects. Real results. Every system designed for scale, security, and speed.</p>
 </div>
 <div class="show-grid">
+
+<!-- Card 1: E-Commerce -->
 <div class="show-card gs-scale">
-<div class="show-img">
-<div class="show-mock">
-<div class="show-mock-bar"><span class="d" style="background:#ff5f57"></span><span class="d" style="background:#febc2e"></span><span class="d" style="background:#28c840"></span></div>
-<div class="show-mock-body"><div class="ml w70" style="background:rgba(59,130,246,.25)"></div><div class="ml w50" style="background:rgba(59,130,246,.15)"></div><div class="mb" style="background:var(--blue)"></div></div>
+<div class="show-preview">
+<div class="show-browser">
+<div class="show-browser-bar">
+<span class="d" style="background:#ff5f57"></span><span class="d" style="background:#febc2e"></span><span class="d" style="background:#28c840"></span>
+<div class="url-bar"><span>novaretail.store</span></div>
+</div>
+<div class="show-browser-body">
+<div class="mock-nav"><div class="mock-nav-logo" style="background:rgba(59,130,246,.3)"></div><div class="mock-nav-links"><span></span><span></span><span></span><span style="width:40px;background:var(--blue);border-radius:3px"></span></div></div>
+<div class="mock-hero-area">
+<div class="mock-h" style="width:70%;background:rgba(59,130,246,.2)"></div>
+<div class="mock-h" style="width:50%;background:rgba(59,130,246,.12)"></div>
+<div class="mock-p" style="width:80%"></div>
+<div class="mock-btn-m" style="width:80px;background:var(--blue)"></div>
+</div>
+<div class="mock-grid-area">
+<div class="mock-grid-card"></div><div class="mock-grid-card"></div><div class="mock-grid-card"></div>
 </div>
 </div>
-<div class="show-info"><h4>E-Commerce Platform</h4><p>Next.js + Stripe · 340% conversion lift</p><span class="show-badge" style="background:rgba(59,130,246,.12);color:var(--blue)">Web Development</span></div>
 </div>
+</div>
+<div class="show-info">
+<h4>Nova Retail — E-Commerce Platform</h4>
+<p>Full-stack rebuild from Shopify to custom Next.js + Stripe. Product catalog, checkout, inventory management, and admin dashboard.</p>
+<div class="show-meta">
+<span class="show-badge" style="background:rgba(59,130,246,.12);color:var(--blue)">Web Development</span>
+<span class="show-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/></svg>340% conversion lift</span>
+</div>
+</div>
+</div>
+
+<!-- Card 2: AI Support Agent -->
 <div class="show-card gs-scale">
-<div class="show-img">
-<div class="show-mock">
-<div class="show-mock-bar"><span class="d" style="background:#ff5f57"></span><span class="d" style="background:#febc2e"></span><span class="d" style="background:#28c840"></span></div>
-<div class="show-mock-body"><div class="ml w70" style="background:rgba(139,92,246,.25)"></div><div class="ml w50" style="background:rgba(139,92,246,.15)"></div><div class="mb" style="background:var(--purple)"></div></div>
+<div class="show-preview">
+<div class="show-browser">
+<div class="show-browser-bar">
+<span class="d" style="background:#ff5f57"></span><span class="d" style="background:#febc2e"></span><span class="d" style="background:#28c840"></span>
+<div class="url-bar"><span>cloudsync.pro/support</span></div>
+</div>
+<div class="show-browser-body">
+<div class="mock-nav"><div class="mock-nav-logo" style="background:rgba(139,92,246,.3)"></div><div class="mock-nav-links"><span></span><span></span></div></div>
+<div class="mock-chat-area">
+<div class="mock-msg user">How do I reset my API key?</div>
+<div class="mock-msg bot">I can help with that! Go to Settings → API Keys → click "Regenerate". Your old key will be revoked immediately.</div>
+<div class="mock-msg user">Will that break my existing integrations?</div>
+<div class="mock-msg bot">Yes — you'll need to update the key in each connected app. I can list your active integrations if you'd like.</div>
 </div>
 </div>
-<div class="show-info"><h4>AI Support Agent</h4><p>RAG + GPT-4 · 78% ticket deflection</p><span class="show-badge" style="background:rgba(139,92,246,.12);color:var(--purple)">AI / Automation</span></div>
 </div>
+</div>
+<div class="show-info">
+<h4>CloudSync — AI Support Agent</h4>
+<p>RAG-powered support bot trained on 2,400 knowledge base articles. Handles billing, technical, and account queries with structured fallback to human agents.</p>
+<div class="show-meta">
+<span class="show-badge" style="background:rgba(139,92,246,.12);color:var(--purple)">AI / Automation</span>
+<span class="show-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4"/></svg>78% ticket deflection</span>
+</div>
+</div>
+</div>
+
+<!-- Card 3: Trading Bot -->
 <div class="show-card gs-scale">
-<div class="show-img">
-<div class="show-mock">
-<div class="show-mock-bar"><span class="d" style="background:#ff5f57"></span><span class="d" style="background:#febc2e"></span><span class="d" style="background:#28c840"></span></div>
-<div class="show-mock-body"><div class="ml w70" style="background:rgba(6,182,212,.25)"></div><div class="ml w50" style="background:rgba(6,182,212,.15)"></div><div class="mb" style="background:var(--cyan)"></div></div>
+<div class="show-preview">
+<div class="show-browser">
+<div class="show-browser-bar">
+<span class="d" style="background:#ff5f57"></span><span class="d" style="background:#febc2e"></span><span class="d" style="background:#28c840"></span>
+<div class="url-bar"><span>dashboard.arbengine.io</span></div>
+</div>
+<div class="show-browser-body">
+<div class="mock-nav"><div class="mock-nav-logo" style="background:rgba(6,182,212,.3)"></div><div class="mock-nav-links"><span></span><span></span><span></span></div></div>
+<div class="mock-chart-area">
+<div class="mock-stats-row">
+<div class="mock-stat-box"><span style="color:var(--green)">+12.4%</span></div>
+<div class="mock-stat-box"><span>247 trades</span></div>
+<div class="mock-stat-box"><span style="color:var(--cyan)">0.8% DD</span></div>
+</div>
+<div class="mock-chart">
+<svg viewBox="0 0 200 60" preserveAspectRatio="none"><path d="M0,55 L15,50 L30,52 L45,40 L60,42 L75,30 L90,32 L105,20 L120,22 L135,15 L150,18 L165,10 L180,12 L200,5" fill="none" stroke="rgba(6,182,212,.5)" stroke-width="1.5"/><path d="M0,55 L15,50 L30,52 L45,40 L60,42 L75,30 L90,32 L105,20 L120,22 L135,15 L150,18 L165,10 L180,12 L200,5 L200,60 L0,60Z" fill="url(#cyanGrad)" opacity=".15"/><defs><linearGradient id="cyanGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="transparent"/></linearGradient></defs></svg>
 </div>
 </div>
-<div class="show-info"><h4>Crypto Arbitrage Engine</h4><p>CCXT + Risk Manager · 24/7 autonomous</p><span class="show-badge" style="background:rgba(6,182,212,.12);color:var(--cyan)">Trading Bot</span></div>
 </div>
+</div>
+</div>
+<div class="show-info">
+<h4>ArbEngine — Crypto Arbitrage Bot</h4>
+<p>Multi-exchange arbitrage engine with CCXT adapter, real-time websocket feeds, risk manager (max position + daily loss limits), and immutable audit ledger.</p>
+<div class="show-meta">
+<span class="show-badge" style="background:rgba(6,182,212,.12);color:var(--cyan)">Trading Bot</span>
+<span class="show-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>24/7 autonomous</span>
+</div>
+</div>
+</div>
+
+<!-- Card 4: Workflow Automation -->
+<div class="show-card gs-scale">
+<div class="show-preview">
+<div class="show-browser">
+<div class="show-browser-bar">
+<span class="d" style="background:#ff5f57"></span><span class="d" style="background:#febc2e"></span><span class="d" style="background:#28c840"></span>
+<div class="url-bar"><span>app.dataflow.internal</span></div>
+</div>
+<div class="show-browser-body">
+<div class="mock-nav"><div class="mock-nav-logo" style="background:rgba(16,185,129,.3)"></div><div class="mock-nav-links"><span></span><span></span></div></div>
+<div class="mock-flow-area">
+<div class="mock-node" style="border-color:var(--orange);color:var(--orange)">Scrape</div>
+<span class="mock-arrow">→</span>
+<div class="mock-node" style="border-color:var(--purple);color:var(--purple)">LLM</div>
+<span class="mock-arrow">→</span>
+<div class="mock-node" style="border-color:var(--cyan);color:var(--cyan)">Filter</div>
+<span class="mock-arrow">→</span>
+<div class="mock-node" style="border-color:var(--green);color:var(--green)">Store</div>
+<span class="mock-arrow">→</span>
+<div class="mock-node" style="border-color:var(--blue);color:var(--blue)">Alert</div>
+</div>
+<div class="mock-stats-row" style="padding:0 12px 12px">
+<div class="mock-stat-box"><span style="color:var(--green)">✓ 14,200 runs</span></div>
+<div class="mock-stat-box"><span>99.7% success</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="show-info">
+<h4>DataFlow — Scraping & AI Pipeline</h4>
+<p>Automated competitor monitoring: scrapes 500+ product pages daily, runs LLM extraction, deduplicates, and pushes structured data to client dashboards.</p>
+<div class="show-meta">
+<span class="show-badge" style="background:rgba(16,185,129,.12);color:var(--green)">Automation</span>
+<span class="show-stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83"/></svg>500+ pages/day</span>
+</div>
+</div>
+</div>
+
 </div>
 </div>
 </section>
