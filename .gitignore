@@ -1,6 +1,9 @@
+screenshots/
+test-results/
+audit*.js
+diag*.js
+test_suite.js
+test_all_pages.js
+test_output.txt
 node_modules/
-.env
-.vercel
-*.log
-.DS_Store
-Thumbs.db
+.vercel/
