@@ -1,9 +1,9 @@
 /* ═══════════════════════════════════════════════════════════
-   TERMINAL EDGE — ADVANCED EFFECTS ENGINE CSS
-   Sophisticated scroll-driven creation & interaction effects
+   TERMINAL EDGE — UNIFIED EFFECTS CSS v4
+   Cohesive system: boot, mesh, cursor, section flow
    ═══════════════════════════════════════════════════════════ */
 
-/* ── BOOT SEQUENCE OVERLAY ── */
+/* ── BOOT SEQUENCE ── */
 #te-boot{position:fixed;inset:0;z-index:100000;background:#030408;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
 #te-boot.boot-dismiss{opacity:0;transform:scale(1.05);pointer-events:none}
 .boot-terminal{width:min(680px,90vw);background:rgba(8,10,20,.98);border:1px solid rgba(59,130,246,.15);border-radius:12px;overflow:hidden;box-shadow:0 0 80px rgba(59,130,246,.08),0 40px 120px rgba(0,0,0,.6);animation:boot-glow 2s ease-in-out infinite alternate}
@@ -26,48 +26,22 @@
 .boot-line.boot-blink{animation:boot-pulse 1s step-end infinite}
 @keyframes boot-pulse{0%,100%{opacity:1}50%{opacity:0}}
 .boot-bar{display:inline-block;height:10px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:2px;transition:width .3s ease;vertical-align:middle}
-.boot-spinner{display:inline-block;animation:boot-spin .6s linear infinite;margin-right:6px}
-@keyframes boot-spin{to{transform:rotate(360deg)}}
 
-/* ── CLIP-PATH SECTION REVEALS ── */
-.te-clip-reveal{clip-path:inset(8% 4% 8% 4% round 12px);opacity:.7;transition:clip-path 1.4s cubic-bezier(.16,1,.3,1),opacity 1s ease;will-change:clip-path,opacity}
-.te-clip-reveal.te-revealed{clip-path:inset(0% 0% 0% 0% round 0px);opacity:1}
-.te-clip-circle{clip-path:circle(0% at 50% 50%);opacity:0;transition:clip-path 1.6s cubic-bezier(.16,1,.3,1),opacity .8s ease}
-.te-clip-circle.te-revealed{clip-path:circle(100% at 50% 50%);opacity:1}
-.te-clip-wipe{clip-path:polygon(0 0,0 0,0 100%,0 100%);opacity:0;transition:clip-path 1.2s cubic-bezier(.16,1,.3,1),opacity .6s ease}
-.te-clip-wipe.te-revealed{clip-path:polygon(0 0,100% 0,100% 100%,0 100%);opacity:1}
+/* ── NEURAL MESH CANVAS ── */
+#te-mesh{position:fixed;inset:0;z-index:0;pointer-events:none}
+main,footer{position:relative;z-index:1}
 
-/* ── CHARACTER SPLIT ANIMATIONS ── */
-.te-char{display:inline-block;opacity:0;transform:translateY(40px) rotateX(90deg) scale(.3);transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .4s ease;transform-origin:center bottom}
-.te-char.te-char-space{width:.3em}
-.te-char.te-char-visible{opacity:1;transform:translateY(0) rotateX(0deg) scale(1)}
+/* ── CUSTOM CURSOR ── */
+#te-ring{position:fixed;top:0;left:0;width:40px;height:40px;border:1.5px solid rgba(59,130,246,.35);border-radius:50%;pointer-events:none;z-index:99999;transition:width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1),border-color .3s ease;mix-blend-mode:difference;will-change:transform}
+#te-ring.lg{width:64px;height:64px;border-color:rgba(139,92,246,.45);margin-left:-12px;margin-top:-12px}
+#te-dot{position:fixed;top:0;left:0;width:6px;height:6px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:50%;pointer-events:none;z-index:99999;will-change:transform}
+@media(max-width:768px),(pointer:coarse){#te-ring,#te-dot{display:none!important}}
 
-/* ── CODE RAIN CANVAS ── */
-.te-code-rain{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.12}
+/* ── CLICK RIPPLE ── */
+.te-ripple{position:fixed;width:0;height:0;border:2px solid rgba(59,130,246,.6);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);animation:te-ripple .7s cubic-bezier(0,.5,.3,1) forwards}
+@keyframes te-ripple{0%{width:0;height:0;opacity:1}100%{width:100px;height:100px;opacity:0;border-color:rgba(139,92,246,.1)}}
 
-/* ── SECTION CONSTRUCTION WIREFRAME ── */
-.te-construct{position:absolute;inset:0;pointer-events:none;z-index:10;overflow:hidden;opacity:1;transition:opacity .8s ease}
-.te-construct.te-built{opacity:0}
-.te-construct-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(59,130,246,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.08) 1px,transparent 1px);background-size:40px 40px;opacity:0;transition:opacity .5s ease}
-.te-construct-grid.active{opacity:1}
-.te-construct-scan{position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,transparent 0%,rgba(59,130,246,.6) 20%,rgba(139,92,246,.8) 50%,rgba(59,130,246,.6) 80%,transparent 100%);box-shadow:0 0 20px rgba(59,130,246,.4),0 0 60px rgba(139,92,246,.2);opacity:0;z-index:11}
-.te-construct-label{position:absolute;top:12px;right:12px;font-family:'JetBrains Mono',monospace;font-size:.6rem;color:rgba(59,130,246,.6);letter-spacing:.1em;text-transform:uppercase;opacity:0;transition:opacity .3s}
-.te-construct-label.active{opacity:1}
-.te-construct-corner{position:absolute;width:16px;height:16px;border-color:rgba(59,130,246,.3);border-style:solid;opacity:0;transition:opacity .3s}
-.te-construct-corner.tl{top:4px;left:4px;border-width:2px 0 0 2px}
-.te-construct-corner.tr{top:4px;right:4px;border-width:2px 2px 0 0}
-.te-construct-corner.bl{bottom:4px;left:4px;border-width:0 0 2px 2px}
-.te-construct-corner.br{bottom:4px;right:4px;border-width:0 2px 2px 0}
-.te-construct-corner.active{opacity:1}
-
-/* ── SCROLL VELOCITY BLUR ── */
-.te-velocity-blur{transition:filter .15s ease-out;will-change:filter}
-
-/* ── FLOATING CODE SNIPPETS ── */
-.te-float-code{position:absolute;font-family:'JetBrains Mono',monospace;font-size:.55rem;color:rgba(59,130,246,.08);pointer-events:none;z-index:0;white-space:pre;line-height:1.4;user-select:none;animation:te-float-drift 20s linear infinite}
-@keyframes te-float-drift{0%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-30px) rotate(.5deg)}50%{transform:translateY(-10px) rotate(-.5deg)}75%{transform:translateY(-40px) rotate(.3deg)}100%{transform:translateY(0) rotate(0deg)}}
-
-/* ── SECTION PROGRESS SIDEBAR ── */
+/* ── SCROLL PROGRESS SIDEBAR ── */
 .te-progress{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:9998;display:flex;flex-direction:column;gap:2px;opacity:0;transition:opacity .4s ease}
 .te-progress.visible{opacity:1}
 .te-progress-seg{width:3px;height:20px;background:rgba(255,255,255,.06);border-radius:2px;transition:background .4s ease,height .3s ease,box-shadow .4s ease}
@@ -75,16 +49,24 @@
 .te-progress-seg.done{background:rgba(59,130,246,.3)}
 @media(max-width:768px){.te-progress{display:none}}
 
-/* ── ENHANCED MAGNETIC HOVER ── */
-.te-magnetic{transition:transform .4s cubic-bezier(.16,1,.3,1)}
+/* ── SECTION GLOW LINE ── */
+.te-glow{position:absolute;top:0;left:0;right:0;height:1px;pointer-events:none;z-index:2;overflow:visible}
+.te-glow::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,#3b82f6 25%,#8b5cf6 50%,#06b6d4 75%,transparent 100%);transform:scaleX(0);transform-origin:left;transition:transform 1.8s cubic-bezier(.16,1,.3,1)}
+.te-glow.active::before{transform:scaleX(1)}
+.te-glow::after{content:'';position:absolute;top:0;left:0;right:0;height:80px;background:linear-gradient(180deg,rgba(59,130,246,.04) 0%,transparent 100%);opacity:0;transition:opacity 1s ease .5s;pointer-events:none}
+.te-glow.active::after{opacity:1}
 
-/* ── ANIMATED GRADIENT BORDERS ── */
-.te-gradient-border{position:relative;overflow:visible}
-.te-gradient-border::before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from var(--te-angle,0deg),#3b82f6,#8b5cf6,#06b6d4,#ec4899,#3b82f6);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s ease;animation:te-border-spin 4s linear infinite}
-.te-gradient-border:hover::before{opacity:1}
-@keyframes te-border-spin{to{--te-angle:360deg}}
-@property --te-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+/* ── SECTION CONNECTORS ── */
+.te-conn{position:relative;height:0;min-height:1px;pointer-events:none;z-index:2;overflow:visible}
+.te-conn-line{position:absolute;left:50%;top:-25px;width:1px;height:50px;transform:translateX(-50%) scaleY(0);transform-origin:top;background:linear-gradient(180deg,rgba(59,130,246,.35),rgba(139,92,246,.45),rgba(6,182,212,.35));transition:transform 1s cubic-bezier(.16,1,.3,1)}
+.te-conn.active .te-conn-line{transform:translateX(-50%) scaleY(1)}
+.te-conn-node{position:absolute;left:50%;top:0;width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);transform:translate(-50%,-50%) scale(0);transition:transform .5s cubic-bezier(.16,1,.3,1) .5s;box-shadow:0 0 16px rgba(59,130,246,.4)}
+.te-conn.active .te-conn-node{transform:translate(-50%,-50%) scale(1)}
+.te-conn-pulse{position:absolute;left:50%;top:0;width:8px;height:8px;border-radius:50%;border:1px solid rgba(59,130,246,.3);transform:translate(-50%,-50%) scale(0);opacity:0;pointer-events:none}
+.te-conn.active .te-conn-pulse{animation:te-conn-ping 2s cubic-bezier(0,.5,.3,1) .8s infinite}
+@keyframes te-conn-ping{0%{transform:translate(-50%,-50%) scale(1);opacity:.6}100%{transform:translate(-50%,-50%) scale(4);opacity:0}}
 
-/* ── DATA STREAM LINES ── */
-.te-stream{position:absolute;width:1px;height:0;background:linear-gradient(180deg,transparent,rgba(59,130,246,.3),transparent);pointer-events:none;z-index:0;animation:te-stream-flow 3s ease-in-out infinite}
-@keyframes te-stream-flow{0%{height:0;opacity:0;top:0}20%{opacity:1}50%{height:120px}80%{opacity:1}100%{height:0;opacity:0;top:100%}}
+/* ── SECTION TRANSITIONS ── */
+.te-section{transition:transform .6s cubic-bezier(.16,1,.3,1),opacity .5s ease;will-change:transform,opacity}
+.te-exited{transform:scale(.985);opacity:.8}
+.te-visible{transform:scale(1);opacity:1}
