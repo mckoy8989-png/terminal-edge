@@ -85,16 +85,16 @@
 
 /* ── MOCKUP: NOVA (E-COMMERCE) ── */
 .mock-nova{display:grid;grid-template-rows:auto 1fr;height:100%;gap:.5rem}
-.mock-nova-hero{background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(139,92,246,.1));border-radius:6px;padding:.7rem;display:flex;align-items:center;gap:.5rem;height:55px}
+.mock-nova-hero{background:linear-gradient(135deg,rgba(59,130,246,.2),rgba(139,92,246,.15));border-radius:6px;padding:.7rem;display:flex;align-items:center;gap:.5rem;height:55px}
 .mock-nova-hero-txt{flex:1}
-.mock-nova-hero-txt div:first-child{height:6px;width:60%;background:rgba(255,255,255,.15);border-radius:3px;margin-bottom:4px}
-.mock-nova-hero-txt div:last-child{height:4px;width:40%;background:rgba(255,255,255,.08);border-radius:3px}
+.mock-nova-hero-txt div:first-child{height:6px;width:60%;background:rgba(255,255,255,.2);border-radius:3px;margin-bottom:4px}
+.mock-nova-hero-txt div:last-child{height:4px;width:40%;background:rgba(255,255,255,.12);border-radius:3px}
 .mock-nova-hero-btn{padding:4px 10px;border-radius:4px;background:var(--blue);font-size:.5rem;color:#fff;font-family:var(--fm)}
 .mock-nova-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem}
-.mock-prod{border-radius:6px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.4rem;display:flex;flex-direction:column;gap:.25rem}
-.mock-prod-img{height:50px;border-radius:4px;background:linear-gradient(135deg,rgba(59,130,246,.18),rgba(6,182,212,.14));position:relative;overflow:hidden}
-.mock-prod-img::before{content:'';position:absolute;inset:8px;border-radius:3px;background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.06)}
-.mock-prod-img::after{content:'';position:absolute;bottom:6px;right:6px;width:14px;height:14px;border-radius:3px;background:rgba(59,130,246,.25);border:1px solid rgba(59,130,246,.3)}
+.mock-prod{border-radius:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:.4rem;display:flex;flex-direction:column;gap:.25rem}
+.mock-prod-img{height:50px;border-radius:4px;background:linear-gradient(135deg,rgba(59,130,246,.25),rgba(6,182,212,.2));position:relative;overflow:hidden}
+.mock-prod-img::before{content:'';position:absolute;inset:8px;border-radius:3px;background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.08)}
+.mock-prod-img::after{content:'';position:absolute;bottom:6px;right:6px;width:14px;height:14px;border-radius:3px;background:rgba(59,130,246,.35);border:1px solid rgba(59,130,246,.4)}
 .mock-prod-title{height:4px;width:65%;background:rgba(255,255,255,.12);border-radius:2px}
 .mock-prod-price{height:4px;width:35%;background:rgba(59,130,246,.3);border-radius:2px}
 
@@ -200,27 +200,95 @@
 .result-num{font-family:var(--ff);font-size:clamp(2rem,5vw,2.8rem);font-weight:700;line-height:1;margin-bottom:.4rem}
 .result-label{font-size:.85rem;color:var(--dim)}
 
-/* ── PROCESS STRIP ── */
+/* ── PROCESS 3D INTERACTIVE ── */
 .work-proc-sec{background:var(--bg2);position:relative;overflow:hidden}
 .work-proc-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(139,92,246,.02),transparent 30%,transparent 70%,rgba(59,130,246,.02));pointer-events:none}
-.proc-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;position:relative;z-index:1}
-@media(max-width:768px){.proc-strip{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.proc-strip{grid-template-columns:1fr}}
-.proc-step{text-align:center;padding:2rem 1rem;border-radius:var(--r);background:var(--surface);border:1px solid var(--border);position:relative;transition:all .4s var(--ease)}
-.proc-step:hover{transform:translateY(-3px);border-color:var(--blue);background:var(--surface2)}
-.proc-num{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;margin:0 auto .75rem;font-family:var(--fm);font-size:.75rem;font-weight:700;color:#fff;background:var(--grad1)}
-.proc-step:nth-child(2) .proc-num{background:var(--grad2)}
-.proc-step:nth-child(3) .proc-num{background:var(--grad3)}
-.proc-step:nth-child(4) .proc-num{background:var(--grad4)}
-.proc-name{font-family:var(--ff);font-size:1.05rem;font-weight:700;margin-bottom:.3rem}
-.proc-desc{font-size:.82rem;color:var(--dim);line-height:1.55}
-.proc-connector{display:none}
+
+/* 3D scene container */
+.proc-scene{perspective:1200px;margin-top:3rem;position:relative;z-index:1}
+
+/* Timeline track connecting the cards */
+.proc-timeline{position:absolute;top:120px;left:8%;right:8%;height:3px;z-index:0}
+.proc-timeline-bg{position:absolute;inset:0;background:rgba(255,255,255,.06);border-radius:3px}
+.proc-timeline-fill{position:absolute;top:0;left:0;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--purple),var(--cyan),var(--green));border-radius:3px;transition:width .8s cubic-bezier(.4,0,.2,1);box-shadow:0 0 12px rgba(59,130,246,.3)}
+@media(max-width:768px){.proc-timeline{display:none}}
+
+/* Card grid */
+.proc-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative;z-index:1}
+@media(max-width:900px){.proc-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.proc-cards{grid-template-columns:1fr;max-width:380px;margin:0 auto}}
+
+/* Individual 3D card */
+.proc3d{position:relative;transform-style:preserve-3d;transition:transform .15s ease-out;cursor:pointer;will-change:transform}
+.proc3d-inner{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem 1.5rem 1.5rem;text-align:center;position:relative;overflow:hidden;transition:border-color .4s,background .4s,box-shadow .4s}
+.proc3d.active .proc3d-inner{border-color:rgba(59,130,246,.3);background:rgba(59,130,246,.06);box-shadow:0 20px 50px rgba(0,0,0,.25),0 0 30px rgba(59,130,246,.08)}
+
+/* Top glow bar per card */
+.proc3d-inner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.proc3d:nth-child(1) .proc3d-inner::before{background:linear-gradient(90deg,var(--blue),#60a5fa)}
+.proc3d:nth-child(2) .proc3d-inner::before{background:linear-gradient(90deg,var(--purple),#a78bfa)}
+.proc3d:nth-child(3) .proc3d-inner::before{background:linear-gradient(90deg,var(--cyan),#22d3ee)}
+.proc3d:nth-child(4) .proc3d-inner::before{background:linear-gradient(90deg,var(--green),#34d399)}
+.proc3d.active .proc3d-inner::before,.proc3d:hover .proc3d-inner::before{transform:scaleX(1)}
+
+/* Floating radial glow behind active card */
+.proc3d-inner::after{content:'';position:absolute;top:-40%;left:-20%;width:140%;height:140%;border-radius:50%;opacity:0;transition:opacity .5s;pointer-events:none;z-index:-1}
+.proc3d:nth-child(1) .proc3d-inner::after{background:radial-gradient(ellipse,rgba(59,130,246,.08),transparent 65%)}
+.proc3d:nth-child(2) .proc3d-inner::after{background:radial-gradient(ellipse,rgba(139,92,246,.08),transparent 65%)}
+.proc3d:nth-child(3) .proc3d-inner::after{background:radial-gradient(ellipse,rgba(6,182,212,.08),transparent 65%)}
+.proc3d:nth-child(4) .proc3d-inner::after{background:radial-gradient(ellipse,rgba(16,185,129,.08),transparent 65%)}
+.proc3d.active .proc3d-inner::after{opacity:1}
+
+/* Step number orb */
+.proc3d-orb{width:56px;height:56px;border-radius:50%;margin:0 auto 1.2rem;display:grid;place-items:center;font-family:var(--fm);font-size:.85rem;font-weight:700;color:#fff;position:relative;transition:transform .4s,box-shadow .4s}
+.proc3d:nth-child(1) .proc3d-orb{background:linear-gradient(135deg,var(--blue),#2563eb);box-shadow:0 4px 20px rgba(59,130,246,.25)}
+.proc3d:nth-child(2) .proc3d-orb{background:linear-gradient(135deg,var(--purple),#7c3aed);box-shadow:0 4px 20px rgba(139,92,246,.25)}
+.proc3d:nth-child(3) .proc3d-orb{background:linear-gradient(135deg,var(--cyan),#0891b2);box-shadow:0 4px 20px rgba(6,182,212,.25)}
+.proc3d:nth-child(4) .proc3d-orb{background:linear-gradient(135deg,var(--green),#059669);box-shadow:0 4px 20px rgba(16,185,129,.25)}
+.proc3d.active .proc3d-orb{transform:scale(1.15)}
+/* Spinning ring around orb */
+.proc3d-orb::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1.5px dashed rgba(255,255,255,.15);animation:orb-spin 20s linear infinite}
+.proc3d.active .proc3d-orb::before{border-color:rgba(255,255,255,.3)}
+@keyframes orb-spin{to{transform:rotate(360deg)}}
+/* Pulse ring */
+.proc3d-orb::after{content:'';position:absolute;inset:-10px;border-radius:50%;border:1px solid currentColor;opacity:0;transform:scale(.8);transition:opacity .5s,transform .5s}
+.proc3d.active .proc3d-orb::after{opacity:.2;transform:scale(1);animation:orb-pulse 2.5s ease-in-out infinite}
+.proc3d:nth-child(1) .proc3d-orb::after{border-color:var(--blue)}
+.proc3d:nth-child(2) .proc3d-orb::after{border-color:var(--purple)}
+.proc3d:nth-child(3) .proc3d-orb::after{border-color:var(--cyan)}
+.proc3d:nth-child(4) .proc3d-orb::after{border-color:var(--green)}
+@keyframes orb-pulse{0%,100%{transform:scale(1);opacity:.2}50%{transform:scale(1.2);opacity:0}}
+
+/* Step name + desc */
+.proc3d-name{font-family:var(--ff);font-size:1.15rem;font-weight:700;margin-bottom:.4rem;transition:color .3s}
+.proc3d.active:nth-child(1) .proc3d-name{color:var(--blue)}
+.proc3d.active:nth-child(2) .proc3d-name{color:var(--purple)}
+.proc3d.active:nth-child(3) .proc3d-name{color:var(--cyan)}
+.proc3d.active:nth-child(4) .proc3d-name{color:var(--green)}
+.proc3d-desc{font-size:.82rem;color:var(--dim);line-height:1.6}
+
+/* Expandable detail panel */
+.proc3d-detail{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s;opacity:0}
+.proc3d.active .proc3d-detail{max-height:300px;opacity:1}
+.proc3d-detail-inner{padding-top:1rem;border-top:1px solid var(--border);margin-top:1rem}
+.proc3d-checklist{list-style:none;padding:0;margin:0;text-align:left}
+.proc3d-checklist li{display:flex;align-items:flex-start;gap:.5rem;font-size:.78rem;color:var(--dim);padding:.3rem 0;line-height:1.5}
+.proc3d-checklist li svg{width:14px;height:14px;flex-shrink:0;margin-top:2px}
+.proc3d:nth-child(1) .proc3d-checklist li svg{color:var(--blue)}
+.proc3d:nth-child(2) .proc3d-checklist li svg{color:var(--purple)}
+.proc3d:nth-child(3) .proc3d-checklist li svg{color:var(--cyan)}
+.proc3d:nth-child(4) .proc3d-checklist li svg{color:var(--green)}
+
+/* Click hint */
+.proc3d-hint{font-size:.65rem;font-family:var(--fm);color:var(--muted);margin-top:.8rem;opacity:.6;transition:opacity .3s}
+.proc3d.active .proc3d-hint{opacity:0}
+
+/* Duration badge */
+.proc3d-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.65rem;font-family:var(--fm);padding:.25rem .7rem;border-radius:100px;margin-top:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--dim)}
+.proc3d-badge svg{width:10px;height:10px}
+
 .work-cta-sec{position:relative;overflow:hidden}
 .work-cta-sec::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:200px;background:radial-gradient(ellipse,rgba(59,130,246,.04),transparent 60%);pointer-events:none}
-@media(min-width:769px){
-  .proc-step{position:relative}
-  .proc-step:not(:last-child)::after{content:'→';position:absolute;right:-1rem;top:50%;transform:translate(50%,-50%);color:var(--muted);font-size:1.1rem}
-}
 </style>
 <script>document.documentElement.classList.add('gsap-ready');</script>
 </head>
@@ -319,11 +387,11 @@
               </div>
               <div class="mock-nova-grid">
                 <div class="mock-prod"><div class="mock-prod-img"></div><div class="mock-prod-title"></div><div class="mock-prod-price"></div></div>
-                <div class="mock-prod"><div class="mock-prod-img" style="background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(236,72,153,.08))"></div><div class="mock-prod-title"></div><div class="mock-prod-price"></div></div>
-                <div class="mock-prod"><div class="mock-prod-img" style="background:linear-gradient(135deg,rgba(16,185,129,.08),rgba(6,182,212,.08))"></div><div class="mock-prod-title"></div><div class="mock-prod-price"></div></div>
-                <div class="mock-prod"><div class="mock-prod-img" style="background:linear-gradient(135deg,rgba(245,158,11,.08),rgba(239,68,68,.08))"></div><div class="mock-prod-title"></div><div class="mock-prod-price"></div></div>
-                <div class="mock-prod"><div class="mock-prod-img" style="background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(139,92,246,.08))"></div><div class="mock-prod-title"></div><div class="mock-prod-price"></div></div>
-                <div class="mock-prod"><div class="mock-prod-img" style="background:linear-gradient(135deg,rgba(6,182,212,.08),rgba(16,185,129,.08))"></div><div class="mock-prod-title"></div><div class="mock-prod-price"></div></div>
+                <div class="mock-prod"><div class="mock-prod-img" style="background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(236,72,153,.15))"></div><div class="mock-prod-title"></div><div class="mock-prod-price"></div></div>
+                <div class="mock-prod"><div class="mock-prod-img" style="background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(6,182,212,.15))"></div><div class="mock-prod-title"></div><div class="mock-prod-price"></div></div>
+                <div class="mock-prod"><div class="mock-prod-img" style="background:linear-gradient(135deg,rgba(245,158,11,.2),rgba(239,68,68,.15))"></div><div class="mock-prod-title"></div><div class="mock-prod-price"></div></div>
+                <div class="mock-prod"><div class="mock-prod-img" style="background:linear-gradient(135deg,rgba(59,130,246,.2),rgba(139,92,246,.15))"></div><div class="mock-prod-title"></div><div class="mock-prod-price"></div></div>
+                <div class="mock-prod"><div class="mock-prod-img" style="background:linear-gradient(135deg,rgba(6,182,212,.2),rgba(16,185,129,.15))"></div><div class="mock-prod-title"></div><div class="mock-prod-price"></div></div>
               </div>
             </div>
           </div>
@@ -742,28 +810,99 @@
   <div class="ctn tc">
     <span class="lbl gs-hide">How We Work</span>
     <h2 class="stitle gs-hide">From Idea to <span class="gt3">Production</span></h2>
-    <p class="sdesc gs-hide" style="margin-left:auto;margin-right:auto">Every project follows a battle-tested four-phase process — transparent, fast, and built around your timeline.</p>
+    <p class="sdesc gs-hide" style="margin-left:auto;margin-right:auto">Every project follows a battle-tested four-phase process — transparent, fast, and built around your timeline. <strong>Click each step</strong> to explore.</p>
 
-    <div class="proc-strip">
-      <div class="proc-step gs-hide">
-        <div class="proc-num">01</div>
-        <h4 class="proc-name">Discovery</h4>
-        <p class="proc-desc">We scope your requirements, audit existing systems, and define success metrics in a focused 30-minute call.</p>
+    <div class="proc-scene gs-hide" id="procScene">
+      <!-- Connecting timeline bar -->
+      <div class="proc-timeline">
+        <div class="proc-timeline-bg"></div>
+        <div class="proc-timeline-fill" id="procFill"></div>
       </div>
-      <div class="proc-step gs-hide">
-        <div class="proc-num">02</div>
-        <h4 class="proc-name">Spec</h4>
-        <p class="proc-desc">A detailed technical specification with milestones, architecture decisions, and a fixed timeline — before any code is written.</p>
-      </div>
-      <div class="proc-step gs-hide">
-        <div class="proc-num">03</div>
-        <h4 class="proc-name">Build</h4>
-        <p class="proc-desc">Daily progress updates, staging previews, and iterative feedback loops keep you in the driver's seat throughout development.</p>
-      </div>
-      <div class="proc-step gs-hide">
-        <div class="proc-num">04</div>
-        <h4 class="proc-name">Ship</h4>
-        <p class="proc-desc">Production deployment, monitoring setup, documentation handoff, and 30 days of priority support — you launch with confidence.</p>
+
+      <div class="proc-cards">
+        <!-- Step 1 -->
+        <div class="proc3d active" data-step="0">
+          <div class="proc3d-inner">
+            <div class="proc3d-orb">01</div>
+            <h4 class="proc3d-name">Discovery</h4>
+            <p class="proc3d-desc">We scope your requirements, audit existing systems, and define success metrics in a focused 30-minute call.</p>
+            <div class="proc3d-detail">
+              <div class="proc3d-detail-inner">
+                <ul class="proc3d-checklist">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Requirements deep-dive call</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Domain & competitor research</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Success metrics definition</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Technical feasibility audit</li>
+                </ul>
+                <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1–2 days</span>
+              </div>
+            </div>
+            <span class="proc3d-hint">Click to explore ↓</span>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="proc3d" data-step="1">
+          <div class="proc3d-inner">
+            <div class="proc3d-orb">02</div>
+            <h4 class="proc3d-name">Spec</h4>
+            <p class="proc3d-desc">Detailed technical specification with milestones, architecture decisions, and a fixed timeline — before any code is written.</p>
+            <div class="proc3d-detail">
+              <div class="proc3d-detail-inner">
+                <ul class="proc3d-checklist">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Architecture blueprint</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Milestone breakdown & timeline</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Tech stack & API contracts</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Fixed price proposal</li>
+                </ul>
+                <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2–3 days</span>
+              </div>
+            </div>
+            <span class="proc3d-hint">Click to explore ↓</span>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="proc3d" data-step="2">
+          <div class="proc3d-inner">
+            <div class="proc3d-orb">03</div>
+            <h4 class="proc3d-name">Build</h4>
+            <p class="proc3d-desc">Daily progress updates, staging previews, and iterative feedback loops keep you in the driver's seat throughout development.</p>
+            <div class="proc3d-detail">
+              <div class="proc3d-detail-inner">
+                <ul class="proc3d-checklist">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Daily Slack/email updates</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Staging preview after each sprint</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>CI/CD pipeline setup</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Performance testing & optimization</li>
+                </ul>
+                <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1–4 weeks</span>
+              </div>
+            </div>
+            <span class="proc3d-hint">Click to explore ↓</span>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="proc3d" data-step="3">
+          <div class="proc3d-inner">
+            <div class="proc3d-orb">04</div>
+            <h4 class="proc3d-name">Ship</h4>
+            <p class="proc3d-desc">Production deployment, monitoring setup, documentation handoff, and 30 days of priority support — you launch with confidence.</p>
+            <div class="proc3d-detail">
+              <div class="proc3d-detail-inner">
+                <ul class="proc3d-checklist">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Production deployment & DNS</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Monitoring & alerting setup</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Full documentation handoff</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>30 days priority support</li>
+                </ul>
+                <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1–2 days</span>
+              </div>
+            </div>
+            <span class="proc3d-hint">Click to explore ↓</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -901,6 +1040,58 @@ ScrollTrigger.batch('.gs-scale',{
   start:'top 90%',once:true,
   onEnter:batch=>gsap.to(batch,{opacity:1,scale:1,y:0,duration:.9,stagger:.08,ease:'power3.out',force3D:true})
 });
+
+/* ══════════════════════════════════════════════
+   3D INTERACTIVE PROCESS CARDS
+   ══════════════════════════════════════════════ */
+(function(){
+  const scene = document.getElementById('procScene');
+  if(!scene) return;
+  const cards = scene.querySelectorAll('.proc3d');
+  const fill = document.getElementById('procFill');
+  const totalSteps = cards.length;
+
+  // Update timeline fill based on active step
+  function updateTimeline(stepIdx){
+    if(fill) fill.style.width = ((stepIdx + 1) / totalSteps * 100) + '%';
+  }
+
+  // Click to toggle active
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      const wasActive = card.classList.contains('active');
+      cards.forEach(c => c.classList.remove('active'));
+      if(!wasActive){
+        card.classList.add('active');
+        updateTimeline(parseInt(card.dataset.step));
+      } else {
+        updateTimeline(0);
+        cards[0].classList.add('active');
+      }
+    });
+  });
+
+  // 3D tilt on mouse move
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      const rotY = ((x - cx) / cx) * 12;   // max ±12deg
+      const rotX = ((cy - y) / cy) * 8;    // max ±8deg
+      card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.03,1.03,1.03)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'rotateX(0) rotateY(0) scale3d(1,1,1)';
+    });
+  });
+
+  // Initialize timeline for step 0
+  updateTimeline(0);
+})();
 
 })();
 setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
