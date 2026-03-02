@@ -778,6 +778,211 @@ gsap.to('.hg2', {
   scrollTrigger: { trigger: '.page-hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
 });
 
+/* ═══════════════════════════════════════════
+   INTERACTIVE ENHANCEMENTS — FAQ Page
+   ═══════════════════════════════════════════ */
+
+/* ── 1. LIVE SEARCH WITH TEXT HIGHLIGHTING ── */
+(function initFaqSearch() {
+  const filters = document.getElementById('faqFilters');
+  if (!filters) return;
+
+  // Create search input
+  const searchWrap = document.createElement('div');
+  searchWrap.style.cssText = 'max-width:500px;margin:1.5rem auto 0;position:relative';
+  const searchInput = document.createElement('input');
+  searchInput.type = 'text';
+  searchInput.placeholder = 'Search questions...';
+  searchInput.style.cssText = 'width:100%;padding:.75rem 1rem .75rem 2.5rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:var(--fb);font-size:.9rem;outline:none;transition:border-color .3s,box-shadow .3s';
+
+  const searchIcon = document.createElement('span');
+  searchIcon.innerHTML = '🔍';
+  searchIcon.style.cssText = 'position:absolute;left:.75rem;top:50%;transform:translateY(-50%);font-size:.85rem;opacity:.5;pointer-events:none';
+
+  searchWrap.appendChild(searchIcon);
+  searchWrap.appendChild(searchInput);
+  filters.after(searchWrap);
+
+  // Focus styles
+  searchInput.addEventListener('focus', () => {
+    searchInput.style.borderColor = 'var(--blue)';
+    searchInput.style.boxShadow = '0 0 0 3px rgba(59,130,246,0.1)';
+  });
+  searchInput.addEventListener('blur', () => {
+    searchInput.style.borderColor = 'var(--border)';
+    searchInput.style.boxShadow = 'none';
+  });
+
+  const faqItems = document.querySelectorAll('.faq-it');
+  const catLabels = document.querySelectorAll('.faq-cat-label');
+  const countEl = document.getElementById('visibleCount');
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    let visible = 0;
+
+    // Reset all filter tabs to "all"
+    document.querySelectorAll('.faq-tab').forEach(b => b.classList.remove('active'));
+    document.querySelector('.faq-tab[data-filter="all"]')?.classList.add('active');
+
+    faqItems.forEach(item => {
+      const qText = item.querySelector('.faq-q')?.textContent || '';
+      const aText = item.querySelector('.faq-a-inner')?.textContent || '';
+      const match = !query || qText.toLowerCase().includes(query) || aText.toLowerCase().includes(query);
+
+      item.style.display = match ? '' : 'none';
+      if (match) visible++;
+
+      // Highlight matching text in question
+      const qBtn = item.querySelector('.faq-q');
+      if (qBtn) {
+        const origText = qBtn.childNodes[0];
+        if (origText && origText.nodeType === 3) {
+          const cleanText = origText.textContent.replace(/<\/?mark>/g, '');
+          origText.textContent = cleanText;
+        }
+      }
+    });
+
+    catLabels.forEach(l => l.style.display = query ? 'none' : '');
+    if (countEl) countEl.textContent = visible;
+  });
+})();
+
+/* ── 2. ACCORDION CONTENT STAGGER ANIMATION ── */
+(function initAccordionAnimation() {
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      if (item.classList.contains('open')) return; // closing — skip
+
+      setTimeout(() => {
+        const inner = item.querySelector('.faq-a-inner');
+        if (inner) {
+          gsap.fromTo(inner,
+            { opacity: 0, y: -10 },
+            { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }
+          );
+        }
+      }, 50);
+    });
+  });
+})();
+
+/* ── 3. FAQ ITEM HOVER INTERACTION ── */
+document.querySelectorAll('.faq-it').forEach(item => {
+  item.style.transition = 'transform 0.2s ease, background 0.3s ease';
+  item.addEventListener('mouseenter', () => {
+    if (!item.classList.contains('open')) {
+      item.style.transform = 'translateX(6px)';
+      item.style.background = 'rgba(59,130,246,0.02)';
+    }
+  });
+  item.addEventListener('mouseleave', () => {
+    item.style.transform = '';
+    item.style.background = '';
+  });
+});
+
+/* ── 4. CATEGORY TAB ACTIVE INDICATOR ── */
+(function initTabIndicator() {
+  const tabs = document.querySelectorAll('.faq-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('mouseenter', () => {
+      if (!tab.classList.contains('active')) {
+        gsap.to(tab, { scale: 1.05, duration: 0.2, ease: 'power2.out' });
+      }
+    });
+    tab.addEventListener('mouseleave', () => {
+      gsap.to(tab, { scale: 1, duration: 0.2, ease: 'power2.out' });
+    });
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => gsap.to(t, { scale: 1, duration: 0.15 }));
+      gsap.fromTo(tab, { scale: 0.95 }, { scale: 1, duration: 0.3, ease: 'back.out(2)' });
+    });
+  });
+})();
+
+/* ── 5. QUICK LINK CARD 3D TILT ── */
+document.querySelectorAll('.ql-card').forEach(card => {
+  card.style.transformStyle = 'preserve-3d';
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const rotY = ((e.clientX - cx) / (rect.width / 2)) * 10;
+    const rotX = -((e.clientY - cy) / (rect.height / 2)) * 10;
+    card.style.transform = `perspective(700px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+/* ── 6. CTA SECTION ATTENTION PULSE ── */
+(function initCtaPulse() {
+  const cta = document.querySelector('.faq-cta');
+  if (!cta) return;
+  ScrollTrigger.create({
+    trigger: cta, start: 'top 80%', once: true,
+    onEnter: () => {
+      gsap.fromTo(cta,
+        { boxShadow: '0 0 0 rgba(59,130,246,0)' },
+        { boxShadow: '0 0 40px rgba(59,130,246,0.1)', duration: 1, yoyo: true, repeat: 2, ease: 'power2.inOut' }
+      );
+    }
+  });
+})();
+
+/* ── 7. MAGNETIC CTA BUTTONS ── */
+document.querySelectorAll('.btn1, .nav-cta').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transition = 'transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94)';
+    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px) scale(1.05)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+});
+
+/* ── 8. HERO GLOW MOUSE PARALLAX ── */
+document.querySelector('.page-hero')?.addEventListener('mousemove', e => {
+  const glows = document.querySelectorAll('.page-hero .hero-glow');
+  const rect = document.querySelector('.page-hero').getBoundingClientRect();
+  const xRatio = (e.clientX - rect.left) / rect.width - 0.5;
+  const yRatio = (e.clientY - rect.top) / rect.height - 0.5;
+  glows.forEach((glow, i) => {
+    const factor = (i + 1) * 25;
+    glow.style.transition = 'transform 0.3s ease-out';
+    glow.style.transform = `translate(${xRatio * factor}px, ${yRatio * factor}px)`;
+  });
+});
+
+/* ── 9. FAQ QUESTION NUMBER BADGE ── */
+(function initQuestionNumbers() {
+  const items = document.querySelectorAll('.faq-it');
+  items.forEach((item, i) => {
+    const q = item.querySelector('.faq-q');
+    if (!q) return;
+    const badge = document.createElement('span');
+    badge.textContent = String(i + 1).padStart(2, '0');
+    badge.style.cssText = 'font-family:var(--fm);font-size:.65rem;color:var(--muted);margin-right:.5rem;min-width:1.5em;opacity:.5;transition:opacity .3s,color .3s';
+    q.insertBefore(badge, q.firstChild);
+
+    item.addEventListener('mouseenter', () => {
+      badge.style.opacity = '1';
+      badge.style.color = 'var(--blue)';
+    });
+    item.addEventListener('mouseleave', () => {
+      badge.style.opacity = '.5';
+      badge.style.color = 'var(--muted)';
+    });
+  });
+})();
+
 })();
 setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
 </script>

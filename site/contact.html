@@ -556,6 +556,250 @@ document.querySelectorAll('.page-hero .hero-glow').forEach((g,i)=>{
   gsap.to(g,{y:i%2===0?-60:60,scrollTrigger:{trigger:'.page-hero',start:'top top',end:'bottom top',scrub:1.5}});
 });
 
+/* ═══════════════════════════════════════════
+   INTERACTIVE ENHANCEMENTS — Contact Page
+   ═══════════════════════════════════════════ */
+
+/* ── 1. SMART REAL-TIME FIELD VALIDATION ── */
+(function initFormValidation() {
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+
+  const validators = {
+    'cf-name': v => v.trim().length >= 2 ? '' : 'Please enter at least 2 characters',
+    'cf-email': v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? '' : 'Please enter a valid email',
+    'cf-service': v => v ? '' : 'Please select a service',
+    'cf-budget': v => v ? '' : 'Please select a budget range',
+    'cf-timeline': v => v ? '' : 'Please select a timeline',
+    'cf-details': v => v.trim().length >= 10 ? '' : 'Please enter at least 10 characters'
+  };
+
+  Object.entries(validators).forEach(([id, validate]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    // Create feedback element
+    const feedback = document.createElement('span');
+    feedback.style.cssText = 'display:block;font-size:0.72rem;margin-top:4px;min-height:1em;transition:opacity 0.3s,color 0.3s;opacity:0;font-family:var(--fb)';
+    el.parentElement.appendChild(feedback);
+
+    function check() {
+      const msg = validate(el.value);
+      if (el.value === '' && !el.dataset.touched) { feedback.style.opacity = '0'; return; }
+      el.dataset.touched = 'true';
+      if (msg) {
+        feedback.textContent = msg;
+        feedback.style.color = '#ef4444';
+        feedback.style.opacity = '1';
+        el.style.borderColor = 'rgba(239,68,68,0.4)';
+      } else {
+        feedback.textContent = '✓ Looks good';
+        feedback.style.color = '#10b981';
+        feedback.style.opacity = '1';
+        el.style.borderColor = 'rgba(16,185,129,0.4)';
+        gsap.fromTo(el, { boxShadow: '0 0 0 rgba(16,185,129,0)' },
+          { boxShadow: '0 0 12px rgba(16,185,129,0.15)', duration: 0.5, yoyo: true, repeat: 1 });
+      }
+    }
+
+    el.addEventListener('blur', check);
+    el.addEventListener('input', () => { if (el.dataset.touched) check(); });
+  });
+})();
+
+/* ── 2. LIQUID FILL INPUTS (animated focus underline) ── */
+(function initLiquidInputs() {
+  document.querySelectorAll('.form-group input, .form-group select, .form-group textarea').forEach(el => {
+    const underline = document.createElement('div');
+    underline.style.cssText = 'position:absolute;bottom:0;left:50%;width:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--purple));transition:width 0.4s cubic-bezier(0.25,0.46,0.45,0.94),left 0.4s cubic-bezier(0.25,0.46,0.45,0.94);border-radius:2px;pointer-events:none';
+    el.parentElement.style.position = 'relative';
+    el.parentElement.appendChild(underline);
+
+    el.addEventListener('focus', () => {
+      underline.style.width = '100%';
+      underline.style.left = '0';
+    });
+    el.addEventListener('blur', () => {
+      underline.style.width = '0';
+      underline.style.left = '50%';
+    });
+  });
+})();
+
+/* ── 3. CHARACTER COUNTER FOR TEXTAREA ── */
+(function initCharCounter() {
+  const textarea = document.getElementById('cf-details');
+  if (!textarea) return;
+  const counter = document.createElement('div');
+  counter.style.cssText = 'text-align:right;font-size:0.7rem;color:var(--muted);margin-top:4px;font-family:var(--fm);transition:color 0.3s';
+  counter.textContent = '0 characters';
+  textarea.parentElement.appendChild(counter);
+
+  textarea.addEventListener('input', () => {
+    const len = textarea.value.length;
+    counter.textContent = len + ' character' + (len !== 1 ? 's' : '');
+    counter.style.color = len >= 10 ? 'var(--dim)' : 'var(--muted)';
+  });
+})();
+
+/* ── 4. FORM SUBMIT PARTICLE BURST ── */
+(function initSubmitBurst() {
+  const form = document.getElementById('contactForm');
+  const btn = document.getElementById('submitBtn');
+  if (!form || !btn) return;
+
+  form.addEventListener('submit', e => {
+    // Create particle burst from button
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+
+    for (let i = 0; i < 24; i++) {
+      const particle = document.createElement('div');
+      const angle = (Math.PI * 2 * i) / 24;
+      const distance = 60 + Math.random() * 80;
+      const size = 3 + Math.random() * 5;
+      const colors = ['#3b82f6', '#8b5cf6', '#06b6d4', '#10b981', '#ec4899'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+
+      particle.style.cssText = `position:fixed;left:${cx}px;top:${cy}px;width:${size}px;height:${size}px;background:${color};border-radius:50%;pointer-events:none;z-index:9999`;
+      document.body.appendChild(particle);
+
+      gsap.to(particle, {
+        x: Math.cos(angle) * distance,
+        y: Math.sin(angle) * distance,
+        opacity: 0, scale: 0,
+        duration: 0.8 + Math.random() * 0.4,
+        ease: 'power3.out',
+        onComplete: () => particle.remove()
+      });
+    }
+
+    // Button ripple
+    gsap.fromTo(btn,
+      { boxShadow: '0 0 0 0 rgba(59,130,246,0.6)' },
+      { boxShadow: '0 0 0 20px rgba(59,130,246,0)', duration: 0.6, ease: 'power2.out' }
+    );
+  });
+})();
+
+/* ── 5. INFO CARD 3D TILT + HOVER GLOW ── */
+document.querySelectorAll('.info-card').forEach(card => {
+  card.style.transition = 'transform 0.15s ease-out, box-shadow 0.3s ease';
+  card.style.cursor = 'default';
+
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const rotY = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 10;
+    const rotX = -((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * 10;
+    card.style.transform = `perspective(500px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-3px)`;
+    card.style.boxShadow = '0 8px 25px rgba(59,130,246,0.08)';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+    card.style.boxShadow = '';
+  });
+});
+
+/* ── 6. TIMELINE STEP INTERACTIVE PROGRESS ── */
+(function initTimelineProgress() {
+  const steps = document.querySelectorAll('.timeline-step');
+  steps.forEach((step, i) => {
+    const num = step.querySelector('.step-num');
+    if (!num) return;
+
+    ScrollTrigger.create({
+      trigger: step, start: 'top 80%', once: true,
+      onEnter: () => {
+        setTimeout(() => {
+          gsap.fromTo(num,
+            { scale: 0, rotation: -180 },
+            { scale: 1, rotation: 0, duration: 0.6, ease: 'back.out(2)' }
+          );
+          gsap.fromTo(step,
+            { borderLeftColor: 'transparent' },
+            { borderLeftColor: '#3b82f6', duration: 0.5, delay: 0.3 }
+          );
+        }, i * 150);
+      }
+    });
+
+    // Hover expansion
+    step.style.transition = 'transform 0.2s ease, background 0.3s ease';
+    step.addEventListener('mouseenter', () => {
+      step.style.transform = 'translateX(8px)';
+      step.style.background = 'rgba(59,130,246,0.04)';
+    });
+    step.addEventListener('mouseleave', () => {
+      step.style.transform = '';
+      step.style.background = '';
+    });
+  });
+})();
+
+/* ── 7. SERVICE CARD MAGNETIC HOVER ── */
+document.querySelectorAll('.qsvc-card').forEach(card => {
+  card.style.transformStyle = 'preserve-3d';
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const rotY = ((e.clientX - cx) / (rect.width / 2)) * 8;
+    const rotX = -((e.clientY - cy) / (rect.height / 2)) * 8;
+    card.style.transform = `perspective(700px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+/* ── 8. TRUST PILL COUNTER ANIMATION ── */
+document.querySelectorAll('.tp-val').forEach(el => {
+  const text = el.textContent;
+  const num = parseFloat(text.replace(/[^0-9.]/g, ''));
+  if (isNaN(num)) return;
+  const suffix = text.replace(/[0-9.]/g, '');
+
+  ScrollTrigger.create({
+    trigger: el, start: 'top 90%', once: true,
+    onEnter: () => {
+      let current = { val: 0 };
+      gsap.to(current, {
+        val: num, duration: 2, ease: 'power2.out',
+        onUpdate: () => { el.textContent = Math.round(current.val) + suffix; },
+        onComplete: () => { el.textContent = text; }
+      });
+    }
+  });
+});
+
+/* ── 9. HERO GLOW MOUSE PARALLAX ── */
+document.querySelector('.page-hero')?.addEventListener('mousemove', e => {
+  const glows = document.querySelectorAll('.page-hero .hero-glow');
+  const rect = document.querySelector('.page-hero').getBoundingClientRect();
+  const xRatio = (e.clientX - rect.left) / rect.width - 0.5;
+  const yRatio = (e.clientY - rect.top) / rect.height - 0.5;
+  glows.forEach((glow, i) => {
+    const factor = (i + 1) * 30;
+    glow.style.transition = 'transform 0.3s ease-out';
+    glow.style.transform = `translate(${xRatio * factor}px, ${yRatio * factor}px)`;
+  });
+});
+
+/* ── 10. MAGNETIC CTA BUTTONS ── */
+document.querySelectorAll('.submit-btn, .nav-cta').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transition = 'transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94)';
+    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px) scale(1.05)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+});
+
 })();
 setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
 </script>

@@ -2156,6 +2156,94 @@ document.querySelectorAll('.con-m').forEach((item, i) => {
   });
 })();
 
+/* ═══════════════════════════════════════════
+   ADDITIONAL INTERACTIVE ENHANCEMENTS
+   ═══════════════════════════════════════════ */
+
+/* ── 1. MAGNETIC CURSOR ON ALL CTA BUTTONS ── */
+document.querySelectorAll('.btn1, .nav-cta, [class*="cta"]').forEach(btn => {
+  if (btn.tagName === 'SECTION' || btn.tagName === 'DIV') return;
+  btn.addEventListener('mousemove', e => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transition = 'transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94)';
+    btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.05)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+});
+
+/* ── 2. HERO TEXT MORPHING GLOW ── */
+(function initHeroTextGlow() {
+  const heroTitle = document.querySelector('.hero-title');
+  if (!heroTitle) return;
+  const gradientSpan = heroTitle.querySelector('.gt');
+  if (!gradientSpan) return;
+
+  const colors = [
+    'linear-gradient(135deg, #3b82f6, #8b5cf6)',
+    'linear-gradient(135deg, #8b5cf6, #ec4899)',
+    'linear-gradient(135deg, #ec4899, #f59e0b)',
+    'linear-gradient(135deg, #f59e0b, #10b981)',
+    'linear-gradient(135deg, #10b981, #06b6d4)',
+    'linear-gradient(135deg, #06b6d4, #3b82f6)'
+  ];
+  let idx = 0;
+
+  setInterval(() => {
+    idx = (idx + 1) % colors.length;
+    gradientSpan.style.backgroundImage = colors[idx];
+    gradientSpan.style.transition = 'background-image 1.5s ease';
+  }, 3000);
+})();
+
+/* ── 3. SECTION CARDS SPOTLIGHT GRADIENT ── */
+document.querySelectorAll('.svc-card, .feature-card, .testimonial-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(0);
+    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(0);
+    card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(59,130,246,0.06) 0%, transparent 60%)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.background = ''; });
+});
+
+/* ── 4. SMOOTH SCROLL-TRIGGERED SECTION GLOW ── */
+(function initSectionGlows() {
+  document.querySelectorAll('.sec').forEach(sec => {
+    ScrollTrigger.create({
+      trigger: sec, start: 'top 60%', end: 'bottom 40%',
+      onEnter: () => {
+        gsap.to(sec, { borderTopColor: 'rgba(59,130,246,0.08)', duration: 0.5 });
+      },
+      onLeave: () => {
+        gsap.to(sec, { borderTopColor: 'transparent', duration: 0.5 });
+      },
+      onEnterBack: () => {
+        gsap.to(sec, { borderTopColor: 'rgba(59,130,246,0.08)', duration: 0.5 });
+      },
+      onLeaveBack: () => {
+        gsap.to(sec, { borderTopColor: 'transparent', duration: 0.5 });
+      }
+    });
+  });
+})();
+
+/* ── 5. FOOTER LINK HOVER STAGGER ── */
+document.querySelectorAll('.ft-col').forEach(col => {
+  col.addEventListener('mouseenter', () => {
+    const links = col.querySelectorAll('a');
+    links.forEach((link, i) => {
+      gsap.fromTo(link,
+        { x: 0 },
+        { x: 4, duration: 0.2, delay: i * 0.05, yoyo: true, repeat: 1, ease: 'power2.out' }
+      );
+    });
+  });
+});
+
 })();
 
 /* GSAP fallback — if animations haven't fired after 3s, reveal everything */

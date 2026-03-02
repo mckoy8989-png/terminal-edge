@@ -204,6 +204,41 @@
 .sh-pill{display:flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.75rem;color:var(--dim);padding:.4rem 1rem;border:1px solid var(--border);border-radius:100px;background:rgba(255,255,255,.03);transition:border-color .3s,color .3s,transform .3s var(--ease)}
 .sh-pill:hover{border-color:var(--border2);color:var(--text);transform:translateY(-1px)}
 .sh-pill .sp-icon{font-size:.9rem}
+
+/* ═══ INTERACTIVE ENHANCEMENT STYLES ═══ */
+
+/* Workflow node interactive states */
+.wf-node-box{transition:transform 0.4s ease,box-shadow 0.4s ease,background 0.3s;cursor:pointer}
+.wf-node-box:hover{background:rgba(59,130,246,0.1) !important;transform:scale(1.15) !important}
+.wf-arrow{transition:color 0.3s,transform 0.3s}
+
+/* Dashboard live indicator */
+.dash-live{animation:live-blink 2s ease-in-out infinite}
+@keyframes live-blink{0%,100%{opacity:1}50%{opacity:0.4}}
+.ds-val{transition:transform 0.2s ease,color 0.3s}
+
+/* Code line entrance states */
+.code-body div{transition:opacity 0.35s ease,transform 0.35s ease}
+
+/* Card hover spotlight base */
+.feat-card,.app-card{transition:transform 0.15s ease-out,box-shadow 0.3s ease,background 0.3s ease !important}
+
+/* Process step enhanced */
+.proc-num{transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.4s}
+.proc-step:hover .proc-num{box-shadow:0 0 20px rgba(59,130,246,0.3)}
+
+/* Bot type card interactive */
+.bot-type{transition:transform 0.15s ease-out,box-shadow 0.3s,border-color 0.3s !important}
+.bot-type:hover .bt-icon{transform:scale(1.2) rotate(5deg);transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1)}
+
+/* Depth item interactive */
+.depth-item{transition:transform 0.15s ease-out,box-shadow 0.3s !important}
+.depth-item:hover .di-num{color:var(--blue);transition:color 0.3s}
+
+/* Hero pill click hint */
+.sh-pill::after{content:'';position:absolute;inset:0;border-radius:100px;background:radial-gradient(circle,rgba(59,130,246,0.15),transparent 70%);opacity:0;transition:opacity 0.3s;pointer-events:none}
+.sh-pill:hover::after{opacity:1}
+.sh-pill{position:relative;overflow:hidden}
 </style>
 <script>document.documentElement.classList.add('gsap-ready');</script>
 </head>
@@ -938,6 +973,270 @@ document.querySelectorAll('.svc-glow').forEach(glow => {
     scrollTrigger: { trigger: glow.closest('.svc-section'), start: 'top bottom', end: 'bottom top', scrub: 1.5 }
   });
 });
+
+/* ═══════════════════════════════════════════
+   INTERACTIVE ENHANCEMENTS — Services Page
+   ═══════════════════════════════════════════ */
+
+/* ── 1. MAGNETIC CURSOR EFFECT ON BUTTONS ── */
+document.querySelectorAll('.btn1, .nav-cta, .price-tag').forEach(btn => {
+  btn.style.transition = 'transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94)';
+  btn.addEventListener('mousemove', e => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px) scale(1.05)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = 'translate(0,0) scale(1)';
+  });
+});
+
+/* ── 2. 3D TILT ON FEATURE/APP/BOT CARDS ── */
+document.querySelectorAll('.feat-card, .app-card, .bot-type, .depth-item, .cap-item').forEach(card => {
+  card.style.transition = 'transform 0.15s ease-out, box-shadow 0.3s ease';
+  card.style.transformStyle = 'preserve-3d';
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const rotateY = ((e.clientX - cx) / (rect.width / 2)) * 8;
+    const rotateX = -((e.clientY - cy) / (rect.height / 2)) * 8;
+    card.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+    card.style.boxShadow = `${-rotateY * 2}px ${rotateX * 2}px 30px rgba(59,130,246,0.1)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(600px) rotateX(0) rotateY(0) scale(1)';
+    card.style.boxShadow = '';
+  });
+});
+
+/* ── 3. LIVE CODE TYPING ANIMATION ── */
+(function initCodeTyping() {
+  const codeBody = document.querySelector('.code-body');
+  if (!codeBody) return;
+  const lines = codeBody.querySelectorAll('div');
+  const originalHTML = [];
+  lines.forEach(l => originalHTML.push(l.innerHTML));
+
+  let typed = false;
+  function typeCode() {
+    if (typed) return;
+    typed = true;
+    lines.forEach(l => { l.style.opacity = '0'; l.style.transform = 'translateX(-8px)'; });
+    lines.forEach((line, i) => {
+      setTimeout(() => {
+        line.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+        line.style.opacity = '1';
+        line.style.transform = 'translateX(0)';
+      }, i * 120);
+    });
+  }
+
+  ScrollTrigger.create({
+    trigger: codeBody,
+    start: 'top 85%',
+    once: true,
+    onEnter: typeCode
+  });
+})();
+
+/* ── 4. ANIMATED DATA FLOW IN WORKFLOW DIAGRAM ── */
+(function initWorkflowAnimation() {
+  const diagram = document.querySelector('.workflow-diagram');
+  if (!diagram) return;
+
+  const nodes = diagram.querySelectorAll('.wf-node-box');
+  const arrows = diagram.querySelectorAll('.wf-arrow');
+
+  // Create flowing particle dots between nodes
+  function pulseFlow() {
+    nodes.forEach((node, i) => {
+      setTimeout(() => {
+        node.style.transition = 'transform 0.4s ease, box-shadow 0.4s ease';
+        node.style.transform = 'scale(1.2)';
+        node.style.boxShadow = '0 0 20px rgba(59,130,246,0.4)';
+        setTimeout(() => {
+          node.style.transform = 'scale(1)';
+          node.style.boxShadow = '';
+        }, 500);
+
+        if (arrows[i]) {
+          setTimeout(() => {
+            arrows[i].style.transition = 'color 0.3s, transform 0.3s';
+            arrows[i].style.color = '#3b82f6';
+            arrows[i].style.transform = 'scale(1.5)';
+            setTimeout(() => {
+              arrows[i].style.color = '';
+              arrows[i].style.transform = 'scale(1)';
+            }, 400);
+          }, 200);
+        }
+      }, i * 600);
+    });
+  }
+
+  // Pulse every 4 seconds
+  let flowInterval;
+  ScrollTrigger.create({
+    trigger: diagram,
+    start: 'top 80%',
+    onEnter: () => { pulseFlow(); flowInterval = setInterval(pulseFlow, 4000); },
+    onLeaveBack: () => clearInterval(flowInterval)
+  });
+
+  // Interactive: click a node to trigger flow from that point
+  nodes.forEach((node, i) => {
+    node.style.cursor = 'pointer';
+    node.addEventListener('click', () => {
+      for (let j = i; j < nodes.length; j++) {
+        setTimeout(() => {
+          nodes[j].style.transform = 'scale(1.25)';
+          nodes[j].style.boxShadow = '0 0 25px rgba(6,182,212,0.5)';
+          setTimeout(() => {
+            nodes[j].style.transform = 'scale(1)';
+            nodes[j].style.boxShadow = '';
+          }, 500);
+        }, (j - i) * 400);
+      }
+    });
+  });
+})();
+
+/* ── 5. LIVE DASHBOARD UPDATES ── */
+(function initLiveDashboard() {
+  const dashStats = document.querySelectorAll('.dash-stat .ds-val');
+  if (dashStats.length === 0) return;
+
+  const baseValues = {
+    pnl: 12847, win: 68.4, trades: 1247, dd: 4.2
+  };
+
+  function updateDash() {
+    const pnlDelta = Math.floor(Math.random() * 200 - 50);
+    baseValues.pnl += pnlDelta;
+    baseValues.win = Math.min(99, Math.max(50, baseValues.win + (Math.random() * 0.4 - 0.2)));
+    baseValues.trades += Math.floor(Math.random() * 3);
+
+    if (dashStats[0]) {
+      dashStats[0].textContent = (baseValues.pnl >= 0 ? '+$' : '-$') + Math.abs(baseValues.pnl).toLocaleString();
+      dashStats[0].style.transition = 'transform 0.2s ease';
+      dashStats[0].style.transform = 'scale(1.1)';
+      setTimeout(() => dashStats[0].style.transform = 'scale(1)', 200);
+    }
+    if (dashStats[1]) dashStats[1].textContent = baseValues.win.toFixed(1) + '%';
+    if (dashStats[2]) dashStats[2].textContent = baseValues.trades.toLocaleString();
+  }
+
+  let dashInterval;
+  ScrollTrigger.create({
+    trigger: '.dash-mockup',
+    start: 'top 80%',
+    onEnter: () => { dashInterval = setInterval(updateDash, 2500); },
+    onLeaveBack: () => clearInterval(dashInterval)
+  });
+})();
+
+/* ── 6. CARD SPOTLIGHT GRADIENT ── */
+document.querySelectorAll('.feat-card, .app-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(0);
+    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(0);
+    card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(59,130,246,0.08) 0%, rgba(6,7,20,0) 60%)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.background = '';
+  });
+});
+
+/* ── 7. PROCESS STEP PROGRESS ON SCROLL ── */
+(function initProcessProgress() {
+  const steps = document.querySelectorAll('.proc-step');
+  if (steps.length === 0) return;
+
+  steps.forEach((step, i) => {
+    const num = step.querySelector('.proc-num');
+    ScrollTrigger.create({
+      trigger: step,
+      start: 'top 75%',
+      once: true,
+      onEnter: () => {
+        gsap.to(num, {
+          scale: 1.15, duration: 0.4, ease: 'back.out(2)',
+          onComplete: () => gsap.to(num, { scale: 1, duration: 0.3 })
+        });
+        // Draw connecting line
+        if (i < steps.length - 1) {
+          step.style.borderLeftColor = 'rgba(59,130,246,0.4)';
+        }
+      }
+    });
+  });
+})();
+
+/* ── 8. SECTION MOUSE PARALLAX ── */
+document.querySelectorAll('.svc-section').forEach(section => {
+  section.addEventListener('mousemove', e => {
+    const glow = section.querySelector('.svc-glow');
+    if (!glow) return;
+    const rect = section.getBoundingClientRect();
+    const xRatio = (e.clientX - rect.left) / rect.width - 0.5;
+    const yRatio = (e.clientY - rect.top) / rect.height - 0.5;
+    glow.style.transform = `translate(${xRatio * 40}px, ${yRatio * 40}px)`;
+  });
+});
+
+/* ── 9. TECH PILL HOVER RIPPLE ── */
+document.querySelectorAll('.tech-pill').forEach(pill => {
+  pill.addEventListener('mouseenter', function() {
+    this.style.transition = 'transform 0.3s cubic-bezier(0.34,1.56,0.64,1), border-color 0.3s';
+    this.style.transform = 'translateY(-3px) scale(1.08)';
+    this.style.borderColor = 'rgba(59,130,246,0.4)';
+  });
+  pill.addEventListener('mouseleave', function() {
+    this.style.transform = '';
+    this.style.borderColor = '';
+  });
+});
+
+/* ── 10. HERO PILL INTERACTIVE GLOW ── */
+document.querySelectorAll('.sh-pill').forEach((pill, i) => {
+  const colors = ['#3b82f6','#06b6d4','#f59e0b','#8b5cf6'];
+  pill.addEventListener('mouseenter', function() {
+    this.style.transition = 'all 0.3s ease';
+    this.style.boxShadow = `0 0 20px ${colors[i]}33, inset 0 0 15px ${colors[i]}11`;
+    this.style.transform = 'translateY(-4px) scale(1.06)';
+    this.style.borderColor = colors[i] + '66';
+  });
+  pill.addEventListener('mouseleave', function() {
+    this.style.boxShadow = '';
+    this.style.transform = '';
+    this.style.borderColor = '';
+  });
+  // Click scrolls to corresponding section
+  const targets = ['#websites','#ai','#bots','#apps'];
+  pill.style.cursor = 'pointer';
+  pill.addEventListener('click', () => {
+    const target = document.querySelector(targets[i]);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* ── 11. SAFETY BOX PULSE ATTENTION ── */
+(function initSafetyPulse() {
+  const box = document.querySelector('.safety-box');
+  if (!box) return;
+  ScrollTrigger.create({
+    trigger: box, start: 'top 80%', once: true,
+    onEnter: () => {
+      gsap.fromTo(box,
+        { borderColor: 'rgba(245,158,11,0.15)' },
+        { borderColor: 'rgba(245,158,11,0.5)', duration: 0.6, yoyo: true, repeat: 2, ease: 'power2.inOut' }
+      );
+    }
+  });
+})();
 
 })();
 setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
