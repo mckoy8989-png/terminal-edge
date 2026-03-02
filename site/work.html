@@ -794,7 +794,7 @@ const cv=document.getElementById('heroCanvas'),cx=cv.getContext('2d');
 let pts=[],mx={x:null,y:null};
 const PC=innerWidth<768?30:60,CD=130,MD=160;
 function rsz(){cv.width=cv.parentElement.offsetWidth;cv.height=cv.parentElement.offsetHeight}
-rsz();addEventListener('resize',rsz);
+rsz();addEventListener('resize',rsz,{passive:true});
 class P{
   constructor(){this.x=Math.random()*cv.width;this.y=Math.random()*cv.height;this.vx=(Math.random()-.5)*.35;this.vy=(Math.random()-.5)*.35;this.r=Math.random()*1.4+.7}
   update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>cv.width)this.vx*=-1;if(this.y<0||this.y>cv.height)this.vy*=-1;if(mx.x!==null){const dx=this.x-mx.x,dy=this.y-mx.y,d=Math.sqrt(dx*dx+dy*dy);if(d<MD){const f=(MD-d)/MD*.012;this.vx+=dx*f;this.vy+=dy*f}}this.vx*=.99;this.vy*=.99}
@@ -808,16 +808,23 @@ cv.addEventListener('mousemove',e=>{const r=cv.getBoundingClientRect();mx.x=e.cl
 cv.addEventListener('mouseleave',()=>{mx.x=null;mx.y=null});
 
 /* ══════════════════════════════════════════════
-   SCROLL PROGRESS BAR
+   SCROLL PROGRESS + NAV (throttled)
    ══════════════════════════════════════════════ */
 const sb=document.getElementById('scrollBar');
-addEventListener('scroll',()=>{sb.style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%'});
+const nb=document.getElementById('navbar');
+let scrollTick=false;
+addEventListener('scroll',()=>{
+  if(!scrollTick){scrollTick=true;requestAnimationFrame(()=>{
+    const h=document.documentElement.scrollHeight-innerHeight;
+    if(h>0)sb.style.width=(scrollY/h*100)+'%';
+    nb.classList.toggle('scrolled',scrollY>50);
+    scrollTick=false;
+  })}
+},{passive:true});
 
 /* ══════════════════════════════════════════════
-   NAV SCROLL + BURGER
+   BURGER MENU
    ══════════════════════════════════════════════ */
-const nb=document.getElementById('navbar');
-addEventListener('scroll',()=>nb.classList.toggle('scrolled',scrollY>50));
 const bg=document.getElementById('burger'),mm=document.getElementById('mobMenu');
 bg.addEventListener('click',()=>{bg.classList.toggle('on');mm.classList.toggle('open');document.body.style.overflow=mm.classList.contains('open')?'hidden':''});
 document.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>{bg.classList.remove('on');mm.classList.remove('open');document.body.style.overflow=''}));
@@ -873,15 +880,16 @@ document.querySelectorAll('[data-count]').forEach(el=>{
   }});
 });
 
-// All gs-hide elements
-gsap.utils.toArray('.gs-hide').forEach((el,i)=>{
-  if(el.closest('.page-hero-ct'))return;
-  gsap.to(el,{scrollTrigger:{trigger:el,start:'top 90%',once:true},opacity:1,y:0,duration:.9,delay:i%4*.1,ease:'power3.out',force3D:true});
+// All gs-hide elements (batched)
+ScrollTrigger.batch('.gs-hide:not(.page-hero-ct .gs-hide)',{
+  start:'top 90%',once:true,
+  onEnter:batch=>gsap.to(batch,{opacity:1,y:0,duration:.9,stagger:.08,ease:'power3.out',force3D:true})
 });
 
-// All gs-scale elements
-gsap.utils.toArray('.gs-scale').forEach(el=>{
-  gsap.to(el,{scrollTrigger:{trigger:el,start:'top 90%',once:true},opacity:1,scale:1,y:0,duration:.9,ease:'power3.out',force3D:true});
+// All gs-scale elements (batched)
+ScrollTrigger.batch('.gs-scale',{
+  start:'top 90%',once:true,
+  onEnter:batch=>gsap.to(batch,{opacity:1,scale:1,y:0,duration:.9,stagger:.08,ease:'power3.out',force3D:true})
 });
 
 })();
