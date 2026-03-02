@@ -696,53 +696,54 @@ filterBtns.forEach(btn => {
    GSAP ANIMATIONS
    ═══════════════════════════════════ */
 gsap.registerPlugin(ScrollTrigger);
+gsap.config({force3D:true});
 
 // Hero entrance
-const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+const heroTl = gsap.timeline({ defaults: { ease: 'power4.out', force3D: true } });
 heroTl.to('.page-hero-ct .gs-hide', {
-  opacity: 1, y: 0, duration: 0.7, stagger: 0.15
+  opacity: 1, y: 0, duration: 1, stagger: 0.18
 });
 
 // All gs-hide elements (excluding hero — already animated)
 gsap.utils.toArray('.gs-hide').forEach((el, i) => {
   if (el.closest('.page-hero-ct')) return;
   gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    opacity: 1, y: 0, duration: 0.7,
-    delay: (i % 6) * 0.06,
-    ease: 'power2.out'
+    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    opacity: 1, y: 0, duration: 0.9,
+    delay: (i % 6) * 0.08,
+    ease: 'power3.out', force3D: true
   });
 });
 
 gsap.utils.toArray('.gs-left').forEach(el => {
   gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    opacity: 1, x: 0, duration: 0.7, ease: 'power2.out'
+    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    opacity: 1, x: 0, duration: 0.9, ease: 'power3.out', force3D: true
   });
 });
 
 gsap.utils.toArray('.gs-right').forEach(el => {
   gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    opacity: 1, x: 0, duration: 0.7, ease: 'power2.out'
+    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    opacity: 1, x: 0, duration: 0.9, ease: 'power3.out', force3D: true
   });
 });
 
 gsap.utils.toArray('.gs-scale').forEach(el => {
   gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    opacity: 1, scale: 1, y: 0, duration: 0.7, ease: 'power2.out'
+    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    opacity: 1, scale: 1, y: 0, duration: 0.9, ease: 'power3.out', force3D: true
   });
 });
 
 // Parallax hero glows
 gsap.to('.hg1', {
   y: -80,
-  scrollTrigger: { trigger: '.page-hero', start: 'top top', end: 'bottom top', scrub: 1 }
+  scrollTrigger: { trigger: '.page-hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
 });
 gsap.to('.hg2', {
   y: 80,
-  scrollTrigger: { trigger: '.page-hero', start: 'top top', end: 'bottom top', scrub: 1 }
+  scrollTrigger: { trigger: '.page-hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
 });
 
 })();

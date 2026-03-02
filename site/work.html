@@ -855,17 +855,18 @@ filterBtns.forEach(btn=>{
    GSAP ANIMATIONS
    ══════════════════════════════════════════════ */
 gsap.registerPlugin(ScrollTrigger);
+gsap.config({force3D:true});
 
 // Hero entrance
-const htl=gsap.timeline({defaults:{ease:'power3.out'}});
-htl.to('.page-hero-ct .gs-hide',{opacity:1,y:0,duration:.7,stagger:.15});
+const htl=gsap.timeline({defaults:{ease:'power4.out',force3D:true}});
+htl.to('.page-hero-ct .gs-hide',{opacity:1,y:0,duration:1,stagger:.18});
 
 // Stats counters
 document.querySelectorAll('[data-count]').forEach(el=>{
   const tgt=parseFloat(el.dataset.count);
   const dec=parseInt(el.dataset.decimals)||0;
   ScrollTrigger.create({trigger:el,start:'top 85%',once:true,onEnter:()=>{
-    gsap.to(el,{duration:2,ease:'power2.out',onUpdate:function(){
+    gsap.to(el,{duration:2.5,ease:'power2.out',onUpdate:function(){
       const v=tgt*this.progress();
       el.textContent=dec>0?v.toFixed(dec):Math.round(v);
     },onComplete:()=>{el.textContent=dec>0?tgt.toFixed(dec):tgt}})
@@ -875,12 +876,12 @@ document.querySelectorAll('[data-count]').forEach(el=>{
 // All gs-hide elements
 gsap.utils.toArray('.gs-hide').forEach((el,i)=>{
   if(el.closest('.page-hero-ct'))return;
-  gsap.to(el,{scrollTrigger:{trigger:el,start:'top 88%',once:true},opacity:1,y:0,duration:.7,delay:i%4*.08,ease:'power2.out'});
+  gsap.to(el,{scrollTrigger:{trigger:el,start:'top 90%',once:true},opacity:1,y:0,duration:.9,delay:i%4*.1,ease:'power3.out',force3D:true});
 });
 
 // All gs-scale elements
 gsap.utils.toArray('.gs-scale').forEach(el=>{
-  gsap.to(el,{scrollTrigger:{trigger:el,start:'top 88%',once:true},opacity:1,scale:1,y:0,duration:.7,ease:'power2.out'});
+  gsap.to(el,{scrollTrigger:{trigger:el,start:'top 90%',once:true},opacity:1,scale:1,y:0,duration:.9,ease:'power3.out',force3D:true});
 });
 
 })();

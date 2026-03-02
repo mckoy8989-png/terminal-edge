@@ -694,28 +694,29 @@ document.querySelectorAll('.pfaq-q').forEach(function(btn) {
 
 /* ── GSAP ANIMATIONS ── */
 gsap.registerPlugin(ScrollTrigger);
+gsap.config({force3D:true});
 
 // Hero entrance
 const heroEls = document.querySelectorAll('.page-hero-ct .gs-hide');
 gsap.fromTo(heroEls,
   { opacity: 0, y: 30 },
-  { opacity: 1, y: 0, duration: .8, stagger: .15, ease: 'power3.out', delay: .2 }
+  { opacity: 1, y: 0, duration: 1, stagger: .18, ease: 'power4.out', force3D: true, delay: .2 }
 );
 
 // Scroll-triggered gs-hide
 gsap.utils.toArray('.gs-hide').forEach(function(el) {
   if (el.closest('.page-hero-ct')) return;
   gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    opacity: 1, y: 0, duration: .7, ease: 'power2.out'
+    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    opacity: 1, y: 0, duration: .9, ease: 'power3.out', force3D: true
   });
 });
 
 // Scroll-triggered gs-scale
 gsap.utils.toArray('.gs-scale').forEach(function(el) {
   gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    opacity: 1, scale: 1, y: 0, duration: .7, ease: 'power2.out'
+    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    opacity: 1, scale: 1, y: 0, duration: .9, ease: 'power3.out', force3D: true
   });
 });
 
@@ -727,7 +728,7 @@ ScrollTrigger.create({
   onEnter: function() {
     gsap.fromTo('.tier-card',
       { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: .6, stagger: .12, ease: 'power2.out' }
+      { opacity: 1, y: 0, duration: .8, stagger: .15, ease: 'power3.out', force3D: true }
     );
   }
 });
@@ -740,7 +741,7 @@ ScrollTrigger.create({
   onEnter: function() {
     gsap.fromTo('.addon-card',
       { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: .5, stagger: .08, ease: 'power2.out' }
+      { opacity: 1, y: 0, duration: .7, stagger: .1, ease: 'power3.out', force3D: true }
     );
   }
 });
@@ -749,7 +750,7 @@ ScrollTrigger.create({
 document.querySelectorAll('.hero-glow').forEach(function(g) {
   gsap.to(g, {
     y: function() { return (Math.random() - .5) * 120; },
-    scrollTrigger: { trigger: '.page-hero', start: 'top top', end: 'bottom top', scrub: 1 }
+    scrollTrigger: { trigger: '.page-hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
   });
 });
 
