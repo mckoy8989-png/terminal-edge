@@ -23,7 +23,13 @@
 /* ── SERVICE SECTIONS ── */
 .svc-section{padding:6rem 1.5rem;position:relative;overflow:hidden}
 .svc-section:nth-child(even){background:var(--bg2)}
-.svc-section .ctn{max-width:1200px;margin:0 auto}
+.svc-section .ctn{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+/* Unique ambient per section */
+#websites::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(59,130,246,.03) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+#ai::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(6,182,212,.03),transparent 30%,transparent 70%,rgba(139,92,246,.03));pointer-events:none}
+#ai::after{content:'AI';position:absolute;bottom:-40px;right:-20px;font-size:18rem;font-weight:800;font-family:var(--ff);color:rgba(255,255,255,.01);pointer-events:none;line-height:1}
+#trading::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(245,158,11,.02) 59px,rgba(245,158,11,.02) 60px),repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(245,158,11,.02) 59px,rgba(245,158,11,.02) 60px);pointer-events:none}
+#apps::before{content:'';position:absolute;inset:0;background:conic-gradient(from 45deg at 80% 20%,rgba(139,92,246,.04),transparent 25%,transparent 75%,rgba(139,92,246,.04));pointer-events:none}
 
 /* ── SERVICE HEADER ── */
 .svc-header{display:flex;align-items:flex-start;gap:1.5rem;margin-bottom:3rem}
@@ -42,9 +48,14 @@
 @media(max-width:560px){.feat-grid{grid-template-columns:1fr}}
 
 .feat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);padding:1.6rem;position:relative;overflow:hidden;transition:transform .4s var(--ease),background .4s,box-shadow .4s,border-color .4s}
-.feat-card::before{content:'';position:absolute;inset:-1px;border-radius:var(--rs);padding:1px;background:linear-gradient(135deg,transparent 40%,var(--blue),var(--purple),transparent 90%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s}
-.feat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad1);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
-.feat-card:hover{transform:translateY(-3px);background:var(--surface2);box-shadow:0 12px 30px rgba(0,0,0,.2)}.feat-card:hover::before{opacity:1}.feat-card:hover::after{transform:scaleX(1)}
+.feat-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;transition:height .5s var(--ease);border-radius:0 0 3px 0}
+.feat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.feat-card:hover{transform:translateY(-3px);background:var(--surface2);box-shadow:0 12px 30px rgba(0,0,0,.2)}.feat-card:hover::before{height:100%}.feat-card:hover::after{transform:scaleX(1)}
+/* Section-specific card colors */
+#websites .feat-card::before,#websites .feat-card::after{background:var(--blue)}
+#ai .feat-card::before,#ai .feat-card::after{background:var(--cyan)}
+#trading .feat-card::before,#trading .feat-card::after{background:var(--orange)}
+#apps .feat-card::before,#apps .feat-card::after{background:var(--purple)}
 .feat-card .fc-icon{font-size:1.3rem;margin-bottom:.8rem;display:block}
 .feat-card h4{font-family:var(--ff);font-size:1rem;font-weight:600;margin-bottom:.4rem}
 .feat-card p{font-size:.85rem;color:var(--dim);line-height:1.7}

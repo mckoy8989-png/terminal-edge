@@ -20,6 +20,15 @@
    FAQ PAGE — Scoped Styles
    ══════════════════════════════════════ */
 
+/* ── FAQ Main Section ── */
+.faq-main-sec{position:relative;overflow:hidden}
+.faq-main-sec::before{content:'?';position:absolute;top:40px;left:40px;font-size:20rem;font-weight:900;color:rgba(255,255,255,.008);line-height:1;pointer-events:none;font-family:var(--ff)}
+.faq-main-sec::after{content:'';position:absolute;top:0;right:0;width:400px;height:400px;background:radial-gradient(ellipse,rgba(59,130,246,.03),transparent 60%);pointer-events:none}
+
+/* ── Quick Links Section ── */
+.ql-sec{position:relative;overflow:hidden}
+.ql-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,.02),transparent 30%,transparent 70%,rgba(59,130,246,.02));pointer-events:none}
+
 /* ── Category Filter Tabs ── */
 .faq-filters{
   display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:3rem;
@@ -221,7 +230,7 @@
 </section>
 
 <!-- ══════ FAQ SECTION ══════ -->
-<section class="sec pad">
+<section class="sec pad faq-main-sec">
 <div class="ctn">
 
   <!-- Category Filter Tabs -->
@@ -456,7 +465,7 @@
 </section>
 
 <!-- ══════ QUICK LINKS ══════ -->
-<section class="sec pad" style="padding-top:0">
+<section class="sec pad ql-sec" style="padding-top:0">
 <div class="ctn">
   <div class="tc mb-6 gs-hide">
     <div class="lbl">Explore More</div>

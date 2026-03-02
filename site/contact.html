@@ -20,6 +20,17 @@
    CONTACT PAGE — Scoped Styles
    ══════════════════════════════════════════════ */
 
+/* ── SECTION BACKGROUNDS ── */
+.contact-form-sec{position:relative;overflow:hidden}
+.contact-form-sec::before{content:'';position:absolute;top:0;left:0;width:350px;height:350px;background:radial-gradient(ellipse,rgba(59,130,246,.04),transparent 60%);pointer-events:none}
+.contact-form-sec::after{content:'';position:absolute;bottom:0;right:0;width:350px;height:350px;background:radial-gradient(ellipse,rgba(139,92,246,.04),transparent 60%);pointer-events:none}
+.next-sec{position:relative;overflow:hidden}
+.next-sec::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(6,182,212,.02) 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+.qsvc-sec{position:relative;overflow:hidden}
+.qsvc-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(139,92,246,.02),transparent 40%,transparent 60%,rgba(59,130,246,.02));pointer-events:none}
+.trust-sec{position:relative;overflow:hidden}
+.trust-sec::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(59,130,246,.2),rgba(139,92,246,.2),transparent);pointer-events:none}
+
 /* ── CONTACT GRID ── */
 .contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start}
 @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:2rem}}
@@ -197,7 +208,7 @@
 <!-- ════════════════════════════════════════════
      SECTION 2 — CONTACT GRID
      ════════════════════════════════════════════ -->
-<section class="sec pad">
+<section class="sec pad contact-form-sec">
 <div class="ctn">
 <div class="contact-grid">
 
@@ -368,7 +379,7 @@
 <!-- ════════════════════════════════════════════
      SECTION 4 — QUICK SERVICE CARDS
      ════════════════════════════════════════════ -->
-<section class="sec pad">
+<section class="sec pad qsvc-sec">
 <div class="ctn tc">
 <div class="lbl gs-hide">Services</div>
 <h2 class="stitle gs-hide">What I <span class="gt3">Build</span></h2>
@@ -417,7 +428,7 @@
 <!-- ════════════════════════════════════════════
      SECTION 5 — TRUST SIGNALS
      ════════════════════════════════════════════ -->
-<section class="sec pad" style="padding-top:2rem;padding-bottom:5rem">
+<section class="sec pad trust-sec" style="padding-top:2rem;padding-bottom:5rem">
 <div class="ctn">
 <div class="trust-row gs-hide">
 <div class="trust-pill">
