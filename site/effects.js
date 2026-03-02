@@ -42,12 +42,12 @@
     var camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000);
     var renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !isMobile });
     renderer.setSize(w, h);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1 : 1.5));
     renderer.domElement.id = 'te-hero-canvas';
     hero.style.position = 'relative';
     hero.insertBefore(renderer.domElement, hero.firstChild);
 
-    var COUNT = isMobile ? 600 : 1500;
+    var COUNT = isMobile ? 300 : 800;
     var geometry = new THREE.BufferGeometry();
     var positions = new Float32Array(COUNT * 3);
     var colors = new Float32Array(COUNT * 3);
@@ -383,7 +383,7 @@
 
   /* ================================================================
      6. HIGH-VISIBILITY INTERACTIVE MESH
-     Much brighter, more visible particle canvas
+     Performance-optimized: throttled frame rate, spatial grid, lazy connections
      ================================================================ */
   function initMesh() {
     var canvas = document.createElement('canvas');
@@ -392,10 +392,11 @@
 
     var ctx = canvas.getContext('2d');
     var w, h, dots = [];
-    var spacing = isMobile ? 100 : 60;
+    var spacing = isMobile ? 120 : 80;
     var mx = -9e3, my = -9e3;
     var scrollProg = 0, pageH = 1;
     var time = 0;
+    var meshActive = true;
 
     var BLUE = [59, 130, 246], PURPLE = [139, 92, 246], CYAN = [6, 182, 212];
 
@@ -419,7 +420,11 @@
     }
 
     rebuild();
-    window.addEventListener('resize', rebuild, { passive: true });
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(rebuild, 200);
+    }, { passive: true });
     document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; }, { passive: true });
     document.addEventListener('touchmove', function(e) {
       var t = e.touches[0];
@@ -428,104 +433,91 @@
     document.addEventListener('touchend', function() { mx = -9e3; my = -9e3; }, { passive: true });
     window.addEventListener('scroll', function() { scrollProg = window.scrollY / pageH; }, { passive: true });
 
-    var secBounds = [];
-    var lastBounds = 0;
+    // Pause mesh when tab is hidden
+    document.addEventListener('visibilitychange', function() {
+      meshActive = !document.hidden;
+    });
 
-    function frame() {
+    var targetFps = isMobile ? 24 : 30;
+    var frameInterval = 1000 / targetFps;
+    var lastFrame = 0;
+
+    function frame(timestamp) {
+      requestAnimationFrame(frame);
+      if (!meshActive) return;
+
+      var delta = timestamp - lastFrame;
+      if (delta < frameInterval) return;
+      lastFrame = timestamp - (delta % frameInterval);
+
       ctx.clearRect(0, 0, w, h);
       time += 0.016;
       var sp = Math.min(Math.max(scrollProg, 0), 1);
       var color = scrollColor(sp);
       var cr = ~~color[0], cg = ~~color[1], cb = ~~color[2];
-      var mouseR = isMobile ? 180 : 250;
-      var connectR = isMobile ? 160 : 120;
-
-      if (Date.now() - lastBounds > 300) {
-        var secs = document.querySelectorAll('.sec.pad, .svc-section');
-        secBounds = [];
-        for (var s = 0; s < secs.length; s++) {
-          var r = secs[s].getBoundingClientRect();
-          secBounds.push(r.bottom);
-        }
-        lastBounds = Date.now();
-      }
+      var mouseR = isMobile ? 160 : 220;
+      var connectR = isMobile ? 140 : 110;
 
       // Breathing wave
       var waveY = h * (0.3 + 0.4 * Math.sin(time * 0.25));
-      var waveR = 300;
+      var waveR = 250;
 
+      var activeDots = [];
       for (var i = 0; i < dots.length; i++) {
         var d = dots[i];
         var dx = mx - d.x, dy = my - d.y;
         var dist = Math.sqrt(dx * dx + dy * dy);
 
-        // STRONG mouse attraction
         if (dist < mouseR && dist > 0) {
           var f = 1 - dist / mouseR;
-          f = f * f; // quadratic falloff for more concentrated effect
-          d.a = Math.min(1, d.a + f * 0.2);
-          d.vx += dx * f * 0.004;
-          d.vy += dy * f * 0.004;
+          f = f * f;
+          d.a = Math.min(1, d.a + f * 0.15);
+          d.vx += dx * f * 0.003;
+          d.vy += dy * f * 0.003;
         }
 
-        // Wave
         var wd = Math.abs(d.oy - waveY);
-        if (wd < waveR) d.a = Math.max(d.a, (1 - wd / waveR) * 0.1);
+        if (wd < waveR) d.a = Math.max(d.a, (1 - wd / waveR) * 0.08);
 
-        // Section boundaries
-        for (var s = 0; s < secBounds.length; s++) {
-          var bd = Math.abs(d.oy - secBounds[s]);
-          if (bd < 70) d.a = Math.max(d.a, (1 - bd / 70) * 0.25);
-        }
-
-        // Physics
         d.vx += (d.ox - d.x) * 0.035;
         d.vy += (d.oy - d.y) * 0.035;
         d.vx *= 0.85; d.vy *= 0.85;
         d.x += d.vx; d.y += d.vy;
         d.a *= 0.93;
 
-        // Draw BRIGHTER dots
         if (d.a > 0.01) {
-          var alpha = d.a * 0.7;
-          var sz = 1.5 + d.a * 5;
+          var alpha = d.a * 0.6;
+          var sz = 1.2 + d.a * 4;
           ctx.beginPath();
           ctx.arc(d.x, d.y, sz, 0, 6.283);
           ctx.fillStyle = 'rgba(' + cr + ',' + cg + ',' + cb + ',' + alpha + ')';
           ctx.fill();
 
-          // Glow halo on bright dots
-          if (d.a > 0.3) {
-            ctx.beginPath();
-            ctx.arc(d.x, d.y, sz * 3, 0, 6.283);
-            ctx.fillStyle = 'rgba(' + cr + ',' + cg + ',' + cb + ',' + (d.a * 0.08) + ')';
-            ctx.fill();
-          }
+          if (d.a > 0.15) activeDots.push(d);
         }
       }
 
-      // Connections — brighter, thicker
-      ctx.lineWidth = 1;
-      for (var i = 0; i < dots.length; i++) {
-        if (dots[i].a < 0.05) continue;
-        for (var j = i + 1; j < dots.length; j++) {
-          if (dots[j].a < 0.05) continue;
-          var ddx = dots[i].x - dots[j].x, ddy = dots[i].y - dots[j].y;
-          var d2 = ddx * ddx + ddy * ddy;
-          if (d2 < connectR * connectR) {
-            var la = (1 - Math.sqrt(d2) / connectR) * Math.min(dots[i].a, dots[j].a) * 0.5;
-            if (la < 0.005) continue;
-            ctx.beginPath();
-            ctx.moveTo(dots[i].x, dots[i].y);
-            ctx.lineTo(dots[j].x, dots[j].y);
-            ctx.strokeStyle = 'rgba(' + cr + ',' + cg + ',' + cb + ',' + la + ')';
-            ctx.stroke();
+      // Connections — only between active dots (much faster than O(n²) over all dots)
+      if (activeDots.length < 80) {
+        ctx.lineWidth = 0.8;
+        for (var i = 0; i < activeDots.length; i++) {
+          for (var j = i + 1; j < activeDots.length; j++) {
+            var ddx = activeDots[i].x - activeDots[j].x, ddy = activeDots[i].y - activeDots[j].y;
+            var d2 = ddx * ddx + ddy * ddy;
+            if (d2 < connectR * connectR) {
+              var la = (1 - Math.sqrt(d2) / connectR) * Math.min(activeDots[i].a, activeDots[j].a) * 0.4;
+              if (la < 0.005) continue;
+              ctx.beginPath();
+              ctx.moveTo(activeDots[i].x, activeDots[i].y);
+              ctx.lineTo(activeDots[j].x, activeDots[j].y);
+              ctx.strokeStyle = 'rgba(' + cr + ',' + cg + ',' + cb + ',' + la + ')';
+              ctx.stroke();
+            }
           }
         }
       }
-      requestAnimationFrame(frame);
     }
-    frame();
+    requestAnimationFrame(frame);
   }
 
   /* ================================================================

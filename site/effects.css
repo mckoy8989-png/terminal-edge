@@ -51,9 +51,9 @@
 main,footer{position:relative;z-index:1}
 
 /* ── CUSTOM CURSOR (desktop only) ── */
-#te-ring{position:fixed;top:0;left:0;width:44px;height:44px;border:2px solid rgba(59,130,246,.5);border-radius:50%;pointer-events:none;z-index:99999;transition:width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1),border-color .3s ease,background .3s ease;mix-blend-mode:difference;will-change:transform}
+#te-ring{position:fixed;top:0;left:0;width:44px;height:44px;border:2px solid rgba(59,130,246,.5);border-radius:50%;pointer-events:none;z-index:99999;transition:width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1),border-color .3s ease,background .3s ease;mix-blend-mode:difference}
 #te-ring.lg{width:72px;height:72px;border-color:rgba(139,92,246,.6);background:rgba(59,130,246,.06);margin-left:-14px;margin-top:-14px}
-#te-dot{position:fixed;top:0;left:0;width:7px;height:7px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:50%;pointer-events:none;z-index:99999;will-change:transform;box-shadow:0 0 10px rgba(59,130,246,.5)}
+#te-dot{position:fixed;top:0;left:0;width:7px;height:7px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:50%;pointer-events:none;z-index:99999;box-shadow:0 0 10px rgba(59,130,246,.5)}
 @media(max-width:768px),(pointer:coarse){#te-ring,#te-dot{display:none!important}}
 
 /* ── CLICK RIPPLE (desktop) ── */
@@ -69,7 +69,7 @@ main,footer{position:relative;z-index:1}
 }
 
 /* ── TEXT CHARACTER ANIMATIONS ── */
-.te-char{display:inline-block;will-change:transform,opacity}
+.te-char{display:inline-block}
 
 /* ── SCROLL PROGRESS — SIDEBAR (desktop) ── */
 .te-progress{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:9998;display:flex;flex-direction:column;gap:3px;opacity:0;transition:opacity .4s ease}

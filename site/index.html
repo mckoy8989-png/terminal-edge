@@ -15,8 +15,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
 <link rel="stylesheet" href="styles.css"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -497,8 +497,8 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 .gsap-ready .gs-left{opacity:0;transform:translateX(-30px) translateZ(0)}
 .gsap-ready .gs-right{opacity:0;transform:translateX(30px) translateZ(0)}
 .gsap-ready .gs-scale{opacity:0;transform:scale(.92) translateZ(0)}
-.gs-hide,.gs-left,.gs-right,.gs-scale{will-change:transform,opacity;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-.show-card,.svc-card,.price-card,.feat-card,.faq-it,.test-card,.cta-box{will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.gs-hide,.gs-left,.gs-right,.gs-scale{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.show-card,.svc-card,.price-card,.feat-card,.faq-it,.test-card,.cta-box{backface-visibility:hidden;-webkit-backface-visibility:hidden}
 </style>
 <link rel="stylesheet" href="effects.css"/>
 <script>document.documentElement.classList.add('gsap-ready');</script>
@@ -1042,23 +1042,6 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <script>
 (function(){
 'use strict';
-
-/* ── PARTICLES (pauses when hero off-screen) ── */
-const cv=document.getElementById('heroCanvas'),cx=cv.getContext('2d');
-let pts=[],mx={x:null,y:null},particlesActive=true;
-const PC=innerWidth<768?25:50,CD=120,MD=160;
-function rsz(){cv.width=innerWidth;cv.height=innerHeight}
-rsz();addEventListener('resize',rsz,{passive:true});
-class P{constructor(){this.x=Math.random()*cv.width;this.y=Math.random()*cv.height;this.vx=(Math.random()-.5)*.35;this.vy=(Math.random()-.5)*.35;this.r=Math.random()*1.5+.8}
-update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>cv.width)this.vx*=-1;if(this.y<0||this.y>cv.height)this.vy*=-1;if(mx.x!==null){const dx=this.x-mx.x,dy=this.y-mx.y,d=Math.sqrt(dx*dx+dy*dy);if(d<MD){const f=(MD-d)/MD*.015;this.vx+=dx*f;this.vy+=dy*f}}this.vx*=.99;this.vy*=.99}
-draw(){cx.beginPath();cx.arc(this.x,this.y,this.r,0,Math.PI*2);cx.fillStyle='rgba(59,130,246,0.45)';cx.fill()}}
-for(let i=0;i<PC;i++)pts.push(new P);
-function conn(){for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=dx*dx+dy*dy;if(d<CD*CD){cx.beginPath();cx.moveTo(pts[i].x,pts[i].y);cx.lineTo(pts[j].x,pts[j].y);cx.strokeStyle=`rgba(59,130,246,${.12*(1-Math.sqrt(d)/CD)})`;cx.lineWidth=.5;cx.stroke()}}}
-function anim(){if(!particlesActive){requestAnimationFrame(anim);return}cx.clearRect(0,0,cv.width,cv.height);pts.forEach(p=>{p.update();p.draw()});conn();requestAnimationFrame(anim)}
-anim();
-new IntersectionObserver(([e])=>{particlesActive=e.isIntersecting},{threshold:0}).observe(cv);
-cv.addEventListener('mousemove',e=>{mx.x=e.clientX;mx.y=e.clientY},{passive:true});
-cv.addEventListener('mouseleave',()=>{mx.x=null;mx.y=null});
 
 /* ── SCROLL BAR + NAV (throttled) ── */
 const sb=document.getElementById('scrollBar');
