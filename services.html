@@ -862,39 +862,40 @@ document.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click
 
 /* ── GSAP ANIMATIONS ── */
 gsap.registerPlugin(ScrollTrigger);
+gsap.config({force3D:true});
 
 // Hero entrance
 const heroEls = document.querySelectorAll('.page-hero-ct .gs-hide, .page-hero-ct .gs-scale');
 gsap.to(heroEls, {
   opacity: 1, y: 0, scale: 1,
-  duration: 0.8, stagger: 0.15,
-  ease: 'power3.out'
+  duration: 1, stagger: 0.18,
+  ease: 'power4.out', force3D: true
 });
 
 // All gs-hide elements (skip hero — already animated)
 gsap.utils.toArray('.gs-hide').forEach((el, i) => {
   if (el.closest('.page-hero-ct')) return;
   gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    opacity: 1, y: 0, duration: 0.7,
-    delay: i % 6 * 0.06,
-    ease: 'power2.out'
+    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    opacity: 1, y: 0, duration: 0.9,
+    delay: i % 6 * 0.08,
+    ease: 'power3.out', force3D: true
   });
 });
 
 // gs-left
 gsap.utils.toArray('.gs-left').forEach(el => {
   gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    opacity: 1, x: 0, duration: 0.7, ease: 'power2.out'
+    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    opacity: 1, x: 0, duration: 0.9, ease: 'power3.out', force3D: true
   });
 });
 
 // gs-right
 gsap.utils.toArray('.gs-right').forEach(el => {
   gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    opacity: 1, x: 0, duration: 0.7, ease: 'power2.out'
+    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    opacity: 1, x: 0, duration: 0.9, ease: 'power3.out', force3D: true
   });
 });
 
@@ -902,8 +903,8 @@ gsap.utils.toArray('.gs-right').forEach(el => {
 gsap.utils.toArray('.gs-scale').forEach(el => {
   if (el.closest('.page-hero-ct')) return;
   gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-    opacity: 1, scale: 1, y: 0, duration: 0.7, ease: 'power2.out'
+    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    opacity: 1, scale: 1, y: 0, duration: 0.9, ease: 'power3.out', force3D: true
   });
 });
 
@@ -911,7 +912,7 @@ gsap.utils.toArray('.gs-scale').forEach(el => {
 document.querySelectorAll('.svc-glow').forEach(glow => {
   gsap.to(glow, {
     y: -60,
-    scrollTrigger: { trigger: glow.closest('.svc-section'), start: 'top bottom', end: 'bottom top', scrub: 1 }
+    scrollTrigger: { trigger: glow.closest('.svc-section'), start: 'top bottom', end: 'bottom top', scrub: 1.5 }
   });
 });
 
