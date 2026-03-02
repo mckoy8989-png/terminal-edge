@@ -76,6 +76,7 @@ nav.scrolled{background:rgba(6,7,20,.88);backdrop-filter:blur(24px) saturate(1.5
 .page-hero{min-height:50vh;display:flex;align-items:center;justify-content:center;padding:8rem 1.5rem 4rem;position:relative;overflow:hidden}
 .page-hero canvas{position:absolute;inset:0;z-index:0}
 .page-hero .hero-glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:.12;z-index:0;pointer-events:none}
+.page-hero{overflow:hidden}
 .page-hero-ct{position:relative;z-index:2;text-align:center;max-width:880px}
 .page-hero .badge{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;border:1px solid var(--border);border-radius:100px;font-size:.78rem;color:var(--dim);background:rgba(255,255,255,.03);backdrop-filter:blur(10px);margin-bottom:2rem}
 .page-hero .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
@@ -110,10 +111,14 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 .card:hover{transform:translateY(-4px);background:var(--surface2)}.card:hover::before{opacity:1}
 
 /* ── GSAP ANIM STATES ── */
-.gs-hide{opacity:0;transform:translateY(25px)}
-.gs-left{opacity:0;transform:translateX(-25px)}
-.gs-right{opacity:0;transform:translateX(25px)}
-.gs-scale{opacity:0;transform:scale(.95)}
+.gsap-ready .gs-hide{opacity:0;transform:translateY(25px)}
+.gsap-ready .gs-left{opacity:0;transform:translateX(-25px)}
+.gsap-ready .gs-right{opacity:0;transform:translateX(25px)}
+.gsap-ready .gs-scale{opacity:0;transform:scale(.95)}
+
+/* ── ANIMATION STABILITY ── */
+.gs-hide,.gs-left,.gs-right,.gs-scale{will-change:transform,opacity;backface-visibility:hidden}
+.card,.btn1,.btn2,.cta-btn,[class*="-card"]{will-change:transform;backface-visibility:hidden}
 
 /* ── UTILITY ── */
 .flex{display:flex}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}

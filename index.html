@@ -190,7 +190,9 @@ nav.scrolled{background:rgba(6,7,20,.88);backdrop-filter:blur(24px) saturate(1.5
 .mock-p{height:6px;border-radius:3px;background:rgba(255,255,255,.06)}
 .mock-btn-m{height:22px;border-radius:4px;display:inline-block}
 .mock-grid-area{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:0 12px 12px}
-.mock-grid-card{height:40px;border-radius:4px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}
+.mock-grid-card{height:48px;border-radius:4px;background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.08));border:1px solid rgba(255,255,255,.08);position:relative;overflow:hidden}
+.mock-grid-card::before{content:'';position:absolute;top:4px;left:4px;right:4px;height:26px;border-radius:3px;background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(139,92,246,.12))}
+.mock-grid-card::after{content:'';position:absolute;bottom:6px;left:6px;height:4px;width:60%;border-radius:2px;background:rgba(255,255,255,.1)}
 .mock-chart-area{padding:12px;display:flex;flex-direction:column;gap:6px}
 .mock-chart{height:60px;position:relative;overflow:hidden}
 .mock-chart svg{width:100%;height:100%}
@@ -309,11 +311,14 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 .ft-bot{max-width:1200px;margin:1.5rem auto 0;padding-top:1.2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.75rem;color:var(--muted);flex-wrap:wrap;gap:.5rem}
 
 /* ── GSAP ANIM STATES ── */
-.gs-hide{opacity:0;transform:translateY(25px)}
-.gs-left{opacity:0;transform:translateX(-25px)}
-.gs-right{opacity:0;transform:translateX(25px)}
-.gs-scale{opacity:0;transform:scale(.95)}
+.gsap-ready .gs-hide{opacity:0;transform:translateY(25px)}
+.gsap-ready .gs-left{opacity:0;transform:translateX(-25px)}
+.gsap-ready .gs-right{opacity:0;transform:translateX(25px)}
+.gsap-ready .gs-scale{opacity:0;transform:scale(.95)}
+.gs-hide,.gs-left,.gs-right,.gs-scale{will-change:transform,opacity;backface-visibility:hidden}
+.show-card,.svc-card,.price-card,.feat-card,.faq-it,.test-card,.cta-box{will-change:transform;backface-visibility:hidden}
 </style>
+<script>document.documentElement.classList.add('gsap-ready');</script>
 </head>
 <body>
 
@@ -861,6 +866,9 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
 });
 
 })();
+
+/* GSAP fallback — if animations haven't fired after 3s, reveal everything */
+setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
 </script>
 </body>
 </html>

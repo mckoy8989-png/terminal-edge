@@ -185,6 +185,7 @@
 .sh-pill{display:flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.75rem;color:var(--dim);padding:.4rem 1rem;border:1px solid var(--border);border-radius:100px;background:rgba(255,255,255,.02);backdrop-filter:blur(6px)}
 .sh-pill .sp-icon{font-size:.9rem}
 </style>
+<script>document.documentElement.classList.add('gsap-ready');</script>
 </head>
 <body>
 <div class="scroll-bar" id="scrollBar"></div>
@@ -915,6 +916,7 @@ document.querySelectorAll('.svc-glow').forEach(glow => {
 });
 
 })();
+setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
 </script>
 </body>
 </html>

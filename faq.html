@@ -153,6 +153,7 @@
   .faq-cta{padding:2rem 1.2rem}
 }
 </style>
+<script>document.documentElement.classList.add('gsap-ready');</script>
 </head>
 <body>
 
@@ -745,6 +746,7 @@ gsap.to('.hg2', {
 });
 
 })();
+setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
 </script>
 </body>
 </html>

@@ -90,7 +90,9 @@
 .mock-nova-hero-btn{padding:4px 10px;border-radius:4px;background:var(--blue);font-size:.5rem;color:#fff;font-family:var(--fm)}
 .mock-nova-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem}
 .mock-prod{border-radius:6px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:.4rem;display:flex;flex-direction:column;gap:.25rem}
-.mock-prod-img{height:38px;border-radius:4px;background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(6,182,212,.08))}
+.mock-prod-img{height:50px;border-radius:4px;background:linear-gradient(135deg,rgba(59,130,246,.18),rgba(6,182,212,.14));position:relative;overflow:hidden}
+.mock-prod-img::before{content:'';position:absolute;inset:8px;border-radius:3px;background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.06)}
+.mock-prod-img::after{content:'';position:absolute;bottom:6px;right:6px;width:14px;height:14px;border-radius:3px;background:rgba(59,130,246,.25);border:1px solid rgba(59,130,246,.3)}
 .mock-prod-title{height:4px;width:65%;background:rgba(255,255,255,.12);border-radius:2px}
 .mock-prod-price{height:4px;width:35%;background:rgba(59,130,246,.3);border-radius:2px}
 
@@ -210,6 +212,7 @@
   .proc-step:not(:last-child)::after{content:'→';position:absolute;right:-1rem;top:50%;transform:translate(50%,-50%);color:var(--muted);font-size:1.1rem}
 }
 </style>
+<script>document.documentElement.classList.add('gsap-ready');</script>
 </head>
 <body>
 
@@ -881,6 +884,7 @@ gsap.utils.toArray('.gs-scale').forEach(el=>{
 });
 
 })();
+setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
 </script>
 </body>
 </html>
