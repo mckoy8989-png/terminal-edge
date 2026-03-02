@@ -441,7 +441,7 @@ const cv=document.getElementById('heroCanvas'),cx=cv.getContext('2d');
 let pts=[],mx={x:null,y:null};
 const PC=innerWidth<768?30:60,CD=130,MD=170;
 function rsz(){const r=cv.parentElement.getBoundingClientRect();cv.width=r.width;cv.height=r.height}
-rsz();addEventListener('resize',rsz);
+rsz();addEventListener('resize',rsz,{passive:true});
 class P{
   constructor(){this.x=Math.random()*cv.width;this.y=Math.random()*cv.height;this.vx=(Math.random()-.5)*.35;this.vy=(Math.random()-.5)*.35;this.r=Math.random()*1.4+.7}
   update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>cv.width)this.vx*=-1;if(this.y<0||this.y>cv.height)this.vy*=-1;if(mx.x!==null){const dx=this.x-mx.x,dy=this.y-mx.y,d=Math.sqrt(dx*dx+dy*dy);if(d<MD){const f=(MD-d)/MD*.012;this.vx+=dx*f;this.vy+=dy*f}}this.vx*=.99;this.vy*=.99}
@@ -454,13 +454,18 @@ anim();
 cv.addEventListener('mousemove',e=>{const r=cv.getBoundingClientRect();mx.x=e.clientX-r.left;mx.y=e.clientY-r.top});
 cv.addEventListener('mouseleave',()=>{mx.x=null;mx.y=null});
 
-/* ── SCROLL PROGRESS BAR ── */
+/* ── SCROLL PROGRESS + NAV (throttled) ── */
 const sb=document.getElementById('scrollBar');
-addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;sb.style.width=h>0?(scrollY/h*100)+'%':'0%'});
-
-/* ── NAV SCROLL STATE ── */
 const nb=document.getElementById('navbar');
-addEventListener('scroll',()=>nb.classList.toggle('scrolled',scrollY>50));
+let scrollTick=false;
+addEventListener('scroll',()=>{
+  if(!scrollTick){scrollTick=true;requestAnimationFrame(()=>{
+    const h=document.documentElement.scrollHeight-innerHeight;
+    if(h>0)sb.style.width=(scrollY/h*100)+'%';
+    nb.classList.toggle('scrolled',scrollY>50);
+    scrollTick=false;
+  })}
+},{passive:true});
 
 /* ── BURGER TOGGLE ── */
 const bg=document.getElementById('burger'),mm=document.getElementById('mobMenu');
@@ -498,20 +503,22 @@ gsap.config({force3D:true});
 const htl=gsap.timeline({defaults:{ease:'power4.out',force3D:true}});
 htl.to('.page-hero-ct .gs-hide',{opacity:1,y:0,duration:1,stagger:.18});
 
-/* All gs-hide elements outside hero */
-gsap.utils.toArray('.gs-hide').forEach((el,i)=>{
-  if(el.closest('.page-hero-ct'))return;
-  gsap.to(el,{scrollTrigger:{trigger:el,start:'top 90%',once:true},opacity:1,y:0,duration:.9,delay:i%4*.1,ease:'power3.out',force3D:true});
+/* All gs-hide elements outside hero (batched) */
+ScrollTrigger.batch('.gs-hide:not(.page-hero-ct .gs-hide)',{
+  start:'top 90%',once:true,
+  onEnter:batch=>gsap.to(batch,{opacity:1,y:0,duration:.9,stagger:.08,ease:'power3.out',force3D:true})
 });
 
-/* gs-left elements */
-gsap.utils.toArray('.gs-left').forEach(el=>{
-  gsap.to(el,{scrollTrigger:{trigger:el,start:'top 90%',once:true},opacity:1,x:0,duration:.9,ease:'power3.out',force3D:true});
+/* gs-left elements (batched) */
+ScrollTrigger.batch('.gs-left',{
+  start:'top 90%',once:true,
+  onEnter:batch=>gsap.to(batch,{opacity:1,x:0,duration:.9,stagger:.08,ease:'power3.out',force3D:true})
 });
 
-/* gs-right elements */
-gsap.utils.toArray('.gs-right').forEach(el=>{
-  gsap.to(el,{scrollTrigger:{trigger:el,start:'top 90%',once:true},opacity:1,x:0,duration:.9,ease:'power3.out',force3D:true});
+/* gs-right elements (batched) */
+ScrollTrigger.batch('.gs-right',{
+  start:'top 90%',once:true,
+  onEnter:batch=>gsap.to(batch,{opacity:1,x:0,duration:.9,stagger:.08,ease:'power3.out',force3D:true})
 });
 
 /* Parallax hero glows */

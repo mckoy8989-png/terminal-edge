@@ -169,7 +169,7 @@
 <canvas id="heroCanvas"></canvas>
 <div class="hero-glow hg1" style="background:#3b82f6;width:min(500px,80vw);height:min(500px,80vw);top:-150px;left:0"></div>
 <div class="hero-glow hg2" style="background:#8b5cf6;width:min(400px,70vw);height:min(400px,70vw);bottom:-100px;right:0"></div>
-<div class="hero-glow" style="background:#06b6d4;width:300px;height:300px;top:40%;left:55%;border-radius:50%;filter:blur(120px);opacity:.1;pointer-events:none"></div>
+<div class="hero-glow" style="background:#06b6d4;width:300px;height:300px;top:40%;left:55%;border-radius:50%;filter:blur(80px);opacity:.08;pointer-events:none;contain:strict"></div>
 <div class="page-hero-ct">
 <div class="badge gs-hide"><span class="dot"></span> Fixed-price builds</div>
 <h1 class="gs-hide">Transparent <span class="gt">Pricing</span></h1>
@@ -572,7 +572,7 @@ function rsz() {
   cv.height = hero.offsetHeight;
 }
 rsz();
-addEventListener('resize', rsz);
+addEventListener('resize', rsz, {passive:true});
 
 class Particle {
   constructor() {
@@ -642,18 +642,18 @@ cv.addEventListener('mousemove', function(e) {
 });
 cv.addEventListener('mouseleave', function() { mx.x = null; mx.y = null; });
 
-/* ── SCROLL PROGRESS BAR ── */
+/* ── SCROLL PROGRESS + NAV (throttled) ── */
 const sb = document.getElementById('scrollBar');
-addEventListener('scroll', function() {
-  const pct = scrollY / (document.documentElement.scrollHeight - innerHeight) * 100;
-  sb.style.width = pct + '%';
-});
-
-/* ── NAV SCROLL ── */
 const nb = document.getElementById('navbar');
+let scrollTick = false;
 addEventListener('scroll', function() {
-  nb.classList.toggle('scrolled', scrollY > 50);
-});
+  if (!scrollTick) { scrollTick = true; requestAnimationFrame(function() {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    if (h > 0) sb.style.width = (scrollY / h * 100) + '%';
+    nb.classList.toggle('scrolled', scrollY > 50);
+    scrollTick = false;
+  }); }
+}, { passive: true });
 
 /* ── BURGER TOGGLE ── */
 const bg = document.getElementById('burger');
@@ -703,21 +703,20 @@ gsap.fromTo(heroEls,
   { opacity: 1, y: 0, duration: 1, stagger: .18, ease: 'power4.out', force3D: true, delay: .2 }
 );
 
-// Scroll-triggered gs-hide
-gsap.utils.toArray('.gs-hide').forEach(function(el) {
-  if (el.closest('.page-hero-ct')) return;
-  gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-    opacity: 1, y: 0, duration: .9, ease: 'power3.out', force3D: true
-  });
+// Scroll-triggered gs-hide (batched)
+ScrollTrigger.batch('.gs-hide:not(.page-hero-ct .gs-hide)', {
+  start: 'top 90%', once: true,
+  onEnter: function(batch) {
+    gsap.to(batch, { opacity: 1, y: 0, duration: .9, stagger: .08, ease: 'power3.out', force3D: true });
+  }
 });
 
-// Scroll-triggered gs-scale
-gsap.utils.toArray('.gs-scale').forEach(function(el) {
-  gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-    opacity: 1, scale: 1, y: 0, duration: .9, ease: 'power3.out', force3D: true
-  });
+// Scroll-triggered gs-scale (batched)
+ScrollTrigger.batch('.gs-scale', {
+  start: 'top 90%', once: true,
+  onEnter: function(batch) {
+    gsap.to(batch, { opacity: 1, scale: 1, y: 0, duration: .9, stagger: .08, ease: 'power3.out', force3D: true });
+  }
 });
 
 // Stagger pricing tier cards

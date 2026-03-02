@@ -170,7 +170,7 @@
 .svc-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0}
 
 /* ── GLOW ORBS ── */
-.svc-glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:.06;pointer-events:none}
+.svc-glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:.06;pointer-events:none;contain:strict}
 
 /* ── ANIMATED TYPING IN CODE BOX ── */
 .code-type-line{overflow:hidden;white-space:nowrap;border-right:2px solid var(--blue);animation:type-line 3.5s steps(45) 1s 1 normal both,blink-cursor 1s step-end infinite 4.5s}
@@ -182,7 +182,7 @@
 
 /* ── PAGE-HERO ADDITIONS ── */
 .services-hero-sub{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;margin-top:2rem}
-.sh-pill{display:flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.75rem;color:var(--dim);padding:.4rem 1rem;border:1px solid var(--border);border-radius:100px;background:rgba(255,255,255,.02);backdrop-filter:blur(6px)}
+.sh-pill{display:flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.75rem;color:var(--dim);padding:.4rem 1rem;border:1px solid var(--border);border-radius:100px;background:rgba(255,255,255,.03)}
 .sh-pill .sp-icon{font-size:.9rem}
 </style>
 <script>document.documentElement.classList.add('gsap-ready');</script>
@@ -768,7 +768,7 @@ if (cv) {
     h = cv.height = rect.height;
   }
   resize();
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', resize, {passive:true});
 
   class Particle {
     constructor() { this.reset(); }
@@ -836,15 +836,18 @@ if (cv) {
   cv.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
 }
 
-/* ── SCROLL PROGRESS BAR ── */
+/* ── SCROLL PROGRESS + NAV (throttled) ── */
 const sb = document.getElementById('scrollBar');
-window.addEventListener('scroll', () => {
-  sb.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
-});
-
-/* ── NAV SCROLL ── */
 const nb = document.getElementById('navbar');
-window.addEventListener('scroll', () => nb.classList.toggle('scrolled', window.scrollY > 50));
+let scrollTick = false;
+window.addEventListener('scroll', () => {
+  if (!scrollTick) { scrollTick = true; requestAnimationFrame(() => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    if (h > 0) sb.style.width = (window.scrollY / h * 100) + '%';
+    nb.classList.toggle('scrolled', window.scrollY > 50);
+    scrollTick = false;
+  }); }
+}, { passive: true });
 
 /* ── BURGER MENU ── */
 const bg = document.getElementById('burger');
@@ -860,7 +863,7 @@ document.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click
   document.body.style.overflow = '';
 }));
 
-/* ── GSAP ANIMATIONS ── */
+/* ── GSAP ANIMATIONS (batched for perf) ── */
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({force3D:true});
 
@@ -872,40 +875,40 @@ gsap.to(heroEls, {
   ease: 'power4.out', force3D: true
 });
 
-// All gs-hide elements (skip hero — already animated)
-gsap.utils.toArray('.gs-hide').forEach((el, i) => {
-  if (el.closest('.page-hero-ct')) return;
-  gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+// Batch all gs-hide (skip hero)
+ScrollTrigger.batch('.gs-hide:not(.page-hero-ct .gs-hide)', {
+  start: 'top 90%', once: true,
+  onEnter: batch => gsap.to(batch, {
     opacity: 1, y: 0, duration: 0.9,
-    delay: i % 6 * 0.08,
-    ease: 'power3.out', force3D: true
-  });
+    stagger: 0.08, ease: 'power3.out', force3D: true
+  })
 });
 
-// gs-left
-gsap.utils.toArray('.gs-left').forEach(el => {
-  gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-    opacity: 1, x: 0, duration: 0.9, ease: 'power3.out', force3D: true
-  });
+// Batch gs-left
+ScrollTrigger.batch('.gs-left', {
+  start: 'top 90%', once: true,
+  onEnter: batch => gsap.to(batch, {
+    opacity: 1, x: 0, duration: 0.9,
+    stagger: 0.08, ease: 'power3.out', force3D: true
+  })
 });
 
-// gs-right
-gsap.utils.toArray('.gs-right').forEach(el => {
-  gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-    opacity: 1, x: 0, duration: 0.9, ease: 'power3.out', force3D: true
-  });
+// Batch gs-right
+ScrollTrigger.batch('.gs-right', {
+  start: 'top 90%', once: true,
+  onEnter: batch => gsap.to(batch, {
+    opacity: 1, x: 0, duration: 0.9,
+    stagger: 0.08, ease: 'power3.out', force3D: true
+  })
 });
 
-// gs-scale (skip hero)
-gsap.utils.toArray('.gs-scale').forEach(el => {
-  if (el.closest('.page-hero-ct')) return;
-  gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-    opacity: 1, scale: 1, y: 0, duration: 0.9, ease: 'power3.out', force3D: true
-  });
+// Batch gs-scale (skip hero)
+ScrollTrigger.batch('.gs-scale:not(.page-hero-ct .gs-scale)', {
+  start: 'top 90%', once: true,
+  onEnter: batch => gsap.to(batch, {
+    opacity: 1, scale: 1, y: 0, duration: 0.9,
+    stagger: 0.08, ease: 'power3.out', force3D: true
+  })
 });
 
 // Parallax glow orbs

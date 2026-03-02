@@ -522,8 +522,7 @@ function rsz() {
   cv.height = cv.parentElement.offsetHeight;
 }
 rsz();
-addEventListener('resize', rsz);
-
+addEventListener('resize', rsz, {passive:true});
 class Particle {
   constructor() {
     this.x = Math.random() * cv.width;
@@ -592,19 +591,19 @@ cv.addEventListener('mousemove', e => {
 cv.addEventListener('mouseleave', () => { mx.x = null; mx.y = null; });
 
 /* ═══════════════════════════════════
-   SCROLL PROGRESS BAR
+   SCROLL PROGRESS + NAV (throttled)
    ═══════════════════════════════════ */
 const sb = document.getElementById('scrollBar');
-addEventListener('scroll', () => {
-  const pct = scrollY / (document.documentElement.scrollHeight - innerHeight) * 100;
-  sb.style.width = pct + '%';
-});
-
-/* ═══════════════════════════════════
-   NAV SCROLL STATE
-   ═══════════════════════════════════ */
 const nb = document.getElementById('navbar');
-addEventListener('scroll', () => nb.classList.toggle('scrolled', scrollY > 50));
+let scrollTick = false;
+addEventListener('scroll', () => {
+  if (!scrollTick) { scrollTick = true; requestAnimationFrame(() => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    if (h > 0) sb.style.width = (scrollY / h * 100) + '%';
+    nb.classList.toggle('scrolled', scrollY > 50);
+    scrollTick = false;
+  }); }
+}, { passive: true });
 
 /* ═══════════════════════════════════
    BURGER MENU
@@ -704,36 +703,33 @@ heroTl.to('.page-hero-ct .gs-hide', {
   opacity: 1, y: 0, duration: 1, stagger: 0.18
 });
 
-// All gs-hide elements (excluding hero — already animated)
-gsap.utils.toArray('.gs-hide').forEach((el, i) => {
-  if (el.closest('.page-hero-ct')) return;
-  gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-    opacity: 1, y: 0, duration: 0.9,
-    delay: (i % 6) * 0.08,
-    ease: 'power3.out', force3D: true
-  });
+// All gs-hide elements (batched)
+ScrollTrigger.batch('.gs-hide:not(.page-hero-ct .gs-hide)', {
+  start: 'top 90%', once: true,
+  onEnter: batch => gsap.to(batch, {
+    opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', force3D: true
+  })
 });
 
-gsap.utils.toArray('.gs-left').forEach(el => {
-  gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-    opacity: 1, x: 0, duration: 0.9, ease: 'power3.out', force3D: true
-  });
+ScrollTrigger.batch('.gs-left', {
+  start: 'top 90%', once: true,
+  onEnter: batch => gsap.to(batch, {
+    opacity: 1, x: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', force3D: true
+  })
 });
 
-gsap.utils.toArray('.gs-right').forEach(el => {
-  gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-    opacity: 1, x: 0, duration: 0.9, ease: 'power3.out', force3D: true
-  });
+ScrollTrigger.batch('.gs-right', {
+  start: 'top 90%', once: true,
+  onEnter: batch => gsap.to(batch, {
+    opacity: 1, x: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', force3D: true
+  })
 });
 
-gsap.utils.toArray('.gs-scale').forEach(el => {
-  gsap.to(el, {
-    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-    opacity: 1, scale: 1, y: 0, duration: 0.9, ease: 'power3.out', force3D: true
-  });
+ScrollTrigger.batch('.gs-scale', {
+  start: 'top 90%', once: true,
+  onEnter: batch => gsap.to(batch, {
+    opacity: 1, scale: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', force3D: true
+  })
 });
 
 // Parallax hero glows
