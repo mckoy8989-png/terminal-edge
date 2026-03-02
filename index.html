@@ -92,15 +92,33 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .hero p{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--dim);max-width:620px;margin:0 auto 2.5rem}
 
 /* Terminal */
-.term{max-width:540px;margin:0 auto 2.5rem;text-align:left;background:rgba(10,11,30,.92);border:1px solid var(--border2);border-radius:var(--r);overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.5)}
-.term-bar{display:flex;align-items:center;gap:6px;padding:.55rem 1rem;background:rgba(255,255,255,.03);border-bottom:1px solid var(--border)}
-.td{width:10px;height:10px;border-radius:50%}
+.term{max-width:580px;margin:0 auto 2.5rem;text-align:left;background:rgba(8,9,24,.96);border-radius:var(--r);overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.55),0 0 40px rgba(59,130,246,.06);position:relative;contain:layout style}
+.term::before{content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;background:linear-gradient(135deg,rgba(59,130,246,.4),rgba(139,92,246,.3),rgba(59,130,246,.1),rgba(6,182,212,.3));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:1}
+.term-bar{display:flex;align-items:center;gap:6px;padding:.5rem .8rem;background:rgba(255,255,255,.035);border-bottom:1px solid rgba(255,255,255,.06)}
+.td{width:10px;height:10px;border-radius:50%;transition:opacity .3s}
 .td.r{background:#ff5f57}.td.y{background:#febc2e}.td.g{background:#28c840}
-.term-bar span{flex:1;text-align:center;font-size:.68rem;color:var(--muted);font-family:var(--fm)}
-.term-body{padding:1.2rem;font-family:var(--fm);font-size:.78rem;line-height:1.9;color:var(--green);min-height:110px;max-height:200px;overflow-y:auto}
-.term-body .pr{color:var(--blue)}
+.term-tabs{display:flex;gap:0;margin-left:12px;flex:1}
+.term-tab{padding:.25rem .7rem;font-size:.62rem;font-family:var(--fm);color:var(--muted);border-radius:4px 4px 0 0;cursor:default;position:relative;transition:color .3s,background .3s}
+.term-tab.active{color:var(--dim);background:rgba(255,255,255,.05)}
+.term-tab.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:var(--blue)}
+.term-body{padding:1rem 1.2rem;font-family:var(--fm);font-size:.75rem;line-height:1.85;color:var(--green);min-height:160px;max-height:220px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.08) transparent}
+.term-body::-webkit-scrollbar{width:4px}
+.term-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:4px}
+.term-body .pr{color:#7c8aff}
 .term-body .out{color:var(--green)}
-.cur{display:inline-block;width:8px;height:15px;background:var(--blue);animation:blink 1s step-end infinite;vertical-align:text-bottom;margin-left:2px}
+.term-body .out-info{color:#60a5fa}
+.term-body .out-warn{color:#fbbf24}
+.term-body .out-dim{color:rgba(255,255,255,.35)}
+.term-body .cmd-flag{color:#22d3ee}
+.term-body .cmd-val{color:#fbbf24}
+.term-body .cmd-path{color:#c084fc}
+.term-body .out-ok{color:#34d399}
+.term-body .out-label{color:rgba(255,255,255,.5)}
+.term-progress{display:inline-block;width:160px;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;vertical-align:middle;margin:0 6px}
+.term-progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--purple));border-radius:3px;transition:width .06s linear}
+.term-status{display:flex;align-items:center;justify-content:space-between;padding:.3rem .8rem;background:rgba(59,130,246,.08);border-top:1px solid rgba(255,255,255,.04);font-family:var(--fm);font-size:.58rem;color:var(--muted)}
+.term-status .ts-dot{width:5px;height:5px;border-radius:50%;background:#34d399;margin-right:5px;display:inline-block;animation:pulse 2s ease infinite}
+.cur{display:inline-block;width:7px;height:14px;background:var(--blue);animation:blink 1s step-end infinite;vertical-align:text-bottom;margin-left:2px}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
 .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
@@ -357,8 +375,9 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <h1 class="gs-hide">We Engineer<br><span class="gt">Digital Dominance</span></h1>
 <p class="gs-hide">Custom websites, AI-powered workflows, autonomous trading bots, and intelligent automation — built by engineers who ship production-grade systems.</p>
 <div class="term gs-scale">
-<div class="term-bar"><span class="td r"></span><span class="td y"></span><span class="td g"></span><span>terminal-edge ~ %</span></div>
-<div class="term-body" id="termBody"><span class="pr">$ </span><span id="typeTarget"></span><span class="cur"></span></div>
+<div class="term-bar"><span class="td r"></span><span class="td y"></span><span class="td g"></span><div class="term-tabs"><span class="term-tab active">main</span><span class="term-tab">build</span><span class="term-tab">deploy</span></div></div>
+<div class="term-body" id="termBody"><span class="pr">❯ </span><span id="typeTarget"></span><span class="cur"></span></div>
+<div class="term-status"><span><span class="ts-dot"></span>connected · us-east-1</span><span>⚡ terminal-edge v2.4.0</span></div>
 </div>
 <div class="hero-btns gs-hide"><a href="contact.html" class="btn1">Start Your Project →</a><a href="services.html" class="btn2">Explore Services</a></div>
 </div>
@@ -805,20 +824,103 @@ const bg=document.getElementById('burger'),mm=document.getElementById('mobMenu')
 bg.addEventListener('click',()=>{bg.classList.toggle('on');mm.classList.toggle('open');document.body.style.overflow=mm.classList.contains('open')?'hidden':''});
 document.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>{bg.classList.remove('on');mm.classList.remove('open');document.body.style.overflow=''}));
 
-/* ── TERMINAL TYPING ── */
-const lines=['terminal-edge deploy --service website --framework next','Compiling... ✓ 47 pages optimized','terminal-edge run --bot arbitrage --mode paper-trade','Bot initialized. Risk limits: ✓  Kill-switch: armed','terminal-edge ai --pipeline support-agent --model gpt-4o','Agent deployed. 78% ticket deflection achieved.','terminal-edge status --all','All systems operational. 99.99% uptime.'];
+/* ── TERMINAL TYPING ENGINE ── */
 const tb=document.getElementById('termBody');
-let li=0,ci=0;
-function tc(){
-if(li>=lines.length){li=0;tb.innerHTML='<span class="pr">$ </span><span id="typeTarget"></span><span class="cur"></span>'}
-const t=document.getElementById('typeTarget');if(!t)return;
-if(ci<lines[li].length){t.textContent+=lines[li][ci];ci++;setTimeout(tc,li%2===0?35:12)}
-else{setTimeout(()=>{const d=document.createElement('div');d.innerHTML=li%2===0?'<span class="pr">$ </span>'+lines[li]:'<span class="out">'+lines[li]+'</span>';
-const ot=document.getElementById('typeTarget'),oc=tb.querySelector('.cur');if(ot)ot.remove();if(oc)oc.remove();tb.appendChild(d);li++;ci=0;
-const nl=document.createElement('span');nl.innerHTML=(li%2===0?'<span class="pr">$ </span>':'')+'<span id="typeTarget"></span><span class="cur"></span>';tb.appendChild(nl);tb.scrollTop=tb.scrollHeight;
-setTimeout(tc,li%2===0?500:150)},li%2===0?700:1000)}
+const seq=[
+  // Each entry: { type:'cmd'|'out'|'progress'|'blank', text:string, html?:string, delay?:number }
+  {type:'out',html:'<span class="out-dim">▸ Terminal Edge CLI initialized</span>',delay:300},
+  {type:'out',html:'<span class="out-dim">▸ Session: <span class="cmd-val">te_29x7k</span> · Node: <span class="cmd-val">us-east-1</span></span>',delay:150},
+  {type:'blank'},
+  {type:'cmd',text:'te deploy --service website --framework next --optimize',delay:500},
+  {type:'progress',label:'Compiling',duration:1200},
+  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Build:</span> 47 pages · 12 API routes · <span class="cmd-val">3.2s</span>',delay:200},
+  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Lighthouse:</span> Perf <span class="out-ok">98</span> · A11y <span class="out-ok">100</span> · SEO <span class="out-ok">100</span>',delay:150},
+  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Deployed →</span> <span class="out-info">https://client.terminaledge.dev</span>',delay:600},
+  {type:'blank'},
+  {type:'cmd',text:'te run --bot arbitrage --mode live --risk conservative',delay:500},
+  {type:'out',html:'<span class="out-info">⟳</span> Connecting to exchanges... <span class="out-ok">3/3 linked</span>',delay:400},
+  {type:'progress',label:'Calibrating',duration:800},
+  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Bot:</span> Arbitrage v4 · Kill-switch <span class="out-ok">armed</span> · PnL tracking <span class="out-ok">on</span>',delay:200},
+  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Status:</span> Scanning 14 pairs · Latency <span class="cmd-val">~2ms</span>',delay:600},
+  {type:'blank'},
+  {type:'cmd',text:'te ai --pipeline support-agent --model gpt-4o --deploy',delay:500},
+  {type:'progress',label:'Training',duration:1000},
+  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Agent:</span> 94% accuracy · <span class="cmd-val">78%</span> ticket deflection',delay:200},
+  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Endpoints:</span> /chat · /escalate · /analytics',delay:600},
+  {type:'blank'},
+  {type:'cmd',text:'te status --all',delay:400},
+  {type:'out',html:'<span class="out-dim">┌─────────────────────────────────────┐</span>',delay:60},
+  {type:'out',html:'<span class="out-dim">│</span> <span class="out-label">Services</span>        <span class="out-ok">● ● ●</span>  <span class="out-ok">all healthy</span>  <span class="out-dim">│</span>',delay:60},
+  {type:'out',html:'<span class="out-dim">│</span> <span class="out-label">Uptime</span>          <span class="cmd-val">99.99%</span>        <span class="out-dim">│</span>',delay:60},
+  {type:'out',html:'<span class="out-dim">│</span> <span class="out-label">Active clients</span>  <span class="cmd-val">24</span>            <span class="out-dim">│</span>',delay:60},
+  {type:'out',html:'<span class="out-dim">│</span> <span class="out-label">Avg response</span>   <span class="cmd-val">&lt;200ms</span>        <span class="out-dim">│</span>',delay:60},
+  {type:'out',html:'<span class="out-dim">└─────────────────────────────────────┘</span>',delay:1200},
+];
+
+let si=0,ci=0;
+function colorizeCmd(text){
+  return text.replace(/^(te\s+\w+)/,'<span class="out-info">$1</span>')
+    .replace(/(--\w+)/g,'<span class="cmd-flag">$1</span>')
+    .replace(/(--\w+)\s+([\w\-\.\/]+)/g,'<span class="cmd-flag">$1</span> <span class="cmd-val">$2</span>');
 }
-setTimeout(tc,800);
+
+function runProgress(label,duration,cb){
+  const row=document.createElement('div');
+  row.innerHTML='<span class="out-dim">'+label+'</span> <span class="term-progress"><span class="term-progress-fill" id="tpf"></span></span> <span class="out-dim" id="tpPct">0%</span>';
+  tb.appendChild(row);
+  tb.scrollTop=tb.scrollHeight;
+  const fill=document.getElementById('tpf'),pct=document.getElementById('tpPct');
+  fill.id='';pct.id='';
+  let start=null;
+  function step(ts){
+    if(!start)start=ts;
+    const p=Math.min((ts-start)/duration,1);
+    fill.style.width=(p*100)+'%';
+    pct.textContent=Math.round(p*100)+'%';
+    if(p<1)requestAnimationFrame(step);
+    else{pct.innerHTML='<span class="out-ok">done</span>';cb();}
+  }
+  requestAnimationFrame(step);
+}
+
+function typeCmd(text,cb){
+  const row=document.createElement('div');
+  row.innerHTML='<span class="pr">❯ </span><span id="typeTarget"></span><span class="cur"></span>';
+  tb.appendChild(row);
+  tb.scrollTop=tb.scrollHeight;
+  const tgt=document.getElementById('typeTarget');
+  tgt.id='';
+  let i=0;
+  function t(){
+    if(i<text.length){tgt.textContent+=text[i];i++;setTimeout(t,22+Math.random()*18);}
+    else{tgt.innerHTML=colorizeCmd(text);const c=row.querySelector('.cur');if(c)c.remove();cb();}
+  }
+  t();
+}
+
+function nextStep(){
+  if(si>=seq.length){si=0;tb.innerHTML='';setTimeout(nextStep,800);return;}
+  const s=seq[si++];
+  if(s.type==='cmd'){
+    typeCmd(s.text,()=>setTimeout(nextStep,s.delay||300));
+  }else if(s.type==='out'){
+    const row=document.createElement('div');
+    row.innerHTML=s.html;
+    tb.appendChild(row);
+    tb.scrollTop=tb.scrollHeight;
+    setTimeout(nextStep,s.delay||100);
+  }else if(s.type==='progress'){
+    runProgress(s.label,s.duration||1000,()=>setTimeout(nextStep,200));
+  }else if(s.type==='blank'){
+    tb.appendChild(document.createElement('div'));
+    tb.scrollTop=tb.scrollHeight;
+    setTimeout(nextStep,100);
+  }
+}
+
+// Remove initial placeholder content, start sequence
+tb.innerHTML='';
+setTimeout(nextStep,600);
 
 /* ── GSAP ANIMATIONS ── */
 gsap.registerPlugin(ScrollTrigger);
