@@ -22,11 +22,11 @@
 
 /* ── FILTER TABS ── */
 .filter-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:3.5rem}
-.filter-btn{padding:.55rem 1.4rem;border-radius:100px;font-size:.82rem;font-weight:600;font-family:var(--ff);color:var(--dim);background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:all .35s var(--ease);position:relative;overflow:hidden}
+.filter-btn{padding:.55rem 1.4rem;border-radius:100px;font-size:.82rem;font-weight:600;font-family:var(--ff);color:var(--dim);background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:transform .35s var(--ease),color .35s,border-color .35s,box-shadow .35s,background .35s;position:relative;overflow:hidden}
 .filter-btn::before{content:'';position:absolute;inset:0;border-radius:100px;background:var(--grad1);opacity:0;transition:opacity .35s var(--ease);z-index:0}
 .filter-btn span{position:relative;z-index:1}
-.filter-btn:hover{border-color:var(--blue);color:var(--text)}
-.filter-btn.active{border-color:transparent;color:#fff;box-shadow:0 4px 20px rgba(59,130,246,.3)}
+.filter-btn:hover{border-color:var(--blue);color:var(--text);transform:translateY(-1px)}
+.filter-btn.active{border-color:transparent;color:#fff;box-shadow:0 4px 20px rgba(59,130,246,.3);transform:translateY(-1px)}
 .filter-btn.active::before{opacity:1}
 .filter-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:100px;background:rgba(255,255,255,.1);font-size:.65rem;font-family:var(--fm);padding:0 .35rem;margin-left:.4rem}
 .filter-btn.active .filter-count{background:rgba(255,255,255,.2)}
@@ -36,9 +36,9 @@
 @media(max-width:900px){.proj-grid{grid-template-columns:1fr}}
 
 /* ── CASE STUDY CARD ── */
-.cs-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;position:relative;transition:all .45s var(--ease)}
-.cs-card::before{content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;background:linear-gradient(135deg,transparent 30%,var(--blue),var(--purple),transparent 80%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .45s}
-.cs-card:hover{transform:translateY(-6px);background:var(--surface2);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.cs-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;position:relative;transition:transform .45s var(--ease),background .45s,box-shadow .45s,border-color .45s}
+.cs-card::before{content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;background:linear-gradient(135deg,transparent 30%,var(--blue),var(--purple),transparent 80%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .45s;z-index:2;pointer-events:none}
+.cs-card:hover{transform:translateY(-6px);background:var(--surface2);box-shadow:0 24px 60px rgba(0,0,0,.4)}
 .cs-card:hover::before{opacity:1}
 .cs-card.hidden{display:none}
 
@@ -71,10 +71,10 @@
 
 /* ── METRICS ── */
 .cs-metrics{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.2rem}
-.metric{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .7rem;border-radius:var(--rxs);background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:.72rem;font-family:var(--fm);color:var(--text);transition:all .3s}
+.metric{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .7rem;border-radius:var(--rxs);background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:.72rem;font-family:var(--fm);color:var(--text);transition:border-color .3s,background .3s,transform .3s var(--ease)}
 .metric svg{width:14px;height:14px;flex-shrink:0}
 .metric .mv{font-weight:700}
-.cs-card:hover .metric{border-color:rgba(59,130,246,.2);background:rgba(59,130,246,.05)}
+.cs-card:hover .metric{border-color:rgba(59,130,246,.2);background:rgba(59,130,246,.05);transform:translateY(-1px)}
 
 /* ── TECH TAGS ── */
 .cs-tags{display:flex;flex-wrap:wrap;gap:.35rem}
