@@ -32,7 +32,9 @@
 .filter-btn.active .filter-count{background:rgba(255,255,255,.2)}
 
 /* ── PROJECT GRID ── */
-.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+.proj-sec{position:relative;overflow:hidden}
+.proj-sec::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(59,130,246,.02) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;position:relative;z-index:1}
 @media(max-width:900px){.proj-grid{grid-template-columns:1fr}}
 
 /* ── CASE STUDY CARD ── */
@@ -174,16 +176,20 @@
 .mock-senti-plat .plat-dot{width:5px;height:5px;border-radius:50%}
 
 /* ── STATS / RESULTS ── */
-.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.results-sec{background:var(--bg2);position:relative;overflow:hidden}
+.results-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(59,130,246,.03),transparent 30%,transparent 70%,rgba(16,185,129,.03));pointer-events:none}
+.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative;z-index:1}
 @media(max-width:900px){.results-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.results-grid{grid-template-columns:1fr}}
-.result-card{text-align:center;padding:2.5rem 1.5rem;border-radius:var(--r);background:var(--surface);border:1px solid var(--border);position:relative;overflow:hidden;transition:all .4s var(--ease)}
-.result-card::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:60%;height:2px;border-radius:2px;transition:width .4s var(--ease)}
-.result-card:nth-child(1)::after{background:var(--grad1)}
-.result-card:nth-child(2)::after{background:var(--grad2)}
-.result-card:nth-child(3)::after{background:var(--grad3)}
-.result-card:nth-child(4)::after{background:var(--grad4)}
-.result-card:hover{transform:translateY(-4px);background:var(--surface2)}
+.result-card{text-align:center;padding:2.5rem 1.5rem;border-radius:var(--r);background:var(--surface);border:1px solid var(--border);position:relative;overflow:hidden;transition:transform .4s var(--ease),background .4s,box-shadow .4s,border-color .4s}
+.result-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.result-card::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;border-radius:2px;transition:width .4s var(--ease)}
+.result-card:nth-child(1)::before{background:var(--grad1)}.result-card:nth-child(1)::after{background:var(--grad1)}
+.result-card:nth-child(2)::before{background:var(--grad2)}.result-card:nth-child(2)::after{background:var(--grad2)}
+.result-card:nth-child(3)::before{background:var(--grad3)}.result-card:nth-child(3)::after{background:var(--grad3)}
+.result-card:nth-child(4)::before{background:var(--grad4)}.result-card:nth-child(4)::after{background:var(--grad4)}
+.result-card:hover{transform:translateY(-4px);background:var(--surface2);box-shadow:0 12px 28px rgba(0,0,0,.2)}
+.result-card:hover::before{transform:scaleX(1)}
 .result-card:hover::after{width:90%}
 .result-icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;margin:0 auto 1rem}
 .result-icon svg{width:24px;height:24px}
@@ -195,7 +201,9 @@
 .result-label{font-size:.85rem;color:var(--dim)}
 
 /* ── PROCESS STRIP ── */
-.proc-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.work-proc-sec{background:var(--bg2);position:relative;overflow:hidden}
+.work-proc-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(139,92,246,.02),transparent 30%,transparent 70%,rgba(59,130,246,.02));pointer-events:none}
+.proc-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem;position:relative;z-index:1}
 @media(max-width:768px){.proc-strip{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.proc-strip{grid-template-columns:1fr}}
 .proc-step{text-align:center;padding:2rem 1rem;border-radius:var(--r);background:var(--surface);border:1px solid var(--border);position:relative;transition:all .4s var(--ease)}
@@ -207,6 +215,8 @@
 .proc-name{font-family:var(--ff);font-size:1.05rem;font-weight:700;margin-bottom:.3rem}
 .proc-desc{font-size:.82rem;color:var(--dim);line-height:1.55}
 .proc-connector{display:none}
+.work-cta-sec{position:relative;overflow:hidden}
+.work-cta-sec::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:200px;background:radial-gradient(ellipse,rgba(59,130,246,.04),transparent 60%);pointer-events:none}
 @media(min-width:769px){
   .proc-step{position:relative}
   .proc-step:not(:last-child)::after{content:'→';position:absolute;right:-1rem;top:50%;transform:translate(50%,-50%);color:var(--muted);font-size:1.1rem}
@@ -267,7 +277,7 @@
 <!-- ══════════════════════════════════════════════
      SECTION 2 — FILTER + CASE STUDY CARDS
      ══════════════════════════════════════════════ -->
-<section class="sec pad">
+<section class="sec pad proj-sec">
   <div class="ctn">
     <div class="tc gs-hide">
       <span class="lbl">Featured Projects</span>
@@ -686,7 +696,7 @@
 <!-- ══════════════════════════════════════════════
      SECTION 3 — RESULTS / NUMBERS
      ══════════════════════════════════════════════ -->
-<section class="sec pad" style="background:var(--bg2)">
+<section class="sec pad results-sec">
   <div class="ctn tc">
     <span class="lbl gs-hide">Impact</span>
     <h2 class="stitle gs-hide">Numbers That <span class="gt2">Matter</span></h2>
@@ -728,7 +738,7 @@
 <!-- ══════════════════════════════════════════════
      SECTION 4 — PROCESS OVERVIEW
      ══════════════════════════════════════════════ -->
-<section class="sec pad">
+<section class="sec pad work-proc-sec">
   <div class="ctn tc">
     <span class="lbl gs-hide">How We Work</span>
     <h2 class="stitle gs-hide">From Idea to <span class="gt3">Production</span></h2>
@@ -762,7 +772,7 @@
 <!-- ══════════════════════════════════════════════
      SECTION 5 — CTA
      ══════════════════════════════════════════════ -->
-<section class="sec pad">
+<section class="sec pad work-cta-sec">
   <div class="ctn">
     <div class="cta-box gs-scale">
       <h2>Have a project in mind?</h2>

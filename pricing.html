@@ -21,7 +21,10 @@
    ══════════════════════════════════════════════ */
 
 /* ── PRICING TIERS ── */
-.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start}
+.tier-sec{position:relative;overflow:hidden}
+.tier-sec::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(ellipse,rgba(59,130,246,.05),transparent 60%);pointer-events:none}
+.tier-sec::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.015) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start;position:relative;z-index:1}
 @media(max-width:900px){.tier-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}}
 
 .tier-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:2.5rem 2rem;position:relative;overflow:hidden;transition:transform .4s var(--ease),background .4s,box-shadow .4s,border-color .4s;display:flex;flex-direction:column}
@@ -30,8 +33,9 @@
 .tier-card:hover::before{opacity:1}
 
 /* Popular card */
-.tier-card.pop{border-color:rgba(59,130,246,.3);background:linear-gradient(165deg,rgba(59,130,246,.07),rgba(139,92,246,.05),rgba(6,182,212,.03))}
+.tier-card.pop{border-color:rgba(59,130,246,.3);background:linear-gradient(165deg,rgba(59,130,246,.08),rgba(139,92,246,.06),rgba(6,182,212,.03));transform:scale(1.03);z-index:2}
 .tier-card.pop::after{content:'POPULAR';position:absolute;top:18px;right:-32px;background:var(--grad1);color:#fff;font-size:.58rem;font-weight:700;padding:.3rem 2.8rem;transform:rotate(45deg);letter-spacing:.12em;z-index:3}
+.tier-card.pop:hover{transform:scale(1.03) translateY(-6px);box-shadow:0 24px 60px rgba(59,130,246,.15)}
 
 .tier-label{font-family:var(--fm);font-size:.72rem;color:var(--blue);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.5rem;position:relative;display:inline-block}
 .tier-label::after{content:'';display:block;width:24px;height:1px;background:currentColor;margin-top:.35rem;opacity:.4;transition:width .4s var(--ease)}
@@ -69,7 +73,9 @@
 .tier-btn.glow:hover{box-shadow:0 10px 30px rgba(139,92,246,.35);transform:translateY(-2px)}
 
 /* ── COMPARISON TABLE ── */
-.compare-sec{background:var(--bg2)}
+.compare-sec{background:var(--bg2);position:relative;overflow:hidden}
+.compare-sec::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(139,92,246,.3),rgba(59,130,246,.3),transparent)}
+.compare-sec::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(59,130,246,.3),rgba(139,92,246,.3),transparent)}
 .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--r);border:1px solid var(--border);scrollbar-width:thin;scrollbar-color:var(--border) transparent;position:relative}
 .table-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad1);border-radius:var(--r) var(--r) 0 0;z-index:3}
 .table-wrap::-webkit-scrollbar{height:6px}
@@ -94,7 +100,9 @@
 .compare-tbl .val{font-family:var(--fm);font-size:.8rem;color:var(--text)}
 
 /* ── ADD-ONS ── */
-.addon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.addon-sec{position:relative;overflow:hidden}
+.addon-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(225deg,rgba(6,182,212,.03),transparent 40%,transparent 60%,rgba(16,185,129,.03));pointer-events:none}
+.addon-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;position:relative;z-index:1}
 @media(max-width:900px){.addon-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:560px){.addon-grid{grid-template-columns:1fr}}
 
@@ -124,7 +132,8 @@
 .addon-card>p{color:var(--dim);font-size:.85rem;line-height:1.6}
 
 /* ── PRICING FAQ ── */
-.pfaq-sec{background:var(--bg2)}
+.pfaq-sec{background:var(--bg2);position:relative;overflow:hidden}
+.pfaq-sec::before{content:'?';position:absolute;top:-20px;right:60px;font-size:18rem;font-weight:900;color:rgba(255,255,255,.012);line-height:1;pointer-events:none;font-family:var(--ff)}
 .pfaq-list{max-width:780px;margin:0 auto;display:flex;flex-direction:column;gap:.75rem}
 
 .pfaq-it{border:1px solid var(--border);border-radius:var(--rs);overflow:hidden;transition:border-color .3s,background .3s,box-shadow .3s}
@@ -141,6 +150,8 @@
 .pfaq-a-inner{padding:0 1.5rem 1.2rem;color:var(--dim);font-size:.9rem;line-height:1.8}
 
 /* ── GUARANTEE BOX ── */
+.guarantee-sec{position:relative;overflow:hidden}
+.guarantee-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(16,185,129,.02),transparent);pointer-events:none}
 .guarantee-box{max-width:800px;margin:0 auto;text-align:center;padding:3rem 2.5rem;background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(6,182,212,.06));border:1px solid rgba(16,185,129,.2);border-radius:var(--r);position:relative;overflow:hidden}
 .guarantee-box::before{content:'';position:absolute;top:-60%;left:-30%;width:160%;height:160%;background:radial-gradient(ellipse,rgba(16,185,129,.06),transparent 60%);pointer-events:none}
 .guarantee-box::after{content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;background:linear-gradient(135deg,rgba(16,185,129,.3),rgba(6,182,212,.2),transparent 50%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
@@ -154,7 +165,8 @@
 .guarantee-box .highlight{color:var(--green);font-weight:600}
 
 /* ── FINAL CTA ── */
-.final-cta-sec{background:var(--bg)}
+.final-cta-sec{background:var(--bg);position:relative;overflow:hidden}
+.final-cta-sec::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:200px;background:radial-gradient(ellipse,rgba(139,92,246,.06),transparent 60%);pointer-events:none}
 </style>
 <script>document.documentElement.classList.add('gsap-ready');</script>
 </head>
@@ -202,7 +214,7 @@
 <!-- ═══════════════════════════════════════════
      PRICING TIERS
      ═══════════════════════════════════════════ -->
-<section class="sec pad">
+<section class="sec pad tier-sec">
 <div class="ctn">
 <div class="tc gs-hide">
 <span class="lbl">Choose Your Plan</span>
@@ -378,7 +390,7 @@
 <!-- ═══════════════════════════════════════════
      ADD-ON SERVICES
      ═══════════════════════════════════════════ -->
-<section class="sec pad">
+<section class="sec pad addon-sec">
 <div class="ctn">
 <div class="tc gs-hide">
 <span class="lbl">Extend Your Build</span>
@@ -514,7 +526,7 @@
 <!-- ═══════════════════════════════════════════
      MONEY-BACK GUARANTEE
      ═══════════════════════════════════════════ -->
-<section class="sec pad">
+<section class="sec pad guarantee-sec">
 <div class="ctn">
 <div class="guarantee-box gs-scale">
 <div class="guarantee-icon">
