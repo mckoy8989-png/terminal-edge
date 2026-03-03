@@ -133,32 +133,48 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .btn2:hover{border-color:var(--blue);color:var(--blue)}
 
 /* ── STATS ── */
-.stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.5rem 1.5rem;background:var(--bg2);position:relative;overflow:hidden}
-.stats::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(59,130,246,.04),transparent 40%),radial-gradient(circle at 80% 50%,rgba(139,92,246,.04),transparent 40%);pointer-events:none}
+.stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:4rem 1.5rem;background:var(--bg2);position:relative;overflow:hidden}
+.stats::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(59,130,246,.06),transparent 40%),radial-gradient(circle at 80% 50%,rgba(139,92,246,.06),transparent 40%);pointer-events:none}
 .stats::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
-.stats-g{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center;position:relative;z-index:1}
-.stats-g>div{position:relative;padding:1rem 0;cursor:default;transition:transform .3s var(--ease)}
-.stats-g>div:hover{transform:scale(1.08)}
-.stats-g>div::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:linear-gradient(180deg,transparent,var(--border),transparent)}
-.stats-g>div:last-child::after{display:none}
-/* Pulse ring on hover */
-.stats-g>div::before{content:'';position:absolute;inset:-8px;border-radius:16px;border:1px solid transparent;opacity:0;transition:opacity .4s,transform .4s;transform:scale(.9)}
-.stats-g>div:hover::before{opacity:1;transform:scale(1)}
-.stats-g>div:nth-child(1):hover::before{border-color:rgba(59,130,246,.2)}
-.stats-g>div:nth-child(2):hover::before{border-color:rgba(16,185,129,.2)}
-.stats-g>div:nth-child(3):hover::before{border-color:rgba(139,92,246,.2)}
-.stats-g>div:nth-child(4):hover::before{border-color:rgba(6,182,212,.2)}
-.stats-g h3{font-family:var(--ff);font-size:clamp(1.5rem,4vw,2.5rem);font-weight:700}
+.stats-g{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;text-align:center;position:relative;z-index:1}
+.stats-g>div{position:relative;padding:2rem 1rem;cursor:default;transition:transform .3s var(--ease),box-shadow .4s;border-radius:var(--r);background:rgba(255,255,255,.02);border:1px solid var(--border)}
+.stats-g>div:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.stats-g>div::after{display:none}
+.stat-icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;margin:0 auto .75rem;position:relative}
+.stat-icon svg{width:22px;height:22px;stroke-width:1.8}
+.stat-icon::after{content:'';position:absolute;inset:-4px;border-radius:14px;opacity:.4;filter:blur(8px)}
+.stats-g>div:nth-child(1) .stat-icon{background:rgba(59,130,246,.12);color:#3b82f6}
+.stats-g>div:nth-child(1) .stat-icon::after{background:rgba(59,130,246,.15)}
+.stats-g>div:nth-child(2) .stat-icon{background:rgba(16,185,129,.12);color:#10b981}
+.stats-g>div:nth-child(2) .stat-icon::after{background:rgba(16,185,129,.15)}
+.stats-g>div:nth-child(3) .stat-icon{background:rgba(139,92,246,.12);color:#8b5cf6}
+.stats-g>div:nth-child(3) .stat-icon::after{background:rgba(139,92,246,.15)}
+.stats-g>div:nth-child(4) .stat-icon{background:rgba(6,182,212,.12);color:#06b6d4}
+.stats-g>div:nth-child(4) .stat-icon::after{background:rgba(6,182,212,.15)}
+.stats-g>div:hover .stat-icon::after{opacity:.7}
+.stats-g>div::before{content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;opacity:0;transition:opacity .4s;pointer-events:none;z-index:1;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.stats-g>div:nth-child(1)::before{background:linear-gradient(135deg,transparent 40%,#3b82f6,transparent 90%)}
+.stats-g>div:nth-child(2)::before{background:linear-gradient(135deg,transparent 40%,#10b981,transparent 90%)}
+.stats-g>div:nth-child(3)::before{background:linear-gradient(135deg,transparent 40%,#8b5cf6,transparent 90%)}
+.stats-g>div:nth-child(4)::before{background:linear-gradient(135deg,transparent 40%,#06b6d4,transparent 90%)}
+.stats-g>div:hover::before{opacity:1}
+.stats-g h3{font-family:var(--ff);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.1}
 .stats-g>div:nth-child(1) h3{color:#3b82f6}
 .stats-g>div:nth-child(2) h3{color:#10b981}
 .stats-g>div:nth-child(3) h3{color:#8b5cf6}
 .stats-g>div:nth-child(4) h3{color:#06b6d4}
-.stats-g>div:nth-child(1) h3 span{text-shadow:0 0 30px rgba(59,130,246,.3)}
-.stats-g>div:nth-child(2) h3 span{text-shadow:0 0 30px rgba(16,185,129,.3)}
-.stats-g>div:nth-child(3) h3 span{text-shadow:0 0 30px rgba(139,92,246,.3)}
-.stats-g>div:nth-child(4) h3 span{text-shadow:0 0 30px rgba(6,182,212,.3)}
-.stats-g p{font-size:.75rem;color:var(--muted);margin-top:.25rem;text-transform:uppercase;letter-spacing:.1em}
-@media(max-width:600px){.stats-g{grid-template-columns:repeat(2,1fr);gap:1.5rem}.stats-g>div::after{display:none}}
+.stats-g>div:nth-child(1) h3 span{text-shadow:0 0 40px rgba(59,130,246,.4)}
+.stats-g>div:nth-child(2) h3 span{text-shadow:0 0 40px rgba(16,185,129,.4)}
+.stats-g>div:nth-child(3) h3 span{text-shadow:0 0 40px rgba(139,92,246,.4)}
+.stats-g>div:nth-child(4) h3 span{text-shadow:0 0 40px rgba(6,182,212,.4)}
+.stats-g p{font-size:.72rem;color:var(--dim);margin-top:.4rem;text-transform:uppercase;letter-spacing:.12em;font-weight:500}
+.stat-bar{width:60%;height:3px;border-radius:2px;margin:.75rem auto 0;background:rgba(255,255,255,.06);overflow:hidden}
+.stat-bar-fill{height:100%;border-radius:2px;width:0;transition:width 1.5s cubic-bezier(.16,1,.3,1)}
+.stats-g>div:nth-child(1) .stat-bar-fill{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
+.stats-g>div:nth-child(2) .stat-bar-fill{background:linear-gradient(90deg,#10b981,#34d399)}
+.stats-g>div:nth-child(3) .stat-bar-fill{background:linear-gradient(90deg,#8b5cf6,#a78bfa)}
+.stats-g>div:nth-child(4) .stat-bar-fill{background:linear-gradient(90deg,#06b6d4,#22d3ee)}
+@media(max-width:600px){.stats-g{grid-template-columns:repeat(2,1fr);gap:1rem}}
 
 /* ── SERVICES ── */
 .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;perspective:1000px}
@@ -567,10 +583,26 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <!-- STATS -->
 <section class="stats sec" id="stats">
 <div class="stats-g">
-<div class="gs-hide"><h3><span class="gt" data-count="47">0</span>+</h3><p>Projects Shipped</p></div>
-<div class="gs-hide"><h3><span class="gt2" data-count="99">0</span>%</h3><p>Uptime Guarantee</p></div>
-<div class="gs-hide"><h3><span class="gt3" data-count="12">0</span>+</h3><p>AI Agents Deployed</p></div>
-<div class="gs-hide"><h3><span class="gt" data-count="24">0</span>h</h3><p>Avg Turnaround</p></div>
+<div class="gs-hide">
+<div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+<h3><span class="gt" data-count="47">0</span>+</h3><p>Projects Shipped</p>
+<div class="stat-bar"><div class="stat-bar-fill" data-width="94%"></div></div>
+</div>
+<div class="gs-hide">
+<div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+<h3><span class="gt2" data-count="99">0</span>%</h3><p>Uptime Guarantee</p>
+<div class="stat-bar"><div class="stat-bar-fill" data-width="99%"></div></div>
+</div>
+<div class="gs-hide">
+<div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg></div>
+<h3><span class="gt3" data-count="12">0</span>+</h3><p>AI Agents Deployed</p>
+<div class="stat-bar"><div class="stat-bar-fill" data-width="75%"></div></div>
+</div>
+<div class="gs-hide">
+<div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+<h3><span class="gt" data-count="24">0</span>h</h3><p>Avg Turnaround</p>
+<div class="stat-bar"><div class="stat-bar-fill" data-width="85%"></div></div>
+</div>
 </div>
 </section>
 
@@ -738,15 +770,17 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <div class="url-bar"><span>novaretail.store</span></div>
 </div>
 <div class="show-browser-body">
-<div class="mock-nav"><div class="mock-nav-logo" style="background:rgba(59,130,246,.3)"></div><div class="mock-nav-links"><span></span><span></span><span></span><span style="width:40px;background:var(--blue);border-radius:3px"></span></div></div>
-<div class="mock-hero-area">
-<div class="mock-h" style="width:70%;background:rgba(59,130,246,.2)"></div>
-<div class="mock-h" style="width:50%;background:rgba(59,130,246,.12)"></div>
-<div class="mock-p" style="width:80%"></div>
-<div class="mock-btn-m" style="width:80px;background:var(--blue)"></div>
+<div class="mock-nav"><div class="mock-nav-logo" style="background:rgba(59,130,246,.4);width:60px"></div><div class="mock-nav-links"><span style="background:rgba(255,255,255,.12)"></span><span style="background:rgba(255,255,255,.12)"></span><span style="background:rgba(255,255,255,.12)"></span><span style="width:50px;background:var(--blue);border-radius:3px;height:8px"></span></div></div>
+<div class="mock-hero-area" style="background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(139,92,246,.06));padding:1.2rem 1rem;gap:6px;align-items:flex-start">
+<div style="font-size:.55rem;font-family:var(--fm);color:var(--blue);letter-spacing:.1em;text-transform:uppercase">New Collection 2026</div>
+<div style="font-size:.7rem;font-family:var(--ff);font-weight:700;color:var(--text);line-height:1.2">Premium Streetwear<br><span style="color:var(--blue)">Engineered for You</span></div>
+<div style="font-size:.4rem;color:var(--dim);line-height:1.5;max-width:70%">Discover our latest drops — designed with precision, crafted for performance.</div>
+<div style="display:flex;gap:4px;margin-top:2px"><div style="padding:3px 10px;background:var(--blue);border-radius:3px;font-size:.4rem;color:#fff;font-family:var(--fm);font-weight:600">Shop Now</div><div style="padding:3px 10px;border:1px solid var(--border2);border-radius:3px;font-size:.4rem;color:var(--dim);font-family:var(--fm)">View Lookbook</div></div>
 </div>
-<div class="mock-grid-area">
-<div class="mock-grid-card"></div><div class="mock-grid-card"></div><div class="mock-grid-card"></div>
+<div class="mock-grid-area" style="grid-template-columns:repeat(3,1fr);gap:5px;padding:8px 10px 10px">
+<div class="mock-grid-card" style="height:56px;background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(59,130,246,.06));display:flex;flex-direction:column;justify-content:flex-end;padding:4px 5px"><span style="font-size:.35rem;font-family:var(--fm);color:var(--text)">Nova Jacket</span><span style="font-size:.35rem;font-family:var(--fm);color:var(--blue)">$189</span></div>
+<div class="mock-grid-card" style="height:56px;background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(139,92,246,.06));display:flex;flex-direction:column;justify-content:flex-end;padding:4px 5px"><span style="font-size:.35rem;font-family:var(--fm);color:var(--text)">Tech Hoodie</span><span style="font-size:.35rem;font-family:var(--fm);color:var(--purple)">$129</span></div>
+<div class="mock-grid-card" style="height:56px;background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(16,185,129,.06));display:flex;flex-direction:column;justify-content:flex-end;padding:4px 5px"><span style="font-size:.35rem;font-family:var(--fm);color:var(--text)">Runner Pro</span><span style="font-size:.35rem;font-family:var(--fm);color:var(--green)">$210</span></div>
 </div>
 </div>
 </div>
@@ -1345,7 +1379,15 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
     gsap.fromTo(item,
       {x:o.x, opacity:0, rotateZ:o.r},
       {x:0, opacity:1, rotateZ:0, duration:1, delay:i*.1, ease:'power3.out',
-        scrollTrigger:{trigger:statsSec, start:'top 82%', once:true}
+        scrollTrigger:{trigger:statsSec, start:'top 82%', once:true,
+          onEnter: function() {
+            // Animate stat progress bars
+            document.querySelectorAll('.stat-bar-fill').forEach(function(bar) {
+              var w = bar.getAttribute('data-width');
+              if(w) setTimeout(function(){ bar.style.width = w; }, 400);
+            });
+          }
+        }
       }
     );
   });
