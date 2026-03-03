@@ -38,15 +38,15 @@
 }
 
 /* ΓöÇΓöÇ THREE.JS HERO CANVAS ΓöÇΓöÇ */
-#te-hero-canvas{position:absolute!important;inset:0;z-index:0;pointer-events:none}
+#te-hero-canvas{position:absolute!important;inset:0;z-index:0;pointer-events:none;will-change:transform}
 @media(max-width:768px){
   #te-hero-canvas{pointer-events:auto;touch-action:pan-y}
 }
 
 /* ΓöÇΓöÇ NEURAL MESH CANVAS ΓöÇΓöÇ */
-#te-mesh{position:fixed;inset:0;z-index:0;pointer-events:none}
+#te-mesh{position:fixed;inset:0;z-index:0;pointer-events:none;will-change:transform}
 @media(max-width:768px){
-  #te-mesh{opacity:.7}
+  #te-mesh{opacity:.5}
 }
 main,footer{position:relative;z-index:1}
 
