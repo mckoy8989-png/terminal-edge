@@ -264,7 +264,11 @@
 </div>
 
 <!-- Right Column — Contact Form -->
-<form class="contact-form-wrap gs-right" id="contactForm" action="javascript:void(0)" novalidate>
+<form class="contact-form-wrap gs-right" id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+<input type="hidden" name="access_key" value="131700c1-686e-480c-97ff-0d76a28b475f">
+<input type="hidden" name="subject" value="New Project Inquiry — Terminal Edge">
+<input type="hidden" name="from_name" value="Terminal Edge Website">
+<input type="checkbox" name="botcheck" style="display:none">
 <h3>Tell me about your project</h3>
 
 <div class="form-row">
@@ -489,24 +493,48 @@ document.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',
 /* ── CONTACT FORM SUBMISSION ── */
 document.getElementById('contactForm').addEventListener('submit',function(e){
   e.preventDefault();
-  const btn=document.getElementById('submitBtn');
-  const orig=btn.textContent;
+  const form = e.target;
+  const btn = document.getElementById('submitBtn');
+  const orig = btn.textContent;
 
-  btn.textContent='Sending...';
+  // Client-side validation
+  const name = form.querySelector('#cf-name');
+  const email = form.querySelector('#cf-email');
+  const details = form.querySelector('#cf-details');
+  if (!name.value.trim() || !email.value.trim() || !details.value.trim()) {
+    btn.textContent = '⚠ Please fill required fields';
+    btn.style.background = 'linear-gradient(135deg,#f59e0b,#d97706)';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 2500);
+    return;
+  }
+
+  btn.textContent = 'Sending...';
   btn.classList.add('sending');
 
-  setTimeout(()=>{
-    btn.textContent='✓ Message Sent!';
-    btn.classList.remove('sending');
-    btn.classList.add('sent');
+  const formData = new FormData(form);
 
-    setTimeout(()=>{
-      btn.textContent=orig;
-      btn.classList.remove('sent');
-      btn.style.background='';
-      e.target.reset();
-    },3000);
-  },1500);
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.success) {
+      btn.textContent = '✓ Message Sent!';
+      btn.classList.remove('sending');
+      btn.classList.add('sent');
+      form.reset();
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('sent'); btn.style.background = ''; }, 4000);
+    } else {
+      throw new Error(data.message || 'Submission failed');
+    }
+  })
+  .catch(err => {
+    btn.textContent = '✗ Error — try again';
+    btn.classList.remove('sending');
+    btn.style.background = 'linear-gradient(135deg,#ef4444,#dc2626)';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 3000);
+  });
 });
 
 /* ── GSAP SCROLL ANIMATIONS ── */
