@@ -1,6 +1,6 @@
 {
   "buildCommand": null,
-  "outputDirectory": "site-v2",
+  "outputDirectory": "site",
   "framework": null,
   "headers": [
     {
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "source": "/app\\.js",
+      "source": "/effects\\.js",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
       ]
