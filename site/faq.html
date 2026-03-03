@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -904,5 +904,22 @@ document.querySelector('.page-hero')?.addEventListener('mousemove', e => {
 setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
 
 </script>
+<script>/* ── PAGE TRANSITIONS ── */
+(function(){
+  var ov=document.getElementById('pageTransition');
+  if(!ov)return;
+  ov.classList.remove('active');
+  document.querySelectorAll('a[href$=".html"]').forEach(function(a){
+    if(a.hostname&&a.hostname!==location.hostname)return;
+    a.addEventListener('click',function(e){
+      var h=a.getAttribute('href');
+      if(!h||h.startsWith('#')||h.startsWith('mailto:'))return;
+      e.preventDefault();
+      ov.classList.add('active');
+      setTimeout(function(){window.location.href=h},150);
+    });
+  });
+  window.addEventListener('pageshow',function(){ov.classList.remove('active')});
+})();</script>
 </body>
 </html>

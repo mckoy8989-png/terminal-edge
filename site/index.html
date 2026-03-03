@@ -2254,6 +2254,7 @@ document.querySelectorAll('.btn1, .nav-cta').forEach(function(btn){
 (function(){
   var overlay = document.getElementById('pageTransition');
   if(!overlay) return;
+  overlay.classList.remove('active');
   document.querySelectorAll('a[href$=".html"]').forEach(function(link){
     if(link.hostname && link.hostname !== location.hostname) return;
     link.addEventListener('click', function(e){
@@ -2261,10 +2262,9 @@ document.querySelectorAll('.btn1, .nav-cta').forEach(function(btn){
       if(!href || href.startsWith('#') || href.startsWith('mailto:')) return;
       e.preventDefault();
       overlay.classList.add('active');
-      setTimeout(function(){ window.location.href = href; }, 180);
+      setTimeout(function(){ window.location.href = href; }, 150);
     });
   });
-  /* Fade out on page show (back/forward cache) */
   window.addEventListener('pageshow', function(){ overlay.classList.remove('active'); });
 })();
 
