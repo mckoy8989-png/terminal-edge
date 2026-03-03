@@ -1,10 +1,10 @@
-/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-   TERMINAL EDGE ΓÇö DRAMATIC EFFECTS CSS v6 (MOBILE-FIRST)
+/* ═══════════════════════════════════════════════════════════
+   TERMINAL EDGE — DRAMATIC EFFECTS CSS v6 (MOBILE-FIRST)
    Three.js hero | Lenis | GSAP dramatic reveals
    Touch-optimized for all devices
-   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
+   ═══════════════════════════════════════════════════════════ */
 
-/* ΓöÇΓöÇ BOOT SEQUENCE ΓöÇΓöÇ */
+/* ── BOOT SEQUENCE ── */
 #te-boot{position:fixed;inset:0;z-index:100000;background:#030408;display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
 #te-boot.boot-dismiss{opacity:0;transform:scale(1.05);pointer-events:none}
 .boot-terminal{width:min(680px,92vw);background:rgba(8,10,20,.98);border:1px solid rgba(59,130,246,.15);border-radius:12px;overflow:hidden;box-shadow:0 0 80px rgba(59,130,246,.08),0 40px 120px rgba(0,0,0,.6);animation:boot-glow 2s ease-in-out infinite alternate}
@@ -26,7 +26,7 @@
 @keyframes boot-pulse{0%,100%{opacity:1}50%{opacity:0}}
 .boot-bar{display:inline-block;height:10px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:2px;transition:width .3s ease;vertical-align:middle}
 
-/* ΓöÇΓöÇ Mobile boot adjustments ΓöÇΓöÇ */
+/* ── Mobile boot adjustments ── */
 @media(max-width:768px){
   .boot-terminal{width:94vw;border-radius:8px}
   .boot-content{padding:14px;max-height:55vh}
@@ -37,30 +37,30 @@
   .boot-bar{height:8px;max-width:80px!important}
 }
 
-/* ΓöÇΓöÇ THREE.JS HERO CANVAS ΓöÇΓöÇ */
+/* ── THREE.JS HERO CANVAS ── */
 #te-hero-canvas{position:absolute!important;inset:0;z-index:0;pointer-events:none;will-change:transform}
 @media(max-width:768px){
   #te-hero-canvas{pointer-events:auto;touch-action:pan-y}
 }
 
-/* ΓöÇΓöÇ NEURAL MESH CANVAS ΓöÇΓöÇ */
+/* ── NEURAL MESH CANVAS ── */
 #te-mesh{position:fixed;inset:0;z-index:0;pointer-events:none;will-change:transform}
 @media(max-width:768px){
   #te-mesh{opacity:.5}
 }
 main,footer{position:relative;z-index:1}
 
-/* ΓöÇΓöÇ CUSTOM CURSOR (desktop only) ΓöÇΓöÇ */
+/* ── CUSTOM CURSOR (desktop only) ── */
 #te-ring{position:fixed;top:0;left:0;width:44px;height:44px;border:2px solid rgba(59,130,246,.5);border-radius:50%;pointer-events:none;z-index:99999;transition:width .35s cubic-bezier(.16,1,.3,1),height .35s cubic-bezier(.16,1,.3,1),border-color .3s ease,background .3s ease;mix-blend-mode:difference}
 #te-ring.lg{width:72px;height:72px;border-color:rgba(139,92,246,.6);background:rgba(59,130,246,.06);margin-left:-14px;margin-top:-14px}
 #te-dot{position:fixed;top:0;left:0;width:7px;height:7px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:50%;pointer-events:none;z-index:99999;box-shadow:0 0 10px rgba(59,130,246,.5)}
 @media(max-width:768px),(pointer:coarse){#te-ring,#te-dot{display:none!important}}
 
-/* ΓöÇΓöÇ CLICK RIPPLE (desktop) ΓöÇΓöÇ */
+/* ── CLICK RIPPLE (desktop) ── */
 .te-ripple{position:fixed;width:0;height:0;border:2px solid rgba(59,130,246,.7);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);animation:te-ripple .8s cubic-bezier(0,.5,.3,1) forwards}
 @keyframes te-ripple{0%{width:0;height:0;opacity:1;border-width:3px}100%{width:120px;height:120px;opacity:0;border-color:rgba(139,92,246,.05);border-width:1px}}
 
-/* ΓöÇΓöÇ TOUCH RIPPLE (mobile) ΓöÇΓöÇ */
+/* ── TOUCH RIPPLE (mobile) ── */
 .te-touch-ripple{position:fixed;width:0;height:0;border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(59,130,246,.35) 0%,rgba(139,92,246,.2) 40%,transparent 70%);animation:te-touch-rip .9s cubic-bezier(0,.4,.2,1) forwards}
 @keyframes te-touch-rip{
   0%{width:0;height:0;opacity:1}
@@ -68,24 +68,24 @@ main,footer{position:relative;z-index:1}
   100%{width:200px;height:200px;opacity:0}
 }
 
-/* ΓöÇΓöÇ TEXT CHARACTER ANIMATIONS ΓöÇΓöÇ */
+/* ── TEXT CHARACTER ANIMATIONS ── */
 .te-char{display:inline-block}
 
-/* ΓöÇΓöÇ SCROLL PROGRESS ΓÇö SIDEBAR (desktop) ΓöÇΓöÇ */
+/* ── SCROLL PROGRESS — SIDEBAR (desktop) ── */
 .te-progress{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:9998;display:flex;flex-direction:column;gap:3px;opacity:0;transition:opacity .4s ease}
 .te-progress.visible{opacity:1}
 .te-progress-seg{width:3px;height:22px;background:rgba(255,255,255,.06);border-radius:2px;transition:background .4s ease,height .3s ease,box-shadow .4s ease}
 .te-progress-seg.active{background:linear-gradient(180deg,#3b82f6,#8b5cf6);box-shadow:0 0 12px rgba(59,130,246,.4);height:32px}
 .te-progress-seg.done{background:rgba(59,130,246,.35)}
 
-/* ΓöÇΓöÇ SCROLL PROGRESS ΓÇö TOP BAR (mobile) ΓöÇΓöÇ */
+/* ── SCROLL PROGRESS — TOP BAR (mobile) ── */
 .te-progress-mobile{position:fixed;top:0;left:0;right:0;z-index:9998;display:flex;flex-direction:row;gap:2px;padding:0;opacity:0;transition:opacity .4s ease;height:3px}
 .te-progress-mobile.visible{opacity:1}
 .te-progress-mobile .te-progress-seg{flex:1;height:3px;width:auto;background:rgba(255,255,255,.08);border-radius:0;transition:background .4s ease,box-shadow .4s ease}
 .te-progress-mobile .te-progress-seg.active{background:linear-gradient(90deg,#3b82f6,#8b5cf6);box-shadow:0 2px 12px rgba(59,130,246,.4);height:3px}
 .te-progress-mobile .te-progress-seg.done{background:rgba(59,130,246,.4)}
 
-/* ΓöÇΓöÇ SECTION GLOW BEAMS ΓöÇΓöÇ */
+/* ── SECTION GLOW BEAMS ── */
 .te-glow{position:absolute;top:0;left:0;right:0;height:2px;pointer-events:none;z-index:2;overflow:visible}
 .te-glow::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,#3b82f6 15%,#8b5cf6 40%,#06b6d4 65%,#ec4899 85%,transparent 100%);transform:scaleX(0);transform-origin:left;transition:transform 2s cubic-bezier(.16,1,.3,1);filter:blur(0.5px)}
 .te-glow.active::before{transform:scaleX(1)}
@@ -95,7 +95,7 @@ main,footer{position:relative;z-index:1}
   .te-glow::after{height:60px}
 }
 
-/* ΓöÇΓöÇ SECTION CONNECTORS ΓöÇΓöÇ */
+/* ── SECTION CONNECTORS ── */
 .te-conn{position:relative;height:0;min-height:1px;pointer-events:none;z-index:2;overflow:visible}
 .te-conn-line{position:absolute;left:50%;top:-30px;width:2px;height:60px;transform:translateX(-50%) scaleY(0);transform-origin:top;background:linear-gradient(180deg,rgba(59,130,246,.5),rgba(139,92,246,.7),rgba(6,182,212,.5));transition:transform 1.2s cubic-bezier(.16,1,.3,1);box-shadow:0 0 8px rgba(139,92,246,.3)}
 .te-conn.active .te-conn-line{transform:translateX(-50%) scaleY(1)}
@@ -110,13 +110,13 @@ main,footer{position:relative;z-index:1}
   .te-conn-pulse{width:8px;height:8px}
 }
 
-/* ΓöÇΓöÇ SCROLL COLOR OVERLAY ΓöÇΓöÇ */
+/* ── SCROLL COLOR OVERLAY ── */
 #te-scroll-glow{position:fixed;inset:0;pointer-events:none;z-index:0;transition:background .8s ease}
 
-/* ΓöÇΓöÇ CARD 3D PERSPECTIVE ΓöÇΓöÇ */
+/* ── CARD 3D PERSPECTIVE ── */
 .svc-card,.feat-card,.show-card,.price-card,.test-card,.cs-card,.tier-card,.ql-card,.faq-it,.bot-type,.info-card,.cap-card,.proc3d{transform-style:preserve-3d;backface-visibility:hidden}
 
-/* ΓöÇΓöÇ MOBILE CARD TOUCH FEEDBACK ΓöÇΓöÇ */
+/* ── MOBILE CARD TOUCH FEEDBACK ── */
 @media(max-width:768px),(pointer:coarse){
   .svc-card,.feat-card,.show-card,.price-card,.test-card,.cs-card,.tier-card,.ql-card,.faq-it,.bot-type,.info-card,.cap-card,.proc3d{
     transition:transform .3s ease,box-shadow .3s ease!important;
@@ -128,7 +128,7 @@ main,footer{position:relative;z-index:1}
   }
 }
 
-/* ΓöÇΓöÇ MOBILE SCROLL SNAP HINTS ΓöÇΓöÇ */
+/* ── MOBILE SCROLL SNAP HINTS ── */
 @media(max-width:768px){
   .sec.pad{scroll-margin-top:60px}
 }

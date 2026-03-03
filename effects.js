@@ -1,5 +1,5 @@
 /**
- * Terminal Edge ΓÇö Effects Engine v6 (MOBILE-FIRST)
+ * Terminal Edge — Effects Engine v6 (MOBILE-FIRST)
  * Three.js 3D hero | Lenis smooth scroll | GSAP dramatic reveals
  * Touch-optimized, performance-tuned for all devices
  */
@@ -13,7 +13,7 @@
 
   /* ================================================================
      1. LENIS SMOOTH SCROLL
-     Premium momentum-based scrolling (desktop only ΓÇö native on mobile)
+     Premium momentum-based scrolling (desktop only — native on mobile)
      ================================================================ */
   function initSmoothScroll() {
     if (typeof Lenis === 'undefined' || isTouch) return;
@@ -173,107 +173,8 @@
      3. BOOT SEQUENCE (index page, first visit)
      ================================================================ */
   function initBootSequence() {
-    // Disabled ΓÇö boot sequence added perceived latency
+    // Disabled — boot sequence added perceived latency
     return;
-  }
-
-    document.body.style.overflow = 'hidden';
-    var overlay = document.createElement('div');
-    overlay.id = 'te-boot';
-    overlay.innerHTML =
-      '<div class="boot-terminal">' +
-        '<div class="boot-header">' +
-          '<span class="boot-dots"><span></span><span></span><span></span></span>' +
-          '<span class="boot-title">terminal-edge-os v2.4.0</span>' +
-        '</div>' +
-        '<div class="boot-content" id="bootContent"></div>' +
-      '</div>';
-    document.body.appendChild(overlay);
-
-    var content = document.getElementById('bootContent');
-    var lines = [
-      { text: '\u2588 TERMINAL EDGE SYSTEMS', cls: 'boot-cyan', delay: 80 },
-      { text: '', cls: '', delay: 30 },
-      { text: '> Initializing kernel...', cls: 'boot-dim', delay: 80 },
-      { text: '  \u2713 Core runtime loaded', cls: 'boot-green', delay: 50 },
-      { text: '  \u2713 GPU acceleration enabled', cls: 'boot-green', delay: 40 },
-      { text: '', cls: '', delay: 20 },
-      { text: '> Loading modules:', cls: 'boot-dim', delay: 60 },
-      { text: '', cls: '', delay: 20, bar: { label: '  ui-engine', width: 100 } },
-      { text: '', cls: '', delay: 20, bar: { label: '  scroll-physics', width: 100 } },
-      { text: '', cls: '', delay: 20, bar: { label: '  particle-system', width: 100 } },
-      { text: '', cls: '', delay: 20, bar: { label: '  animation-core', width: 100 } },
-      { text: '  \u2713 All modules loaded (4/4)', cls: 'boot-green', delay: 60 },
-      { text: '', cls: '', delay: 20 },
-      { text: '> Compiling interface...', cls: 'boot-dim', delay: 60 },
-      { text: '  \u2713 47 components rendered', cls: 'boot-green', delay: 40 },
-      { text: '  \u2713 12 scroll triggers armed', cls: 'boot-green', delay: 40 },
-      { text: '  \u2713 Interaction handlers bound', cls: 'boot-green', delay: 40 },
-      { text: '', cls: '', delay: 20 },
-      { text: '> Running diagnostics:', cls: 'boot-dim', delay: 60 },
-      { text: '  Performance   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  98/100', cls: 'boot-green', delay: 40 },
-      { text: '  Accessibility \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 100/100', cls: 'boot-green', delay: 40 },
-      { text: '  Security      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  97/100', cls: 'boot-green', delay: 40 },
-      { text: '', cls: '', delay: 30 },
-      { text: '> System ready. Launching interface...', cls: 'boot-cyan boot-blink', delay: 200 }
-    ];
-
-    var li = 0;
-    function addLine() {
-      if (li >= lines.length) {
-        setTimeout(function() {
-          overlay.classList.add('boot-dismiss');
-          document.body.style.overflow = '';
-          setTimeout(function() { overlay.remove(); }, 1000);
-        }, 300);
-        return;
-      }
-      var line = lines[li];
-      var el = document.createElement('div');
-      el.className = 'boot-line ' + (line.cls || '');
-      if (line.bar) {
-        el.textContent = line.bar.label + '  ';
-        content.appendChild(el);
-        content.scrollTop = content.scrollHeight;
-        var barEl = document.createElement('span');
-        barEl.className = 'boot-bar';
-        barEl.style.width = '0px';
-        barEl.style.maxWidth = '120px';
-        el.appendChild(barEl);
-        var done = document.createElement('span');
-        done.style.color = '#10b981';
-        done.style.marginLeft = '8px';
-        el.appendChild(done);
-        var bw = 0;
-        var barTimer = setInterval(function() {
-          bw += 20;
-          if (bw > line.bar.width) {
-            clearInterval(barTimer);
-            barEl.style.width = line.bar.width + 'px';
-            done.textContent = '\u2713';
-            li++;
-            setTimeout(addLine, line.delay);
-          } else { barEl.style.width = bw + 'px'; }
-        }, 12);
-      } else if (line.text) {
-        el.textContent = '';
-        content.appendChild(el);
-        content.scrollTop = content.scrollHeight;
-        var ci = 0, text = line.text;
-        var typeTimer = setInterval(function() {
-          ci++;
-          el.textContent = text.substring(0, ci);
-          if (ci >= text.length) { clearInterval(typeTimer); li++; setTimeout(addLine, line.delay); }
-        }, 3);
-      } else {
-        el.innerHTML = '\u00A0';
-        content.appendChild(el);
-        content.scrollTop = content.scrollHeight;
-        li++;
-        setTimeout(addLine, line.delay);
-      }
-    }
-    setTimeout(addLine, 400);
   }
 
   /* ================================================================
@@ -516,7 +417,7 @@
         }
       }
 
-      // Connections ΓÇö only between active dots (much faster than O(n┬▓) over all dots)
+      // Connections — only between active dots (much faster than O(n²) over all dots)
       if (activeDots.length < 80) {
         ctx.lineWidth = 0.8;
         for (var i = 0; i < activeDots.length; i++) {
@@ -695,7 +596,7 @@
     if (typeof gsap === 'undefined') return;
     var strength = isMobile ? 0.4 : 1;
 
-    // Hero gradients ΓÇö only if not already animated by inline script
+    // Hero gradients — only if not already animated by inline script
     var hg1 = document.querySelector('.hg1');
     var hg2 = document.querySelector('.hg2');
     if (hg1 && gsap.getTweensOf(hg1).length === 0) {
@@ -711,7 +612,7 @@
       });
     }
 
-    // Section background depth ΓÇö skip headings that already have scrub tweens
+    // Section background depth — skip headings that already have scrub tweens
     var parallaxHeadings = document.querySelectorAll('.sec.pad .stitle');
     for (var pi = 0; pi < Math.min(parallaxHeadings.length, 3); pi++) {
       if (gsap.getTweensOf(parallaxHeadings[pi]).length > 0) continue;
