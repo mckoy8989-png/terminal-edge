@@ -547,7 +547,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 
 <!-- HERO -->
 <section class="hero sec" id="hero">
-<canvas id="heroCanvas"></canvas>
+<canvas id="heroCanvas" style="display:none"></canvas>
 <div class="hero-glow hg1"></div>
 <div class="hero-glow hg2"></div>
 <div class="hero-glow hg3"></div>
@@ -1095,8 +1095,8 @@ const seq=[
 let si=0,ci=0;
 function colorizeCmd(text){
   return text.replace(/^(te\s+\w+)/,'<span class="out-info">$1</span>')
-    .replace(/(--\w+)/g,'<span class="cmd-flag">$1</span>')
-    .replace(/(--\w+)\s+([\w\-\.\/]+)/g,'<span class="cmd-flag">$1</span> <span class="cmd-val">$2</span>');
+    .replace(/(--\w+)\s+([\w\-\.\/]+)/g,'<span class="cmd-flag">$1</span> <span class="cmd-val">$2</span>')
+    .replace(/(--\w+)(?![^<]*<\/span>)/g,'<span class="cmd-flag">$1</span>');
 }
 
 function runProgress(label,duration,cb){
@@ -1298,7 +1298,7 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
     gsap.fromTo(card,
       {x:fromX, opacity:0, rotateY:fromRot},
       {x:0, opacity:1, rotateY:0, duration:1.2, ease:'power3.out',
-        scrollTrigger:{trigger:card, start:'top 88%', end:'top 40%', scrub:1}
+        scrollTrigger:{trigger:card, start:'top 90%', once:true}
       }
     );
   });
@@ -1314,7 +1314,7 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
     gsap.fromTo(card,
       {scale:0.5, opacity:0, y:60, rotateX:15},
       {scale:1, opacity:1, y:0, rotateX:0, duration:1, ease:'back.out(1.4)',
-        scrollTrigger:{trigger:card, start:'top 92%', toggleActions:'play none none reverse'}
+        scrollTrigger:{trigger:card, start:'top 92%', once:true}
       }
     );
   });
@@ -1333,7 +1333,7 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
   gsap.fromTo(statsInner,
     {scale:0.7, opacity:0, y:40},
     {scale:1, opacity:1, y:0, duration:1.4, ease:'power3.out',
-      scrollTrigger:{trigger:statsSec, start:'top 85%', toggleActions:'play none none reverse'}
+      scrollTrigger:{trigger:statsSec, start:'top 85%', once:true}
     }
   );
   
@@ -1345,7 +1345,7 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
     gsap.fromTo(item,
       {x:o.x, opacity:0, rotateZ:o.r},
       {x:0, opacity:1, rotateZ:0, duration:1, delay:i*.1, ease:'power3.out',
-        scrollTrigger:{trigger:statsSec, start:'top 82%', toggleActions:'play none none reverse'}
+        scrollTrigger:{trigger:statsSec, start:'top 82%', once:true}
       }
     );
   });
@@ -1363,7 +1363,7 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
       {y:-100, x:randomX, opacity:0, rotation:Math.random()*20-10, scale:0.6},
       {y:0, x:0, opacity:1, rotation:0, scale:1,
         duration:0.8, delay:i*0.06, ease:'bounce.out',
-        scrollTrigger:{trigger:'.tech-sec', start:'top 80%', toggleActions:'play none none reverse'}
+        scrollTrigger:{trigger:'.tech-sec', start:'top 80%', once:true}
       }
     );
   });
@@ -1379,7 +1379,7 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
     gsap.fromTo(card,
       {rotateX:90, opacity:0, y:80, transformOrigin:'bottom center'},
       {rotateX:0, opacity:1, y:0, duration:1.2, delay:i*0.2, ease:'power3.out',
-        scrollTrigger:{trigger:'.price-sec', start:'top 78%', toggleActions:'play none none reverse'}
+        scrollTrigger:{trigger:'.price-sec', start:'top 78%', once:true}
       }
     );
   });
@@ -1401,7 +1401,7 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
     gsap.fromTo(card,
       {x:e.x, y:e.y, opacity:0, rotation:e.rotation},
       {x:0, y: i===1 ? -8 : 0, opacity:1, rotation:0, duration:1.2, delay:i*0.15, ease:'power3.out',
-        scrollTrigger:{trigger:'.test-sec', start:'top 78%', toggleActions:'play none none reverse'}
+        scrollTrigger:{trigger:'.test-sec', start:'top 78%', once:true}
       }
     );
   });
@@ -1417,7 +1417,7 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
   gsap.fromTo(cta,
     {scale:0.6, opacity:0, y:60, boxShadow:'0 0 0 rgba(59,130,246,0)'},
     {scale:1, opacity:1, y:0, boxShadow:'0 0 80px rgba(59,130,246,.08)', duration:1.5, ease:'power4.out',
-      scrollTrigger:{trigger:cta, start:'top 85%', toggleActions:'play none none reverse'}
+      scrollTrigger:{trigger:cta, start:'top 85%', once:true}
     }
   );
 })();
@@ -1426,26 +1426,29 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
    PAGE-LEVEL INTERACTION 11: PARALLAX SECTION HEADINGS
    Section titles move slower than content — depth effect
    ══════════════════════════════════════════════════════════════ */
-document.querySelectorAll('.stitle').forEach(title => {
-  gsap.to(title, {
+// Parallax limited to first 3 headings/labels to reduce ScrollTrigger overhead
+const parallaxTitles = document.querySelectorAll('.stitle');
+for (let pi = 0; pi < Math.min(parallaxTitles.length, 3); pi++) {
+  gsap.to(parallaxTitles[pi], {
     y: -30,
     scrollTrigger:{
-      trigger: title.closest('.sec') || title,
+      trigger: parallaxTitles[pi].closest('.sec') || parallaxTitles[pi],
       start:'top bottom', end:'bottom top',
       scrub:2
     }
   });
-});
-document.querySelectorAll('.lbl').forEach(lbl => {
-  gsap.to(lbl, {
+}
+const parallaxLabels = document.querySelectorAll('.lbl');
+for (let pi = 0; pi < Math.min(parallaxLabels.length, 3); pi++) {
+  gsap.to(parallaxLabels[pi], {
     y: -20, x: 10,
     scrollTrigger:{
-      trigger: lbl.closest('.sec') || lbl,
+      trigger: parallaxLabels[pi].closest('.sec') || parallaxLabels[pi],
       start:'top bottom', end:'bottom top',
       scrub:2
     }
   });
-});
+}
 
 /* ══════════════════════════════════════════════════════════════
    PAGE-LEVEL INTERACTION 12: CONTACT — CURTAIN REVEAL
@@ -1458,7 +1461,7 @@ document.querySelectorAll('.lbl').forEach(lbl => {
     gsap.fromTo(conInfo,
       {x:-100, opacity:0, rotateY:10},
       {x:0, opacity:1, rotateY:0, duration:1.2, ease:'power3.out',
-        scrollTrigger:{trigger:'#contact', start:'top 78%', toggleActions:'play none none reverse'}
+        scrollTrigger:{trigger:'#contact', start:'top 78%', once:true}
       }
     );
   }
@@ -1466,7 +1469,7 @@ document.querySelectorAll('.lbl').forEach(lbl => {
     gsap.fromTo(conForm,
       {x:100, opacity:0, rotateY:-10},
       {x:0, opacity:1, rotateY:0, duration:1.2, delay:.15, ease:'power3.out',
-        scrollTrigger:{trigger:'#contact', start:'top 78%', toggleActions:'play none none reverse'}
+        scrollTrigger:{trigger:'#contact', start:'top 78%', once:true}
       }
     );
   }
@@ -2179,10 +2182,24 @@ document.querySelectorAll('.btn1, .nav-cta, [class*="cta"]').forEach(btn => {
   ];
   let idx = 0;
 
+  // Clone for crossfade (background-image is not CSS-animatable)
+  const clone = gradientSpan.cloneNode(true);
+  clone.style.position = 'absolute';
+  clone.style.inset = '0';
+  clone.style.opacity = '0';
+  clone.style.transition = 'opacity 1.5s ease';
+  clone.style.pointerEvents = 'none';
+  gradientSpan.style.position = 'relative';
+  gradientSpan.appendChild(clone);
+
   setInterval(() => {
     idx = (idx + 1) % colors.length;
-    gradientSpan.style.backgroundImage = colors[idx];
-    gradientSpan.style.transition = 'background-image 1.5s ease';
+    clone.style.backgroundImage = colors[idx];
+    clone.style.opacity = '1';
+    setTimeout(() => {
+      gradientSpan.style.backgroundImage = colors[idx];
+      clone.style.opacity = '0';
+    }, 1500);
   }, 3000);
 })();
 

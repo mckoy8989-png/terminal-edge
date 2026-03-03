@@ -273,7 +273,7 @@
      SECTION 1 — PAGE HERO
      ══════════════════════════════════════════════ -->
 <section class="page-hero">
-  <canvas id="heroCanvas"></canvas>
+  <canvas id="heroCanvas" style="display:none"></canvas>
   <div class="hero-glow" style="background:#3b82f6;width:min(500px,80vw);height:min(500px,80vw);top:-150px;left:-10%"></div>
   <div class="hero-glow" style="background:#8b5cf6;width:min(400px,70vw);height:min(400px,70vw);bottom:-100px;right:-5%"></div>
   <div class="page-hero-ct" style="position:relative;z-index:2;text-align:center;max-width:880px">
@@ -811,88 +811,6 @@
 (function(){
 'use strict';
 
-/* ── HERO PARTICLE CANVAS ── */
-const cv = document.getElementById('heroCanvas');
-if (cv) {
-  const ctx = cv.getContext('2d');
-  let w, h, particles = [], mouse = { x: null, y: null };
-  const PARTICLE_COUNT = 80;
-  const CONNECT_DIST = 130;
-
-  function resize() {
-    const rect = cv.parentElement.getBoundingClientRect();
-    w = cv.width = rect.width;
-    h = cv.height = rect.height;
-  }
-  resize();
-  window.addEventListener('resize', resize, {passive:true});
-
-  class Particle {
-    constructor() { this.reset(); }
-    reset() {
-      this.x = Math.random() * w;
-      this.y = Math.random() * h;
-      this.vx = (Math.random() - 0.5) * 0.5;
-      this.vy = (Math.random() - 0.5) * 0.5;
-      this.r = Math.random() * 2 + 0.5;
-      this.alpha = Math.random() * 0.5 + 0.2;
-    }
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      if (this.x < 0 || this.x > w) this.vx *= -1;
-      if (this.y < 0 || this.y > h) this.vy *= -1;
-      // Mouse repulsion
-      if (mouse.x !== null) {
-        const dx = this.x - mouse.x, dy = this.y - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          this.x += dx * 0.02;
-          this.y += dy * 0.02;
-        }
-      }
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(59,130,246,${this.alpha})`;
-      ctx.fill();
-    }
-  }
-
-  for (let i = 0; i < PARTICLE_COUNT; i++) particles.push(new Particle());
-
-  function animate() {
-    ctx.clearRect(0, 0, w, h);
-    particles.forEach(p => { p.update(); p.draw(); });
-    // Connection lines
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < CONNECT_DIST) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(139,92,246,${(1 - dist / CONNECT_DIST) * 0.15})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(animate);
-  }
-  animate();
-
-  cv.addEventListener('mousemove', e => {
-    const rect = cv.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  });
-  cv.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
-}
-
 /* ── SCROLL PROGRESS + NAV (throttled) ── */
 const sb = document.getElementById('scrollBar');
 const nb = document.getElementById('navbar');
@@ -920,7 +838,7 @@ document.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click
   document.body.style.overflow = '';
 }));
 
-/* ── GSAP ANIMATIONS (batched for perf) ── */
+/* ── GSAP ANIMATIONS (IntersectionObserver for perf) ── */
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({force3D:true});
 
@@ -932,49 +850,58 @@ gsap.to(heroEls, {
   ease: 'power4.out', force3D: true
 });
 
-// Batch all gs-hide (skip hero)
-ScrollTrigger.batch('.gs-hide:not(.page-hero-ct .gs-hide)', {
-  start: 'top 90%', once: true,
-  onEnter: batch => gsap.to(batch, {
-    opacity: 1, y: 0, duration: 0.9,
-    stagger: 0.08, ease: 'power3.out', force3D: true
-  })
-});
+// Lightweight reveal using IntersectionObserver instead of 65+ ScrollTriggers
+(function() {
+  var revealQueue = [];
+  var flushTimer = null;
 
-// Batch gs-left
-ScrollTrigger.batch('.gs-left', {
-  start: 'top 90%', once: true,
-  onEnter: batch => gsap.to(batch, {
-    opacity: 1, x: 0, duration: 0.9,
-    stagger: 0.08, ease: 'power3.out', force3D: true
-  })
-});
+  function flushQueue() {
+    if (!revealQueue.length) return;
+    var batch = revealQueue.splice(0, 12);
+    gsap.to(batch, {
+      opacity: 1, y: 0, x: 0, scale: 1,
+      duration: 0.9, stagger: 0.06,
+      ease: 'power3.out', force3D: true
+    });
+    if (revealQueue.length) flushTimer = setTimeout(flushQueue, 80);
+  }
 
-// Batch gs-right
-ScrollTrigger.batch('.gs-right', {
-  start: 'top 90%', once: true,
-  onEnter: batch => gsap.to(batch, {
-    opacity: 1, x: 0, duration: 0.9,
-    stagger: 0.08, ease: 'power3.out', force3D: true
-  })
-});
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        revealQueue.push(entry.target);
+        io.unobserve(entry.target);
+        clearTimeout(flushTimer);
+        flushTimer = setTimeout(flushQueue, 50);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
 
-// Batch gs-scale (skip hero)
-ScrollTrigger.batch('.gs-scale:not(.page-hero-ct .gs-scale)', {
-  start: 'top 90%', once: true,
-  onEnter: batch => gsap.to(batch, {
-    opacity: 1, scale: 1, y: 0, duration: 0.9,
-    stagger: 0.08, ease: 'power3.out', force3D: true
-  })
-});
-
-// Parallax glow orbs
-document.querySelectorAll('.svc-glow').forEach(glow => {
-  gsap.to(glow, {
-    y: -60,
-    scrollTrigger: { trigger: glow.closest('.svc-section'), start: 'top bottom', end: 'bottom top', scrub: 1.5 }
+  document.querySelectorAll('.gs-hide:not(.page-hero-ct .gs-hide), .gs-left, .gs-right, .gs-scale:not(.page-hero-ct .gs-scale)').forEach(function(el) {
+    io.observe(el);
   });
+})();
+
+// Glow orbs — CSS-only parallax (no ScrollTrigger overhead)
+document.querySelectorAll('.svc-glow').forEach(glow => {
+  glow.style.transition = 'transform 0.8s ease-out';
 });
+// Single scroll handler for all glow orbs
+let glowTick = false;
+window.addEventListener('scroll', () => {
+  if (glowTick) return;
+  glowTick = true;
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.svc-glow').forEach(glow => {
+      const sec = glow.closest('.svc-section');
+      if (!sec) return;
+      const r = sec.getBoundingClientRect();
+      const progress = 1 - (r.top + r.height) / (window.innerHeight + r.height);
+      glow.style.transform = 'translateY(' + (progress * -60) + 'px)';
+    });
+    glowTick = false;
+  });
+}, { passive: true });
 
 /* ═══════════════════════════════════════════
    INTERACTIVE ENHANCEMENTS — Services Page

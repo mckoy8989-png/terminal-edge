@@ -286,6 +286,8 @@
 
     var headings = document.querySelectorAll('.stitle, .page-hero h1');
     headings.forEach(function(h) {
+      // Skip headings already animated by inline scripts
+      if (gsap.getTweensOf(h).length > 0) return;
       var spans = h.querySelectorAll('.gt, .gt2, .gt3, .gt4');
       if (!spans.length) {
         // If no gradient spans, treat the whole heading
@@ -317,15 +319,16 @@
           scrollTrigger: {
             trigger: h,
             start: 'top 85%',
-            toggleActions: 'play none none none'
+            once: true
           }
         });
       });
     });
 
-    // Labels animate with a slide + fade
+    // Labels animate with a slide + fade (skip if already animated)
     document.querySelectorAll('.lbl').forEach(function(lbl) {
       if (lbl.classList.contains('gs-hide') || lbl.classList.contains('gs-left')) return;
+      if (gsap.getTweensOf(lbl).length > 0) return;
       gsap.from(lbl, {
         x: -60,
         opacity: 0,
@@ -334,7 +337,7 @@
         scrollTrigger: {
           trigger: lbl,
           start: 'top 90%',
-          toggleActions: 'play none none none'
+          once: true
         }
       });
     });
@@ -355,11 +358,12 @@
     );
 
     cards.forEach(function(card, i) {
-      // Skip if already handled by GSAP batch
+      // Skip if already handled by GSAP batch or inline animations
       if (card.classList.contains('gs-hide') ||
           card.classList.contains('gs-left') ||
           card.classList.contains('gs-right') ||
           card.classList.contains('gs-scale')) return;
+      if (gsap.getTweensOf(card).length > 0) return;
 
       var dir = (i % 3 === 0) ? -1 : (i % 3 === 1) ? 1 : 0;
 
@@ -375,7 +379,7 @@
         scrollTrigger: {
           trigger: card,
           start: 'top 92%',
-          toggleActions: 'play none none none'
+          once: true
         }
       });
     });
@@ -438,9 +442,22 @@
       meshActive = !document.hidden;
     });
 
-    var targetFps = isMobile ? 24 : 30;
+    var targetFps = isMobile ? 16 : 20;
     var frameInterval = 1000 / targetFps;
     var lastFrame = 0;
+    var hasInteraction = false;
+    var idleTimer;
+
+    document.addEventListener('mousemove', function() {
+      hasInteraction = true;
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(function() { hasInteraction = false; }, 3000);
+    });
+    document.addEventListener('touchstart', function() {
+      hasInteraction = true;
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(function() { hasInteraction = false; }, 3000);
+    }, { passive: true });
 
     function frame(timestamp) {
       requestAnimationFrame(frame);
@@ -450,17 +467,22 @@
       if (delta < frameInterval) return;
       lastFrame = timestamp - (delta % frameInterval);
 
+      // Skip heavy work when no interaction and dots have settled
+      if (!hasInteraction && mx < -1000) {
+        var anyActive = false;
+        for (var k = 0; k < dots.length; k++) {
+          if (dots[k].a > 0.02) { anyActive = true; break; }
+        }
+        if (!anyActive) return;
+      }
+
       ctx.clearRect(0, 0, w, h);
       time += 0.016;
       var sp = Math.min(Math.max(scrollProg, 0), 1);
       var color = scrollColor(sp);
       var cr = ~~color[0], cg = ~~color[1], cb = ~~color[2];
-      var mouseR = isMobile ? 160 : 220;
-      var connectR = isMobile ? 140 : 110;
-
-      // Breathing wave
-      var waveY = h * (0.3 + 0.4 * Math.sin(time * 0.25));
-      var waveR = 250;
+      var mouseR = isMobile ? 140 : 200;
+      var connectR = isMobile ? 120 : 100;
 
       var activeDots = [];
       for (var i = 0; i < dots.length; i++) {
@@ -475,9 +497,6 @@
           d.vx += dx * f * 0.003;
           d.vy += dy * f * 0.003;
         }
-
-        var wd = Math.abs(d.oy - waveY);
-        if (wd < waveR) d.a = Math.max(d.a, (1 - wd / waveR) * 0.08);
 
         d.vx += (d.ox - d.x) * 0.035;
         d.vy += (d.oy - d.y) * 0.035;
@@ -582,6 +601,9 @@
      8. SCROLL PROGRESS (sidebar desktop, top bar mobile)
      ================================================================ */
   function initScrollProgress() {
+    // Skip if page already has its own section navigation
+    if (document.getElementById('secNav')) return;
+
     var sections = document.querySelectorAll('.sec');
     if (sections.length < 3) return;
 
@@ -673,29 +695,31 @@
     if (typeof gsap === 'undefined') return;
     var strength = isMobile ? 0.4 : 1;
 
-    // Hero gradients (already exist, add stronger parallax)
+    // Hero gradients — only if not already animated by inline script
     var hg1 = document.querySelector('.hg1');
     var hg2 = document.querySelector('.hg2');
-    if (hg1) {
+    if (hg1 && gsap.getTweensOf(hg1).length === 0) {
       gsap.to(hg1, {
         y: -150 * strength, scale: 1 + 0.3 * strength, opacity: 0.3,
         scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
       });
     }
-    if (hg2) {
+    if (hg2 && gsap.getTweensOf(hg2).length === 0) {
       gsap.to(hg2, {
         y: 150 * strength, scale: 1 - 0.3 * strength, opacity: 0.2,
         scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
       });
     }
 
-    // Section background depth — subtle parallax on section content
-    document.querySelectorAll('.sec.pad .stitle, .svc-section h2').forEach(function(el) {
-      gsap.to(el, {
+    // Section background depth — skip headings that already have scrub tweens
+    var parallaxHeadings = document.querySelectorAll('.sec.pad .stitle');
+    for (var pi = 0; pi < Math.min(parallaxHeadings.length, 3); pi++) {
+      if (gsap.getTweensOf(parallaxHeadings[pi]).length > 0) continue;
+      gsap.to(parallaxHeadings[pi], {
         y: -40 * strength,
-        scrollTrigger: { trigger: el.closest('.sec, .svc-section'), start: 'top bottom', end: 'bottom top', scrub: 2 }
+        scrollTrigger: { trigger: parallaxHeadings[pi].closest('.sec'), start: 'top bottom', end: 'bottom top', scrub: 2 }
       });
-    });
+    }
   }
 
   /* ================================================================
@@ -703,6 +727,9 @@
      Page background subtly shifts color as you scroll through
      ================================================================ */
   function initScrollColor() {
+    // Skip if page already has its own background morphing system
+    if (document.getElementById('bgMorph')) return;
+
     var overlay = document.createElement('div');
     overlay.id = 'te-scroll-glow';
     document.body.appendChild(overlay);
@@ -721,18 +748,28 @@
      INIT
      ================================================================ */
   function init() {
+    // Detect if page already has heavy GSAP animations (reduce effects.js footprint)
+    var existingTriggers = (typeof ScrollTrigger !== 'undefined') ? ScrollTrigger.getAll().length : 0;
+    var isHeavyPage = existingTriggers > 30;
+
     initSmoothScroll();
     initBootSequence();
     initHero3D();
-    initMesh();
     initCursor();
-    initScrollProgress();
-    initTextReveals();
-    initCardReveals();
-    initSectionGlow();
-    initConnectors();
-    initParallax();
     initScrollColor();
+
+    if (!isHeavyPage) {
+      initMesh();
+      initTextReveals();
+      initCardReveals();
+      initScrollProgress();
+      initSectionGlow();
+      initConnectors();
+      initParallax();
+    } else {
+      // Light mode: only essential effects, skip mesh canvas and extra ScrollTriggers
+      initScrollProgress();
+    }
 
     // Safety fallback: reveal any chars that haven't animated after 5s
     setTimeout(function() {

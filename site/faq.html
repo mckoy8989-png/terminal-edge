@@ -221,7 +221,7 @@
 
 <!-- ══════ PAGE HERO ══════ -->
 <section class="page-hero">
-  <canvas id="heroCanvas"></canvas>
+  <canvas id="heroCanvas" style="display:none"></canvas>
   <div class="hero-glow hg1" style="background:#3b82f6;width:min(500px,80vw);height:min(500px,80vw);top:-150px;left:0"></div>
   <div class="hero-glow hg2" style="background:#8b5cf6;width:min(400px,70vw);height:min(400px,70vw);bottom:-100px;right:0"></div>
   <div class="page-hero-ct">
@@ -545,88 +545,6 @@
 <script>
 (function(){
 'use strict';
-
-/* ═══════════════════════════════════
-   PARTICLE CANVAS
-   ═══════════════════════════════════ */
-const cv = document.getElementById('heroCanvas');
-const cx = cv.getContext('2d');
-let pts = [], mx = { x: null, y: null };
-const PC = innerWidth < 768 ? 30 : 60;
-const CD = 140, MD = 180;
-
-function rsz() {
-  cv.width = cv.parentElement.offsetWidth;
-  cv.height = cv.parentElement.offsetHeight;
-}
-rsz();
-addEventListener('resize', rsz, {passive:true});
-class Particle {
-  constructor() {
-    this.x = Math.random() * cv.width;
-    this.y = Math.random() * cv.height;
-    this.vx = (Math.random() - 0.5) * 0.4;
-    this.vy = (Math.random() - 0.5) * 0.4;
-    this.r = Math.random() * 1.5 + 0.8;
-  }
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
-    if (this.x < 0 || this.x > cv.width) this.vx *= -1;
-    if (this.y < 0 || this.y > cv.height) this.vy *= -1;
-    if (mx.x !== null) {
-      const dx = this.x - mx.x, dy = this.y - mx.y;
-      const d = Math.sqrt(dx * dx + dy * dy);
-      if (d < MD) {
-        const f = (MD - d) / MD * 0.015;
-        this.vx += dx * f;
-        this.vy += dy * f;
-      }
-    }
-    this.vx *= 0.99;
-    this.vy *= 0.99;
-  }
-  draw() {
-    cx.beginPath();
-    cx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    cx.fillStyle = 'rgba(59,130,246,0.45)';
-    cx.fill();
-  }
-}
-
-for (let i = 0; i < PC; i++) pts.push(new Particle());
-
-function connections() {
-  for (let i = 0; i < pts.length; i++) {
-    for (let j = i + 1; j < pts.length; j++) {
-      const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
-      const d = Math.sqrt(dx * dx + dy * dy);
-      if (d < CD) {
-        cx.beginPath();
-        cx.moveTo(pts[i].x, pts[i].y);
-        cx.lineTo(pts[j].x, pts[j].y);
-        cx.strokeStyle = `rgba(59,130,246,${0.12 * (1 - d / CD)})`;
-        cx.lineWidth = 0.5;
-        cx.stroke();
-      }
-    }
-  }
-}
-
-function animate() {
-  cx.clearRect(0, 0, cv.width, cv.height);
-  pts.forEach(p => { p.update(); p.draw(); });
-  connections();
-  requestAnimationFrame(animate);
-}
-animate();
-
-cv.addEventListener('mousemove', e => {
-  const rect = cv.getBoundingClientRect();
-  mx.x = e.clientX - rect.left;
-  mx.y = e.clientY - rect.top;
-});
-cv.addEventListener('mouseleave', () => { mx.x = null; mx.y = null; });
 
 /* ═══════════════════════════════════
    SCROLL PROGRESS + NAV (throttled)

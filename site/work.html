@@ -324,7 +324,7 @@
      SECTION 1 — PAGE HERO
      ══════════════════════════════════════════════ -->
 <section class="page-hero">
-  <canvas id="heroCanvas"></canvas>
+  <canvas id="heroCanvas" style="display:none"></canvas>
   <div class="hero-glow hg1" style="background:#3b82f6;width:min(500px,80vw);height:min(500px,80vw);top:-150px;left:0"></div>
   <div class="hero-glow" style="background:#8b5cf6;width:min(400px,70vw);height:min(400px,70vw);bottom:-100px;right:-50px"></div>
   <div class="page-hero-ct">
@@ -937,26 +937,6 @@
 <script>
 (function(){
 'use strict';
-
-/* ══════════════════════════════════════════════
-   PARTICLES CANVAS
-   ══════════════════════════════════════════════ */
-const cv=document.getElementById('heroCanvas'),cx=cv.getContext('2d');
-let pts=[],mx={x:null,y:null};
-const PC=innerWidth<768?30:60,CD=130,MD=160;
-function rsz(){cv.width=cv.parentElement.offsetWidth;cv.height=cv.parentElement.offsetHeight}
-rsz();addEventListener('resize',rsz,{passive:true});
-class P{
-  constructor(){this.x=Math.random()*cv.width;this.y=Math.random()*cv.height;this.vx=(Math.random()-.5)*.35;this.vy=(Math.random()-.5)*.35;this.r=Math.random()*1.4+.7}
-  update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>cv.width)this.vx*=-1;if(this.y<0||this.y>cv.height)this.vy*=-1;if(mx.x!==null){const dx=this.x-mx.x,dy=this.y-mx.y,d=Math.sqrt(dx*dx+dy*dy);if(d<MD){const f=(MD-d)/MD*.012;this.vx+=dx*f;this.vy+=dy*f}}this.vx*=.99;this.vy*=.99}
-  draw(){cx.beginPath();cx.arc(this.x,this.y,this.r,0,Math.PI*2);cx.fillStyle='rgba(59,130,246,0.4)';cx.fill()}
-}
-for(let i=0;i<PC;i++)pts.push(new P);
-function conn(){for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<CD){cx.beginPath();cx.moveTo(pts[i].x,pts[i].y);cx.lineTo(pts[j].x,pts[j].y);cx.strokeStyle=`rgba(59,130,246,${.1*(1-d/CD)})`;cx.lineWidth=.5;cx.stroke()}}}
-function anim(){cx.clearRect(0,0,cv.width,cv.height);pts.forEach(p=>{p.update();p.draw()});conn();requestAnimationFrame(anim)}
-anim();
-cv.addEventListener('mousemove',e=>{const r=cv.getBoundingClientRect();mx.x=e.clientX-r.left;mx.y=e.clientY-r.top});
-cv.addEventListener('mouseleave',()=>{mx.x=null;mx.y=null});
 
 /* ══════════════════════════════════════════════
    SCROLL PROGRESS + NAV (throttled)
