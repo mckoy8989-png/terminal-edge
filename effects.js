@@ -173,9 +173,9 @@
      3. BOOT SEQUENCE (index page, first visit)
      ================================================================ */
   function initBootSequence() {
-    if (!document.getElementById('hero')) return;
-    if (sessionStorage.getItem('te-booted')) return;
-    sessionStorage.setItem('te-booted', '1');
+    // Disabled ΓÇö boot sequence added perceived latency
+    return;
+  }
 
     document.body.style.overflow = 'hidden';
     var overlay = document.createElement('div');
