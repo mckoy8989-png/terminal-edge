@@ -10,8 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" media="print" id="gfonts"/>
 <link rel="stylesheet" href="styles.css"/>
-<link rel="preload" href="lib/gsap.min.js" as="script"/><link rel="preload" href="lib/ScrollTrigger.min.js" as="script"/><script src="lib/gsap.min.js"></script>
-<script src="lib/ScrollTrigger.min.js"></script>
+
 <style>
 /* ══════════════════════════════════════════════
    WORK PAGE — Page-Specific Styles
@@ -290,7 +289,7 @@
 </style>
 <script>document.documentElement.classList.add('gsap-ready');</script><script>var gf=document.getElementById("gfonts");if(gf){gf.onload=function(){gf.media="all"}};</script>
 </head>
-<body><div class="page-transition" id="pageTransition"></div>
+<body><div class="page-transition" id="pageTransition"></div><script>document.getElementById("pageTransition").classList.remove("active")</script>
 
 <div class="scroll-bar" id="scrollBar"></div>
 
@@ -930,6 +929,7 @@
 <div class="ft-bot"><span>© 2025 Terminal Edge. All rights reserved.</span><span>Engineered with precision.</span></div>
 </footer>
 
+<script src="lib/gsap.min.js"></script><script src="lib/ScrollTrigger.min.js"></script>
 <script>
 (function(){
 'use strict';
