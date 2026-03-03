@@ -177,60 +177,125 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 @keyframes pulse-live{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 @media(max-width:600px){.stats-g{grid-template-columns:repeat(2,1fr);gap:1rem}.stat-ring{width:64px;height:64px}}
 
-/* ── SERVICES (Bento Grid) ── */
-.svc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:1.25rem;perspective:1200px}
-.svc-grid .svc-card:nth-child(1){grid-column:1/2;grid-row:1/2}
-.svc-grid .svc-card:nth-child(2){grid-column:2/3;grid-row:1/3}
-.svc-grid .svc-card:nth-child(3){grid-column:1/2;grid-row:2/3}
-.svc-grid .svc-card:nth-child(4){grid-column:1/3;grid-row:3/4}
-@media(max-width:768px){.svc-grid{grid-template-columns:1fr}.svc-grid .svc-card{grid-column:1!important;grid-row:auto!important}}
+/* ── SERVICES (Premium Showcase) ── */
+.svc-section{background:var(--bg);position:relative;overflow:hidden}
+.svc-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(59,130,246,.04),transparent 50%),radial-gradient(ellipse at 80% 100%,rgba(139,92,246,.04),transparent 50%);pointer-events:none}
+.svc-grid{display:flex;flex-direction:column;gap:2rem}
 
-.svc-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:0;position:relative;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);transform-style:preserve-3d}
-.svc-card::before{content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;opacity:0;transition:opacity .5s;z-index:2;pointer-events:none;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
-.svc-card:nth-child(1)::before{background:linear-gradient(135deg,transparent 30%,#3b82f6,transparent 70%)}
-.svc-card:nth-child(2)::before{background:linear-gradient(135deg,transparent 30%,#8b5cf6,transparent 70%)}
-.svc-card:nth-child(3)::before{background:linear-gradient(135deg,transparent 30%,#06b6d4,transparent 70%)}
-.svc-card:nth-child(4)::before{background:linear-gradient(135deg,transparent 30%,#10b981 50%,transparent 70%)}
-.svc-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.svc-card{background:var(--bg3);border:1px solid var(--border);border-radius:20px;overflow:hidden;position:relative;transition:transform .5s var(--ease),box-shadow .5s var(--ease);display:grid;grid-template-columns:1fr 1fr;min-height:340px}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 30px 80px rgba(0,0,0,.4)}
+/* Animated gradient border */
+.svc-card::before{content:'';position:absolute;inset:-1px;border-radius:20px;padding:1px;opacity:0;transition:opacity .6s;z-index:2;pointer-events:none;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 .svc-card:hover::before{opacity:1}
-.svc-card-visual{height:140px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.svc-card:nth-child(1) .svc-card-visual{background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(59,130,246,.02))}
-.svc-card:nth-child(2) .svc-card-visual{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(139,92,246,.02));height:100%}
-.svc-card:nth-child(3) .svc-card-visual{background:linear-gradient(135deg,rgba(6,182,212,.08),rgba(6,182,212,.02))}
-.svc-card:nth-child(4) .svc-card-visual{background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(16,185,129,.02));height:80px}
-.svc-card-visual .svc-anim{position:relative;z-index:1}
-.svc-card-visual::after{content:'';position:absolute;width:200px;height:200px;border-radius:50%;filter:blur(60px);opacity:.15;pointer-events:none}
-.svc-card:nth-child(1) .svc-card-visual::after{background:#3b82f6;top:-40px;right:-40px}
-.svc-card:nth-child(2) .svc-card-visual::after{background:#8b5cf6;bottom:-40px;left:-40px}
-.svc-card:nth-child(3) .svc-card-visual::after{background:#06b6d4;top:-40px;left:-40px}
-.svc-card:nth-child(4) .svc-card-visual::after{background:#10b981;top:-20px;right:20%}
-.svc-card-body{padding:1.5rem 1.75rem 1.75rem}
-.svc-card:nth-child(4) .svc-card-body{padding:1.25rem 1.75rem 1.5rem}
-.svc-card-num{font-family:var(--fm);font-size:.6rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
+.svc-card:nth-child(1)::before{background:conic-gradient(from 0deg,transparent,#3b82f6,transparent,#8b5cf6,transparent)}
+.svc-card:nth-child(2)::before{background:conic-gradient(from 90deg,transparent,#8b5cf6,transparent,#ec4899,transparent)}
+.svc-card:nth-child(3)::before{background:conic-gradient(from 180deg,transparent,#06b6d4,transparent,#10b981,transparent)}
+.svc-card:nth-child(4)::before{background:conic-gradient(from 270deg,transparent,#10b981,transparent,#f59e0b,transparent)}
+.svc-card:nth-child(odd){direction:ltr}
+.svc-card:nth-child(even){direction:rtl}
+.svc-card:nth-child(even) > *{direction:ltr}
+@media(max-width:768px){.svc-card{grid-template-columns:1fr;min-height:auto}.svc-card:nth-child(even){direction:ltr}}
+
+/* Visual panel */
+.svc-visual{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:2rem;min-height:300px}
+.svc-visual::before{content:'';position:absolute;inset:0;opacity:.6;pointer-events:none}
+.svc-card:nth-child(1) .svc-visual::before{background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(139,92,246,.04))}
+.svc-card:nth-child(2) .svc-visual::before{background:linear-gradient(135deg,rgba(139,92,246,.06),rgba(236,72,153,.04))}
+.svc-card:nth-child(3) .svc-visual::before{background:linear-gradient(135deg,rgba(6,182,212,.06),rgba(16,185,129,.04))}
+.svc-card:nth-child(4) .svc-visual::before{background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(245,158,11,.04))}
+.svc-visual::after{content:'';position:absolute;width:300px;height:300px;border-radius:50%;filter:blur(80px);opacity:.12;pointer-events:none}
+.svc-card:nth-child(1) .svc-visual::after{background:#3b82f6;bottom:-100px;right:-50px}
+.svc-card:nth-child(2) .svc-visual::after{background:#8b5cf6;top:-100px;left:-50px}
+.svc-card:nth-child(3) .svc-visual::after{background:#06b6d4;bottom:-100px;left:-50px}
+.svc-card:nth-child(4) .svc-visual::after{background:#10b981;top:-80px;right:-50px}
+.svc-visual-inner{position:relative;z-index:1;width:100%}
+
+/* Browser mockup (premium) */
+.svc-browser{width:100%;border-radius:10px;border:1px solid var(--border);overflow:hidden;background:var(--bg);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.svc-browser-bar{height:28px;background:rgba(0,0,0,.5);display:flex;align-items:center;gap:6px;padding:0 12px}
+.svc-browser-bar .dot{width:8px;height:8px;border-radius:50%}
+.svc-browser-bar .url{flex:1;margin:0 10px;height:16px;border-radius:4px;background:rgba(255,255,255,.06);display:flex;align-items:center;padding:0 8px;font-size:.55rem;color:var(--muted);font-family:var(--fm)}
+.svc-browser-content{padding:12px;min-height:200px;position:relative}
+
+/* Code editor mockup */
+.svc-editor{width:100%;border-radius:10px;border:1px solid var(--border);overflow:hidden;background:var(--bg);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.svc-editor-bar{height:28px;background:rgba(0,0,0,.5);display:flex;align-items:center;gap:6px;padding:0 12px}
+.svc-editor-bar .dot{width:8px;height:8px;border-radius:50%}
+.svc-editor-tabs{display:flex;gap:0;margin-left:12px}
+.svc-editor-tab{padding:4px 12px;font-size:.55rem;font-family:var(--fm);color:var(--muted);border-bottom:2px solid transparent}
+.svc-editor-tab.active{color:var(--text);border-color:#8b5cf6;background:rgba(139,92,246,.05)}
+.svc-editor-body{display:flex;min-height:210px}
+.svc-editor-lines{padding:10px 0;width:32px;text-align:right;font-family:var(--fm);font-size:.55rem;color:var(--muted);line-height:1.9;padding-right:8px;background:rgba(0,0,0,.15);user-select:none}
+.svc-editor-code{flex:1;padding:10px 12px;font-family:var(--fm);font-size:.6rem;color:var(--dim);line-height:1.9;overflow:hidden}
+.svc-editor-code .ck{color:#c084fc}
+.svc-editor-code .cf{color:#60a5fa}
+.svc-editor-code .cs{color:#34d399}
+.svc-editor-code .cv{color:#fbbf24}
+.svc-editor-code .cc{color:#64748b;font-style:italic}
+.svc-editor-code .ct{color:#f0abfc}
+
+/* Dashboard mockup */
+.svc-dash{width:100%;border-radius:10px;border:1px solid var(--border);overflow:hidden;background:var(--bg);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.svc-dash-sidebar{width:48px;background:rgba(0,0,0,.3);border-right:1px solid var(--border);padding:8px 0;display:flex;flex-direction:column;align-items:center;gap:8px}
+.svc-dash-sidebar .si{width:28px;height:28px;border-radius:6px;background:rgba(255,255,255,.04);display:grid;place-items:center}
+.svc-dash-sidebar .si.active{background:rgba(16,185,129,.15)}
+.svc-dash-sidebar .si svg{width:14px;height:14px;color:var(--muted)}
+.svc-dash-sidebar .si.active svg{color:#10b981}
+.svc-dash-main{flex:1;padding:10px}
+.svc-dash-row{display:flex;gap:6px;margin-bottom:6px}
+.svc-dash-stat{flex:1;padding:6px 8px;border-radius:6px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
+.svc-dash-stat-val{font-family:var(--fm);font-size:.7rem;font-weight:600}
+.svc-dash-stat-lbl{font-size:.4rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.svc-dash-chart{height:60px;border-radius:6px;background:rgba(255,255,255,.02);border:1px solid var(--border);padding:6px;margin-top:4px}
+
+/* Terminal mockup */
+.svc-term{width:100%;border-radius:10px;border:1px solid var(--border);overflow:hidden;background:var(--bg);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.svc-term-bar{height:28px;background:rgba(0,0,0,.5);display:flex;align-items:center;gap:6px;padding:0 12px}
+.svc-term-bar .dot{width:8px;height:8px;border-radius:50%}
+.svc-term-bar .title{font-size:.55rem;font-family:var(--fm);color:var(--muted);margin-left:8px}
+.svc-term-body{padding:12px;font-family:var(--fm);font-size:.58rem;color:var(--dim);line-height:2}
+.svc-term-body .prompt{color:#06b6d4}
+.svc-term-body .cmd{color:var(--text)}
+.svc-term-body .out{color:var(--muted)}
+.svc-term-body .ok{color:#10b981}
+.svc-term-body .warn{color:#f59e0b}
+
+/* Content panel */
+.svc-content{padding:2.5rem 2.5rem 2.5rem 2rem;display:flex;flex-direction:column;justify-content:center}
+.svc-card-num{font-family:var(--fm);font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.svc-card-num::after{content:'';flex:1;height:1px;max-width:60px}
 .svc-card:nth-child(1) .svc-card-num{color:#3b82f6}
+.svc-card:nth-child(1) .svc-card-num::after{background:linear-gradient(90deg,rgba(59,130,246,.3),transparent)}
 .svc-card:nth-child(2) .svc-card-num{color:#8b5cf6}
+.svc-card:nth-child(2) .svc-card-num::after{background:linear-gradient(90deg,rgba(139,92,246,.3),transparent)}
 .svc-card:nth-child(3) .svc-card-num{color:#06b6d4}
+.svc-card:nth-child(3) .svc-card-num::after{background:linear-gradient(90deg,rgba(6,182,212,.3),transparent)}
 .svc-card:nth-child(4) .svc-card-num{color:#10b981}
-.svc-card h3{font-family:var(--ff);font-size:1.2rem;font-weight:600;margin-bottom:.25rem}
-.svc-card .price{font-family:var(--fm);font-size:.75rem;color:var(--green);display:inline-flex;align-items:center;gap:.3rem}
-.svc-card .price::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(16,185,129,.5)}
-.svc-card>p,.svc-card-body>p{color:var(--dim);font-size:.85rem;margin:.75rem 0 1rem;line-height:1.65}
-.tags{display:flex;flex-wrap:wrap;gap:.35rem}
-.tag{font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(255,255,255,.04);color:var(--muted);font-family:var(--fm);border:1px solid rgba(255,255,255,.06);transition:border-color .3s,color .3s,background .3s}
+.svc-card:nth-child(4) .svc-card-num::after{background:linear-gradient(90deg,rgba(16,185,129,.3),transparent)}
+.svc-card h3{font-family:var(--ff);font-size:1.4rem;font-weight:700;margin-bottom:.2rem;line-height:1.3}
+.svc-card .price{font-family:var(--fm);font-size:.78rem;color:var(--green);display:inline-flex;align-items:center;gap:.4rem}
+.svc-card .price::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px rgba(16,185,129,.5)}
+.svc-content>p{color:var(--dim);font-size:.9rem;margin:.8rem 0 1.2rem;line-height:1.7}
+.svc-features{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-direction:column;gap:.4rem}
+.svc-features li{font-size:.8rem;color:var(--dim);display:flex;align-items:center;gap:.5rem;font-family:var(--fb)}
+.svc-features li svg{width:14px;height:14px;flex-shrink:0;stroke-width:2.5}
+.svc-card:nth-child(1) .svc-features li svg{color:#3b82f6}
+.svc-card:nth-child(2) .svc-features li svg{color:#8b5cf6}
+.svc-card:nth-child(3) .svc-features li svg{color:#06b6d4}
+.svc-card:nth-child(4) .svc-features li svg{color:#10b981}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{font-size:.68rem;padding:.28rem .65rem;border-radius:100px;background:rgba(255,255,255,.04);color:var(--muted);font-family:var(--fm);border:1px solid rgba(255,255,255,.06);transition:border-color .3s,color .3s,background .3s}
 .tag:hover{border-color:rgba(59,130,246,.3);color:var(--text);background:rgba(59,130,246,.08)}
-/* Visual elements inside service cards */
-.svc-browser-mini{width:85%;max-width:280px;border-radius:8px;border:1px solid var(--border);overflow:hidden;background:var(--bg);box-shadow:0 8px 30px rgba(0,0,0,.3)}
-.svc-browser-bar-mini{height:20px;background:rgba(0,0,0,.4);display:flex;align-items:center;gap:4px;padding:0 8px}
-.svc-browser-bar-mini span{width:6px;height:6px;border-radius:50%}
-.svc-browser-body-mini{padding:8px;min-height:60px;display:flex;flex-direction:column;gap:4px}
-.svc-code-block{font-family:var(--fm);font-size:.55rem;color:var(--dim);line-height:1.8;padding:.75rem;background:rgba(0,0,0,.3);border-radius:6px;border:1px solid var(--border);max-width:280px}
-.svc-code-block .ck{color:#3b82f6}
-.svc-code-block .cs{color:#10b981}
-.svc-code-block .cv{color:#f59e0b}
-.svc-code-block .cp{color:#8b5cf6}
-.svc-flow-visual{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}
-.svc-flow-node{padding:4px 10px;border-radius:6px;font-family:var(--fm);font-size:.55rem;border:1px solid;display:flex;align-items:center;gap:4px}
-.svc-flow-arrow{font-size:.6rem;color:var(--muted)}
+.svc-cta{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;padding:.6rem 1.4rem;border-radius:var(--rxs);font-family:var(--fm);font-size:.78rem;font-weight:600;color:#fff;transition:transform .2s,box-shadow .2s;text-decoration:none}
+.svc-cta:hover{transform:translateY(-2px)}
+.svc-card:nth-child(1) .svc-cta{background:linear-gradient(135deg,#3b82f6,#2563eb);box-shadow:0 4px 20px rgba(59,130,246,.3)}
+.svc-card:nth-child(1) .svc-cta:hover{box-shadow:0 8px 30px rgba(59,130,246,.4)}
+.svc-card:nth-child(2) .svc-cta{background:linear-gradient(135deg,#8b5cf6,#7c3aed);box-shadow:0 4px 20px rgba(139,92,246,.3)}
+.svc-card:nth-child(2) .svc-cta:hover{box-shadow:0 8px 30px rgba(139,92,246,.4)}
+.svc-card:nth-child(3) .svc-cta{background:linear-gradient(135deg,#06b6d4,#0891b2);box-shadow:0 4px 20px rgba(6,182,212,.3)}
+.svc-card:nth-child(3) .svc-cta:hover{box-shadow:0 8px 30px rgba(6,182,212,.4)}
+.svc-card:nth-child(4) .svc-cta{background:linear-gradient(135deg,#10b981,#059669);box-shadow:0 4px 20px rgba(16,185,129,.3)}
+.svc-card:nth-child(4) .svc-cta:hover{box-shadow:0 8px 30px rgba(16,185,129,.4)}
 
 /* ── FEATURE HIGHLIGHTS ── */
 .feat-sec{background:var(--bg2);position:relative;overflow:hidden}
@@ -660,7 +725,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 </section>
 
 <!-- SERVICES — Bento Grid -->
-<section class="sec pad" id="services">
+<section class="sec pad svc-section" id="services">
 <div class="ctn">
 <div class="tc gs-hide">
 <span class="lbl">What We Build</span>
@@ -669,91 +734,187 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 </div>
 <div class="svc-grid">
 
-<!-- Card 1: Custom Websites -->
+<!-- Card 1: Custom Websites — Browser Preview -->
 <div class="svc-card gs-hide">
-<div class="svc-card-visual">
-<div class="svc-anim">
-<div class="svc-browser-mini">
-<div class="svc-browser-bar-mini"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
-<div class="svc-browser-body-mini">
-<div style="height:6px;width:40%;background:rgba(59,130,246,.3);border-radius:2px"></div>
-<div style="height:4px;width:70%;background:rgba(255,255,255,.06);border-radius:2px"></div>
-<div style="display:flex;gap:3px;margin-top:2px"><div style="flex:1;height:20px;border-radius:3px;background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.08))"></div><div style="flex:1;height:20px;border-radius:3px;background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(59,130,246,.04))"></div></div>
+<div class="svc-visual">
+<div class="svc-visual-inner">
+<div class="svc-browser">
+<div class="svc-browser-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><div class="url">https://your-brand.com</div></div>
+<div class="svc-browser-content">
+<!-- Nav -->
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)">
+<div style="font-family:var(--ff);font-size:.65rem;font-weight:700;color:var(--text)">YourBrand</div>
+<div style="display:flex;gap:10px"><span style="font-size:.45rem;color:var(--muted);font-family:var(--fm)">Products</span><span style="font-size:.45rem;color:var(--muted);font-family:var(--fm)">About</span><span style="font-size:.45rem;color:var(--muted);font-family:var(--fm)">Contact</span></div>
+</div>
+<!-- Hero area -->
+<div style="display:flex;gap:10px;align-items:center">
+<div style="flex:1">
+<div style="font-family:var(--ff);font-size:.7rem;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.3">Build Something<br><span style="background:linear-gradient(90deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Extraordinary</span></div>
+<div style="font-size:.4rem;color:var(--muted);margin-bottom:6px;line-height:1.5">Pixel-perfect interfaces that convert visitors into loyal customers.</div>
+<div style="display:flex;gap:4px"><span style="font-size:.35rem;padding:3px 8px;border-radius:4px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;font-family:var(--fm)">Get Started</span><span style="font-size:.35rem;padding:3px 8px;border-radius:4px;border:1px solid var(--border);color:var(--muted);font-family:var(--fm)">Learn More</span></div>
+</div>
+<div style="flex:0 0 70px;height:60px;border-radius:8px;background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(139,92,246,.1));display:grid;place-items:center">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3b82f6" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>
+</div>
+</div>
+<!-- Stats row -->
+<div style="display:flex;gap:4px;margin-top:10px">
+<div style="flex:1;padding:5px;border-radius:4px;background:rgba(255,255,255,.03);border:1px solid var(--border);text-align:center"><div style="font-size:.55rem;font-weight:700;color:#3b82f6;font-family:var(--fm)">99.9%</div><div style="font-size:.3rem;color:var(--muted)">Uptime</div></div>
+<div style="flex:1;padding:5px;border-radius:4px;background:rgba(255,255,255,.03);border:1px solid var(--border);text-align:center"><div style="font-size:.55rem;font-weight:700;color:#10b981;font-family:var(--fm)">&lt;0.8s</div><div style="font-size:.3rem;color:var(--muted)">Load Time</div></div>
+<div style="flex:1;padding:5px;border-radius:4px;background:rgba(255,255,255,.03);border:1px solid var(--border);text-align:center"><div style="font-size:.55rem;font-weight:700;color:#8b5cf6;font-family:var(--fm)">100</div><div style="font-size:.3rem;color:var(--muted)">PageSpeed</div></div>
 </div>
 </div>
 </div>
 </div>
-<div class="svc-card-body">
+</div>
+<div class="svc-content">
 <div class="svc-card-num">01 — Web</div>
 <h3>Custom Websites</h3>
 <span class="price">From $500</span>
 <p>Performance-obsessed, mobile-first websites that convert visitors into customers. SEO-optimized, blazing fast, WCAG accessible.</p>
+<ul class="svc-features">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Sub-second load times with SSR & edge caching</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Responsive design — flawless on every device</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Built-in analytics, SEO & accessibility</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>CMS integration for easy content updates</li>
+</ul>
 <div class="tags"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Headless CMS</span><span class="tag">E-Commerce</span></div>
+<a href="contact.html" class="svc-cta">Start a Project <span>→</span></a>
 </div>
 </div>
 
-<!-- Card 2: AI Workflows (tall, right side) -->
+<!-- Card 2: AI Workflows — Code Editor Preview -->
 <div class="svc-card gs-hide">
-<div class="svc-card-visual">
-<div class="svc-anim">
-<div class="svc-code-block">
-<span class="ck">from</span> langchain <span class="ck">import</span> Agent<br>
-<span class="ck">from</span> vectordb <span class="ck">import</span> Pinecone<br><br>
-<span class="cp">agent</span> = Agent(<br>
-&nbsp;&nbsp;model=<span class="cs">"gpt-4"</span>,<br>
-&nbsp;&nbsp;tools=[search, extract],<br>
-&nbsp;&nbsp;memory=Pinecone(<span class="cs">"kb"</span>)<br>
+<div class="svc-visual">
+<div class="svc-visual-inner">
+<div class="svc-editor">
+<div class="svc-editor-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+<div class="svc-editor-tabs"><span class="svc-editor-tab active">agent.py</span><span class="svc-editor-tab">config.yaml</span><span class="svc-editor-tab">tools.py</span></div>
+</div>
+<div class="svc-editor-body">
+<div class="svc-editor-lines">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14</div>
+<div class="svc-editor-code" id="svcAiCode">
+<span class="cc"># Terminal Edge — AI Agent Pipeline</span><br>
+<span class="ck">from</span> <span class="cf">langchain</span> <span class="ck">import</span> Agent, Tool<br>
+<span class="ck">from</span> <span class="cf">vectordb</span> <span class="ck">import</span> Pinecone<br>
+<br>
+<span class="cv">agent</span> = Agent(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;model=<span class="cs">"gpt-4-turbo"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tools=[search, extract, summarize],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;memory=Pinecone(<span class="cs">"knowledge-base"</span>),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;guardrails=<span class="ct">True</span>,<br>
 )<br>
-<span class="cv">result</span> = agent.run(<span class="cs">"Analyze Q4 data"</span>)
+<br>
+<span class="cv">result</span> = agent.run(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prompt=<span class="cs">"Analyze Q4 revenue and flag anomalies"</span><br>
+)
 </div>
 </div>
 </div>
-<div class="svc-card-body">
+</div>
+</div>
+<div class="svc-content">
 <div class="svc-card-num">02 — Intelligence</div>
 <h3>AI Workflows & Agents</h3>
 <span class="price">From $1,500</span>
 <p>Custom AI pipelines — content generation, data extraction, customer support bots, RAG systems — all with structured outputs and guardrails.</p>
+<ul class="svc-features">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Multi-model orchestration (GPT, Claude, Gemini)</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>RAG with vector search for domain expertise</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Guardrails, structured output & validation</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>n8n / Zapier integration for automation</li>
+</ul>
 <div class="tags"><span class="tag">GPT / Claude</span><span class="tag">n8n</span><span class="tag">RAG</span><span class="tag">Vector DB</span></div>
+<a href="contact.html" class="svc-cta">Build an Agent <span>→</span></a>
 </div>
 </div>
 
-<!-- Card 3: Trading Bots -->
+<!-- Card 3: Trading & Scraping Bots — Terminal Preview -->
 <div class="svc-card gs-hide">
-<div class="svc-card-visual">
-<div class="svc-anim">
-<svg viewBox="0 0 200 60" style="width:85%;max-width:240px;height:auto;filter:drop-shadow(0 0 8px rgba(6,182,212,.3))"><path d="M0,50 L20,45 L40,48 L60,30 L80,35 L100,20 L120,25 L140,10 L160,15 L180,8 L200,5" fill="none" stroke="#06b6d4" stroke-width="2"/><path d="M0,50 L20,45 L40,48 L60,30 L80,35 L100,20 L120,25 L140,10 L160,15 L180,8 L200,5 L200,60 L0,60Z" fill="url(#cyanGrad2)" opacity=".2"/><defs><linearGradient id="cyanGrad2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="transparent"/></linearGradient></defs><circle cx="140" cy="10" r="3" fill="#06b6d4"><animate attributeName="opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></circle></svg>
+<div class="svc-visual">
+<div class="svc-visual-inner">
+<div class="svc-term">
+<div class="svc-term-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="title">terminal-edge — bot-engine</span></div>
+<div class="svc-term-body" id="svcTerminal">
+<span class="prompt">$</span> <span class="cmd">te-bot init --strategy=momentum</span><br>
+<span class="ok">✓</span> <span class="out">Strategy loaded: momentum-v3.2</span><br>
+<span class="ok">✓</span> <span class="out">Exchange: Binance Futures (testnet)</span><br>
+<span class="ok">✓</span> <span class="out">Risk engine: max_drawdown=5%, position_size=2%</span><br>
+<span class="prompt">$</span> <span class="cmd">te-bot backtest --range=90d</span><br>
+<span class="out">Running 2,160 candles...</span><br>
+<span class="ok">✓</span> <span class="out">Sharpe: 2.14 | Win rate: 67.3% | Max DD: 3.8%</span><br>
+<span class="prompt">$</span> <span class="cmd">te-bot deploy --live --notify=slack</span><br>
+<span class="ok">✓</span> <span class="out">Bot deployed — monitoring on /dashboard</span><br>
+<span class="warn">⚠</span> <span class="out">Kill switch armed at -5% daily PnL</span><br>
+<span class="prompt">$</span> <span class="cmd" id="svcTermCursor">_</span>
 </div>
 </div>
-<div class="svc-card-body">
+</div>
+</div>
+<div class="svc-content">
 <div class="svc-card-num">03 — Automation</div>
 <h3>Trading & Scraping Bots</h3>
 <span class="price">Custom Quote</span>
 <p>Algorithmic trading systems, price monitors, web scrapers, and data pipelines — battle-tested with risk management and kill switches.</p>
+<ul class="svc-features">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Backtested strategies with full reporting</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Real-time execution with &lt;50ms latency</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Risk management & automated kill switches</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Slack/Discord alerts & live dashboards</li>
+</ul>
 <div class="tags"><span class="tag">CCXT</span><span class="tag">Playwright</span><span class="tag">Backtesting</span><span class="tag">Risk Engine</span></div>
+<a href="contact.html" class="svc-cta">Get a Quote <span>→</span></a>
 </div>
 </div>
 
-<!-- Card 4: Custom Apps (full width) -->
+<!-- Card 4: Custom Applications — Dashboard Preview -->
 <div class="svc-card gs-hide">
-<div class="svc-card-visual">
-<div class="svc-anim">
-<div class="svc-flow-visual">
-<div class="svc-flow-node" style="border-color:rgba(16,185,129,.3);color:#10b981"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/></svg> Mobile</div>
-<span class="svc-flow-arrow">→</span>
-<div class="svc-flow-node" style="border-color:rgba(59,130,246,.3);color:#3b82f6"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/></svg> API</div>
-<span class="svc-flow-arrow">→</span>
-<div class="svc-flow-node" style="border-color:rgba(139,92,246,.3);color:#8b5cf6"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg> DB</div>
-<span class="svc-flow-arrow">→</span>
-<div class="svc-flow-node" style="border-color:rgba(245,158,11,.3);color:#f59e0b"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg> Dashboard</div>
+<div class="svc-visual">
+<div class="svc-visual-inner">
+<div class="svc-dash" style="display:flex;overflow:hidden">
+<div class="svc-dash-sidebar">
+<div class="si active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+<div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+<div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+<div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+</div>
+<div class="svc-dash-main">
+<div style="font-size:.5rem;font-weight:600;color:var(--text);margin-bottom:6px;font-family:var(--ff)">Dashboard Overview</div>
+<div class="svc-dash-row">
+<div class="svc-dash-stat"><div class="svc-dash-stat-val" style="color:#10b981">$48.2K</div><div class="svc-dash-stat-lbl">Revenue</div></div>
+<div class="svc-dash-stat"><div class="svc-dash-stat-val" style="color:#3b82f6">1,247</div><div class="svc-dash-stat-lbl">Users</div></div>
+<div class="svc-dash-stat"><div class="svc-dash-stat-val" style="color:#8b5cf6">94.2%</div><div class="svc-dash-stat-lbl">Retention</div></div>
+</div>
+<!-- Mini chart area -->
+<div class="svc-dash-chart" id="svcDashChart">
+<svg viewBox="0 0 280 50" preserveAspectRatio="none" style="width:100%;height:100%">
+<defs><linearGradient id="chartGradSvc" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10b981" stop-opacity=".3"/><stop offset="100%" stop-color="#10b981" stop-opacity="0"/></linearGradient></defs>
+<path d="M0,40 C20,38 40,35 60,30 C80,25 100,28 120,22 C140,16 160,20 180,15 C200,10 220,12 240,8 C260,5 280,3 280,3 L280,50 L0,50Z" fill="url(#chartGradSvc)"/>
+<path d="M0,40 C20,38 40,35 60,30 C80,25 100,28 120,22 C140,16 160,20 180,15 C200,10 220,12 240,8 C260,5 280,3 280,3" fill="none" stroke="#10b981" stroke-width="2"/>
+<circle cx="240" cy="8" r="3" fill="#10b981"><animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.5;1" dur="2s" repeatCount="indefinite"/></circle>
+</svg>
+</div>
+<div style="display:flex;gap:4px;margin-top:4px">
+<div style="flex:1;height:18px;border-radius:3px;background:rgba(255,255,255,.02);border:1px solid var(--border);display:flex;align-items:center;padding:0 5px"><div style="width:60%;height:4px;border-radius:2px;background:linear-gradient(90deg,#3b82f6,#8b5cf6)"></div></div>
+<div style="flex:1;height:18px;border-radius:3px;background:rgba(255,255,255,.02);border:1px solid var(--border);display:flex;align-items:center;padding:0 5px"><div style="width:80%;height:4px;border-radius:2px;background:linear-gradient(90deg,#10b981,#06b6d4)"></div></div>
 </div>
 </div>
 </div>
-<div class="svc-card-body">
+</div>
+</div>
+<div class="svc-content">
 <div class="svc-card-num">04 — Full-Stack</div>
 <h3>Custom Applications</h3>
 <span class="price">From $2,500</span>
 <p>Full-stack web & mobile apps — SaaS dashboards, internal tools, client portals, API integrations — tailored precisely to your workflow.</p>
+<ul class="svc-features">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>End-to-end SaaS & internal tools</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Real-time dashboards with live data</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>REST & GraphQL API architecture</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Auth, roles, payments & notifications</li>
+</ul>
 <div class="tags"><span class="tag">Full-Stack</span><span class="tag">Mobile</span><span class="tag">API</span><span class="tag">Dashboards</span></div>
+<a href="contact.html" class="svc-cta">Start Building <span>→</span></a>
 </div>
 </div>
 
@@ -1431,21 +1592,38 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
 })();
 
 /* ══════════════════════════════════════════════════════════════
-   PAGE-LEVEL INTERACTION 4: SERVICES — STAGGERED FLY-IN
-   Cards fly in from alternating sides as you scroll
+   PAGE-LEVEL INTERACTION 4: SERVICES — PREMIUM SHOWCASE REVEAL
+   Cards slide in with visual element animations
    ══════════════════════════════════════════════════════════════ */
 (function(){
   const cards = document.querySelectorAll('.svc-card');
   cards.forEach((card, i) => {
-    const fromX = i % 2 === 0 ? -120 : 120;
-    const fromRot = i % 2 === 0 ? -6 : 6;
+    const visual = card.querySelector('.svc-visual');
+    const content = card.querySelector('.svc-content');
+    const features = card.querySelectorAll('.svc-features li');
+    const tags = card.querySelectorAll('.tag');
+
+    /* Card entrance */
     gsap.fromTo(card,
-      {x:fromX, opacity:0, rotateY:fromRot},
-      {x:0, opacity:1, rotateY:0, duration:1.2, ease:'power3.out',
-        scrollTrigger:{trigger:card, start:'top 90%', once:true}
+      {y:80, opacity:0},
+      {y:0, opacity:1, duration:1, ease:'power3.out',
+        scrollTrigger:{trigger:card, start:'top 88%', once:true,
+          onEnter:function(){
+            /* Animate feature items */
+            gsap.fromTo(features, {x:-15, opacity:0}, {x:0, opacity:1, stagger:.08, duration:.5, ease:'power2.out', delay:.4});
+            /* Animate tags */
+            gsap.fromTo(tags, {scale:.8, opacity:0}, {scale:1, opacity:1, stagger:.05, duration:.3, ease:'back.out(2)', delay:.7});
+          }
+        }
       }
     );
   });
+
+  /* Terminal cursor blink */
+  const cursor = document.getElementById('svcTermCursor');
+  if(cursor){
+    gsap.to(cursor, {opacity:0, repeat:-1, yoyo:true, duration:.6, ease:'steps(1)'});
+  }
 })();
 
 /* ══════════════════════════════════════════════════════════════
