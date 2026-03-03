@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pricing — Terminal Edge</title>
+<meta name="description" content="Transparent, fixed-price development. Custom websites from $500, AI workflows from $1,500, full-stack apps from $2,500.">
+<meta name="theme-color" content="#06070a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="prefetch" href="index.html">
+<link rel="prefetch" href="services.html">
+<link rel="prefetch" href="work.html">
+<link rel="prefetch" href="contact.html">
+<link rel="prefetch" href="faq.html">
+<style>
+.compare-table{width:100%;border-collapse:collapse;margin-top:3rem}
+.compare-table th,.compare-table td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border);font-size:.9rem}
+.compare-table th{color:var(--dim);font-weight:500;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+.compare-table td:first-child{color:var(--text2)}
+.compare-table td{color:var(--dim)}
+.compare-table .yes{color:var(--green)}
+.compare-table .no{color:var(--muted)}
+.compare-table .featured-col{background:rgba(99,102,241,.04)}
+.addons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.addon-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem}
+.addon-card h4{font-size:1rem;margin-bottom:.25rem}
+.addon-price{color:var(--indigo);font-weight:600;font-size:.9rem;margin-bottom:.5rem}
+.addon-card p{font-size:.85rem;color:var(--dim);line-height:1.5}
+.guarantee-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.guarantee-card{text-align:center;padding:2rem}
+.guarantee-icon{font-size:2rem;margin-bottom:.75rem}
+.guarantee-card h4{font-size:1rem;margin-bottom:.5rem}
+.guarantee-card p{font-size:.85rem;color:var(--dim);line-height:1.5}
+@media(max-width:768px){
+.addons-grid,.guarantee-grid{grid-template-columns:1fr}
+.compare-table{font-size:.75rem}
+.compare-table th,.compare-table td{padding:.5rem}
+}
+</style>
+</head>
+<body>
+<div class="page-transition"></div>
+<div class="scroll-progress"></div>
+
+<!-- NAV -->
+<nav class="nav"><div class="nav-inner">
+<a href="index.html" class="nav-logo"><span class="nav-logo-mark">TE</span> Terminal Edge</a>
+<div class="nav-links"><a href="services.html">Services</a><a href="work.html">Work</a><a href="pricing.html" class="active">Pricing</a><a href="faq.html">FAQ</a></div>
+<a href="contact.html" class="btn btn-primary btn-sm nav-cta">Start a Project</a>
+<button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="mobile-menu">
+<a href="services.html">Services</a><a href="work.html">Work</a><a href="pricing.html" class="active">Pricing</a><a href="faq.html">FAQ</a>
+<a href="contact.html" class="btn btn-primary" style="margin-top:1rem">Start a Project</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+<div class="container">
+<div class="badge badge-glow hero-animate" style="animation-delay:.1s"><span class="badge-dot"></span> Fixed-Price Projects</div>
+<h1 class="hero-animate" style="animation-delay:.25s">Transparent, <span class="text-gradient">No-Surprise Pricing</span></h1>
+<p class="hero-animate" style="animation-delay:.4s">No hourly billing. No scope creep charges. No hidden fees. You know exactly what you're paying before we write a single line of code.</p>
+</div>
+</section>
+
+<!-- PRICING CARDS -->
+<section class="section-lg"><div class="container">
+<div class="pricing-grid">
+
+<div class="pricing-card reveal"><div class="pricing-tier"><div class="pricing-name">Starter</div><div class="pricing-amount">$500<span style="font-size:.9rem;color:var(--dim);font-weight:400"> one-time</span></div><p class="pricing-desc">Perfect for landing pages, portfolio sites, and single-page applications.</p></div>
+<ul class="pricing-features">
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Responsive single-page design</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Contact form &amp; basic analytics</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> SEO &amp; performance optimization</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 14-day delivery</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 14-day post-launch support</li>
+</ul>
+<a href="contact.html" class="pricing-btn pricing-btn-outline">Get Started &#8594;</a></div>
+
+<div class="pricing-card featured reveal"><div class="pricing-tier"><span class="badge" style="margin-bottom:1rem">Most Popular</span><div class="pricing-name">Professional</div><div class="pricing-amount">$2,500<span style="font-size:.9rem;color:var(--dim);font-weight:400"> starting</span></div><p class="pricing-desc">Multi-page websites with AI integration, custom APIs, and advanced functionality.</p></div>
+<ul class="pricing-features">
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Multi-page custom design</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> AI chatbot or workflow integration</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Custom API &amp; database</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 30-day post-launch support</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> CMS &amp; analytics dashboard</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Priority communication channel</li>
+</ul>
+<a href="contact.html" class="pricing-btn pricing-btn-fill">Start Your Project &#8594;</a></div>
+
+<div class="pricing-card reveal"><div class="pricing-tier"><div class="pricing-name">Enterprise</div><div class="pricing-amount">Custom</div><p class="pricing-desc">Full-scale SaaS platforms, trading systems, and enterprise-grade applications.</p></div>
+<ul class="pricing-features">
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Full-stack application architecture</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Trading bots &amp; automation systems</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Dedicated engineering team</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Priority SLA &amp; 24/7 monitoring</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Ongoing retainer available</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Custom SLA &amp; NDA</li>
+</ul>
+<a href="contact.html" class="pricing-btn pricing-btn-outline">Contact Us &#8594;</a></div>
+
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="reveal" style="overflow-x:auto">
+<table class="compare-table">
+<thead><tr><th>Feature</th><th>Starter</th><th class="featured-col">Professional</th><th>Enterprise</th></tr></thead>
+<tbody>
+<tr><td>Custom Design</td><td class="yes">&#10003; Single page</td><td class="featured-col yes">&#10003; Multi-page</td><td class="yes">&#10003; Full app</td></tr>
+<tr><td>Responsive</td><td class="yes">&#10003;</td><td class="featured-col yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+<tr><td>SEO Optimization</td><td class="yes">&#10003;</td><td class="featured-col yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+<tr><td>Contact Form</td><td class="yes">&#10003;</td><td class="featured-col yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+<tr><td>CMS Integration</td><td class="no">&#8212;</td><td class="featured-col yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+<tr><td>AI Integration</td><td class="no">&#8212;</td><td class="featured-col yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+<tr><td>Custom API</td><td class="no">&#8212;</td><td class="featured-col yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+<tr><td>Database</td><td class="no">&#8212;</td><td class="featured-col yes">&#10003;</td><td class="yes">&#10003;</td></tr>
+<tr><td>Authentication</td><td class="no">&#8212;</td><td class="featured-col no">Add-on</td><td class="yes">&#10003;</td></tr>
+<tr><td>Payment Integration</td><td class="no">&#8212;</td><td class="featured-col no">Add-on</td><td class="yes">&#10003;</td></tr>
+<tr><td>Trading Bot</td><td class="no">&#8212;</td><td class="featured-col no">&#8212;</td><td class="yes">&#10003;</td></tr>
+<tr><td>24/7 Monitoring</td><td class="no">&#8212;</td><td class="featured-col no">&#8212;</td><td class="yes">&#10003;</td></tr>
+<tr><td>Post-Launch Support</td><td>14 days</td><td class="featured-col">30 days</td><td>Custom SLA</td></tr>
+<tr><td>Delivery</td><td>~14 days</td><td class="featured-col">2&#8211;4 weeks</td><td>Custom</td></tr>
+</tbody>
+</table>
+</div>
+</div></section>
+
+<!-- ADD-ONS -->
+<section class="section"><div class="container">
+<div class="section-header reveal"><span class="section-label">Add-Ons</span><h2>Extend Any <span class="text-gradient-2">Package</span></h2><p>Bolt on additional capabilities to any pricing tier.</p></div>
+<div class="addons-grid">
+<div class="addon-card reveal"><h4>AI Chatbot</h4><div class="addon-price">From $800</div><p>GPT-4o powered support bot with RAG, trained on your documentation. Includes guardrails and analytics dashboard.</p></div>
+<div class="addon-card reveal"><h4>Auth &amp; Payments</h4><div class="addon-price">From $600</div><p>User authentication (Auth0/Clerk), role-based access, and Stripe payment integration with subscription billing.</p></div>
+<div class="addon-card reveal"><h4>Monthly Retainer</h4><div class="addon-price">From $500/mo</div><p>Ongoing maintenance, monitoring, bug fixes, feature development, and priority support with guaranteed response times.</p></div>
+<div class="addon-card reveal"><h4>Analytics Dashboard</h4><div class="addon-price">From $400</div><p>Custom analytics tracking, conversion funnels, real-time metrics, and exportable reporting dashboard.</p></div>
+<div class="addon-card reveal"><h4>E-Commerce</h4><div class="addon-price">From $700</div><p>Full Stripe/Shopify integration with product management, inventory, checkout, and order fulfillment tracking.</p></div>
+<div class="addon-card reveal"><h4>API Development</h4><div class="addon-price">From $1,000</div><p>Custom REST or GraphQL API with documentation, rate limiting, webhooks, and monitoring built in.</p></div>
+</div>
+</div></section>
+
+<!-- GUARANTEES -->
+<section class="section"><div class="container">
+<div class="section-header reveal"><span class="section-label">Our Promise</span><h2>Built-In <span class="text-gradient-3">Guarantees</span></h2></div>
+<div class="guarantee-grid">
+<div class="guarantee-card reveal"><div class="guarantee-icon">&#128274;</div><h4>100% Code Ownership</h4><p>Every line of code is yours. Full repository access, no vendor lock-in, no proprietary frameworks.</p></div>
+<div class="guarantee-card reveal"><div class="guarantee-icon">&#128176;</div><h4>Fixed-Price Guarantee</h4><p>The price we quote is the price you pay. No scope creep surcharges, no hourly billing surprises.</p></div>
+<div class="guarantee-card reveal"><div class="guarantee-icon">&#128640;</div><h4>On-Time Delivery</h4><p>We commit to deadlines and hit them. If we're late, your post-launch support period doubles at no cost.</p></div>
+</div>
+</div></section>
+
+<!-- PRICING FAQ -->
+<section class="section"><div class="container" style="max-width:800px">
+<div class="section-header reveal"><span class="section-label">Pricing FAQ</span><h2>Common <span class="text-gradient">Questions</span></h2></div>
+<div class="faq-list">
+<div class="faq-item reveal"><button class="faq-question">How does your pricing work?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">We use fixed-price project billing. After the Discovery phase, we provide a detailed quote with no hidden fees. You approve the scope and price before we begin. Payment is typically 50% upfront, 50% on delivery.</div></div></div>
+<div class="faq-item reveal"><button class="faq-question">What if the project scope changes mid-build?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Minor adjustments within the agreed scope are included at no extra cost. For significant scope additions, we'll provide a separate quote for the additional work. We never charge surprise fees.</div></div></div>
+<div class="faq-item reveal"><button class="faq-question">Do you offer payment plans?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. Standard terms are 50/50 (upfront/delivery). For larger projects, we can arrange milestone-based payments. Enterprise clients can discuss custom payment schedules during the discovery phase.</div></div></div>
+<div class="faq-item reveal"><button class="faq-question">What's included in post-launch support?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Bug fixes, performance optimization, minor text/design adjustments, and monitoring. This doesn't include new features or major redesigns, which would be quoted separately.</div></div></div>
+<div class="faq-item reveal"><button class="faq-question">Can I switch from Starter to Professional later?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Absolutely. We build everything modular, so upgrading is seamless. You'd pay the difference plus any new feature development costs. Your existing work carries forward.</div></div></div>
+</div>
+</div></section>
+
+<!-- CTA -->
+<section class="section"><div class="container"><div class="cta-block reveal-scale">
+<h2>Ready to Get <span class="text-gradient">Started</span>?</h2>
+<p>Contact us for a free technical assessment and detailed quote for your project.</p>
+<a href="contact.html" class="btn btn-primary btn-lg">Start Your Project &#8594;</a>
+</div></div></section>
+
+<!-- FOOTER -->
+<footer class="section"><div class="container">
+<div class="footer-grid">
+<div class="footer-brand"><a href="index.html" class="nav-logo" style="margin-bottom:1rem;display:inline-flex"><span class="nav-logo-mark">TE</span> Terminal Edge</a><p>Premium development studio specializing in custom websites, AI workflows, trading bots, and full-stack applications.</p></div>
+<div class="footer-col"><h4>Services</h4><a href="services.html">Custom Websites</a><a href="services.html">AI Workflows</a><a href="services.html">Trading Bots</a><a href="services.html">Custom Apps</a></div>
+<div class="footer-col"><h4>Company</h4><a href="work.html">Our Work</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
+<div class="footer-col"><h4>Connect</h4><a href="mailto:hello@terminaledge.dev">hello@terminaledge.dev</a><a href="https://github.com/terminaledge" target="_blank" rel="noopener">GitHub</a><a href="https://twitter.com/terminaledge" target="_blank" rel="noopener">Twitter / X</a><a href="https://linkedin.com/company/terminaledge" target="_blank" rel="noopener">LinkedIn</a></div>
+</div>
+<div class="footer-bottom"><p>&copy; 2025 Terminal Edge. All rights reserved.</p><p>Engineered with precision in every line of code.</p></div>
+</div></footer>
+<script src="app.js"></script>
+</body>
+</html>

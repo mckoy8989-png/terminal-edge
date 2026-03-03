@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terminal Edge — We Engineer Digital Dominance</title>
+<meta name="description" content="Terminal Edge builds custom websites, AI workflows, trading bots, and full-stack applications. Premium development for ambitious teams.">
+<meta name="theme-color" content="#06070a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="prefetch" href="services.html">
+<link rel="prefetch" href="work.html">
+<link rel="prefetch" href="pricing.html">
+<link rel="prefetch" href="contact.html">
+<link rel="prefetch" href="faq.html">
+<style>
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(99,102,241,.12),transparent 70%),radial-gradient(ellipse 50% 50% at 80% 20%,rgba(139,92,246,.08),transparent 60%);pointer-events:none;z-index:0}
+.hero::after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h1v1H0z' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E") repeat;pointer-events:none;z-index:0}
+.hero .container{position:relative;z-index:1}
+.hero-content{text-align:center;max-width:800px;margin:0 auto}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:700;line-height:1.1;margin-bottom:1.25rem;letter-spacing:-.03em}
+.hero-sub{font-size:clamp(1rem,1.8vw,1.2rem);color:var(--text2);max-width:580px;margin:0 auto 2.5rem;line-height:1.6}
+.hero-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.hero-terminal{width:100%;max-width:640px;margin:0 auto}
+.hero-terminal .terminal-body{height:320px;overflow:hidden;font-size:.85rem;line-height:1.65}
+.hero-terminal .terminal-cursor{display:inline-block;width:8px;height:16px;background:var(--green);animation:blink 1s step-end infinite;vertical-align:text-bottom;margin-left:2px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.stat-ring{width:80px;height:80px;margin-bottom:.75rem}
+.stat-ring svg{width:80px;height:80px;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--surface3);stroke-width:5}
+.ring-fill{fill:none;stroke:url(#ringGrad);stroke-width:5;stroke-linecap:round;transition:stroke-dashoffset 1.4s cubic-bezier(.4,0,.2,1)}
+.service-visual .mini-nav{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-bottom:1px solid var(--border);font-size:.55rem;color:var(--dim)}
+.service-visual .mini-hero{padding:12px 10px;text-align:center}
+.service-visual .mini-hero h4{font-size:.65rem;font-weight:600;margin-bottom:4px;color:var(--text)}
+.service-visual .mini-hero p{font-size:.5rem;color:var(--dim);margin-bottom:6px}
+.service-visual .mini-stats{display:flex;gap:6px;justify-content:center;padding:6px 10px}
+.service-visual .mini-stat{flex:1;text-align:center;padding:4px;border-radius:4px;background:var(--surface)}
+.service-visual .mini-stat strong{display:block;font-size:.6rem;color:var(--cyan)}
+.service-visual .mini-stat span{font-size:.45rem;color:var(--dim)}
+.service-visual .mini-products{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:8px 10px}
+.service-visual .mini-product{background:var(--surface);border-radius:4px;padding:6px;text-align:center}
+.service-visual .mini-product .swatch{width:100%;height:24px;border-radius:3px;margin-bottom:4px}
+.service-visual .mini-product .pname{font-size:.45rem;color:var(--text2)}
+.service-visual .mini-product .pprice{font-size:.5rem;color:var(--green);font-weight:600}
+.service-visual .editor-line{display:flex;font-size:.55rem;line-height:1.5}
+.service-visual .editor-ln{width:24px;text-align:right;padding-right:8px;color:var(--muted);user-select:none}
+.service-visual .editor-code{color:var(--text2)}
+.mini-dash-stats{display:flex;gap:6px;padding:8px 10px}
+.mini-dash-stat{flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center}
+.mini-dash-stat strong{display:block;font-size:.6rem}
+.mini-dash-stat span{font-size:.45rem;color:var(--dim)}
+.mini-chart{padding:4px 10px 8px}
+.mini-chart svg{width:100%;height:50px}
+.tech-icon{font-size:1.6rem;margin-bottom:.5rem}
+@media(max-width:768px){
+.hero-terminal .terminal-body{height:260px;font-size:.75rem}
+.hero h1{font-size:2rem}
+.services-grid{grid-template-columns:1fr!important}
+}
+</style>
+</head>
+<body>
+<div class="page-transition"></div>
+<div class="scroll-progress"></div>
+<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient></defs></svg>
+
+<!-- NAV -->
+<nav class="nav"><div class="nav-inner">
+<a href="index.html" class="nav-logo"><span class="nav-logo-mark">TE</span> Terminal Edge</a>
+<div class="nav-links"><a href="services.html">Services</a><a href="work.html">Work</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a></div>
+<a href="contact.html" class="btn btn-primary btn-sm nav-cta">Start a Project</a>
+<button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="mobile-menu">
+<a href="services.html">Services</a><a href="work.html">Work</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a>
+<a href="contact.html" class="btn btn-primary" style="margin-top:1rem">Start a Project</a>
+</div>
+
+<!-- HERO -->
+<section class="hero"><div class="container"><div class="hero-content">
+<div class="badge badge-glow hero-animate" style="animation-delay:.1s"><span class="badge-dot"></span> Available for new projects</div>
+<h1 class="hero-animate" style="animation-delay:.25s">We Engineer<br><span class="text-gradient">Digital Dominance</span></h1>
+<p class="hero-sub hero-animate" style="animation-delay:.4s">Custom websites, AI workflows, trading bots, and full-stack applications — built from scratch by engineers who ship fast and build to last.</p>
+<div class="hero-buttons hero-animate" style="animation-delay:.55s">
+<a href="contact.html" class="btn btn-primary btn-lg">Start Your Project &#8594;</a>
+<a href="services.html" class="btn btn-secondary btn-lg">Explore Services</a>
+</div></div>
+<div class="hero-terminal hero-animate" style="animation-delay:.7s"><div class="terminal">
+<div class="terminal-bar"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><span style="margin-left:auto;font-size:.65rem;color:var(--dim)">te-cli v4.2.0</span></div>
+<div class="terminal-body" id="hero-term"></div>
+</div></div>
+</div></section>
+
+<!-- STATS -->
+<section class="section"><div class="container">
+<div class="section-header reveal"><span class="section-label">Track Record</span><h2>Proven Results in <span class="text-gradient">Numbers</span></h2><p>Every metric backed by real client outcomes and live system data.</p></div>
+<div class="stats-grid">
+<div class="stat-card reveal">
+<div class="stat-ring"><svg viewBox="0 0 36 36"><circle class="ring-bg" cx="18" cy="18" r="15.9"/><circle class="ring-fill" cx="18" cy="18" r="15.9" stroke-dasharray="100" stroke-dashoffset="100" data-pct="94"/></svg></div>
+<div class="stat-number" data-count="47">0</div><div class="stat-label">Projects Shipped</div><div class="stat-sub"><span class="badge-dot"></span> 12 active builds</div></div>
+<div class="stat-card reveal">
+<div class="stat-ring"><svg viewBox="0 0 36 36"><circle class="ring-bg" cx="18" cy="18" r="15.9"/><circle class="ring-fill" cx="18" cy="18" r="15.9" stroke-dasharray="100" stroke-dashoffset="100" data-pct="99"/></svg></div>
+<div class="stat-number" data-count="99">0</div><div class="stat-label">Uptime SLA %</div><div class="stat-sub"><span class="badge-dot"></span> Zero outages &#8212; 90 days</div></div>
+<div class="stat-card reveal">
+<div class="stat-ring"><svg viewBox="0 0 36 36"><circle class="ring-bg" cx="18" cy="18" r="15.9"/><circle class="ring-fill" cx="18" cy="18" r="15.9" stroke-dasharray="100" stroke-dashoffset="100" data-pct="80"/></svg></div>
+<div class="stat-number" data-count="12">0</div><div class="stat-label">AI Agents Deployed</div><div class="stat-sub"><span class="badge-dot"></span> GPT-4o &#183; Claude &#183; Gemini</div></div>
+<div class="stat-card reveal">
+<div class="stat-ring"><svg viewBox="0 0 36 36"><circle class="ring-bg" cx="18" cy="18" r="15.9"/><circle class="ring-fill" cx="18" cy="18" r="15.9" stroke-dasharray="100" stroke-dashoffset="100" data-pct="96"/></svg></div>
+<div class="stat-number" data-count="24">0</div><div class="stat-label">Hour Turnaround</div><div class="stat-sub"><span class="badge-dot"></span> Avg response &lt; 2h</div></div>
+</div></div></section>
+
+<!-- SERVICES -->
+<section class="section-lg" id="services"><div class="container">
+<div class="section-header reveal"><span class="section-label">What We Build</span><h2>Four Pillars of <span class="text-gradient-2">Digital Infrastructure</span></h2><p>End-to-end engineering across web, intelligence, automation, and full-stack applications.</p></div>
+<div class="services-grid">
+
+<!-- Service 1: Websites -->
+<div class="service-card reveal"><div class="service-visual"><div class="browser-frame"><div class="browser-chrome"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><div class="browser-url">novaretail.com</div></div>
+<div class="browser-body" style="padding:0;background:var(--bg2)">
+<div class="mini-nav"><strong style="color:var(--text)">NOVA</strong><span>Shop &#183; About &#183; Contact</span></div>
+<div class="mini-hero"><span class="badge" style="font-size:.45rem;padding:2px 6px">New Collection</span><h4>Premium Streetwear</h4><p>Engineered for performance</p><span class="btn btn-primary" style="font-size:.45rem;padding:2px 8px;border-radius:4px">Shop Now</span></div>
+<div class="mini-stats"><div class="mini-stat"><strong>10K+</strong><span>Customers</span></div><div class="mini-stat"><strong>4.9&#9733;</strong><span>Rating</span></div><div class="mini-stat"><strong>24/7</strong><span>Support</span></div></div>
+<div class="mini-products">
+<div class="mini-product"><div class="swatch" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)"></div><div class="pname">Nova Jacket</div><div class="pprice">$189</div></div>
+<div class="mini-product"><div class="swatch" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)"></div><div class="pname">Tech Hoodie</div><div class="pprice">$129</div></div>
+<div class="mini-product"><div class="swatch" style="background:linear-gradient(135deg,#34d399,#10b981)"></div><div class="pname">Runner Pro</div><div class="pprice">$210</div></div>
+</div></div></div></div>
+<div class="service-content"><div class="service-number">01 &#8212; Web</div><h3>Custom Websites</h3><div class="service-price">From $500</div>
+<p>High-performance marketing sites, e-commerce platforms, and landing pages built with modern frameworks. Sub-second load times, responsive design, SEO-optimized from day one.</p>
+<ul class="service-features">
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Sub-second load times &amp; Core Web Vitals</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Fully responsive across all devices</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> SEO, accessibility &amp; analytics baked in</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> CMS integration (headless or traditional)</li>
+</ul>
+<div class="service-tags"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Headless CMS</span><span class="tag">Vercel</span></div>
+<a href="contact.html" class="service-cta">Start a Project &#8594;</a></div></div>
+
+<!-- Service 2: AI -->
+<div class="service-card reveal"><div class="service-visual"><div class="editor"><div class="editor-bar"><span class="editor-tab" style="opacity:1">agent.py</span><span class="editor-tab">config.yaml</span><span class="editor-tab">tools.py</span></div>
+<div class="editor-body" style="font-size:.6rem;line-height:1.5;padding:10px">
+<div class="editor-line"><span class="editor-ln">1</span><span class="editor-code"><span class="syn-keyword">from</span> langchain <span class="syn-keyword">import</span> Agent</span></div>
+<div class="editor-line"><span class="editor-ln">2</span><span class="editor-code"><span class="syn-keyword">from</span> langchain.llms <span class="syn-keyword">import</span> ChatOpenAI</span></div>
+<div class="editor-line"><span class="editor-ln">3</span><span class="editor-code"><span class="syn-keyword">from</span> vectorstore <span class="syn-keyword">import</span> PineconeDB</span></div>
+<div class="editor-line"><span class="editor-ln">4</span><span class="editor-code"></span></div>
+<div class="editor-line"><span class="editor-ln">5</span><span class="editor-code"><span class="syn-keyword">class</span> <span class="syn-function">SupportAgent</span>(Agent):</span></div>
+<div class="editor-line"><span class="editor-ln">6</span><span class="editor-code">    llm = ChatOpenAI(<span class="syn-string">"gpt-4o"</span>)</span></div>
+<div class="editor-line"><span class="editor-ln">7</span><span class="editor-code">    memory = PineconeDB(<span class="syn-string">"docs"</span>)</span></div>
+<div class="editor-line"><span class="editor-ln">8</span><span class="editor-code">    tools = [search, ticket, escalate]</span></div>
+<div class="editor-line"><span class="editor-ln">9</span><span class="editor-code"></span></div>
+<div class="editor-line"><span class="editor-ln">10</span><span class="editor-code">    <span class="syn-keyword">async def</span> <span class="syn-function">run</span>(self, query):</span></div>
+<div class="editor-line"><span class="editor-ln">11</span><span class="editor-code">        ctx = <span class="syn-keyword">await</span> self.memory.search(query)</span></div>
+<div class="editor-line"><span class="editor-ln">12</span><span class="editor-code">        <span class="syn-keyword">return await</span> self.llm.invoke(</span></div>
+<div class="editor-line"><span class="editor-ln">13</span><span class="editor-code">            query, context=ctx</span></div>
+<div class="editor-line"><span class="editor-ln">14</span><span class="editor-code">        )</span></div>
+</div></div></div>
+<div class="service-content"><div class="service-number">02 &#8212; Intelligence</div><h3>AI Workflows &amp; Agents</h3><div class="service-price">From $1,500</div>
+<p>Production-grade AI pipelines that automate support, process documents, generate content, and make decisions. Multi-model orchestration with built-in guardrails and monitoring.</p>
+<ul class="service-features">
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Multi-model orchestration (GPT-4o, Claude, Gemini)</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> RAG pipelines with vector search</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Safety guardrails &amp; prompt engineering</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> n8n / Zapier / custom webhook integration</li>
+</ul>
+<div class="service-tags"><span class="tag">OpenAI</span><span class="tag">LangChain</span><span class="tag">Pinecone</span><span class="tag">FastAPI</span></div>
+<a href="contact.html" class="service-cta">Start a Project &#8594;</a></div></div>
+
+<!-- Service 3: Trading Bots -->
+<div class="service-card reveal"><div class="service-visual"><div class="terminal"><div class="terminal-bar"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span></div>
+<div class="terminal-body" style="font-size:.55rem;line-height:1.6;padding:10px">
+<div><span class="prompt">$</span> <span class="cmd">te-bot init --strategy arbitrage</span></div>
+<div class="ok">&#10003; Strategy loaded: cross-exchange arb</div>
+<div class="ok">&#10003; Connected: Binance, Coinbase, Kraken</div>
+<div class="info">&#10219; Backtesting 180 days of data...</div>
+<div class="out">&nbsp;</div>
+<div class="out">&#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;</div>
+<div class="out">&#9474; <span class="val">Return</span>    &#9474; <span class="ok">+47.3%</span>         &#9474;</div>
+<div class="out">&#9474; <span class="val">Win Rate</span>  &#9474; <span class="ok">68.4%</span>          &#9474;</div>
+<div class="out">&#9474; <span class="val">Sharpe</span>    &#9474; <span class="ok">2.14</span>           &#9474;</div>
+<div class="out">&#9474; <span class="val">Max DD</span>    &#9474; <span class="warn">-8.2%</span>          &#9474;</div>
+<div class="out">&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;</div>
+<div class="out">&nbsp;</div>
+<div><span class="prompt">$</span> <span class="cmd">te-bot deploy --mode live</span></div>
+<div class="ok">&#10003; Bot deployed &#8594; running 24/7</div>
+</div></div></div>
+<div class="service-content"><div class="service-number">03 &#8212; Automation</div><h3>Trading &amp; Scraping Bots</h3><div class="service-price">Custom Quote</div>
+<p>Algorithmic trading systems and intelligent scraping pipelines. Backtested strategies, sub-50ms execution, real-time monitoring, and automated risk management built in.</p>
+<ul class="service-features">
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Backtesting with historical data</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Sub-50ms execution latency</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Automated risk management &amp; stop-losses</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Slack &amp; Discord alert integration</li>
+</ul>
+<div class="service-tags"><span class="tag">Python</span><span class="tag">ccxt</span><span class="tag">Redis</span><span class="tag">WebSockets</span></div>
+<a href="contact.html" class="service-cta">Start a Project &#8594;</a></div></div>
+
+<!-- Service 4: Custom Apps -->
+<div class="service-card reveal"><div class="service-visual"><div class="browser-frame"><div class="browser-chrome"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><div class="browser-url">app.dashboard.io</div></div>
+<div class="browser-body" style="padding:0;background:var(--bg2)">
+<div class="mini-dash-stats">
+<div class="mini-dash-stat"><strong style="color:var(--green)">$48.2K</strong><span>Revenue</span></div>
+<div class="mini-dash-stat"><strong style="color:var(--cyan)">1,247</strong><span>Users</span></div>
+<div class="mini-dash-stat"><strong style="color:var(--violet)">94.2%</strong><span>Retention</span></div></div>
+<div class="mini-chart"><svg viewBox="0 0 200 50" preserveAspectRatio="none"><defs><linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6366f1" stop-opacity=".4"/><stop offset="100%" stop-color="#6366f1" stop-opacity="0"/></linearGradient></defs><path d="M0,45 Q20,40 40,38 T80,25 T120,30 T160,15 T200,10 V50 H0Z" fill="url(#chartGrad)"/><path d="M0,45 Q20,40 40,38 T80,25 T120,30 T160,15 T200,10" fill="none" stroke="#6366f1" stroke-width="1.5"/></svg></div>
+<div style="padding:4px 10px 8px;display:flex;flex-direction:column;gap:4px">
+<div style="display:flex;align-items:center;gap:6px;font-size:.5rem"><div style="flex:1;height:4px;border-radius:2px;background:var(--surface3);overflow:hidden"><div style="width:82%;height:100%;background:var(--green);border-radius:2px"></div></div><span style="color:var(--dim)">Conversion 82%</span></div>
+<div style="display:flex;align-items:center;gap:6px;font-size:.5rem"><div style="flex:1;height:4px;border-radius:2px;background:var(--surface3);overflow:hidden"><div style="width:67%;height:100%;background:var(--cyan);border-radius:2px"></div></div><span style="color:var(--dim)">Engagement 67%</span></div>
+</div></div></div></div>
+<div class="service-content"><div class="service-number">04 &#8212; Full-Stack</div><h3>Custom Applications</h3><div class="service-price">From $2,500</div>
+<p>SaaS platforms, internal tools, and data dashboards built end-to-end. Real-time capabilities, role-based access, payment integration, and scalable cloud infrastructure.</p>
+<ul class="service-features">
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> SaaS platforms &amp; internal tools</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Real-time dashboards &amp; WebSocket feeds</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> REST &amp; GraphQL APIs</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Auth, roles, payments &amp; billing</li>
+</ul>
+<div class="service-tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">AWS</span></div>
+<a href="contact.html" class="service-cta">Start a Project &#8594;</a></div></div>
+
+</div></div></section>
+
+<!-- FEATURES -->
+<section class="section"><div class="container">
+<div class="section-header reveal"><span class="section-label">Why Terminal Edge</span><h2>Engineering, Not <span class="text-gradient-3">Guesswork</span></h2></div>
+<div class="grid grid-3">
+<div class="feature-card reveal"><div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="M2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
+<h3>100% Code Ownership</h3><p>Every line we write is yours. Full repository access from day one &#8212; no vendor lock-in, no proprietary frameworks, no hidden dependencies.</p></div>
+<div class="feature-card reveal"><div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+<h3>30-Day Free Support</h3><p>Every project includes 30 days of post-launch support. Bug fixes, performance tuning, and minor adjustments &#8212; all at no additional cost.</p></div>
+<div class="feature-card reveal"><div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+<h3>1:1 Direct Access</h3><p>No project managers, no ticket queues. You communicate directly with the engineers building your product. Decisions happen in hours, not weeks.</p></div>
+</div></div></section>
+
+<!-- PROCESS -->
+<section class="section-lg"><div class="container">
+<div class="section-header reveal"><span class="section-label">How We Work</span><h2>From Concept to <span class="text-gradient">Production</span></h2><p>A streamlined four-phase process designed for speed without sacrificing quality.</p></div>
+<div class="process-grid">
+<div class="process-card reveal"><div class="process-orb">01</div><h3>Discovery</h3><p>We learn your business, goals, audience, and constraints. Technical feasibility assessment and competitive analysis included.</p><div class="process-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 1&#8211;2 days</div></div>
+<div class="process-card reveal"><div class="process-orb">02</div><h3>Spec &amp; Quote</h3><p>Detailed technical specification, architecture diagram, milestone breakdown, and fixed-price quote. No surprises.</p><div class="process-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 24 hours</div></div>
+<div class="process-card reveal"><div class="process-orb">03</div><h3>Build &amp; Iterate</h3><p>Rapid development with weekly demos. You see working software from week one &#8212; not wireframes, not mockups, working code.</p><div class="process-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 1&#8211;4 weeks</div></div>
+<div class="process-card reveal"><div class="process-orb">04</div><h3>Ship &amp; Support</h3><p>Production deployment, monitoring setup, documentation handoff, and 30 days of free post-launch support.</p><div class="process-time"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 1&#8211;2 days</div></div>
+</div></div></section>
+
+<!-- SHOWCASE -->
+<section class="section" id="work"><div class="container">
+<div class="section-header reveal"><span class="section-label">Portfolio</span><h2>Systems We've <span class="text-gradient-2">Engineered</span></h2><p>Real projects, real metrics, real impact.</p></div>
+<div class="showcase-grid">
+
+<div class="showcase-card reveal"><div class="showcase-preview"><div class="browser-frame"><div class="browser-chrome"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><div class="browser-url">novaretail.com</div></div>
+<div class="browser-body" style="padding:10px;background:var(--bg2)">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:.5rem;color:var(--dim)"><strong style="color:var(--text)">NOVA</strong><span>Shop &#183; Cart (3)</span></div>
+<div style="background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:6px;padding:12px;text-align:center;margin-bottom:8px"><div style="font-size:.6rem;font-weight:600;color:#fff">Summer Drop 2025</div><div style="font-size:.45rem;color:rgba(255,255,255,.7)">Limited edition streetwear</div></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px"><div style="background:var(--surface);border-radius:4px;height:32px"></div><div style="background:var(--surface);border-radius:4px;height:32px"></div><div style="background:var(--surface);border-radius:4px;height:32px"></div></div>
+</div></div></div>
+<div class="showcase-info"><h3>Nova Retail</h3><p>Next.js + Stripe e-commerce rebuild that tripled conversion rates and halved page load times.</p>
+<div class="showcase-meta"><span class="showcase-badge" style="--badge-color:#6366f1">Web Development</span><span class="showcase-stat">&#8593; 340% conversion</span></div></div></div>
+
+<div class="showcase-card reveal"><div class="showcase-preview"><div class="browser-frame"><div class="browser-chrome"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><div class="browser-url">cloudsync.ai/chat</div></div>
+<div class="browser-body" style="padding:10px;background:var(--bg2);font-size:.5rem">
+<div style="background:var(--surface);border-radius:8px 8px 8px 2px;padding:6px 10px;margin-bottom:6px;max-width:80%;color:var(--text2)">How do I rotate my API keys?</div>
+<div style="background:linear-gradient(135deg,#8b5cf6,#6366f1);border-radius:8px 8px 2px 8px;padding:6px 10px;margin-bottom:6px;margin-left:auto;max-width:85%;color:#fff">Navigate to Settings &#8594; API Keys &#8594; Rotate. Your old key remains valid for 24h.</div>
+<div style="background:var(--surface);border-radius:8px 8px 8px 2px;padding:6px 10px;margin-bottom:6px;max-width:80%;color:var(--text2)">Can I have multiple active keys?</div>
+<div style="background:linear-gradient(135deg,#8b5cf6,#6366f1);border-radius:8px 8px 2px 8px;padding:6px 10px;margin-left:auto;max-width:85%;color:#fff">Yes! Up to 5 active API keys per project for different environments.</div>
+</div></div></div>
+<div class="showcase-info"><h3>CloudSync</h3><p>RAG-powered AI support agent handling 78% of customer queries autonomously with human-level accuracy.</p>
+<div class="showcase-meta"><span class="showcase-badge" style="--badge-color:#8b5cf6">AI / Automation</span><span class="showcase-stat">78% ticket deflection</span></div></div></div>
+
+<div class="showcase-card reveal"><div class="showcase-preview"><div class="browser-frame"><div class="browser-chrome"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><div class="browser-url">arbengine.io/dashboard</div></div>
+<div class="browser-body" style="padding:10px;background:var(--bg2)">
+<div style="display:flex;gap:6px;margin-bottom:8px;font-size:.5rem"><div style="flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center"><strong style="color:var(--green)">+12.4%</strong><br><span style="color:var(--dim)">PnL</span></div><div style="flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center"><strong style="color:var(--cyan)">247</strong><br><span style="color:var(--dim)">Trades</span></div><div style="flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center"><strong style="color:var(--amber)">0.8%</strong><br><span style="color:var(--dim)">DD</span></div></div>
+<svg viewBox="0 0 200 40" style="width:100%;height:40px" preserveAspectRatio="none"><defs><linearGradient id="arbGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22d3ee" stop-opacity=".3"/><stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/></linearGradient></defs><path d="M0,35 Q25,30 50,28 T100,18 T150,22 T200,8 V40 H0Z" fill="url(#arbGrad)"/><path d="M0,35 Q25,30 50,28 T100,18 T150,22 T200,8" fill="none" stroke="#22d3ee" stroke-width="1.5"/></svg>
+</div></div></div>
+<div class="showcase-info"><h3>ArbEngine</h3><p>Multi-exchange crypto arbitrage bot running 24/7 with automated risk management and real-time P&amp;L tracking.</p>
+<div class="showcase-meta"><span class="showcase-badge" style="--badge-color:#22d3ee">Trading Bot</span><span class="showcase-stat">24/7 autonomous</span></div></div></div>
+
+<div class="showcase-card reveal"><div class="showcase-preview"><div class="browser-frame"><div class="browser-chrome"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><div class="browser-url">dataflow.internal</div></div>
+<div class="browser-body" style="padding:10px;background:var(--bg2);font-size:.5rem">
+<div style="display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap">
+<div style="background:var(--surface);border-radius:6px;padding:6px 10px;text-align:center;border:1px solid var(--border2)"><span style="color:var(--cyan)">&#11041;</span> Scrape</div>
+<span style="color:var(--dim)">&#8594;</span>
+<div style="background:var(--surface);border-radius:6px;padding:6px 10px;text-align:center;border:1px solid var(--border2)"><span style="color:var(--violet)">&#9670;</span> LLM</div>
+<span style="color:var(--dim)">&#8594;</span>
+<div style="background:var(--surface);border-radius:6px;padding:6px 10px;text-align:center;border:1px solid var(--border2)"><span style="color:var(--green)">&#9673;</span> Filter</div>
+<span style="color:var(--dim)">&#8594;</span>
+<div style="background:var(--surface);border-radius:6px;padding:6px 10px;text-align:center;border:1px solid var(--border2)"><span style="color:var(--amber)">&#9635;</span> Store</div>
+<span style="color:var(--dim)">&#8594;</span>
+<div style="background:var(--surface);border-radius:6px;padding:6px 10px;text-align:center;border:1px solid var(--border2)"><span style="color:var(--rose)">&#9670;</span> Alert</div>
+</div>
+<div style="margin-top:8px;display:flex;gap:6px;justify-content:center"><span style="color:var(--green)">&#10003; 523 pages today</span><span style="color:var(--dim)">|</span><span style="color:var(--cyan)">98.7% accuracy</span></div>
+</div></div></div>
+<div class="showcase-info"><h3>DataFlow</h3><p>Intelligent scraping pipeline with LLM-powered data extraction, processing 500+ pages per day for competitive intelligence.</p>
+<div class="showcase-meta"><span class="showcase-badge" style="--badge-color:#34d399">Automation</span><span class="showcase-stat">500+ pages/day</span></div></div></div>
+
+</div>
+<div class="text-center mt-4 reveal"><a href="work.html" class="btn btn-secondary">View All Projects &#8594;</a></div>
+</div></section>
+
+<!-- TECH STACK -->
+<section class="section"><div class="container">
+<div class="section-header reveal"><span class="section-label">Our Stack</span><h2>Built With <span class="text-gradient-4">Best-in-Class Tools</span></h2></div>
+<div class="tech-grid reveal-scale">
+<div class="tech-item"><div class="tech-icon">&#9883;&#65039;</div><span>React</span></div>
+<div class="tech-item"><div class="tech-icon">&#9650;</div><span>Next.js</span></div>
+<div class="tech-item"><div class="tech-icon">&#128994;</div><span>Node.js</span></div>
+<div class="tech-item"><div class="tech-icon">&#128013;</div><span>Python</span></div>
+<div class="tech-item"><div class="tech-icon">&#128051;</div><span>Docker</span></div>
+<div class="tech-item"><div class="tech-icon">&#129302;</div><span>OpenAI</span></div>
+<div class="tech-item"><div class="tech-icon">&#129436;</div><span>LangChain</span></div>
+<div class="tech-item"><div class="tech-icon">&#128024;</div><span>PostgreSQL</span></div>
+<div class="tech-item"><div class="tech-icon">&#9889;</div><span>Redis</span></div>
+<div class="tech-item"><div class="tech-icon">&#128279;</div><span>n8n</span></div>
+<div class="tech-item"><div class="tech-icon">&#9729;&#65039;</div><span>AWS</span></div>
+<div class="tech-item"><div class="tech-icon">&#128274;</div><span>Auth0</span></div>
+</div></div></section>
+
+<!-- PRICING -->
+<section class="section-lg" id="pricing"><div class="container">
+<div class="section-header reveal"><span class="section-label">Pricing</span><h2>Transparent, <span class="text-gradient">No-Surprise Pricing</span></h2><p>Fixed-price projects. No hourly billing, no scope creep charges, no hidden fees.</p></div>
+<div class="pricing-grid">
+<div class="pricing-card reveal"><div class="pricing-tier"><div class="pricing-name">Starter</div><div class="pricing-amount">$500<span style="font-size:.9rem;color:var(--dim);font-weight:400"> one-time</span></div><p class="pricing-desc">Perfect for landing pages, portfolio sites, and single-page web applications.</p></div>
+<ul class="pricing-features">
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Responsive single-page design</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Contact form &amp; basic analytics</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> SEO optimization</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 14-day delivery</li>
+</ul>
+<a href="contact.html" class="pricing-btn pricing-btn-outline">Get Started &#8594;</a></div>
+
+<div class="pricing-card featured reveal"><div class="pricing-tier"><span class="badge" style="margin-bottom:1rem">Most Popular</span><div class="pricing-name">Professional</div><div class="pricing-amount">$2,500<span style="font-size:.9rem;color:var(--dim);font-weight:400"> starting</span></div><p class="pricing-desc">Multi-page websites with AI integration, custom APIs, and advanced functionality.</p></div>
+<ul class="pricing-features">
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Multi-page custom design</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> AI chatbot or workflow integration</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Custom API &amp; database</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 30-day post-launch support</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> CMS &amp; analytics dashboard</li>
+</ul>
+<a href="contact.html" class="pricing-btn pricing-btn-fill">Start Your Project &#8594;</a></div>
+
+<div class="pricing-card reveal"><div class="pricing-tier"><div class="pricing-name">Enterprise</div><div class="pricing-amount">Custom</div><p class="pricing-desc">Full-scale SaaS platforms, trading systems, and enterprise-grade applications.</p></div>
+<ul class="pricing-features">
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Full-stack application architecture</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Trading bots &amp; automation</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Dedicated engineering team</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Priority SLA &amp; 24/7 monitoring</li>
+<li><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.5 11.1 2.7 7.3" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Ongoing retainer available</li>
+</ul>
+<a href="contact.html" class="pricing-btn pricing-btn-outline">Contact Us &#8594;</a></div>
+</div></div></section>
+
+<!-- TESTIMONIALS -->
+<section class="section"><div class="container">
+<div class="section-header reveal"><span class="section-label">Testimonials</span><h2>Trusted by <span class="text-gradient-3">Ambitious Builders</span></h2></div>
+<div class="testimonial-grid">
+<div class="testimonial-card reveal"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<p>"Terminal Edge rebuilt our entire storefront in 10 days. Page speed went from 4.2s to 0.8s and conversions tripled. The ROI was immediate and measurable."</p>
+<div class="testimonial-author"><div class="testimonial-avatar" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">MK</div><div><strong>Marcus K.</strong><span>Founder, Nova Retail</span></div></div></div>
+<div class="testimonial-card reveal"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<p>"The arbitrage bot they built runs 24/7 with zero intervention. Risk management is solid, alerts are instant, and the dashboard gives me full visibility."</p>
+<div class="testimonial-author"><div class="testimonial-avatar" style="background:linear-gradient(135deg,#22d3ee,#3b82f6)">JT</div><div><strong>Jordan T.</strong><span>Independent Trader</span></div></div></div>
+<div class="testimonial-card reveal"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+<p>"Working directly with engineers changed everything. Decisions that took weeks now happen in hours. Their AI agent deflects 80% of our support tickets."</p>
+<div class="testimonial-author"><div class="testimonial-avatar" style="background:linear-gradient(135deg,#34d399,#10b981)">RP</div><div><strong>Rachel P.</strong><span>CTO, CloudSync</span></div></div></div>
+</div></div></section>
+
+<!-- FAQ -->
+<section class="section" id="faq"><div class="container" style="max-width:800px">
+<div class="section-header reveal"><span class="section-label">FAQ</span><h2>Common <span class="text-gradient">Questions</span></h2></div>
+<div class="faq-list">
+<div class="faq-item reveal"><button class="faq-question">How fast can you deliver a project?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Most projects ship within 1&#8211;4 weeks depending on scope. Landing pages can be delivered in as little as 5 business days. AI integrations and trading bots typically take 2&#8211;4 weeks. We provide a detailed timeline during the Spec &amp; Quote phase before any work begins.</div></div></div>
+<div class="faq-item reveal"><button class="faq-question">Do I own the code you write?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes, 100%. Every line of code is yours from day one. You get full access to the repository, all source files, documentation, and deployment configurations. No vendor lock-in, no proprietary frameworks.</div></div></div>
+<div class="faq-item reveal"><button class="faq-question">What if I need changes after launch?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Every project includes 30 days of free post-launch support covering bug fixes, minor adjustments, and performance tuning. After that, we offer ongoing retainer plans or per-project pricing for larger feature additions.</div></div></div>
+<div class="faq-item reveal"><button class="faq-question">Can you build trading bots for any exchange?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">We support all major centralized exchanges through the ccxt library &#8212; Binance, Coinbase, Kraken, Bybit, OKX, and 100+ others. For decentralized exchanges, we integrate directly with on-chain smart contracts.</div></div></div>
+<div class="faq-item reveal"><button class="faq-question">What tech stack do you use?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">We're stack-agnostic and choose the best tools for each project. Common choices include Next.js/React for frontends, Node.js/Python for backends, PostgreSQL/Redis for data, OpenAI/LangChain for AI, and AWS/Vercel for hosting.</div></div></div>
+<div class="faq-item reveal"><button class="faq-question">Do you offer ongoing maintenance?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button><div class="faq-answer"><div class="faq-answer-inner">Yes. After your 30-day free support period, we offer monthly retainer plans starting at $500/month for ongoing maintenance, monitoring, feature development, and priority support.</div></div></div>
+</div>
+<div class="text-center mt-4 reveal"><a href="faq.html" class="btn btn-ghost">View All FAQ &#8594;</a></div>
+</div></section>
+
+<!-- CTA -->
+<section class="section"><div class="container"><div class="cta-block reveal-scale">
+<h2>Ready to Build Something <span class="text-gradient">Exceptional</span>?</h2>
+<p>Tell us about your project. We'll respond within 24 hours with a free technical assessment and quote.</p>
+<a href="contact.html" class="btn btn-primary btn-lg">Start Your Project &#8594;</a>
+</div></div></section>
+
+<!-- CONTACT -->
+<section class="section-lg" id="contact"><div class="container">
+<div class="section-header reveal"><span class="section-label">Get in Touch</span><h2>Let's Build <span class="text-gradient-2">Together</span></h2></div>
+<div class="contact-grid">
+<div class="contact-info reveal-left">
+<div class="contact-method"><div class="contact-method-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div><div><strong>Email Us</strong><p>hello@terminaledge.dev</p></div></div>
+<div class="contact-method"><div class="contact-method-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div><strong>Response Time</strong><p>Within 24 hours, usually same-day</p></div></div>
+<div class="contact-method"><div class="contact-method-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><div><strong>Location</strong><p>Remote-first &#183; Worldwide clients</p></div></div>
+</div>
+<form class="contact-form reveal-right" action="https://api.web3forms.com/submit" method="POST">
+<input type="hidden" name="access_key" value="131700c1-686e-480c-97ff-0d76a28b475f">
+<input type="hidden" name="subject" value="New Project Inquiry — Terminal Edge">
+<div class="form-row"><div class="form-group"><label for="name">Full Name</label><input type="text" id="name" name="name" class="form-input" placeholder="John Smith" required></div>
+<div class="form-group"><label for="email">Email</label><input type="email" id="email" name="email" class="form-input" placeholder="john@company.com" required></div></div>
+<div class="form-row"><div class="form-group"><label for="service">Service</label><select id="service" name="service" class="form-input" required><option value="" disabled selected>Select a service</option><option>Custom Website</option><option>AI Workflow / Agent</option><option>Trading / Scraping Bot</option><option>Custom Application</option><option>Other / Not Sure</option></select></div>
+<div class="form-group"><label for="budget">Budget</label><select id="budget" name="budget" class="form-input"><option value="" disabled selected>Select budget range</option><option>$500 - $1,000</option><option>$1,000 - $2,500</option><option>$2,500 - $5,000</option><option>$5,000 - $10,000</option><option>$10,000+</option></select></div></div>
+<div class="form-group"><label for="message">Project Details</label><textarea id="message" name="message" class="form-input" rows="5" placeholder="Tell us about your project &#8212; goals, timeline, and any technical requirements." required></textarea></div>
+<button type="submit" class="submit-btn">Send Message <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></button>
+</form></div></div></section>
+
+<!-- FOOTER -->
+<footer class="section"><div class="container">
+<div class="footer-grid">
+<div class="footer-brand"><a href="index.html" class="nav-logo" style="margin-bottom:1rem;display:inline-flex"><span class="nav-logo-mark">TE</span> Terminal Edge</a>
+<p>Premium development studio specializing in custom websites, AI workflows, trading bots, and full-stack applications. Built by engineers, for ambitious teams.</p></div>
+<div class="footer-col"><h4>Services</h4><a href="services.html">Custom Websites</a><a href="services.html">AI Workflows</a><a href="services.html">Trading Bots</a><a href="services.html">Custom Apps</a></div>
+<div class="footer-col"><h4>Company</h4><a href="work.html">Our Work</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
+<div class="footer-col"><h4>Connect</h4><a href="mailto:hello@terminaledge.dev">hello@terminaledge.dev</a><a href="https://github.com/terminaledge" target="_blank" rel="noopener">GitHub</a><a href="https://twitter.com/terminaledge" target="_blank" rel="noopener">Twitter / X</a><a href="https://linkedin.com/company/terminaledge" target="_blank" rel="noopener">LinkedIn</a></div>
+</div>
+<div class="footer-bottom"><p>&copy; 2025 Terminal Edge. All rights reserved.</p><p>Engineered with precision in every line of code.</p></div>
+</div></footer>
+
+<script src="app.js"></script>
+<script>
+(function(){
+var el=document.getElementById('hero-term');if(!el)return;
+var sequences=[
+{cmd:'te deploy --service website --framework next --optimize',output:[
+{t:'&#10219; Building production bundle...',c:'info'},
+{t:'&#10003; Compiled 847 modules in 3.2s',c:'ok'},
+{t:'&#10003; Static pages generated: 24',c:'ok'},
+{t:'&#10003; Image optimization: 68 assets',c:'ok'},
+{t:'&#10219; Running Lighthouse audit...',c:'info'},
+{t:'  Performance: <span class="val">99</span>  Accessibility: <span class="val">100</span>',c:'out'},
+{t:'  Best Practices: <span class="val">100</span>  SEO: <span class="val">100</span>',c:'out'},
+{t:'&#10003; Deployed &#8594; novaretail.com (312ms cold start)',c:'ok'}]},
+{cmd:'te run --bot arbitrage --mode live --risk conservative',output:[
+{t:'&#10219; Connecting to exchanges...',c:'info'},
+{t:'&#10003; Binance: authenticated (ws:// connected)',c:'ok'},
+{t:'&#10003; Coinbase: authenticated (ws:// connected)',c:'ok'},
+{t:'&#10003; Kraken: authenticated (ws:// connected)',c:'ok'},
+{t:'&#10219; Loading strategy: cross-exchange-arb-v3',c:'info'},
+{t:'&#10003; Risk params: max DD 5% &#183; position 2% &#183; stop -1.5%',c:'ok'},
+{t:'&#9888; Paper mode disabled &#8212; LIVE TRADING ACTIVE',c:'warn'},
+{t:'&#10003; Bot running &#8594; monitoring 247 pairs across 3 exchanges',c:'ok'}]},
+{cmd:'te ai --pipeline support-agent --model gpt-4o --deploy',output:[
+{t:'&#10219; Initializing RAG pipeline...',c:'info'},
+{t:'&#10003; Vector store: 12,847 documents indexed',c:'ok'},
+{t:'&#10003; Embedding model: text-embedding-3-large',c:'ok'},
+{t:'&#10219; Training guardrails & safety filters...',c:'info'},
+{t:'&#10003; Content filter: 14 rules loaded',c:'ok'},
+{t:'&#10003; Accuracy on test set: 94.7% (n=500)',c:'ok'},
+{t:'&#10003; Deployed &#8594; api.cloudsync.ai/agent (avg 280ms)',c:'ok'}]},
+{cmd:'te status --all',output:[
+{t:'',c:'out'},
+{t:'&#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9516;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;',c:'out'},
+{t:'&#9474; System       &#9474; Status     &#9474; Uptime  &#9474;',c:'out'},
+{t:'&#9500;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9532;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9532;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9508;',c:'out'},
+{t:'&#9474; <span class="val">NovaRetail</span>  &#9474; <span class="ok">&#9679; healthy</span> &#9474; <span class="val">99.99%</span> &#9474;',c:'out'},
+{t:'&#9474; <span class="val">CloudSync</span>   &#9474; <span class="ok">&#9679; healthy</span> &#9474; <span class="val">99.97%</span> &#9474;',c:'out'},
+{t:'&#9474; <span class="val">ArbEngine</span>   &#9474; <span class="ok">&#9679; running</span> &#9474; <span class="val">99.95%</span> &#9474;',c:'out'},
+{t:'&#9474; <span class="val">DataFlow</span>    &#9474; <span class="ok">&#9679; healthy</span> &#9474; <span class="val">100.0%</span> &#9474;',c:'out'},
+{t:'&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9524;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9524;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;',c:'out'},
+{t:'',c:'out'},
+{t:'&#10003; All systems operational',c:'ok'}]}
+];
+var si=0,ci=0,li=0,phase='prompt',curLine=null;
+function addLine(h,c){var d=document.createElement('div');if(c)d.className=c;d.innerHTML=h;el.appendChild(d);el.scrollTop=el.scrollHeight}
+function tick(){var s=sequences[si];
+if(phase==='prompt'){curLine=document.createElement('div');curLine.innerHTML='<span class="prompt">$</span> <span class="cmd"></span><span style="display:inline-block;width:8px;height:16px;background:var(--green);animation:blink 1s step-end infinite;vertical-align:text-bottom;margin-left:2px"></span>';el.appendChild(curLine);el.scrollTop=el.scrollHeight;ci=0;phase='typing';setTimeout(tick,80);return}
+if(phase==='typing'){var cs=curLine.querySelector('.cmd'),cu=curLine.querySelector('span:last-child');if(ci<s.cmd.length){cs.textContent=s.cmd.substring(0,ci+1);ci++;setTimeout(tick,25+Math.random()*35);return}cu.remove();li=0;phase='output';setTimeout(tick,400);return}
+if(phase==='output'){if(li<s.output.length){addLine(s.output[li].t,s.output[li].c);li++;setTimeout(tick,120+Math.random()*80);return}phase='pause';setTimeout(tick,2500);return}
+if(phase==='pause'){si=(si+1)%sequences.length;if(si===0)el.innerHTML='';else addLine('','out');phase='prompt';setTimeout(tick,600)}}
+setTimeout(tick,1200);
+})();
+</script>
+</body>
+</html>

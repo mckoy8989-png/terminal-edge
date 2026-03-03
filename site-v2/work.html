@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our Work — Terminal Edge</title>
+<meta name="description" content="Case studies and portfolio. See the websites, AI agents, trading bots, and applications we've engineered.">
+<meta name="theme-color" content="#06070a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="prefetch" href="index.html">
+<link rel="prefetch" href="services.html">
+<link rel="prefetch" href="pricing.html">
+<link rel="prefetch" href="contact.html">
+<link rel="prefetch" href="faq.html">
+<style>
+.filter-bar{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.filter-btn{padding:.5rem 1.25rem;border-radius:100px;font-size:.85rem;font-weight:500;color:var(--dim);background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:all .25s ease}
+.filter-btn:hover{color:var(--text);border-color:var(--border2)}
+.filter-btn.active{color:#fff;background:linear-gradient(135deg,var(--indigo),var(--violet));border-color:transparent}
+.case-card{opacity:1;transition:opacity .3s ease,transform .3s ease}
+.case-card.hidden{opacity:0;position:absolute;pointer-events:none;transform:scale(.95)}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.impact-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center}
+.impact-number{font-size:2rem;font-weight:700;font-family:var(--fh);background:linear-gradient(135deg,var(--indigo),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.impact-label{font-size:.9rem;color:var(--dim);margin-top:.25rem}
+@media(max-width:768px){
+.impact-grid{grid-template-columns:repeat(2,1fr)}
+.filter-bar{gap:.35rem}
+.filter-btn{font-size:.75rem;padding:.4rem .8rem}
+}
+</style>
+</head>
+<body>
+<div class="page-transition"></div>
+<div class="scroll-progress"></div>
+
+<!-- NAV -->
+<nav class="nav"><div class="nav-inner">
+<a href="index.html" class="nav-logo"><span class="nav-logo-mark">TE</span> Terminal Edge</a>
+<div class="nav-links"><a href="services.html">Services</a><a href="work.html" class="active">Work</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a></div>
+<a href="contact.html" class="btn btn-primary btn-sm nav-cta">Start a Project</a>
+<button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="mobile-menu">
+<a href="services.html">Services</a><a href="work.html" class="active">Work</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a>
+<a href="contact.html" class="btn btn-primary" style="margin-top:1rem">Start a Project</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+<div class="container">
+<div class="badge badge-glow hero-animate" style="animation-delay:.1s"><span class="badge-dot"></span> Portfolio &amp; Case Studies</div>
+<h1 class="hero-animate" style="animation-delay:.25s">Our Work &#8212; <span class="text-gradient">Shipped. Proven. Performing.</span></h1>
+<p class="hero-animate" style="animation-delay:.4s">Real projects with real metrics. Every system we build is engineered for measurable impact.</p>
+</div>
+</section>
+
+<!-- FILTER + CASES -->
+<section class="section-lg"><div class="container">
+<div class="filter-bar reveal" id="filters">
+<button class="filter-btn active" data-filter="all">All (6)</button>
+<button class="filter-btn" data-filter="web">Websites</button>
+<button class="filter-btn" data-filter="ai">AI &amp; Automation</button>
+<button class="filter-btn" data-filter="bot">Trading Bots</button>
+<button class="filter-btn" data-filter="app">Custom Apps</button>
+</div>
+
+<div class="showcase-grid" id="cases">
+
+<!-- Nova Retail -->
+<div class="showcase-card case-card reveal" data-cat="web">
+<div class="showcase-preview"><div class="browser-frame"><div class="browser-chrome"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><div class="browser-url">novaretail.com</div></div>
+<div class="browser-body" style="padding:10px;background:var(--bg2)">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:.5rem;color:var(--dim)"><strong style="color:var(--text)">NOVA</strong><span>Shop &#183; Cart (3)</span></div>
+<div style="background:linear-gradient(135deg,#6366f1,#8b5cf6);border-radius:6px;padding:12px;text-align:center;margin-bottom:8px"><div style="font-size:.6rem;font-weight:600;color:#fff">Summer Drop 2025</div><div style="font-size:.45rem;color:rgba(255,255,255,.7)">Limited edition streetwear</div></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px"><div style="background:var(--surface);border-radius:4px;height:32px"></div><div style="background:var(--surface);border-radius:4px;height:32px"></div><div style="background:var(--surface);border-radius:4px;height:32px"></div></div>
+</div></div></div>
+<div class="showcase-info"><h3>Nova Retail</h3><p>Complete Next.js + Stripe e-commerce rebuild. Lighthouse scores jumped from 43 to 99. Page load dropped from 4.2s to 0.8s. Conversion rate tripled within 30 days of launch.</p>
+<div class="showcase-meta"><span class="showcase-badge" style="--badge-color:#6366f1">Web Development</span><span class="showcase-stat">&#8593; 340% conversion</span></div>
+<div class="service-tags" style="margin-top:.75rem"><span class="tag">Next.js</span><span class="tag">Stripe</span><span class="tag">PostgreSQL</span><span class="tag">Vercel</span></div>
+</div></div>
+
+<!-- CloudSync -->
+<div class="showcase-card case-card reveal" data-cat="ai">
+<div class="showcase-preview"><div class="browser-frame"><div class="browser-chrome"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><div class="browser-url">cloudsync.ai/chat</div></div>
+<div class="browser-body" style="padding:10px;background:var(--bg2);font-size:.5rem">
+<div style="background:var(--surface);border-radius:8px 8px 8px 2px;padding:6px 10px;margin-bottom:6px;max-width:80%;color:var(--text2)">How do I rotate my API keys?</div>
+<div style="background:linear-gradient(135deg,#8b5cf6,#6366f1);border-radius:8px 8px 2px 8px;padding:6px 10px;margin-bottom:6px;margin-left:auto;max-width:85%;color:#fff">Go to Settings &#8594; API Keys &#8594; Rotate. Old key stays valid for 24h.</div>
+<div style="background:var(--surface);border-radius:8px 8px 8px 2px;padding:6px 10px;margin-bottom:6px;max-width:80%;color:var(--text2)">Can I have multiple active keys?</div>
+<div style="background:linear-gradient(135deg,#8b5cf6,#6366f1);border-radius:8px 8px 2px 8px;padding:6px 10px;margin-left:auto;max-width:85%;color:#fff">Yes! Up to 5 active keys per project.</div>
+</div></div></div>
+<div class="showcase-info"><h3>CloudSync</h3><p>RAG-powered AI support agent trained on 12,847 documents. Handles 78% of customer queries autonomously with 94.7% accuracy on test set. Average response latency of 280ms.</p>
+<div class="showcase-meta"><span class="showcase-badge" style="--badge-color:#8b5cf6">AI / Automation</span><span class="showcase-stat">78% ticket deflection</span></div>
+<div class="service-tags" style="margin-top:.75rem"><span class="tag">GPT-4o</span><span class="tag">LangChain</span><span class="tag">Pinecone</span><span class="tag">FastAPI</span></div>
+</div></div>
+
+<!-- ArbEngine -->
+<div class="showcase-card case-card reveal" data-cat="bot">
+<div class="showcase-preview"><div class="browser-frame"><div class="browser-chrome"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><div class="browser-url">arbengine.io/dashboard</div></div>
+<div class="browser-body" style="padding:10px;background:var(--bg2)">
+<div style="display:flex;gap:6px;margin-bottom:8px;font-size:.5rem"><div style="flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center"><strong style="color:var(--green)">+12.4%</strong><br><span style="color:var(--dim)">PnL</span></div><div style="flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center"><strong style="color:var(--cyan)">247</strong><br><span style="color:var(--dim)">Trades</span></div><div style="flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center"><strong style="color:var(--amber)">0.8%</strong><br><span style="color:var(--dim)">DD</span></div></div>
+<svg viewBox="0 0 200 40" style="width:100%;height:40px" preserveAspectRatio="none"><defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22d3ee" stop-opacity=".3"/><stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/></linearGradient></defs><path d="M0,35 Q25,30 50,28 T100,18 T150,22 T200,8 V40 H0Z" fill="url(#ag)"/><path d="M0,35 Q25,30 50,28 T100,18 T150,22 T200,8" fill="none" stroke="#22d3ee" stroke-width="1.5"/></svg>
+</div></div></div>
+<div class="showcase-info"><h3>ArbEngine</h3><p>Multi-exchange crypto arbitrage bot operating across Binance, Coinbase, and Kraken. 24/7 autonomous trading with automated risk management. Sharpe ratio of 2.14 on 180-day backtest.</p>
+<div class="showcase-meta"><span class="showcase-badge" style="--badge-color:#22d3ee">Trading Bot</span><span class="showcase-stat">24/7 autonomous</span></div>
+<div class="service-tags" style="margin-top:.75rem"><span class="tag">Python</span><span class="tag">ccxt</span><span class="tag">Redis</span><span class="tag">WebSockets</span></div>
+</div></div>
+
+<!-- DataFlow -->
+<div class="showcase-card case-card reveal" data-cat="ai">
+<div class="showcase-preview"><div class="browser-frame"><div class="browser-chrome"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><div class="browser-url">dataflow.internal</div></div>
+<div class="browser-body" style="padding:10px;background:var(--bg2);font-size:.5rem">
+<div style="display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap">
+<div style="background:var(--surface);border-radius:6px;padding:6px 10px;border:1px solid var(--border2)"><span style="color:var(--cyan)">&#11041;</span> Scrape</div><span style="color:var(--dim)">&#8594;</span>
+<div style="background:var(--surface);border-radius:6px;padding:6px 10px;border:1px solid var(--border2)"><span style="color:var(--violet)">&#9670;</span> LLM</div><span style="color:var(--dim)">&#8594;</span>
+<div style="background:var(--surface);border-radius:6px;padding:6px 10px;border:1px solid var(--border2)"><span style="color:var(--green)">&#9673;</span> Filter</div><span style="color:var(--dim)">&#8594;</span>
+<div style="background:var(--surface);border-radius:6px;padding:6px 10px;border:1px solid var(--border2)"><span style="color:var(--amber)">&#9635;</span> Store</div>
+</div>
+<div style="margin-top:8px;text-align:center"><span style="color:var(--green)">&#10003; 523 pages/day</span> <span style="color:var(--dim)">|</span> <span style="color:var(--cyan)">98.7% accuracy</span></div>
+</div></div></div>
+<div class="showcase-info"><h3>DataFlow</h3><p>Intelligent scraping pipeline with LLM-powered data extraction for competitive intelligence. Processes 500+ pages daily with 98.7% accuracy. Auto-alerts on pricing changes.</p>
+<div class="showcase-meta"><span class="showcase-badge" style="--badge-color:#34d399">Automation</span><span class="showcase-stat">500+ pages/day</span></div>
+<div class="service-tags" style="margin-top:.75rem"><span class="tag">Playwright</span><span class="tag">GPT-4o</span><span class="tag">Supabase</span><span class="tag">n8n</span></div>
+</div></div>
+
+<!-- MedConnect -->
+<div class="showcase-card case-card reveal" data-cat="app">
+<div class="showcase-preview"><div class="browser-frame"><div class="browser-chrome"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><div class="browser-url">medconnect.health</div></div>
+<div class="browser-body" style="padding:10px;background:var(--bg2)">
+<div style="display:flex;gap:6px;margin-bottom:8px;font-size:.5rem"><div style="flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center"><strong style="color:var(--rose)">15.2K</strong><br><span style="color:var(--dim)">Patients</span></div><div style="flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center"><strong style="color:var(--green)">4,821</strong><br><span style="color:var(--dim)">Appts/mo</span></div><div style="flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center"><strong style="color:var(--cyan)">99.9%</strong><br><span style="color:var(--dim)">Uptime</span></div></div>
+<div style="font-size:.45rem;color:var(--dim);padding:4px 0">Recent Appointments</div>
+<div style="display:flex;flex-direction:column;gap:3px;font-size:.45rem"><div style="display:flex;justify-content:space-between;padding:4px 6px;background:var(--surface);border-radius:4px"><span style="color:var(--text2)">Dr. Chen &#8212; J. Smith</span><span style="color:var(--green)">Confirmed</span></div><div style="display:flex;justify-content:space-between;padding:4px 6px;background:var(--surface);border-radius:4px"><span style="color:var(--text2)">Dr. Patel &#8212; M. Jones</span><span style="color:var(--amber)">Pending</span></div></div>
+</div></div></div>
+<div class="showcase-info"><h3>MedConnect</h3><p>HIPAA-compliant patient portal with appointment scheduling, secure messaging, and EHR integration. 15K+ active users across 12 clinics. Built with end-to-end encryption.</p>
+<div class="showcase-meta"><span class="showcase-badge" style="--badge-color:#fb7185">Custom App</span><span class="showcase-stat">15K+ users</span></div>
+<div class="service-tags" style="margin-top:.75rem"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">AWS</span></div>
+</div></div>
+
+<!-- TrendSense -->
+<div class="showcase-card case-card reveal" data-cat="ai">
+<div class="showcase-preview"><div class="browser-frame"><div class="browser-chrome"><span class="terminal-dot" style="background:#ff5f57"></span><span class="terminal-dot" style="background:#febc2e"></span><span class="terminal-dot" style="background:#28c840"></span><div class="browser-url">trendsense.io</div></div>
+<div class="browser-body" style="padding:10px;background:var(--bg2)">
+<div style="display:flex;gap:6px;margin-bottom:8px;font-size:.5rem"><div style="flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center"><strong style="color:var(--amber)">94%</strong><br><span style="color:var(--dim)">Accuracy</span></div><div style="flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center"><strong style="color:var(--cyan)">12.4K</strong><br><span style="color:var(--dim)">Posts/hr</span></div><div style="flex:1;background:var(--surface);border-radius:4px;padding:6px;text-align:center"><strong style="color:var(--green)">3</strong><br><span style="color:var(--dim)">Platforms</span></div></div>
+<div style="display:flex;justify-content:center;gap:8px;font-size:.5rem;margin-top:4px"><span style="color:var(--green)">&#9650; Positive 62%</span><span style="color:var(--dim)">&#9679; Neutral 28%</span><span style="color:var(--rose)">&#9660; Negative 10%</span></div>
+</div></div></div>
+<div class="showcase-info"><h3>TrendSense</h3><p>Real-time social sentiment analysis across Twitter, Reddit, and Discord. NLP pipeline processes 12.4K posts/hour with 94% classification accuracy. Powers trading signal generation.</p>
+<div class="showcase-meta"><span class="showcase-badge" style="--badge-color:#fbbf24">AI / Analytics</span><span class="showcase-stat">94% accuracy</span></div>
+<div class="service-tags" style="margin-top:.75rem"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">Kafka</span><span class="tag">D3.js</span></div>
+</div></div>
+
+</div>
+
+<!-- IMPACT STATS -->
+<div class="impact-grid reveal">
+<div class="impact-card"><div class="impact-number">47+</div><div class="impact-label">Projects Shipped</div></div>
+<div class="impact-card"><div class="impact-number">99%</div><div class="impact-label">Uptime SLA</div></div>
+<div class="impact-card"><div class="impact-number">$3.2M+</div><div class="impact-label">Revenue Generated</div></div>
+<div class="impact-card"><div class="impact-number">24h</div><div class="impact-label">Avg Turnaround</div></div>
+</div>
+
+</div></section>
+
+<!-- CTA -->
+<section class="section"><div class="container"><div class="cta-block reveal-scale">
+<h2>Let's Build Your Next <span class="text-gradient">Success Story</span></h2>
+<p>Tell us about your project. We'll respond within 24 hours with a free technical assessment.</p>
+<a href="contact.html" class="btn btn-primary btn-lg">Start Your Project &#8594;</a>
+</div></div></section>
+
+<!-- FOOTER -->
+<footer class="section"><div class="container">
+<div class="footer-grid">
+<div class="footer-brand"><a href="index.html" class="nav-logo" style="margin-bottom:1rem;display:inline-flex"><span class="nav-logo-mark">TE</span> Terminal Edge</a><p>Premium development studio specializing in custom websites, AI workflows, trading bots, and full-stack applications.</p></div>
+<div class="footer-col"><h4>Services</h4><a href="services.html">Custom Websites</a><a href="services.html">AI Workflows</a><a href="services.html">Trading Bots</a><a href="services.html">Custom Apps</a></div>
+<div class="footer-col"><h4>Company</h4><a href="work.html">Our Work</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
+<div class="footer-col"><h4>Connect</h4><a href="mailto:hello@terminaledge.dev">hello@terminaledge.dev</a><a href="https://github.com/terminaledge" target="_blank" rel="noopener">GitHub</a><a href="https://twitter.com/terminaledge" target="_blank" rel="noopener">Twitter / X</a><a href="https://linkedin.com/company/terminaledge" target="_blank" rel="noopener">LinkedIn</a></div>
+</div>
+<div class="footer-bottom"><p>&copy; 2025 Terminal Edge. All rights reserved.</p><p>Engineered with precision in every line of code.</p></div>
+</div></footer>
+
+<script src="app.js"></script>
+<script>
+(function(){
+var btns=document.querySelectorAll('.filter-btn');
+var cards=document.querySelectorAll('.case-card');
+btns.forEach(function(btn){
+btn.addEventListener('click',function(){
+btns.forEach(function(b){b.classList.remove('active')});
+btn.classList.add('active');
+var f=btn.getAttribute('data-filter');
+cards.forEach(function(c){
+if(f==='all'||c.getAttribute('data-cat')===f){c.classList.remove('hidden');c.style.position=''}
+else{c.classList.add('hidden')}
+});
+});
+});
+})();
+</script>
+</body>
+</html>
