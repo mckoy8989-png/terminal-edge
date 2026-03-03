@@ -1,1 +1,913 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>FAQ ΓÇö Terminal Edge</title><meta name="description" content="Frequently asked questions about Terminal Edge ΓÇö project process, pricing, tech stack, support, and more."/><link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" as="script"/><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" as="script"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/><link rel="stylesheet" href="styles.css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script><style>/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ   FAQ PAGE ΓÇö Scoped Styles   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ *//* ΓöÇΓöÇ FAQ Main Section ΓöÇΓöÇ */.faq-main-sec{position:relative;overflow:hidden}.faq-main-sec::before{content:'?';position:absolute;top:40px;left:40px;font-size:20rem;font-weight:900;color:rgba(255,255,255,.008);line-height:1;pointer-events:none;font-family:var(--ff)}.faq-main-sec::after{content:'';position:absolute;top:0;right:0;width:400px;height:400px;background:radial-gradient(ellipse,rgba(59,130,246,.03),transparent 60%);pointer-events:none}/* ΓöÇΓöÇ Quick Links Section ΓöÇΓöÇ */.ql-sec{position:relative;overflow:hidden}.ql-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,.02),transparent 30%,transparent 70%,rgba(59,130,246,.02));pointer-events:none}/* ΓöÇΓöÇ Category Filter Tabs ΓöÇΓöÇ */.faq-filters{  display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:3rem;}.faq-tab{  padding:.55rem 1.4rem;border-radius:100px;font-family:var(--fm);font-size:.78rem;font-weight:500;  color:var(--dim);background:var(--surface);border:1px solid var(--border);  transition:color .35s var(--ease),border-color .35s,background .35s,transform .35s,box-shadow .35s;cursor:pointer;letter-spacing:.03em;}.faq-tab:hover{  color:var(--text);border-color:var(--border2);background:var(--surface2);transform:translateY(-1px);}.faq-tab.active{  color:#fff;background:var(--grad1);border-color:transparent;  box-shadow:0 4px 18px rgba(59,130,246,.25);transform:translateY(-1px);}/* ΓöÇΓöÇ Category Label ΓöÇΓöÇ */.faq-cat-label{  font-family:var(--fm);font-size:.7rem;font-weight:600;text-transform:uppercase;  letter-spacing:.14em;color:var(--blue);margin-bottom:1.2rem;margin-top:2.5rem;  display:flex;align-items:center;gap:.6rem;}.faq-cat-label:first-of-type{margin-top:0}.faq-cat-label::before{  content:'';width:20px;height:1px;background:currentColor;transition:width .4s var(--ease);}.faq-cat-label::after{  content:'';flex:1;height:1px;background:linear-gradient(90deg,currentColor,transparent);opacity:.15;}.faq-cat-label.cat-technical{color:var(--cyan)}.faq-cat-label.cat-technical::before{background:var(--cyan)}.faq-cat-label.cat-pricing{color:var(--green)}.faq-cat-label.cat-pricing::before{background:var(--green)}.faq-cat-label.cat-support{color:var(--purple)}.faq-cat-label.cat-support::before{background:var(--purple)}/* ΓöÇΓöÇ Accordion ΓöÇΓöÇ */.faq-list{max-width:820px;margin:0 auto}.faq-it{  background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);  margin-bottom:.65rem;overflow:hidden;transition:border-color .35s var(--ease),background .35s,box-shadow .35s;  position:relative;}.faq-it::before{  content:'';position:absolute;top:0;left:0;width:2px;height:100%;  background:var(--grad1);opacity:0;transition:opacity .35s var(--ease);}.faq-it:hover{border-color:var(--border2);background:var(--surface2)}.faq-it.open{border-color:rgba(59,130,246,.25);background:rgba(59,130,246,.04);box-shadow:0 4px 16px rgba(0,0,0,.1)}.faq-it.open::before{opacity:1}.faq-q{  width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;  padding:1.15rem 1.4rem;font-family:var(--ff);font-size:.95rem;font-weight:600;  color:var(--text);text-align:left;cursor:pointer;transition:color .3s;}.faq-q:hover{color:var(--blue)}.faq-it.open .faq-q{color:var(--blue)}/* Chevron icon */.faq-chevron{  width:20px;height:20px;flex-shrink:0;transition:transform .35s var(--ease),color .35s;  color:var(--muted);}.faq-it.open .faq-chevron{transform:rotate(180deg);color:var(--blue)}.faq-it:hover .faq-chevron{color:var(--text)}/* Answer panel */.faq-a{  max-height:0;overflow:hidden;transition:max-height .4s var(--ease);}.faq-a-inner{  padding:0 1.4rem 1.3rem;font-size:.9rem;color:var(--dim);line-height:1.75;}/* ΓöÇΓöÇ Still Have Questions CTA ΓöÇΓöÇ */.faq-cta{  max-width:820px;margin:4rem auto 0;text-align:center;padding:3rem 2rem;  background:linear-gradient(135deg,rgba(59,130,246,.07),rgba(139,92,246,.07));  border:1px solid rgba(59,130,246,.14);border-radius:var(--r);position:relative;overflow:hidden;}.faq-cta::before{  content:'';position:absolute;top:-50%;right:-30%;width:60%;height:100%;  background:radial-gradient(circle,rgba(139,92,246,.08),transparent 65%);pointer-events:none;}.faq-cta::after{  content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;  background:linear-gradient(135deg,rgba(59,130,246,.3),rgba(139,92,246,.2),transparent 50%);  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;}.faq-cta h2{  font-family:var(--ff);font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;  margin-bottom:.6rem;position:relative;}.faq-cta p{  color:var(--dim);font-size:1rem;margin-bottom:1.8rem;max-width:500px;  margin-left:auto;margin-right:auto;position:relative;}/* ΓöÇΓöÇ Quick Links ΓöÇΓöÇ */.ql-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:820px;margin:0 auto}@media(max-width:768px){.ql-grid{grid-template-columns:1fr}}.ql-card{  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);  padding:1.8rem;text-align:center;transition:transform .4s var(--ease),background .4s,box-shadow .4s,border-color .4s;position:relative;overflow:hidden;}.ql-card::before{  content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;  background:linear-gradient(135deg,transparent 40%,var(--blue),var(--purple),transparent 90%);  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);  -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;}.ql-card::after{  content:'';position:absolute;top:0;left:0;right:0;height:2px;  background:var(--grad1);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);}.ql-card:hover{transform:translateY(-4px);background:var(--surface2);box-shadow:0 14px 35px rgba(0,0,0,.2)}.ql-card:hover::before{opacity:1}.ql-card:hover::after{transform:scaleX(1)}.ql-icon{  width:48px;height:48px;border-radius:12px;display:grid;place-items:center;  margin:0 auto 1rem;font-size:1.3rem;position:relative;transition:transform .3s var(--ease);}.ql-icon::after{  content:'';position:absolute;inset:0;border-radius:12px;background:inherit;  filter:blur(12px);opacity:0;transition:opacity .4s;z-index:-1;}.ql-card:hover .ql-icon{transform:scale(1.08)}.ql-card:hover .ql-icon::after{opacity:.5}.ql-card h4{  font-family:var(--ff);font-size:1rem;font-weight:600;margin-bottom:.4rem;}.ql-card p{  font-size:.82rem;color:var(--dim);line-height:1.6;margin-bottom:1rem;}.ql-link{  font-family:var(--fm);font-size:.75rem;font-weight:500;color:var(--blue);  display:inline-flex;align-items:center;gap:.35rem;transition:gap .3s var(--ease);}.ql-card:hover .ql-link{gap:.6rem}/* ΓöÇΓöÇ Search counter ΓöÇΓöÇ */.faq-count{  text-align:center;font-family:var(--fm);font-size:.75rem;color:var(--muted);  margin-bottom:2rem;}/* ΓöÇΓöÇ Responsive tweaks ΓöÇΓöÇ */@media(max-width:600px){  .faq-q{padding:1rem 1.1rem;font-size:.88rem}  .faq-a-inner{padding:0 1.1rem 1.1rem;font-size:.85rem}  .faq-tab{padding:.45rem 1rem;font-size:.72rem}  .faq-cta{padding:2rem 1.2rem}}</style><link rel="stylesheet" href="effects.css"/><script>document.documentElement.classList.add('gsap-ready');</script></head><body><div class="scroll-bar" id="scrollBar"></div><!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ NAV ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ --><nav id="navbar"><div class="nav-w">  <a href="index.html" class="logo"><span class="logo-box">TE</span>Terminal Edge</a>  <div class="nav-links">    <a href="services.html">Services</a>    <a href="work.html">Work</a>    <a href="pricing.html">Pricing</a>    <a href="faq.html" class="active">FAQ</a>    <a href="contact.html" class="nav-cta">Start a Project</a>  </div>  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button></div></nav><div class="mob-menu" id="mobMenu">  <a href="services.html" data-close>Services</a>  <a href="work.html" data-close>Work</a>  <a href="pricing.html" data-close>Pricing</a>  <a href="faq.html" data-close>FAQ</a>  <a href="contact.html" data-close class="btn1" style="margin-top:.5rem">Start a Project</a></div><!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ PAGE HERO ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ --><section class="page-hero">  <canvas id="heroCanvas" style="display:none"></canvas>  <div class="hero-glow hg1" style="background:#3b82f6;width:min(500px,80vw);height:min(500px,80vw);top:-150px;left:0"></div>  <div class="hero-glow hg2" style="background:#8b5cf6;width:min(400px,70vw);height:min(400px,70vw);bottom:-100px;right:0"></div>  <div class="page-hero-ct">    <div class="badge gs-hide"><span class="dot"></span> Knowledge Base</div>    <h1 class="gs-hide">Frequently Asked <span class="gt">Questions</span></h1>    <p class="gs-hide">Everything you need to know about working with Terminal Edge ΓÇö from process and pricing to tech stack and post-launch support.</p>  </div></section><!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ FAQ SECTION ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ --><section class="sec pad faq-main-sec"><div class="ctn">  <!-- Category Filter Tabs -->  <div class="faq-filters gs-hide" id="faqFilters">    <button class="faq-tab active" data-filter="all">All Questions</button>    <button class="faq-tab" data-filter="general">General</button>    <button class="faq-tab" data-filter="technical">Technical</button>    <button class="faq-tab" data-filter="pricing">Pricing</button>    <button class="faq-tab" data-filter="support">Support</button>  </div>  <!-- Result count -->  <div class="faq-count gs-hide" id="faqCount">Showing <span id="visibleCount">24</span> of 24 questions</div>  <!-- FAQ Accordion -->  <div class="faq-list" id="faqList">    <!-- ΓöÇΓöÇΓöÇ GENERAL ΓöÇΓöÇΓöÇ -->    <div class="faq-cat-label cat-general gs-hide" data-category="general">General</div>    <div class="faq-it gs-hide" data-category="general">      <button class="faq-q" aria-expanded="false">        What is Terminal Edge?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Terminal Edge is a solo-operated digital engineering studio specializing in custom websites, AI-powered workflows, trading bots, and bespoke automation solutions. We combine deep technical expertise with a lean, no-overhead structure to deliver enterprise-quality results at a fraction of the cost of traditional agencies.</div></div>    </div>    <div class="faq-it gs-hide" data-category="general">      <button class="faq-q" aria-expanded="false">        Who runs Terminal Edge?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Terminal Edge is run by a single senior engineer with years of experience across full-stack development, machine learning, and financial technology. Every line of code, every architecture decision, and every deployment is handled directly ΓÇö no hand-offs, no miscommunication, no junior devs learning on your dime.</div></div>    </div>    <div class="faq-it gs-hide" data-category="general">      <button class="faq-q" aria-expanded="false">        What types of projects do you take on?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">We take on a wide range of digital engineering projects ΓÇö from marketing websites and SaaS platforms to AI chatbots, data pipelines, algorithmic trading systems, and custom browser extensions. If it involves code and solves a real problem, we're interested. We're especially drawn to complex, high-impact builds that other shops shy away from.</div></div>    </div>    <div class="faq-it gs-hide" data-category="general">      <button class="faq-q" aria-expanded="false">        How is Terminal Edge different from hiring an agency?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Agencies layer in project managers, junior developers, and overhead costs that inflate your bill without improving the product. With Terminal Edge, you work directly with the person writing your code ΓÇö which means faster turnarounds, clearer communication, and a level of craft that assembly-line agencies can't replicate. Think boutique watchmaker versus factory floor.</div></div>    </div>    <div class="faq-it gs-hide" data-category="general">      <button class="faq-q" aria-expanded="false">        Do you work with international clients?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Absolutely. Terminal Edge works with clients across the globe ΓÇö we've delivered projects spanning North America, Europe, and Asia-Pacific. All communication happens asynchronously via documented channels, and we schedule overlap windows for real-time syncs when needed. Time zones are never a blocker.</div></div>    </div>    <div class="faq-it gs-hide" data-category="general">      <button class="faq-q" aria-expanded="false">        What's your availability?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">As a solo operation, we take on a limited number of projects at a time to ensure every client gets undivided attention. Current availability is displayed on the homepage ΓÇö if the status badge shows "Available," we're ready to talk. We recommend reaching out early so we can reserve a slot on the build calendar.</div></div>    </div>    <!-- ΓöÇΓöÇΓöÇ TECHNICAL ΓöÇΓöÇΓöÇ -->    <div class="faq-cat-label cat-technical gs-hide" data-category="technical">Technical</div>    <div class="faq-it gs-hide" data-category="technical">      <button class="faq-q" aria-expanded="false">        What's your tech stack?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Our core stack includes Next.js, React, Node.js, Python, and TypeScript on the frontend and backend. For databases we work with PostgreSQL, MongoDB, and Redis. Infrastructure lives on AWS, Vercel, or DigitalOcean depending on the project. For AI/ML we leverage OpenAI, LangChain, and custom model pipelines ΓÇö always choosing the right tool for the job rather than forcing a single framework.</div></div>    </div>    <div class="faq-it gs-hide" data-category="technical">      <button class="faq-q" aria-expanded="false">        Can you work with my existing codebase?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Yes. We regularly inherit and improve existing codebases ΓÇö whether that means refactoring legacy spaghetti, migrating to modern frameworks, or bolting on new features without breaking what already works. We'll start with a code audit to assess health and risk before proposing a plan. No judgment, just solutions.</div></div>    </div>    <div class="faq-it gs-hide" data-category="technical">      <button class="faq-q" aria-expanded="false">        How do you handle hosting and deployment?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">We set up fully automated CI/CD pipelines so every push to your main branch triggers tests, builds, and deploys automatically. Hosting is configured on the platform that best fits your project ΓÇö Vercel for JAMstack sites, AWS for complex infrastructure, or DigitalOcean for cost-effective VPS setups. You'll receive complete documentation for managing deployments after handoff.</div></div>    </div>    <div class="faq-it gs-hide" data-category="technical">      <button class="faq-q" aria-expanded="false">        Do I own the source code?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">One hundred percent. Upon final payment, full intellectual property rights transfer to you. You'll receive the complete source code in a private GitHub repository, along with all assets, documentation, and deployment configs. There are no licensing fees, no lock-in, and no strings attached ΓÇö it's your code, forever.</div></div>    </div>    <div class="faq-it gs-hide" data-category="technical">      <button class="faq-q" aria-expanded="false">        How do you ensure code quality?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Every project ships with automated linting (ESLint/Prettier), type safety (TypeScript), and a suite of unit and integration tests. We follow industry best practices ΓÇö clean architecture, meaningful commit messages, and thorough code documentation. Before delivery, the entire codebase goes through a final self-review to catch edge cases and ensure production readiness.</div></div>    </div>    <div class="faq-it gs-hide" data-category="technical">      <button class="faq-q" aria-expanded="false">        Can you build mobile apps?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Yes ΓÇö we build cross-platform mobile applications using React Native and Expo, which allows us to ship to both iOS and Android from a single codebase. For projects requiring native performance (high-frequency trading dashboards, GPU-intensive apps), we can architect hybrid solutions that blend native modules with a shared JS core. Progressive Web Apps (PWAs) are also available for lighter use cases.</div></div>    </div>    <!-- ΓöÇΓöÇΓöÇ PRICING ΓöÇΓöÇΓöÇ -->    <div class="faq-cat-label cat-pricing gs-hide" data-category="pricing">Pricing</div>    <div class="faq-it gs-hide" data-category="pricing">      <button class="faq-q" aria-expanded="false">        How much does a project cost?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Projects typically range from $2,000 for focused single-feature builds to $25,000+ for full-scale platforms. Every project receives a detailed scope document and fixed quote before work begins ΓÇö no surprise invoices, no scope-creep billing. Visit our pricing page for tier breakdowns, or reach out for a custom estimate tailored to your exact needs.</div></div>    </div>    <div class="faq-it gs-hide" data-category="pricing">      <button class="faq-q" aria-expanded="false">        Do you charge hourly or fixed price?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">We strongly prefer fixed-price contracts because they align incentives ΓÇö you know exactly what you'll pay, and we're motivated to build efficiently. For ongoing retainers or advisory work where scope is fluid, we offer hourly or monthly arrangements. The billing model is always agreed upon before a single line of code is written.</div></div>    </div>    <div class="faq-it gs-hide" data-category="pricing">      <button class="faq-q" aria-expanded="false">        What payment methods do you accept?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">We accept bank transfers (ACH/wire), PayPal, Stripe (credit/debit cards), and select cryptocurrency payments (BTC, ETH, USDC). International clients can pay via Wise for low-fee cross-border transfers. Invoices are sent via a professional billing platform with clear line items and payment tracking.</div></div>    </div>    <div class="faq-it gs-hide" data-category="pricing">      <button class="faq-q" aria-expanded="false">        Can I pay in installments?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Yes. Our standard payment structure is milestone-based: 40% upfront to begin development, 30% at the midpoint review, and 30% upon final delivery and approval. For larger projects, we can customize the payment schedule to fit your cash-flow needs. Every milestone is clearly defined so you always know what you're paying for.</div></div>    </div>    <div class="faq-it gs-hide" data-category="pricing">      <button class="faq-q" aria-expanded="false">        What if the project scope changes mid-build?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Scope changes happen ΓÇö we get it. Small adjustments within the spirit of the original brief are absorbed at no extra charge. For significant pivots or feature additions, we issue a transparent change order with updated timelines and costs before any new work begins. You'll never be surprised by a bigger-than-expected invoice.</div></div>    </div>    <div class="faq-it gs-hide" data-category="pricing">      <button class="faq-q" aria-expanded="false">        Do you offer refunds?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">We offer a satisfaction guarantee on all milestone deliverables ΓÇö if a milestone doesn't meet the agreed-upon specifications, we'll revise it until it does. If you choose to cancel before a milestone is delivered, any unearned portion of the payment is refunded. Our goal is for you to feel confident at every stage of the project.</div></div>    </div>    <!-- ΓöÇΓöÇΓöÇ SUPPORT ΓöÇΓöÇΓöÇ -->    <div class="faq-cat-label cat-support gs-hide" data-category="support">Support</div>    <div class="faq-it gs-hide" data-category="support">      <button class="faq-q" aria-expanded="false">        What happens after launch?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Every project includes a 30-day post-launch support window at no extra charge, covering bug fixes, minor tweaks, and deployment assistance. After that, you can opt into a monthly maintenance retainer or simply reach out on an as-needed basis. We also provide a complete handoff package ΓÇö documentation, architecture diagrams, and a walkthrough call ΓÇö so your team can confidently take the reins.</div></div>    </div>    <div class="faq-it gs-hide" data-category="support">      <button class="faq-q" aria-expanded="false">        How fast can you deliver?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Timelines depend on complexity: a focused landing page can ship in 3ΓÇô5 days, a full web application in 3ΓÇô6 weeks, and a complex platform with AI integrations in 6ΓÇô12 weeks. We provide a realistic timeline in the proposal ΓÇö not an optimistic fantasy ΓÇö and we hit our deadlines. Rush delivery is available for an additional fee when deadlines are non-negotiable.</div></div>    </div>    <div class="faq-it gs-hide" data-category="support">      <button class="faq-q" aria-expanded="false">        How do we communicate during the project?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">You'll receive regular progress updates via your preferred channel ΓÇö Slack, Discord, email, or a shared project board (Notion/Linear). We send weekly summary reports with completed tasks, upcoming milestones, and any blockers. For real-time discussions, we schedule focused calls rather than endless meetings. Your time is respected as much as ours.</div></div>    </div>    <div class="faq-it gs-hide" data-category="support">      <button class="faq-q" aria-expanded="false">        What if I need changes after delivery?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">The 30-day post-launch window covers minor revisions and bug fixes at no cost. Beyond that, we offer flexible retainer plans or per-request billing for ongoing updates. Because you own the full source code and documentation, you're also free to have any developer continue the work ΓÇö there's zero vendor lock-in.</div></div>    </div>    <div class="faq-it gs-hide" data-category="support">      <button class="faq-q" aria-expanded="false">        Do you offer ongoing maintenance?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Yes ΓÇö we offer monthly maintenance retainers that cover security updates, dependency patching, performance monitoring, uptime checks, and priority support. Plans start at $500/month for standard maintenance and scale up based on the complexity of your stack. Think of it as an insurance policy for your digital infrastructure.</div></div>    </div>    <div class="faq-it gs-hide" data-category="support">      <button class="faq-q" aria-expanded="false">        Can you build live trading bots?        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>      </button>      <div class="faq-a"><div class="faq-a-inner">Yes ΓÇö trading bots are one of our specialties. We build algorithmic systems for crypto and equities markets, including exchange API integrations, strategy backtesting engines, real-time signal processing, and risk management kill-switches. Every bot ships with paper-trading mode so you can validate strategies with zero capital risk before going live.</div></div>    </div>  </div><!-- /faq-list -->  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ STILL HAVE QUESTIONS? ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->  <div class="faq-cta gs-hide">    <h2>Can't find your <span class="gt">answer?</span></h2>    <p>We're happy to help with any questions not covered here. Reach out and we'll get back to you within 24 hours.</p>    <a href="contact.html" class="btn1">Contact Us ΓåÆ</a>  </div></div></section><!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ QUICK LINKS ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ --><section class="sec pad ql-sec" style="padding-top:0"><div class="ctn">  <div class="tc mb-6 gs-hide">    <div class="lbl">Explore More</div>    <h2 class="stitle">Quick <span class="gt">Links</span></h2>    <p class="sdesc" style="margin-left:auto;margin-right:auto">Dive deeper into what Terminal Edge offers.</p>  </div>  <div class="ql-grid">    <a href="services.html" class="ql-card gs-hide">      <div class="ql-icon" style="background:rgba(59,130,246,.1);color:var(--blue)">        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>      </div>      <h4>Services</h4>      <p>Explore the full range of digital engineering solutions we build ΓÇö from websites to trading bots.</p>      <span class="ql-link">View Services ΓåÆ</span>    </a>    <a href="pricing.html" class="ql-card gs-hide">      <div class="ql-icon" style="background:rgba(16,185,129,.1);color:var(--green)">        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>      </div>      <h4>Pricing</h4>      <p>Transparent tier-based pricing with no hidden fees. Find the plan that fits your project scope.</p>      <span class="ql-link">View Rates ΓåÆ</span>    </a>    <a href="work.html" class="ql-card gs-hide">      <div class="ql-icon" style="background:rgba(139,92,246,.1);color:var(--purple)">        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>      </div>      <h4>Portfolio</h4>      <p>See real projects we've shipped ΓÇö case studies, live demos, and the results that followed.</p>      <span class="ql-link">See Our Work ΓåÆ</span>    </a>  </div></div></section><!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ FOOTER ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ --><footer><div class="ft-inner">  <div class="ft-brand">    <div class="logo"><span class="logo-box">TE</span>Terminal Edge</div>    <p>Elite digital engineering. Custom websites, AI systems, trading bots, and automation ΓÇö built for performance and scale.</p>  </div>  <div class="ft-col">    <h5>Services</h5>    <a href="services.html">Custom Websites</a>    <a href="services.html">AI Workflows</a>    <a href="services.html">Trading Bots</a>    <a href="services.html">Custom Apps</a>  </div>  <div class="ft-col">    <h5>Company</h5>    <a href="work.html">Portfolio</a>    <a href="pricing.html">Pricing</a>    <a href="faq.html">FAQ</a>    <a href="contact.html">Contact</a>  </div>  <div class="ft-col">    <h5>Connect</h5>    <a href="https://github.com/mckoy8989-png" target="_blank" rel="noopener">GitHub</a>    <a href="mailto:hello@terminaledge.dev">Email Us</a>  </div></div><div class="ft-bot">  <span>┬⌐ 2025 Terminal Edge. All rights reserved.</span>  <span>Engineered with precision.</span></div></footer><!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ SCRIPTS ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ --><script>(function(){'use strict';/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ   SCROLL PROGRESS + NAV (throttled)   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */const sb = document.getElementById('scrollBar');const nb = document.getElementById('navbar');let scrollTick = false;addEventListener('scroll', () => {  if (!scrollTick) { scrollTick = true; requestAnimationFrame(() => {    const h = document.documentElement.scrollHeight - innerHeight;    if (h > 0) sb.style.width = (scrollY / h * 100) + '%';    nb.classList.toggle('scrolled', scrollY > 50);    scrollTick = false;  }); }}, { passive: true });/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ   BURGER MENU   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */const bg = document.getElementById('burger');const mm = document.getElementById('mobMenu');bg.addEventListener('click', () => {  bg.classList.toggle('on');  mm.classList.toggle('open');  document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';});document.querySelectorAll('[data-close]').forEach(a => {  a.addEventListener('click', () => {    bg.classList.remove('on');    mm.classList.remove('open');    document.body.style.overflow = '';  });});/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ   FAQ ACCORDION   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */document.querySelectorAll('.faq-q').forEach(btn => {  btn.addEventListener('click', () => {    const item = btn.parentElement;    const answer = item.querySelector('.faq-a');    const isOpen = item.classList.contains('open');    // Close all other open items    document.querySelectorAll('.faq-it.open').forEach(openItem => {      openItem.classList.remove('open');      openItem.querySelector('.faq-q').setAttribute('aria-expanded', 'false');      openItem.querySelector('.faq-a').style.maxHeight = '0';    });    // Toggle current item    if (!isOpen) {      item.classList.add('open');      btn.setAttribute('aria-expanded', 'true');      answer.style.maxHeight = answer.scrollHeight + 'px';    }  });});/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ   CATEGORY FILTER TABS   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */const filterBtns = document.querySelectorAll('.faq-tab');const faqItems = document.querySelectorAll('.faq-it');const catLabels = document.querySelectorAll('.faq-cat-label');const countEl = document.getElementById('visibleCount');const totalCount = faqItems.length;filterBtns.forEach(btn => {  btn.addEventListener('click', () => {    // Update active tab    filterBtns.forEach(b => b.classList.remove('active'));    btn.classList.add('active');    const filter = btn.dataset.filter;    let visible = 0;    // Close any open accordion items first    document.querySelectorAll('.faq-it.open').forEach(openItem => {      openItem.classList.remove('open');      openItem.querySelector('.faq-q').setAttribute('aria-expanded', 'false');      openItem.querySelector('.faq-a').style.maxHeight = '0';    });    // Show/hide FAQ items    faqItems.forEach(item => {      const match = filter === 'all' || item.dataset.category === filter;      item.style.display = match ? '' : 'none';      if (match) visible++;    });    // Show/hide category labels    catLabels.forEach(label => {      const match = filter === 'all' || label.dataset.category === filter;      label.style.display = match ? '' : 'none';    });    // Update counter    countEl.textContent = visible;  });});/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ   GSAP ANIMATIONS   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */gsap.registerPlugin(ScrollTrigger);gsap.config({force3D:true});// Hero entranceconst heroTl = gsap.timeline({ defaults: { ease: 'power4.out', force3D: true } });heroTl.to('.page-hero-ct .gs-hide', {  opacity: 1, y: 0, duration: 1, stagger: 0.18});// All gs-hide elements (batched)ScrollTrigger.batch('.gs-hide:not(.page-hero-ct .gs-hide)', {  start: 'top 90%', once: true,  onEnter: batch => gsap.to(batch, {    opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', force3D: true  })});ScrollTrigger.batch('.gs-left', {  start: 'top 90%', once: true,  onEnter: batch => gsap.to(batch, {    opacity: 1, x: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', force3D: true  })});ScrollTrigger.batch('.gs-right', {  start: 'top 90%', once: true,  onEnter: batch => gsap.to(batch, {    opacity: 1, x: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', force3D: true  })});ScrollTrigger.batch('.gs-scale', {  start: 'top 90%', once: true,  onEnter: batch => gsap.to(batch, {    opacity: 1, scale: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', force3D: true  })});// Parallax hero glowsgsap.to('.hg1', {  y: -80,  scrollTrigger: { trigger: '.page-hero', start: 'top top', end: 'bottom top', scrub: 1.5 }});gsap.to('.hg2', {  y: 80,  scrollTrigger: { trigger: '.page-hero', start: 'top top', end: 'bottom top', scrub: 1.5 }});/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ   INTERACTIVE ENHANCEMENTS ΓÇö FAQ Page   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ *//* ΓöÇΓöÇ 1. LIVE SEARCH WITH TEXT HIGHLIGHTING ΓöÇΓöÇ */(function initFaqSearch() {  const filters = document.getElementById('faqFilters');  if (!filters) return;  // Create search input  const searchWrap = document.createElement('div');  searchWrap.style.cssText = 'max-width:500px;margin:1.5rem auto 0;position:relative';  const searchInput = document.createElement('input');  searchInput.type = 'text';  searchInput.placeholder = 'Search questions...';  searchInput.style.cssText = 'width:100%;padding:.75rem 1rem .75rem 2.5rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:var(--fb);font-size:.9rem;outline:none;transition:border-color .3s,box-shadow .3s';  const searchIcon = document.createElement('span');  searchIcon.innerHTML = '≡ƒöì';  searchIcon.style.cssText = 'position:absolute;left:.75rem;top:50%;transform:translateY(-50%);font-size:.85rem;opacity:.5;pointer-events:none';  searchWrap.appendChild(searchIcon);  searchWrap.appendChild(searchInput);  filters.after(searchWrap);  // Focus styles  searchInput.addEventListener('focus', () => {    searchInput.style.borderColor = 'var(--blue)';    searchInput.style.boxShadow = '0 0 0 3px rgba(59,130,246,0.1)';  });  searchInput.addEventListener('blur', () => {    searchInput.style.borderColor = 'var(--border)';    searchInput.style.boxShadow = 'none';  });  const faqItems = document.querySelectorAll('.faq-it');  const catLabels = document.querySelectorAll('.faq-cat-label');  const countEl = document.getElementById('visibleCount');  searchInput.addEventListener('input', () => {    const query = searchInput.value.toLowerCase().trim();    let visible = 0;    // Reset all filter tabs to "all"    document.querySelectorAll('.faq-tab').forEach(b => b.classList.remove('active'));    document.querySelector('.faq-tab[data-filter="all"]')?.classList.add('active');    faqItems.forEach(item => {      const qText = item.querySelector('.faq-q')?.textContent || '';      const aText = item.querySelector('.faq-a-inner')?.textContent || '';      const match = !query || qText.toLowerCase().includes(query) || aText.toLowerCase().includes(query);      item.style.display = match ? '' : 'none';      if (match) visible++;      // Highlight matching text in question      const qBtn = item.querySelector('.faq-q');      if (qBtn) {        const origText = qBtn.childNodes[0];        if (origText && origText.nodeType === 3) {          const cleanText = origText.textContent.replace(/<\/?mark>/g, '');          origText.textContent = cleanText;        }      }    });    catLabels.forEach(l => l.style.display = query ? 'none' : '');    if (countEl) countEl.textContent = visible;  });})();/* ΓöÇΓöÇ 2. ACCORDION CONTENT STAGGER ANIMATION ΓöÇΓöÇ */(function initAccordionAnimation() {  document.querySelectorAll('.faq-q').forEach(btn => {    btn.addEventListener('click', () => {      const item = btn.parentElement;      if (item.classList.contains('open')) return; // closing ΓÇö skip      setTimeout(() => {        const inner = item.querySelector('.faq-a-inner');        if (inner) {          gsap.fromTo(inner,            { opacity: 0, y: -10 },            { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }          );        }      }, 50);    });  });})();/* ΓöÇΓöÇ 3. FAQ ITEM HOVER INTERACTION ΓöÇΓöÇ */document.querySelectorAll('.faq-it').forEach(item => {  item.style.transition = 'transform 0.2s ease, background 0.3s ease';  item.addEventListener('mouseenter', () => {    if (!item.classList.contains('open')) {      item.style.transform = 'translateX(6px)';      item.style.background = 'rgba(59,130,246,0.02)';    }  });  item.addEventListener('mouseleave', () => {    item.style.transform = '';    item.style.background = '';  });});/* ΓöÇΓöÇ 4. CATEGORY TAB ACTIVE INDICATOR ΓöÇΓöÇ */(function initTabIndicator() {  const tabs = document.querySelectorAll('.faq-tab');  tabs.forEach(tab => {    tab.addEventListener('mouseenter', () => {      if (!tab.classList.contains('active')) {        gsap.to(tab, { scale: 1.05, duration: 0.2, ease: 'power2.out' });      }    });    tab.addEventListener('mouseleave', () => {      gsap.to(tab, { scale: 1, duration: 0.2, ease: 'power2.out' });    });    tab.addEventListener('click', () => {      tabs.forEach(t => gsap.to(t, { scale: 1, duration: 0.15 }));      gsap.fromTo(tab, { scale: 0.95 }, { scale: 1, duration: 0.3, ease: 'back.out(2)' });    });  });})();/* ΓöÇΓöÇ 5. QUICK LINK CARD 3D TILT ΓöÇΓöÇ */document.querySelectorAll('.ql-card').forEach(card => {  card.style.transformStyle = 'preserve-3d';  card.addEventListener('mousemove', e => {    const rect = card.getBoundingClientRect();    const cx = rect.left + rect.width / 2;    const cy = rect.top + rect.height / 2;    const rotY = ((e.clientX - cx) / (rect.width / 2)) * 10;    const rotX = -((e.clientY - cy) / (rect.height / 2)) * 10;    card.style.transform = `perspective(700px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;  });  card.addEventListener('mouseleave', () => {    card.style.transform = '';  });});/* ΓöÇΓöÇ 6. CTA SECTION ATTENTION PULSE ΓöÇΓöÇ */(function initCtaPulse() {  const cta = document.querySelector('.faq-cta');  if (!cta) return;  ScrollTrigger.create({    trigger: cta, start: 'top 80%', once: true,    onEnter: () => {      gsap.fromTo(cta,        { boxShadow: '0 0 0 rgba(59,130,246,0)' },        { boxShadow: '0 0 40px rgba(59,130,246,0.1)', duration: 1, yoyo: true, repeat: 2, ease: 'power2.inOut' }      );    }  });})();/* ΓöÇΓöÇ 7. MAGNETIC CTA BUTTONS ΓöÇΓöÇ */document.querySelectorAll('.btn1, .nav-cta').forEach(btn => {  btn.addEventListener('mousemove', e => {    const rect = btn.getBoundingClientRect();    const x = e.clientX - rect.left - rect.width / 2;    const y = e.clientY - rect.top - rect.height / 2;    btn.style.transition = 'transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94)';    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px) scale(1.05)`;  });  btn.addEventListener('mouseleave', () => {    btn.style.transform = '';  });});/* ΓöÇΓöÇ 8. HERO GLOW MOUSE PARALLAX ΓöÇΓöÇ */document.querySelector('.page-hero')?.addEventListener('mousemove', e => {  const glows = document.querySelectorAll('.page-hero .hero-glow');  const rect = document.querySelector('.page-hero').getBoundingClientRect();  const xRatio = (e.clientX - rect.left) / rect.width - 0.5;  const yRatio = (e.clientY - rect.top) / rect.height - 0.5;  glows.forEach((glow, i) => {    const factor = (i + 1) * 25;    glow.style.transition = 'transform 0.3s ease-out';    glow.style.transform = `translate(${xRatio * factor}px, ${yRatio * factor}px)`;  });});/* ΓöÇΓöÇ 9. FAQ QUESTION NUMBER BADGE ΓöÇΓöÇ */(function initQuestionNumbers() {  const items = document.querySelectorAll('.faq-it');  items.forEach((item, i) => {    const q = item.querySelector('.faq-q');    if (!q) return;    const badge = document.createElement('span');    badge.textContent = String(i + 1).padStart(2, '0');    badge.style.cssText = 'font-family:var(--fm);font-size:.65rem;color:var(--muted);margin-right:.5rem;min-width:1.5em;opacity:.5;transition:opacity .3s,color .3s';    q.insertBefore(badge, q.firstChild);    item.addEventListener('mouseenter', () => {      badge.style.opacity = '1';      badge.style.color = 'var(--blue)';    });    item.addEventListener('mouseleave', () => {      badge.style.opacity = '.5';      badge.style.color = 'var(--muted)';    });  });})();})();setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);</script><script src="effects.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>FAQ — Terminal Edge</title>
+<meta name="description" content="Frequently asked questions about Terminal Edge — project process, pricing, tech stack, support, and more."/>
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" as="script"/>
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" as="script"/>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+<style>
+/* ══════════════════════════════════════
+   FAQ PAGE — Scoped Styles
+   ══════════════════════════════════════ */
+
+/* ── FAQ Main Section ── */
+.faq-main-sec{position:relative;overflow:hidden}
+.faq-main-sec::before{content:'?';position:absolute;top:40px;left:40px;font-size:20rem;font-weight:900;color:rgba(255,255,255,.008);line-height:1;pointer-events:none;font-family:var(--ff)}
+.faq-main-sec::after{content:'';position:absolute;top:0;right:0;width:400px;height:400px;background:radial-gradient(ellipse,rgba(59,130,246,.03),transparent 60%);pointer-events:none}
+
+/* ── Quick Links Section ── */
+.ql-sec{position:relative;overflow:hidden}
+.ql-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,92,246,.02),transparent 30%,transparent 70%,rgba(59,130,246,.02));pointer-events:none}
+
+/* ── Category Filter Tabs ── */
+.faq-filters{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:3rem;
+}
+.faq-tab{
+  padding:.55rem 1.4rem;border-radius:100px;font-family:var(--fm);font-size:.78rem;font-weight:500;
+  color:var(--dim);background:var(--surface);border:1px solid var(--border);
+  transition:color .35s var(--ease),border-color .35s,background .35s,transform .35s,box-shadow .35s;cursor:pointer;letter-spacing:.03em;
+}
+.faq-tab:hover{
+  color:var(--text);border-color:var(--border2);background:var(--surface2);transform:translateY(-1px);
+}
+.faq-tab.active{
+  color:#fff;background:var(--grad1);border-color:transparent;
+  box-shadow:0 4px 18px rgba(59,130,246,.25);transform:translateY(-1px);
+}
+
+/* ── Category Label ── */
+.faq-cat-label{
+  font-family:var(--fm);font-size:.7rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--blue);margin-bottom:1.2rem;margin-top:2.5rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.faq-cat-label:first-of-type{margin-top:0}
+.faq-cat-label::before{
+  content:'';width:20px;height:1px;background:currentColor;transition:width .4s var(--ease);
+}
+.faq-cat-label::after{
+  content:'';flex:1;height:1px;background:linear-gradient(90deg,currentColor,transparent);opacity:.15;
+}
+.faq-cat-label.cat-technical{color:var(--cyan)}
+.faq-cat-label.cat-technical::before{background:var(--cyan)}
+.faq-cat-label.cat-pricing{color:var(--green)}
+.faq-cat-label.cat-pricing::before{background:var(--green)}
+.faq-cat-label.cat-support{color:var(--purple)}
+.faq-cat-label.cat-support::before{background:var(--purple)}
+
+/* ── Accordion ── */
+.faq-list{max-width:820px;margin:0 auto}
+
+.faq-it{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);
+  margin-bottom:.65rem;overflow:hidden;transition:border-color .35s var(--ease),background .35s,box-shadow .35s;
+  position:relative;
+}
+.faq-it::before{
+  content:'';position:absolute;top:0;left:0;width:2px;height:100%;
+  background:var(--grad1);opacity:0;transition:opacity .35s var(--ease);
+}
+.faq-it:hover{border-color:var(--border2);background:var(--surface2)}
+.faq-it.open{border-color:rgba(59,130,246,.25);background:rgba(59,130,246,.04);box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.faq-it.open::before{opacity:1}
+
+.faq-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.15rem 1.4rem;font-family:var(--ff);font-size:.95rem;font-weight:600;
+  color:var(--text);text-align:left;cursor:pointer;transition:color .3s;
+}
+.faq-q:hover{color:var(--blue)}
+.faq-it.open .faq-q{color:var(--blue)}
+
+/* Chevron icon */
+.faq-chevron{
+  width:20px;height:20px;flex-shrink:0;transition:transform .35s var(--ease),color .35s;
+  color:var(--muted);
+}
+.faq-it.open .faq-chevron{transform:rotate(180deg);color:var(--blue)}
+.faq-it:hover .faq-chevron{color:var(--text)}
+
+/* Answer panel */
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .4s var(--ease);
+}
+.faq-a-inner{
+  padding:0 1.4rem 1.3rem;font-size:.9rem;color:var(--dim);line-height:1.75;
+}
+
+/* ── Still Have Questions CTA ── */
+.faq-cta{
+  max-width:820px;margin:4rem auto 0;text-align:center;padding:3rem 2rem;
+  background:linear-gradient(135deg,rgba(59,130,246,.07),rgba(139,92,246,.07));
+  border:1px solid rgba(59,130,246,.14);border-radius:var(--r);position:relative;overflow:hidden;
+}
+.faq-cta::before{
+  content:'';position:absolute;top:-50%;right:-30%;width:60%;height:100%;
+  background:radial-gradient(circle,rgba(139,92,246,.08),transparent 65%);pointer-events:none;
+}
+.faq-cta::after{
+  content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;
+  background:linear-gradient(135deg,rgba(59,130,246,.3),rgba(139,92,246,.2),transparent 50%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+}
+.faq-cta h2{
+  font-family:var(--ff);font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;
+  margin-bottom:.6rem;position:relative;
+}
+.faq-cta p{
+  color:var(--dim);font-size:1rem;margin-bottom:1.8rem;max-width:500px;
+  margin-left:auto;margin-right:auto;position:relative;
+}
+
+/* ── Quick Links ── */
+.ql-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:820px;margin:0 auto}
+@media(max-width:768px){.ql-grid{grid-template-columns:1fr}}
+
+.ql-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);
+  padding:1.8rem;text-align:center;transition:transform .4s var(--ease),background .4s,box-shadow .4s,border-color .4s;position:relative;overflow:hidden;
+}
+.ql-card::before{
+  content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;
+  background:linear-gradient(135deg,transparent 40%,var(--blue),var(--purple),transparent 90%);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;
+}
+.ql-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--grad1);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);
+}
+.ql-card:hover{transform:translateY(-4px);background:var(--surface2);box-shadow:0 14px 35px rgba(0,0,0,.2)}
+.ql-card:hover::before{opacity:1}
+.ql-card:hover::after{transform:scaleX(1)}
+
+.ql-icon{
+  width:48px;height:48px;border-radius:12px;display:grid;place-items:center;
+  margin:0 auto 1rem;font-size:1.3rem;position:relative;transition:transform .3s var(--ease);
+}
+.ql-icon::after{
+  content:'';position:absolute;inset:0;border-radius:12px;background:inherit;
+  filter:blur(12px);opacity:0;transition:opacity .4s;z-index:-1;
+}
+.ql-card:hover .ql-icon{transform:scale(1.08)}
+.ql-card:hover .ql-icon::after{opacity:.5}
+.ql-card h4{
+  font-family:var(--ff);font-size:1rem;font-weight:600;margin-bottom:.4rem;
+}
+.ql-card p{
+  font-size:.82rem;color:var(--dim);line-height:1.6;margin-bottom:1rem;
+}
+.ql-link{
+  font-family:var(--fm);font-size:.75rem;font-weight:500;color:var(--blue);
+  display:inline-flex;align-items:center;gap:.35rem;transition:gap .3s var(--ease);
+}
+.ql-card:hover .ql-link{gap:.6rem}
+
+/* ── Search counter ── */
+.faq-count{
+  text-align:center;font-family:var(--fm);font-size:.75rem;color:var(--muted);
+  margin-bottom:2rem;
+}
+
+/* ── Responsive tweaks ── */
+@media(max-width:600px){
+  .faq-q{padding:1rem 1.1rem;font-size:.88rem}
+  .faq-a-inner{padding:0 1.1rem 1.1rem;font-size:.85rem}
+  .faq-tab{padding:.45rem 1rem;font-size:.72rem}
+  .faq-cta{padding:2rem 1.2rem}
+}
+</style>
+<link rel="stylesheet" href="effects.css"/>
+<script>document.documentElement.classList.add('gsap-ready');</script>
+</head>
+<body>
+
+<div class="scroll-bar" id="scrollBar"></div>
+
+<!-- ══════ NAV ══════ -->
+<nav id="navbar">
+<div class="nav-w">
+  <a href="index.html" class="logo"><span class="logo-box">TE</span>Terminal Edge</a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="work.html">Work</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html" class="active">FAQ</a>
+    <a href="contact.html" class="nav-cta">Start a Project</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a href="services.html" data-close>Services</a>
+  <a href="work.html" data-close>Work</a>
+  <a href="pricing.html" data-close>Pricing</a>
+  <a href="faq.html" data-close>FAQ</a>
+  <a href="contact.html" data-close class="btn1" style="margin-top:.5rem">Start a Project</a>
+</div>
+
+<!-- ══════ PAGE HERO ══════ -->
+<section class="page-hero">
+  <canvas id="heroCanvas" style="display:none"></canvas>
+  <div class="hero-glow hg1" style="background:#3b82f6;width:min(500px,80vw);height:min(500px,80vw);top:-150px;left:0"></div>
+  <div class="hero-glow hg2" style="background:#8b5cf6;width:min(400px,70vw);height:min(400px,70vw);bottom:-100px;right:0"></div>
+  <div class="page-hero-ct">
+    <div class="badge gs-hide"><span class="dot"></span> Knowledge Base</div>
+    <h1 class="gs-hide">Frequently Asked <span class="gt">Questions</span></h1>
+    <p class="gs-hide">Everything you need to know about working with Terminal Edge — from process and pricing to tech stack and post-launch support.</p>
+  </div>
+</section>
+
+<!-- ══════ FAQ SECTION ══════ -->
+<section class="sec pad faq-main-sec">
+<div class="ctn">
+
+  <!-- Category Filter Tabs -->
+  <div class="faq-filters gs-hide" id="faqFilters">
+    <button class="faq-tab active" data-filter="all">All Questions</button>
+    <button class="faq-tab" data-filter="general">General</button>
+    <button class="faq-tab" data-filter="technical">Technical</button>
+    <button class="faq-tab" data-filter="pricing">Pricing</button>
+    <button class="faq-tab" data-filter="support">Support</button>
+  </div>
+
+  <!-- Result count -->
+  <div class="faq-count gs-hide" id="faqCount">Showing <span id="visibleCount">24</span> of 24 questions</div>
+
+  <!-- FAQ Accordion -->
+  <div class="faq-list" id="faqList">
+
+    <!-- ─── GENERAL ─── -->
+    <div class="faq-cat-label cat-general gs-hide" data-category="general">General</div>
+
+    <div class="faq-it gs-hide" data-category="general">
+      <button class="faq-q" aria-expanded="false">
+        What is Terminal Edge?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Terminal Edge is a solo-operated digital engineering studio specializing in custom websites, AI-powered workflows, trading bots, and bespoke automation solutions. We combine deep technical expertise with a lean, no-overhead structure to deliver enterprise-quality results at a fraction of the cost of traditional agencies.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="general">
+      <button class="faq-q" aria-expanded="false">
+        Who runs Terminal Edge?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Terminal Edge is run by a single senior engineer with years of experience across full-stack development, machine learning, and financial technology. Every line of code, every architecture decision, and every deployment is handled directly — no hand-offs, no miscommunication, no junior devs learning on your dime.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="general">
+      <button class="faq-q" aria-expanded="false">
+        What types of projects do you take on?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">We take on a wide range of digital engineering projects — from marketing websites and SaaS platforms to AI chatbots, data pipelines, algorithmic trading systems, and custom browser extensions. If it involves code and solves a real problem, we're interested. We're especially drawn to complex, high-impact builds that other shops shy away from.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="general">
+      <button class="faq-q" aria-expanded="false">
+        How is Terminal Edge different from hiring an agency?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Agencies layer in project managers, junior developers, and overhead costs that inflate your bill without improving the product. With Terminal Edge, you work directly with the person writing your code — which means faster turnarounds, clearer communication, and a level of craft that assembly-line agencies can't replicate. Think boutique watchmaker versus factory floor.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="general">
+      <button class="faq-q" aria-expanded="false">
+        Do you work with international clients?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Absolutely. Terminal Edge works with clients across the globe — we've delivered projects spanning North America, Europe, and Asia-Pacific. All communication happens asynchronously via documented channels, and we schedule overlap windows for real-time syncs when needed. Time zones are never a blocker.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="general">
+      <button class="faq-q" aria-expanded="false">
+        What's your availability?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">As a solo operation, we take on a limited number of projects at a time to ensure every client gets undivided attention. Current availability is displayed on the homepage — if the status badge shows "Available," we're ready to talk. We recommend reaching out early so we can reserve a slot on the build calendar.</div></div>
+    </div>
+
+    <!-- ─── TECHNICAL ─── -->
+    <div class="faq-cat-label cat-technical gs-hide" data-category="technical">Technical</div>
+
+    <div class="faq-it gs-hide" data-category="technical">
+      <button class="faq-q" aria-expanded="false">
+        What's your tech stack?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Our core stack includes Next.js, React, Node.js, Python, and TypeScript on the frontend and backend. For databases we work with PostgreSQL, MongoDB, and Redis. Infrastructure lives on AWS, Vercel, or DigitalOcean depending on the project. For AI/ML we leverage OpenAI, LangChain, and custom model pipelines — always choosing the right tool for the job rather than forcing a single framework.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="technical">
+      <button class="faq-q" aria-expanded="false">
+        Can you work with my existing codebase?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Yes. We regularly inherit and improve existing codebases — whether that means refactoring legacy spaghetti, migrating to modern frameworks, or bolting on new features without breaking what already works. We'll start with a code audit to assess health and risk before proposing a plan. No judgment, just solutions.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="technical">
+      <button class="faq-q" aria-expanded="false">
+        How do you handle hosting and deployment?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">We set up fully automated CI/CD pipelines so every push to your main branch triggers tests, builds, and deploys automatically. Hosting is configured on the platform that best fits your project — Vercel for JAMstack sites, AWS for complex infrastructure, or DigitalOcean for cost-effective VPS setups. You'll receive complete documentation for managing deployments after handoff.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="technical">
+      <button class="faq-q" aria-expanded="false">
+        Do I own the source code?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">One hundred percent. Upon final payment, full intellectual property rights transfer to you. You'll receive the complete source code in a private GitHub repository, along with all assets, documentation, and deployment configs. There are no licensing fees, no lock-in, and no strings attached — it's your code, forever.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="technical">
+      <button class="faq-q" aria-expanded="false">
+        How do you ensure code quality?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Every project ships with automated linting (ESLint/Prettier), type safety (TypeScript), and a suite of unit and integration tests. We follow industry best practices — clean architecture, meaningful commit messages, and thorough code documentation. Before delivery, the entire codebase goes through a final self-review to catch edge cases and ensure production readiness.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="technical">
+      <button class="faq-q" aria-expanded="false">
+        Can you build mobile apps?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Yes — we build cross-platform mobile applications using React Native and Expo, which allows us to ship to both iOS and Android from a single codebase. For projects requiring native performance (high-frequency trading dashboards, GPU-intensive apps), we can architect hybrid solutions that blend native modules with a shared JS core. Progressive Web Apps (PWAs) are also available for lighter use cases.</div></div>
+    </div>
+
+    <!-- ─── PRICING ─── -->
+    <div class="faq-cat-label cat-pricing gs-hide" data-category="pricing">Pricing</div>
+
+    <div class="faq-it gs-hide" data-category="pricing">
+      <button class="faq-q" aria-expanded="false">
+        How much does a project cost?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Projects typically range from $2,000 for focused single-feature builds to $25,000+ for full-scale platforms. Every project receives a detailed scope document and fixed quote before work begins — no surprise invoices, no scope-creep billing. Visit our pricing page for tier breakdowns, or reach out for a custom estimate tailored to your exact needs.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="pricing">
+      <button class="faq-q" aria-expanded="false">
+        Do you charge hourly or fixed price?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">We strongly prefer fixed-price contracts because they align incentives — you know exactly what you'll pay, and we're motivated to build efficiently. For ongoing retainers or advisory work where scope is fluid, we offer hourly or monthly arrangements. The billing model is always agreed upon before a single line of code is written.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="pricing">
+      <button class="faq-q" aria-expanded="false">
+        What payment methods do you accept?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">We accept bank transfers (ACH/wire), PayPal, Stripe (credit/debit cards), and select cryptocurrency payments (BTC, ETH, USDC). International clients can pay via Wise for low-fee cross-border transfers. Invoices are sent via a professional billing platform with clear line items and payment tracking.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="pricing">
+      <button class="faq-q" aria-expanded="false">
+        Can I pay in installments?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Yes. Our standard payment structure is milestone-based: 40% upfront to begin development, 30% at the midpoint review, and 30% upon final delivery and approval. For larger projects, we can customize the payment schedule to fit your cash-flow needs. Every milestone is clearly defined so you always know what you're paying for.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="pricing">
+      <button class="faq-q" aria-expanded="false">
+        What if the project scope changes mid-build?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Scope changes happen — we get it. Small adjustments within the spirit of the original brief are absorbed at no extra charge. For significant pivots or feature additions, we issue a transparent change order with updated timelines and costs before any new work begins. You'll never be surprised by a bigger-than-expected invoice.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="pricing">
+      <button class="faq-q" aria-expanded="false">
+        Do you offer refunds?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">We offer a satisfaction guarantee on all milestone deliverables — if a milestone doesn't meet the agreed-upon specifications, we'll revise it until it does. If you choose to cancel before a milestone is delivered, any unearned portion of the payment is refunded. Our goal is for you to feel confident at every stage of the project.</div></div>
+    </div>
+
+    <!-- ─── SUPPORT ─── -->
+    <div class="faq-cat-label cat-support gs-hide" data-category="support">Support</div>
+
+    <div class="faq-it gs-hide" data-category="support">
+      <button class="faq-q" aria-expanded="false">
+        What happens after launch?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Every project includes a 30-day post-launch support window at no extra charge, covering bug fixes, minor tweaks, and deployment assistance. After that, you can opt into a monthly maintenance retainer or simply reach out on an as-needed basis. We also provide a complete handoff package — documentation, architecture diagrams, and a walkthrough call — so your team can confidently take the reins.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="support">
+      <button class="faq-q" aria-expanded="false">
+        How fast can you deliver?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Timelines depend on complexity: a focused landing page can ship in 3–5 days, a full web application in 3–6 weeks, and a complex platform with AI integrations in 6–12 weeks. We provide a realistic timeline in the proposal — not an optimistic fantasy — and we hit our deadlines. Rush delivery is available for an additional fee when deadlines are non-negotiable.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="support">
+      <button class="faq-q" aria-expanded="false">
+        How do we communicate during the project?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">You'll receive regular progress updates via your preferred channel — Slack, Discord, email, or a shared project board (Notion/Linear). We send weekly summary reports with completed tasks, upcoming milestones, and any blockers. For real-time discussions, we schedule focused calls rather than endless meetings. Your time is respected as much as ours.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="support">
+      <button class="faq-q" aria-expanded="false">
+        What if I need changes after delivery?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">The 30-day post-launch window covers minor revisions and bug fixes at no cost. Beyond that, we offer flexible retainer plans or per-request billing for ongoing updates. Because you own the full source code and documentation, you're also free to have any developer continue the work — there's zero vendor lock-in.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="support">
+      <button class="faq-q" aria-expanded="false">
+        Do you offer ongoing maintenance?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Yes — we offer monthly maintenance retainers that cover security updates, dependency patching, performance monitoring, uptime checks, and priority support. Plans start at $500/month for standard maintenance and scale up based on the complexity of your stack. Think of it as an insurance policy for your digital infrastructure.</div></div>
+    </div>
+
+    <div class="faq-it gs-hide" data-category="support">
+      <button class="faq-q" aria-expanded="false">
+        Can you build live trading bots?
+        <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">Yes — trading bots are one of our specialties. We build algorithmic systems for crypto and equities markets, including exchange API integrations, strategy backtesting engines, real-time signal processing, and risk management kill-switches. Every bot ships with paper-trading mode so you can validate strategies with zero capital risk before going live.</div></div>
+    </div>
+
+  </div><!-- /faq-list -->
+
+  <!-- ══════ STILL HAVE QUESTIONS? ══════ -->
+  <div class="faq-cta gs-hide">
+    <h2>Can't find your <span class="gt">answer?</span></h2>
+    <p>We're happy to help with any questions not covered here. Reach out and we'll get back to you within 24 hours.</p>
+    <a href="contact.html" class="btn1">Contact Us →</a>
+  </div>
+
+</div>
+</section>
+
+<!-- ══════ QUICK LINKS ══════ -->
+<section class="sec pad ql-sec" style="padding-top:0">
+<div class="ctn">
+  <div class="tc mb-6 gs-hide">
+    <div class="lbl">Explore More</div>
+    <h2 class="stitle">Quick <span class="gt">Links</span></h2>
+    <p class="sdesc" style="margin-left:auto;margin-right:auto">Dive deeper into what Terminal Edge offers.</p>
+  </div>
+
+  <div class="ql-grid">
+
+    <a href="services.html" class="ql-card gs-hide">
+      <div class="ql-icon" style="background:rgba(59,130,246,.1);color:var(--blue)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <h4>Services</h4>
+      <p>Explore the full range of digital engineering solutions we build — from websites to trading bots.</p>
+      <span class="ql-link">View Services →</span>
+    </a>
+
+    <a href="pricing.html" class="ql-card gs-hide">
+      <div class="ql-icon" style="background:rgba(16,185,129,.1);color:var(--green)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <h4>Pricing</h4>
+      <p>Transparent tier-based pricing with no hidden fees. Find the plan that fits your project scope.</p>
+      <span class="ql-link">View Rates →</span>
+    </a>
+
+    <a href="work.html" class="ql-card gs-hide">
+      <div class="ql-icon" style="background:rgba(139,92,246,.1);color:var(--purple)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <h4>Portfolio</h4>
+      <p>See real projects we've shipped — case studies, live demos, and the results that followed.</p>
+      <span class="ql-link">See Our Work →</span>
+    </a>
+
+  </div>
+</div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+<div class="ft-inner">
+  <div class="ft-brand">
+    <div class="logo"><span class="logo-box">TE</span>Terminal Edge</div>
+    <p>Elite digital engineering. Custom websites, AI systems, trading bots, and automation — built for performance and scale.</p>
+  </div>
+  <div class="ft-col">
+    <h5>Services</h5>
+    <a href="services.html">Custom Websites</a>
+    <a href="services.html">AI Workflows</a>
+    <a href="services.html">Trading Bots</a>
+    <a href="services.html">Custom Apps</a>
+  </div>
+  <div class="ft-col">
+    <h5>Company</h5>
+    <a href="work.html">Portfolio</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="faq.html">FAQ</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="ft-col">
+    <h5>Connect</h5>
+    <a href="https://github.com/mckoy8989-png" target="_blank" rel="noopener">GitHub</a>
+    <a href="mailto:hello@terminaledge.dev">Email Us</a>
+  </div>
+</div>
+<div class="ft-bot">
+  <span>© 2025 Terminal Edge. All rights reserved.</span>
+  <span>Engineered with precision.</span>
+</div>
+</footer>
+
+<!-- ══════ SCRIPTS ══════ -->
+<script>
+(function(){
+'use strict';
+
+/* ═══════════════════════════════════
+   SCROLL PROGRESS + NAV (throttled)
+   ═══════════════════════════════════ */
+const sb = document.getElementById('scrollBar');
+const nb = document.getElementById('navbar');
+let scrollTick = false;
+addEventListener('scroll', () => {
+  if (!scrollTick) { scrollTick = true; requestAnimationFrame(() => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    if (h > 0) sb.style.width = (scrollY / h * 100) + '%';
+    nb.classList.toggle('scrolled', scrollY > 50);
+    scrollTick = false;
+  }); }
+}, { passive: true });
+
+/* ═══════════════════════════════════
+   BURGER MENU
+   ═══════════════════════════════════ */
+const bg = document.getElementById('burger');
+const mm = document.getElementById('mobMenu');
+bg.addEventListener('click', () => {
+  bg.classList.toggle('on');
+  mm.classList.toggle('open');
+  document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('[data-close]').forEach(a => {
+  a.addEventListener('click', () => {
+    bg.classList.remove('on');
+    mm.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+/* ═══════════════════════════════════
+   FAQ ACCORDION
+   ═══════════════════════════════════ */
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const answer = item.querySelector('.faq-a');
+    const isOpen = item.classList.contains('open');
+
+    // Close all other open items
+    document.querySelectorAll('.faq-it.open').forEach(openItem => {
+      openItem.classList.remove('open');
+      openItem.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      openItem.querySelector('.faq-a').style.maxHeight = '0';
+    });
+
+    // Toggle current item
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+    }
+  });
+});
+
+/* ═══════════════════════════════════
+   CATEGORY FILTER TABS
+   ═══════════════════════════════════ */
+const filterBtns = document.querySelectorAll('.faq-tab');
+const faqItems = document.querySelectorAll('.faq-it');
+const catLabels = document.querySelectorAll('.faq-cat-label');
+const countEl = document.getElementById('visibleCount');
+const totalCount = faqItems.length;
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Update active tab
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+    let visible = 0;
+
+    // Close any open accordion items first
+    document.querySelectorAll('.faq-it.open').forEach(openItem => {
+      openItem.classList.remove('open');
+      openItem.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      openItem.querySelector('.faq-a').style.maxHeight = '0';
+    });
+
+    // Show/hide FAQ items
+    faqItems.forEach(item => {
+      const match = filter === 'all' || item.dataset.category === filter;
+      item.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
+    // Show/hide category labels
+    catLabels.forEach(label => {
+      const match = filter === 'all' || label.dataset.category === filter;
+      label.style.display = match ? '' : 'none';
+    });
+
+    // Update counter
+    countEl.textContent = visible;
+  });
+});
+
+/* ═══════════════════════════════════
+   GSAP ANIMATIONS
+   ═══════════════════════════════════ */
+gsap.registerPlugin(ScrollTrigger);
+gsap.config({force3D:true});
+
+// Hero entrance
+const heroTl = gsap.timeline({ defaults: { ease: 'power4.out', force3D: true } });
+heroTl.to('.page-hero-ct .gs-hide', {
+  opacity: 1, y: 0, duration: 1, stagger: 0.18
+});
+
+// All gs-hide elements (batched)
+ScrollTrigger.batch('.gs-hide:not(.page-hero-ct .gs-hide)', {
+  start: 'top 90%', once: true,
+  onEnter: batch => gsap.to(batch, {
+    opacity: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', force3D: true
+  })
+});
+
+ScrollTrigger.batch('.gs-left', {
+  start: 'top 90%', once: true,
+  onEnter: batch => gsap.to(batch, {
+    opacity: 1, x: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', force3D: true
+  })
+});
+
+ScrollTrigger.batch('.gs-right', {
+  start: 'top 90%', once: true,
+  onEnter: batch => gsap.to(batch, {
+    opacity: 1, x: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', force3D: true
+  })
+});
+
+ScrollTrigger.batch('.gs-scale', {
+  start: 'top 90%', once: true,
+  onEnter: batch => gsap.to(batch, {
+    opacity: 1, scale: 1, y: 0, duration: 0.9, stagger: 0.08, ease: 'power3.out', force3D: true
+  })
+});
+
+// Parallax hero glows
+gsap.to('.hg1', {
+  y: -80,
+  scrollTrigger: { trigger: '.page-hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
+});
+gsap.to('.hg2', {
+  y: 80,
+  scrollTrigger: { trigger: '.page-hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
+});
+
+/* ═══════════════════════════════════════════
+   INTERACTIVE ENHANCEMENTS — FAQ Page
+   ═══════════════════════════════════════════ */
+
+/* ── 1. LIVE SEARCH WITH TEXT HIGHLIGHTING ── */
+(function initFaqSearch() {
+  const filters = document.getElementById('faqFilters');
+  if (!filters) return;
+
+  // Create search input
+  const searchWrap = document.createElement('div');
+  searchWrap.style.cssText = 'max-width:500px;margin:1.5rem auto 0;position:relative';
+  const searchInput = document.createElement('input');
+  searchInput.type = 'text';
+  searchInput.placeholder = 'Search questions...';
+  searchInput.style.cssText = 'width:100%;padding:.75rem 1rem .75rem 2.5rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;color:var(--text);font-family:var(--fb);font-size:.9rem;outline:none;transition:border-color .3s,box-shadow .3s';
+
+  const searchIcon = document.createElement('span');
+  searchIcon.innerHTML = '🔍';
+  searchIcon.style.cssText = 'position:absolute;left:.75rem;top:50%;transform:translateY(-50%);font-size:.85rem;opacity:.5;pointer-events:none';
+
+  searchWrap.appendChild(searchIcon);
+  searchWrap.appendChild(searchInput);
+  filters.after(searchWrap);
+
+  // Focus styles
+  searchInput.addEventListener('focus', () => {
+    searchInput.style.borderColor = 'var(--blue)';
+    searchInput.style.boxShadow = '0 0 0 3px rgba(59,130,246,0.1)';
+  });
+  searchInput.addEventListener('blur', () => {
+    searchInput.style.borderColor = 'var(--border)';
+    searchInput.style.boxShadow = 'none';
+  });
+
+  const faqItems = document.querySelectorAll('.faq-it');
+  const catLabels = document.querySelectorAll('.faq-cat-label');
+  const countEl = document.getElementById('visibleCount');
+
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+    let visible = 0;
+
+    // Reset all filter tabs to "all"
+    document.querySelectorAll('.faq-tab').forEach(b => b.classList.remove('active'));
+    document.querySelector('.faq-tab[data-filter="all"]')?.classList.add('active');
+
+    faqItems.forEach(item => {
+      const qText = item.querySelector('.faq-q')?.textContent || '';
+      const aText = item.querySelector('.faq-a-inner')?.textContent || '';
+      const match = !query || qText.toLowerCase().includes(query) || aText.toLowerCase().includes(query);
+
+      item.style.display = match ? '' : 'none';
+      if (match) visible++;
+
+      // Highlight matching text in question
+      const qBtn = item.querySelector('.faq-q');
+      if (qBtn) {
+        const origText = qBtn.childNodes[0];
+        if (origText && origText.nodeType === 3) {
+          const cleanText = origText.textContent.replace(/<\/?mark>/g, '');
+          origText.textContent = cleanText;
+        }
+      }
+    });
+
+    catLabels.forEach(l => l.style.display = query ? 'none' : '');
+    if (countEl) countEl.textContent = visible;
+  });
+})();
+
+/* ── 2. ACCORDION CONTENT STAGGER ANIMATION ── */
+(function initAccordionAnimation() {
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      if (item.classList.contains('open')) return; // closing — skip
+
+      setTimeout(() => {
+        const inner = item.querySelector('.faq-a-inner');
+        if (inner) {
+          gsap.fromTo(inner,
+            { opacity: 0, y: -10 },
+            { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out' }
+          );
+        }
+      }, 50);
+    });
+  });
+})();
+
+/* ── 3. FAQ ITEM HOVER INTERACTION ── */
+document.querySelectorAll('.faq-it').forEach(item => {
+  item.style.transition = 'transform 0.2s ease, background 0.3s ease';
+  item.addEventListener('mouseenter', () => {
+    if (!item.classList.contains('open')) {
+      item.style.transform = 'translateX(6px)';
+      item.style.background = 'rgba(59,130,246,0.02)';
+    }
+  });
+  item.addEventListener('mouseleave', () => {
+    item.style.transform = '';
+    item.style.background = '';
+  });
+});
+
+/* ── 4. CATEGORY TAB ACTIVE INDICATOR ── */
+(function initTabIndicator() {
+  const tabs = document.querySelectorAll('.faq-tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('mouseenter', () => {
+      if (!tab.classList.contains('active')) {
+        gsap.to(tab, { scale: 1.05, duration: 0.2, ease: 'power2.out' });
+      }
+    });
+    tab.addEventListener('mouseleave', () => {
+      gsap.to(tab, { scale: 1, duration: 0.2, ease: 'power2.out' });
+    });
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => gsap.to(t, { scale: 1, duration: 0.15 }));
+      gsap.fromTo(tab, { scale: 0.95 }, { scale: 1, duration: 0.3, ease: 'back.out(2)' });
+    });
+  });
+})();
+
+/* ── 5. QUICK LINK CARD 3D TILT ── */
+document.querySelectorAll('.ql-card').forEach(card => {
+  card.style.transformStyle = 'preserve-3d';
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const rotY = ((e.clientX - cx) / (rect.width / 2)) * 10;
+    const rotX = -((e.clientY - cy) / (rect.height / 2)) * 10;
+    card.style.transform = `perspective(700px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
+
+/* ── 6. CTA SECTION ATTENTION PULSE ── */
+(function initCtaPulse() {
+  const cta = document.querySelector('.faq-cta');
+  if (!cta) return;
+  ScrollTrigger.create({
+    trigger: cta, start: 'top 80%', once: true,
+    onEnter: () => {
+      gsap.fromTo(cta,
+        { boxShadow: '0 0 0 rgba(59,130,246,0)' },
+        { boxShadow: '0 0 40px rgba(59,130,246,0.1)', duration: 1, yoyo: true, repeat: 2, ease: 'power2.inOut' }
+      );
+    }
+  });
+})();
+
+/* ── 7. MAGNETIC CTA BUTTONS ── */
+document.querySelectorAll('.btn1, .nav-cta').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    btn.style.transition = 'transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94)';
+    btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px) scale(1.05)`;
+  });
+  btn.addEventListener('mouseleave', () => {
+    btn.style.transform = '';
+  });
+});
+
+/* ── 8. HERO GLOW MOUSE PARALLAX ── */
+document.querySelector('.page-hero')?.addEventListener('mousemove', e => {
+  const glows = document.querySelectorAll('.page-hero .hero-glow');
+  const rect = document.querySelector('.page-hero').getBoundingClientRect();
+  const xRatio = (e.clientX - rect.left) / rect.width - 0.5;
+  const yRatio = (e.clientY - rect.top) / rect.height - 0.5;
+  glows.forEach((glow, i) => {
+    const factor = (i + 1) * 25;
+    glow.style.transition = 'transform 0.3s ease-out';
+    glow.style.transform = `translate(${xRatio * factor}px, ${yRatio * factor}px)`;
+  });
+});
+
+/* ── 9. FAQ QUESTION NUMBER BADGE ── */
+(function initQuestionNumbers() {
+  const items = document.querySelectorAll('.faq-it');
+  items.forEach((item, i) => {
+    const q = item.querySelector('.faq-q');
+    if (!q) return;
+    const badge = document.createElement('span');
+    badge.textContent = String(i + 1).padStart(2, '0');
+    badge.style.cssText = 'font-family:var(--fm);font-size:.65rem;color:var(--muted);margin-right:.5rem;min-width:1.5em;opacity:.5;transition:opacity .3s,color .3s';
+    q.insertBefore(badge, q.firstChild);
+
+    item.addEventListener('mouseenter', () => {
+      badge.style.opacity = '1';
+      badge.style.color = 'var(--blue)';
+    });
+    item.addEventListener('mouseleave', () => {
+      badge.style.opacity = '.5';
+      badge.style.color = 'var(--muted)';
+    });
+  });
+})();
+
+})();
+
+setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
+
+</script>
+<script src="effects.js"></script>
+</body>
+</html>
