@@ -47,7 +47,7 @@
     hero.style.position = 'relative';
     hero.insertBefore(renderer.domElement, hero.firstChild);
 
-    var COUNT = isMobile ? 300 : 800;
+    var COUNT = isMobile ? 150 : 400;
     var geometry = new THREE.BufferGeometry();
     var positions = new Float32Array(COUNT * 3);
     var colors = new Float32Array(COUNT * 3);
@@ -130,12 +130,12 @@
     }, { threshold: 0 });
     obs.observe(hero);
 
-    var frameSkip = isMobile ? 1 : 0, frameCount = 0;
+    var frameSkip = isMobile ? 2 : 1, frameCount = 0;
     function animate() {
       requestAnimationFrame(animate);
       if (!active) return;
       frameCount++;
-      if (frameSkip && frameCount % 2 !== 0) return;
+      if (frameSkip && frameCount % (frameSkip + 1) !== 0) return;
 
       var pos = geometry.attributes.position.array;
       for (var i = 0; i < COUNT; i++) {
@@ -192,30 +192,30 @@
 
     var content = document.getElementById('bootContent');
     var lines = [
-      { text: '\u2588 TERMINAL EDGE SYSTEMS', cls: 'boot-cyan', delay: 200 },
-      { text: '', cls: '', delay: 100 },
-      { text: '> Initializing kernel...', cls: 'boot-dim', delay: 300 },
-      { text: '  \u2713 Core runtime loaded', cls: 'boot-green', delay: 180 },
-      { text: '  \u2713 GPU acceleration enabled', cls: 'boot-green', delay: 120 },
-      { text: '', cls: '', delay: 80 },
-      { text: '> Loading modules:', cls: 'boot-dim', delay: 200 },
-      { text: '', cls: '', delay: 50, bar: { label: '  ui-engine', width: 100 } },
-      { text: '', cls: '', delay: 50, bar: { label: '  scroll-physics', width: 100 } },
-      { text: '', cls: '', delay: 50, bar: { label: '  particle-system', width: 100 } },
-      { text: '', cls: '', delay: 50, bar: { label: '  animation-core', width: 100 } },
-      { text: '  \u2713 All modules loaded (4/4)', cls: 'boot-green', delay: 200 },
-      { text: '', cls: '', delay: 80 },
-      { text: '> Compiling interface...', cls: 'boot-dim', delay: 250 },
-      { text: '  \u2713 47 components rendered', cls: 'boot-green', delay: 140 },
-      { text: '  \u2713 12 scroll triggers armed', cls: 'boot-green', delay: 120 },
-      { text: '  \u2713 Interaction handlers bound', cls: 'boot-green', delay: 120 },
-      { text: '', cls: '', delay: 80 },
-      { text: '> Running diagnostics:', cls: 'boot-dim', delay: 200 },
-      { text: '  Performance   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  98/100', cls: 'boot-green', delay: 150 },
-      { text: '  Accessibility \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 100/100', cls: 'boot-green', delay: 150 },
-      { text: '  Security      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  97/100', cls: 'boot-green', delay: 150 },
-      { text: '', cls: '', delay: 100 },
-      { text: '> System ready. Launching interface...', cls: 'boot-cyan boot-blink', delay: 600 }
+      { text: '\u2588 TERMINAL EDGE SYSTEMS', cls: 'boot-cyan', delay: 80 },
+      { text: '', cls: '', delay: 30 },
+      { text: '> Initializing kernel...', cls: 'boot-dim', delay: 80 },
+      { text: '  \u2713 Core runtime loaded', cls: 'boot-green', delay: 50 },
+      { text: '  \u2713 GPU acceleration enabled', cls: 'boot-green', delay: 40 },
+      { text: '', cls: '', delay: 20 },
+      { text: '> Loading modules:', cls: 'boot-dim', delay: 60 },
+      { text: '', cls: '', delay: 20, bar: { label: '  ui-engine', width: 100 } },
+      { text: '', cls: '', delay: 20, bar: { label: '  scroll-physics', width: 100 } },
+      { text: '', cls: '', delay: 20, bar: { label: '  particle-system', width: 100 } },
+      { text: '', cls: '', delay: 20, bar: { label: '  animation-core', width: 100 } },
+      { text: '  \u2713 All modules loaded (4/4)', cls: 'boot-green', delay: 60 },
+      { text: '', cls: '', delay: 20 },
+      { text: '> Compiling interface...', cls: 'boot-dim', delay: 60 },
+      { text: '  \u2713 47 components rendered', cls: 'boot-green', delay: 40 },
+      { text: '  \u2713 12 scroll triggers armed', cls: 'boot-green', delay: 40 },
+      { text: '  \u2713 Interaction handlers bound', cls: 'boot-green', delay: 40 },
+      { text: '', cls: '', delay: 20 },
+      { text: '> Running diagnostics:', cls: 'boot-dim', delay: 60 },
+      { text: '  Performance   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  98/100', cls: 'boot-green', delay: 40 },
+      { text: '  Accessibility \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588 100/100', cls: 'boot-green', delay: 40 },
+      { text: '  Security      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  97/100', cls: 'boot-green', delay: 40 },
+      { text: '', cls: '', delay: 30 },
+      { text: '> System ready. Launching interface...', cls: 'boot-cyan boot-blink', delay: 200 }
     ];
 
     var li = 0;
@@ -246,7 +246,7 @@
         el.appendChild(done);
         var bw = 0;
         var barTimer = setInterval(function() {
-          bw += 8;
+          bw += 20;
           if (bw > line.bar.width) {
             clearInterval(barTimer);
             barEl.style.width = line.bar.width + 'px';
@@ -264,7 +264,7 @@
           ci++;
           el.textContent = text.substring(0, ci);
           if (ci >= text.length) { clearInterval(typeTimer); li++; setTimeout(addLine, line.delay); }
-        }, 8);
+        }, 3);
       } else {
         el.innerHTML = '\u00A0';
         content.appendChild(el);
@@ -396,7 +396,7 @@
 
     var ctx = canvas.getContext('2d');
     var w, h, dots = [];
-    var spacing = isMobile ? 120 : 80;
+    var spacing = isMobile ? 160 : 110;
     var mx = -9e3, my = -9e3;
     var scrollProg = 0, pageH = 1;
     var time = 0;
@@ -442,7 +442,7 @@
       meshActive = !document.hidden;
     });
 
-    var targetFps = isMobile ? 16 : 20;
+    var targetFps = isMobile ? 12 : 15;
     var frameInterval = 1000 / targetFps;
     var lastFrame = 0;
     var hasInteraction = false;
