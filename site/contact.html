@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Terminal Edge — Start a Project</title>
 <meta name="description" content="Tell me about your project. Skip the sales funnel — talk directly to the engineer who builds your system."/>
+<link rel="prefetch" href="index.html"/><link rel="prefetch" href="services.html"/><link rel="prefetch" href="work.html"/><link rel="prefetch" href="pricing.html"/><link rel="prefetch" href="faq.html"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" media="print" id="gfonts"/>
@@ -158,11 +159,12 @@
 .trust-pill:nth-child(3) svg{color:var(--purple)}
 .trust-pill:nth-child(4) svg{color:var(--cyan)}
 .trust-pill .tp-val{font-family:var(--fm);font-weight:700}
+.page-transition{position:fixed;inset:0;background:var(--bg,#060714);z-index:9999;opacity:0;pointer-events:none;transition:opacity .2s ease}.page-transition.active{opacity:1;pointer-events:all}
 </style>
 <link rel="stylesheet" href="effects.css"/>
 <script>document.documentElement.classList.add('gsap-ready');</script><script>var gf=document.getElementById("gfonts");if(gf){gf.onload=function(){gf.media="all"}};</script>
 </head>
-<body>
+<body><div class="page-transition" id="pageTransition"></div>
 
 <!-- SCROLL PROGRESS -->
 <div class="scroll-bar" id="scrollBar"></div>

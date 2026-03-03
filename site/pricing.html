@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Pricing — Terminal Edge</title>
 <meta name="description" content="Transparent, fixed pricing for custom websites, AI workflows, trading bots, and automation. No hourly billing, no surprises."/>
+<link rel="prefetch" href="index.html"/><link rel="prefetch" href="services.html"/><link rel="prefetch" href="work.html"/><link rel="prefetch" href="contact.html"/><link rel="prefetch" href="faq.html"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" media="print" id="gfonts"/>
@@ -164,11 +165,12 @@
 /* ── FINAL CTA ── */
 .final-cta-sec{background:var(--bg);position:relative;overflow:hidden}
 .final-cta-sec::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:200px;background:radial-gradient(ellipse,rgba(139,92,246,.06),transparent 60%);pointer-events:none}
+.page-transition{position:fixed;inset:0;background:var(--bg,#060714);z-index:9999;opacity:0;pointer-events:none;transition:opacity .2s ease}.page-transition.active{opacity:1;pointer-events:all}
 </style>
 <link rel="stylesheet" href="effects.css"/>
 <script>document.documentElement.classList.add('gsap-ready');</script><script>var gf=document.getElementById("gfonts");if(gf){gf.onload=function(){gf.media="all"}};</script>
 </head>
-<body>
+<body><div class="page-transition" id="pageTransition"></div>
 
 <div class="scroll-bar" id="scrollBar"></div>
 

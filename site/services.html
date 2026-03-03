@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Services — Terminal Edge | Custom Websites, AI, Bots & Apps</title>
 <meta name="description" content="Explore Terminal Edge services: custom websites, AI workflows, trading bots, scraping automation, and full-stack custom applications — engineered for performance."/>
+<link rel="prefetch" href="index.html"/><link rel="prefetch" href="work.html"/><link rel="prefetch" href="pricing.html"/><link rel="prefetch" href="contact.html"/><link rel="prefetch" href="faq.html"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" media="print" id="gfonts"/>
@@ -236,11 +237,12 @@
 .sh-pill::after{content:'';position:absolute;inset:0;border-radius:100px;background:radial-gradient(circle,rgba(59,130,246,0.15),transparent 70%);opacity:0;transition:opacity 0.3s;pointer-events:none}
 .sh-pill:hover::after{opacity:1}
 .sh-pill{position:relative;overflow:hidden}
+.page-transition{position:fixed;inset:0;background:var(--bg,#060714);z-index:9999;opacity:0;pointer-events:none;transition:opacity .2s ease}.page-transition.active{opacity:1;pointer-events:all}
 </style>
 <link rel="stylesheet" href="effects.css"/>
 <script>document.documentElement.classList.add('gsap-ready');</script><script>var gf=document.getElementById("gfonts");if(gf){gf.onload=function(){gf.media="all"}};</script>
 </head>
-<body>
+<body><div class="page-transition" id="pageTransition"></div>
 <div class="scroll-bar" id="scrollBar"></div>
 
 <!-- ══ NAV ══ -->
