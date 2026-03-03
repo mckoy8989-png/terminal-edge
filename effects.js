@@ -1,5 +1,5 @@
 /**
- * Terminal Edge — Effects Engine v6 (MOBILE-FIRST)
+ * Terminal Edge ΓÇö Effects Engine v6 (MOBILE-FIRST)
  * Three.js 3D hero | Lenis smooth scroll | GSAP dramatic reveals
  * Touch-optimized, performance-tuned for all devices
  */
@@ -13,7 +13,7 @@
 
   /* ================================================================
      1. LENIS SMOOTH SCROLL
-     Premium momentum-based scrolling (desktop only — native on mobile)
+     Premium momentum-based scrolling (desktop only ΓÇö native on mobile)
      ================================================================ */
   function initSmoothScroll() {
     if (typeof Lenis === 'undefined' || isTouch) return;
@@ -516,7 +516,7 @@
         }
       }
 
-      // Connections — only between active dots (much faster than O(n²) over all dots)
+      // Connections ΓÇö only between active dots (much faster than O(n┬▓) over all dots)
       if (activeDots.length < 80) {
         ctx.lineWidth = 0.8;
         for (var i = 0; i < activeDots.length; i++) {
@@ -695,7 +695,7 @@
     if (typeof gsap === 'undefined') return;
     var strength = isMobile ? 0.4 : 1;
 
-    // Hero gradients — only if not already animated by inline script
+    // Hero gradients ΓÇö only if not already animated by inline script
     var hg1 = document.querySelector('.hg1');
     var hg2 = document.querySelector('.hg2');
     if (hg1 && gsap.getTweensOf(hg1).length === 0) {
@@ -711,7 +711,7 @@
       });
     }
 
-    // Section background depth — skip headings that already have scrub tweens
+    // Section background depth ΓÇö skip headings that already have scrub tweens
     var parallaxHeadings = document.querySelectorAll('.sec.pad .stitle');
     for (var pi = 0; pi < Math.min(parallaxHeadings.length, 3); pi++) {
       if (gsap.getTweensOf(parallaxHeadings[pi]).length > 0) continue;

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Terminal Edge — Elite Digital Engineering</title>
-<meta name="description" content="Custom websites, AI workflows, trading bots, and automation — engineered to perfection."/>
+<title>Terminal Edge ΓÇö Elite Digital Engineering</title>
+<meta name="description" content="Custom websites, AI workflows, trading bots, and automation ΓÇö engineered to perfection."/>
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" as="script"/>
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" as="script"/>
@@ -41,10 +41,10 @@ body{font-family:var(--fb);color:var(--text);background:var(--bg);line-height:1.
 a{color:inherit;text-decoration:none}button{cursor:pointer;font-family:inherit;border:none;background:none}
 ul{list-style:none}
 
-/* ── SCROLL PROGRESS ── */
+/* ΓöÇΓöÇ SCROLL PROGRESS ΓöÇΓöÇ */
 .scroll-bar{position:fixed;top:0;left:0;height:3px;z-index:10001;background:var(--grad1);width:0;pointer-events:none}
 
-/* ── NAV ── */
+/* ΓöÇΓöÇ NAV ΓöÇΓöÇ */
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 1.5rem;transition:all .4s var(--ease)}
 nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);padding:.7rem 1.5rem}
 .nav-w{max-width:1240px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
@@ -68,7 +68,7 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .mob-menu a:hover{color:var(--text)}
 @media(max-width:768px){.nav-links{display:none}.burger{display:flex}}
 
-/* ── SECTION HELPERS ── */
+/* ΓöÇΓöÇ SECTION HELPERS ΓöÇΓöÇ */
 .sec{position:relative;overflow:hidden;contain:layout style}
 .pad{padding:6rem 1.5rem}
 .ctn{max-width:1200px;margin:0 auto}
@@ -81,7 +81,7 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .gt3{background:var(--grad3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .tc{text-align:center}
 
-/* ── HERO ── */
+/* ΓöÇΓöÇ HERO ΓöÇΓöÇ */
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 #heroCanvas{position:absolute;inset:0;z-index:0}
 .hero-glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:.1;z-index:0;pointer-events:none;contain:strict}
@@ -132,7 +132,7 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .btn2{padding:.8rem 1.8rem;border:1px solid var(--border2);border-radius:var(--rxs);font-weight:600;color:var(--text);font-size:.95rem;transition:transform .4s var(--ease),background .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease);background:rgba(255,255,255,.03);display:inline-block}
 .btn2:hover{border-color:var(--blue);color:var(--blue)}
 
-/* ── STATS ── */
+/* ΓöÇΓöÇ STATS ΓöÇΓöÇ */
 .stats{padding:5rem 1.5rem;background:var(--bg);position:relative;overflow:hidden}
 .stats::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(59,130,246,.05),transparent 50%),radial-gradient(ellipse at 70% 50%,rgba(139,92,246,.05),transparent 50%);pointer-events:none}
 .stats-header{text-align:center;margin-bottom:3rem;position:relative;z-index:1}
@@ -177,62 +177,127 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 @keyframes pulse-live{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 @media(max-width:600px){.stats-g{grid-template-columns:repeat(2,1fr);gap:1rem}.stat-ring{width:64px;height:64px}}
 
-/* ── SERVICES (Bento Grid) ── */
-.svc-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:1.25rem;perspective:1200px}
-.svc-grid .svc-card:nth-child(1){grid-column:1/2;grid-row:1/2}
-.svc-grid .svc-card:nth-child(2){grid-column:2/3;grid-row:1/3}
-.svc-grid .svc-card:nth-child(3){grid-column:1/2;grid-row:2/3}
-.svc-grid .svc-card:nth-child(4){grid-column:1/3;grid-row:3/4}
-@media(max-width:768px){.svc-grid{grid-template-columns:1fr}.svc-grid .svc-card{grid-column:1!important;grid-row:auto!important}}
+/* ΓöÇΓöÇ SERVICES (Premium Showcase) ΓöÇΓöÇ */
+.svc-section{background:var(--bg);position:relative;overflow:hidden}
+.svc-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(59,130,246,.04),transparent 50%),radial-gradient(ellipse at 80% 100%,rgba(139,92,246,.04),transparent 50%);pointer-events:none}
+.svc-grid{display:flex;flex-direction:column;gap:2rem}
 
-.svc-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:0;position:relative;overflow:hidden;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);transform-style:preserve-3d}
-.svc-card::before{content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;opacity:0;transition:opacity .5s;z-index:2;pointer-events:none;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
-.svc-card:nth-child(1)::before{background:linear-gradient(135deg,transparent 30%,#3b82f6,transparent 70%)}
-.svc-card:nth-child(2)::before{background:linear-gradient(135deg,transparent 30%,#8b5cf6,transparent 70%)}
-.svc-card:nth-child(3)::before{background:linear-gradient(135deg,transparent 30%,#06b6d4,transparent 70%)}
-.svc-card:nth-child(4)::before{background:linear-gradient(135deg,transparent 30%,#10b981 50%,transparent 70%)}
-.svc-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.svc-card{background:var(--bg3);border:1px solid var(--border);border-radius:20px;overflow:hidden;position:relative;transition:transform .5s var(--ease),box-shadow .5s var(--ease);display:grid;grid-template-columns:1fr 1fr;min-height:340px}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 30px 80px rgba(0,0,0,.4)}
+/* Animated gradient border */
+.svc-card::before{content:'';position:absolute;inset:-1px;border-radius:20px;padding:1px;opacity:0;transition:opacity .6s;z-index:2;pointer-events:none;-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
 .svc-card:hover::before{opacity:1}
-.svc-card-visual{height:140px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.svc-card:nth-child(1) .svc-card-visual{background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(59,130,246,.02))}
-.svc-card:nth-child(2) .svc-card-visual{background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(139,92,246,.02));height:100%}
-.svc-card:nth-child(3) .svc-card-visual{background:linear-gradient(135deg,rgba(6,182,212,.08),rgba(6,182,212,.02))}
-.svc-card:nth-child(4) .svc-card-visual{background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(16,185,129,.02));height:80px}
-.svc-card-visual .svc-anim{position:relative;z-index:1}
-.svc-card-visual::after{content:'';position:absolute;width:200px;height:200px;border-radius:50%;filter:blur(60px);opacity:.15;pointer-events:none}
-.svc-card:nth-child(1) .svc-card-visual::after{background:#3b82f6;top:-40px;right:-40px}
-.svc-card:nth-child(2) .svc-card-visual::after{background:#8b5cf6;bottom:-40px;left:-40px}
-.svc-card:nth-child(3) .svc-card-visual::after{background:#06b6d4;top:-40px;left:-40px}
-.svc-card:nth-child(4) .svc-card-visual::after{background:#10b981;top:-20px;right:20%}
-.svc-card-body{padding:1.5rem 1.75rem 1.75rem}
-.svc-card:nth-child(4) .svc-card-body{padding:1.25rem 1.75rem 1.5rem}
-.svc-card-num{font-family:var(--fm);font-size:.6rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem}
-.svc-card:nth-child(1) .svc-card-num{color:#3b82f6}
-.svc-card:nth-child(2) .svc-card-num{color:#8b5cf6}
-.svc-card:nth-child(3) .svc-card-num{color:#06b6d4}
-.svc-card:nth-child(4) .svc-card-num{color:#10b981}
-.svc-card h3{font-family:var(--ff);font-size:1.2rem;font-weight:600;margin-bottom:.25rem}
-.svc-card .price{font-family:var(--fm);font-size:.75rem;color:var(--green);display:inline-flex;align-items:center;gap:.3rem}
-.svc-card .price::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(16,185,129,.5)}
-.svc-card>p,.svc-card-body>p{color:var(--dim);font-size:.85rem;margin:.75rem 0 1rem;line-height:1.65}
-.tags{display:flex;flex-wrap:wrap;gap:.35rem}
-.tag{font-size:.68rem;padding:.25rem .6rem;border-radius:100px;background:rgba(255,255,255,.04);color:var(--muted);font-family:var(--fm);border:1px solid rgba(255,255,255,.06);transition:border-color .3s,color .3s,background .3s}
-.tag:hover{border-color:rgba(59,130,246,.3);color:var(--text);background:rgba(59,130,246,.08)}
-/* Visual elements inside service cards */
-.svc-browser-mini{width:85%;max-width:280px;border-radius:8px;border:1px solid var(--border);overflow:hidden;background:var(--bg);box-shadow:0 8px 30px rgba(0,0,0,.3)}
-.svc-browser-bar-mini{height:20px;background:rgba(0,0,0,.4);display:flex;align-items:center;gap:4px;padding:0 8px}
-.svc-browser-bar-mini span{width:6px;height:6px;border-radius:50%}
-.svc-browser-body-mini{padding:8px;min-height:60px;display:flex;flex-direction:column;gap:4px}
-.svc-code-block{font-family:var(--fm);font-size:.55rem;color:var(--dim);line-height:1.8;padding:.75rem;background:rgba(0,0,0,.3);border-radius:6px;border:1px solid var(--border);max-width:280px}
-.svc-code-block .ck{color:#3b82f6}
-.svc-code-block .cs{color:#10b981}
-.svc-code-block .cv{color:#f59e0b}
-.svc-code-block .cp{color:#8b5cf6}
-.svc-flow-visual{display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}
-.svc-flow-node{padding:4px 10px;border-radius:6px;font-family:var(--fm);font-size:.55rem;border:1px solid;display:flex;align-items:center;gap:4px}
-.svc-flow-arrow{font-size:.6rem;color:var(--muted)}
+.svc-card:nth-child(1)::before{background:conic-gradient(from 0deg,transparent,#3b82f6,transparent,#8b5cf6,transparent)}
+.svc-card:nth-child(2)::before{background:conic-gradient(from 90deg,transparent,#8b5cf6,transparent,#ec4899,transparent)}
+.svc-card:nth-child(3)::before{background:conic-gradient(from 180deg,transparent,#06b6d4,transparent,#10b981,transparent)}
+.svc-card:nth-child(4)::before{background:conic-gradient(from 270deg,transparent,#10b981,transparent,#f59e0b,transparent)}
+.svc-card:nth-child(odd){direction:ltr}
+.svc-card:nth-child(even){direction:rtl}
+.svc-card:nth-child(even) > *{direction:ltr}
+@media(max-width:768px){.svc-card{grid-template-columns:1fr;min-height:auto}.svc-card:nth-child(even){direction:ltr}}
 
-/* ── FEATURE HIGHLIGHTS ── */
+/* Visual panel */
+.svc-visual{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:2rem;min-height:300px}
+.svc-visual::before{content:'';position:absolute;inset:0;opacity:.6;pointer-events:none}
+.svc-card:nth-child(1) .svc-visual::before{background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(139,92,246,.04))}
+.svc-card:nth-child(2) .svc-visual::before{background:linear-gradient(135deg,rgba(139,92,246,.06),rgba(236,72,153,.04))}
+.svc-card:nth-child(3) .svc-visual::before{background:linear-gradient(135deg,rgba(6,182,212,.06),rgba(16,185,129,.04))}
+.svc-card:nth-child(4) .svc-visual::before{background:linear-gradient(135deg,rgba(16,185,129,.06),rgba(245,158,11,.04))}
+.svc-visual::after{content:'';position:absolute;width:300px;height:300px;border-radius:50%;filter:blur(80px);opacity:.12;pointer-events:none}
+.svc-card:nth-child(1) .svc-visual::after{background:#3b82f6;bottom:-100px;right:-50px}
+.svc-card:nth-child(2) .svc-visual::after{background:#8b5cf6;top:-100px;left:-50px}
+.svc-card:nth-child(3) .svc-visual::after{background:#06b6d4;bottom:-100px;left:-50px}
+.svc-card:nth-child(4) .svc-visual::after{background:#10b981;top:-80px;right:-50px}
+.svc-visual-inner{position:relative;z-index:1;width:100%}
+
+/* Browser mockup (premium) */
+.svc-browser{width:100%;border-radius:10px;border:1px solid var(--border);overflow:hidden;background:var(--bg);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.svc-browser-bar{height:28px;background:rgba(0,0,0,.5);display:flex;align-items:center;gap:6px;padding:0 12px}
+.svc-browser-bar .dot{width:8px;height:8px;border-radius:50%}
+.svc-browser-bar .url{flex:1;margin:0 10px;height:16px;border-radius:4px;background:rgba(255,255,255,.06);display:flex;align-items:center;padding:0 8px;font-size:.55rem;color:var(--muted);font-family:var(--fm)}
+.svc-browser-content{padding:12px;min-height:200px;position:relative}
+
+/* Code editor mockup */
+.svc-editor{width:100%;border-radius:10px;border:1px solid var(--border);overflow:hidden;background:var(--bg);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.svc-editor-bar{height:28px;background:rgba(0,0,0,.5);display:flex;align-items:center;gap:6px;padding:0 12px}
+.svc-editor-bar .dot{width:8px;height:8px;border-radius:50%}
+.svc-editor-tabs{display:flex;gap:0;margin-left:12px}
+.svc-editor-tab{padding:4px 12px;font-size:.55rem;font-family:var(--fm);color:var(--muted);border-bottom:2px solid transparent}
+.svc-editor-tab.active{color:var(--text);border-color:#8b5cf6;background:rgba(139,92,246,.05)}
+.svc-editor-body{display:flex;min-height:210px}
+.svc-editor-lines{padding:10px 0;width:32px;text-align:right;font-family:var(--fm);font-size:.55rem;color:var(--muted);line-height:1.9;padding-right:8px;background:rgba(0,0,0,.15);user-select:none}
+.svc-editor-code{flex:1;padding:10px 12px;font-family:var(--fm);font-size:.6rem;color:var(--dim);line-height:1.9;overflow:hidden}
+.svc-editor-code .ck{color:#c084fc}
+.svc-editor-code .cf{color:#60a5fa}
+.svc-editor-code .cs{color:#34d399}
+.svc-editor-code .cv{color:#fbbf24}
+.svc-editor-code .cc{color:#64748b;font-style:italic}
+.svc-editor-code .ct{color:#f0abfc}
+
+/* Dashboard mockup */
+.svc-dash{width:100%;border-radius:10px;border:1px solid var(--border);overflow:hidden;background:var(--bg);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.svc-dash-sidebar{width:48px;background:rgba(0,0,0,.3);border-right:1px solid var(--border);padding:8px 0;display:flex;flex-direction:column;align-items:center;gap:8px}
+.svc-dash-sidebar .si{width:28px;height:28px;border-radius:6px;background:rgba(255,255,255,.04);display:grid;place-items:center}
+.svc-dash-sidebar .si.active{background:rgba(16,185,129,.15)}
+.svc-dash-sidebar .si svg{width:14px;height:14px;color:var(--muted)}
+.svc-dash-sidebar .si.active svg{color:#10b981}
+.svc-dash-main{flex:1;padding:10px}
+.svc-dash-row{display:flex;gap:6px;margin-bottom:6px}
+.svc-dash-stat{flex:1;padding:6px 8px;border-radius:6px;background:rgba(255,255,255,.03);border:1px solid var(--border)}
+.svc-dash-stat-val{font-family:var(--fm);font-size:.7rem;font-weight:600}
+.svc-dash-stat-lbl{font-size:.4rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.svc-dash-chart{height:60px;border-radius:6px;background:rgba(255,255,255,.02);border:1px solid var(--border);padding:6px;margin-top:4px}
+
+/* Terminal mockup */
+.svc-term{width:100%;border-radius:10px;border:1px solid var(--border);overflow:hidden;background:var(--bg);box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.svc-term-bar{height:28px;background:rgba(0,0,0,.5);display:flex;align-items:center;gap:6px;padding:0 12px}
+.svc-term-bar .dot{width:8px;height:8px;border-radius:50%}
+.svc-term-bar .title{font-size:.55rem;font-family:var(--fm);color:var(--muted);margin-left:8px}
+.svc-term-body{padding:12px;font-family:var(--fm);font-size:.58rem;color:var(--dim);line-height:2}
+.svc-term-body .prompt{color:#06b6d4}
+.svc-term-body .cmd{color:var(--text)}
+.svc-term-body .out{color:var(--muted)}
+.svc-term-body .ok{color:#10b981}
+.svc-term-body .warn{color:#f59e0b}
+
+/* Content panel */
+.svc-content{padding:2.5rem 2.5rem 2.5rem 2rem;display:flex;flex-direction:column;justify-content:center}
+.svc-card-num{font-family:var(--fm);font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.svc-card-num::after{content:'';flex:1;height:1px;max-width:60px}
+.svc-card:nth-child(1) .svc-card-num{color:#3b82f6}
+.svc-card:nth-child(1) .svc-card-num::after{background:linear-gradient(90deg,rgba(59,130,246,.3),transparent)}
+.svc-card:nth-child(2) .svc-card-num{color:#8b5cf6}
+.svc-card:nth-child(2) .svc-card-num::after{background:linear-gradient(90deg,rgba(139,92,246,.3),transparent)}
+.svc-card:nth-child(3) .svc-card-num{color:#06b6d4}
+.svc-card:nth-child(3) .svc-card-num::after{background:linear-gradient(90deg,rgba(6,182,212,.3),transparent)}
+.svc-card:nth-child(4) .svc-card-num{color:#10b981}
+.svc-card:nth-child(4) .svc-card-num::after{background:linear-gradient(90deg,rgba(16,185,129,.3),transparent)}
+.svc-card h3{font-family:var(--ff);font-size:1.4rem;font-weight:700;margin-bottom:.2rem;line-height:1.3}
+.svc-card .price{font-family:var(--fm);font-size:.78rem;color:var(--green);display:inline-flex;align-items:center;gap:.4rem}
+.svc-card .price::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px rgba(16,185,129,.5)}
+.svc-content>p{color:var(--dim);font-size:.9rem;margin:.8rem 0 1.2rem;line-height:1.7}
+.svc-features{list-style:none;padding:0;margin:0 0 1.2rem;display:flex;flex-direction:column;gap:.4rem}
+.svc-features li{font-size:.8rem;color:var(--dim);display:flex;align-items:center;gap:.5rem;font-family:var(--fb)}
+.svc-features li svg{width:14px;height:14px;flex-shrink:0;stroke-width:2.5}
+.svc-card:nth-child(1) .svc-features li svg{color:#3b82f6}
+.svc-card:nth-child(2) .svc-features li svg{color:#8b5cf6}
+.svc-card:nth-child(3) .svc-features li svg{color:#06b6d4}
+.svc-card:nth-child(4) .svc-features li svg{color:#10b981}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{font-size:.68rem;padding:.28rem .65rem;border-radius:100px;background:rgba(255,255,255,.04);color:var(--muted);font-family:var(--fm);border:1px solid rgba(255,255,255,.06);transition:border-color .3s,color .3s,background .3s}
+.tag:hover{border-color:rgba(59,130,246,.3);color:var(--text);background:rgba(59,130,246,.08)}
+.svc-cta{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;padding:.6rem 1.4rem;border-radius:var(--rxs);font-family:var(--fm);font-size:.78rem;font-weight:600;color:#fff;transition:transform .2s,box-shadow .2s;text-decoration:none}
+.svc-cta:hover{transform:translateY(-2px)}
+.svc-card:nth-child(1) .svc-cta{background:linear-gradient(135deg,#3b82f6,#2563eb);box-shadow:0 4px 20px rgba(59,130,246,.3)}
+.svc-card:nth-child(1) .svc-cta:hover{box-shadow:0 8px 30px rgba(59,130,246,.4)}
+.svc-card:nth-child(2) .svc-cta{background:linear-gradient(135deg,#8b5cf6,#7c3aed);box-shadow:0 4px 20px rgba(139,92,246,.3)}
+.svc-card:nth-child(2) .svc-cta:hover{box-shadow:0 8px 30px rgba(139,92,246,.4)}
+.svc-card:nth-child(3) .svc-cta{background:linear-gradient(135deg,#06b6d4,#0891b2);box-shadow:0 4px 20px rgba(6,182,212,.3)}
+.svc-card:nth-child(3) .svc-cta:hover{box-shadow:0 8px 30px rgba(6,182,212,.4)}
+.svc-card:nth-child(4) .svc-cta{background:linear-gradient(135deg,#10b981,#059669);box-shadow:0 4px 20px rgba(16,185,129,.3)}
+.svc-card:nth-child(4) .svc-cta:hover{box-shadow:0 8px 30px rgba(16,185,129,.4)}
+
+/* ΓöÇΓöÇ FEATURE HIGHLIGHTS ΓöÇΓöÇ */
 .feat-sec{background:var(--bg2);position:relative;overflow:hidden}
 .feat-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(59,130,246,.03) 0%,transparent 50%,rgba(139,92,246,.03) 100%);pointer-events:none}
 .feat-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:1.5rem;perspective:1000px}
@@ -254,7 +319,7 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .feat-card h4{font-family:var(--ff);font-size:1rem;font-weight:600;margin-bottom:.4rem}
 .feat-card p{color:var(--dim);font-size:.85rem}
 
-/* ── PROCESS 3D INTERACTIVE ── */
+/* ΓöÇΓöÇ PROCESS 3D INTERACTIVE ΓöÇΓöÇ */
 .proc-scene{perspective:1200px;margin-top:0;position:relative;z-index:1}
 .proc-timeline{position:absolute;top:120px;left:8%;right:8%;height:3px;z-index:0}
 .proc-timeline-bg{position:absolute;inset:0;background:rgba(255,255,255,.06);border-radius:3px}
@@ -315,7 +380,7 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .proc3d-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.65rem;font-family:var(--fm);padding:.25rem .7rem;border-radius:100px;margin-top:.6rem;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--dim)}
 .proc3d-badge svg{width:10px;height:10px}
 
-/* ── SHOWCASE — HORIZONTAL SCROLL ── */
+/* ΓöÇΓöÇ SHOWCASE ΓÇö HORIZONTAL SCROLL ΓöÇΓöÇ */
 .show-sec{background:var(--bg2);position:relative;overflow:hidden}
 .show-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(59,130,246,.02) 50%,transparent);pointer-events:none}
 .show-sec::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(59,130,246,.2),rgba(139,92,246,.2),transparent)}
@@ -372,7 +437,7 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .show-stat{font-size:.7rem;font-family:var(--fm);color:var(--muted);display:flex;align-items:center;gap:.3rem}
 .show-stat svg{width:12px;height:12px}
 
-/* ── TECH ── */
+/* ΓöÇΓöÇ TECH ΓöÇΓöÇ */
 .tech-sec{position:relative;overflow:hidden}
 .tech-sec::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(59,130,246,.04) 1px,transparent 1px),radial-gradient(rgba(139,92,246,.04) 1px,transparent 1px);background-size:40px 40px,60px 60px;background-position:0 0,30px 30px;pointer-events:none}
 .tech-wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;position:relative;z-index:1}
@@ -386,7 +451,7 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .tech-i span{font-size:.7rem;color:var(--muted);font-family:var(--fm)}
 @keyframes techFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 
-/* ── PRICING ── */
+/* ΓöÇΓöÇ PRICING ΓöÇΓöÇ */
 .price-sec{background:var(--bg2);position:relative;overflow:hidden}
 .price-sec::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(ellipse,rgba(59,130,246,.06),transparent 60%);pointer-events:none}
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start;perspective:1200px}
@@ -419,7 +484,7 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .price-btn.out{border:1px solid var(--border);color:var(--text)}
 .price-btn.out:hover{border-color:var(--blue);color:var(--blue);background:rgba(59,130,246,.06)}
 
-/* ── TESTIMONIALS ── */
+/* ΓöÇΓöÇ TESTIMONIALS ΓöÇΓöÇ */
 .test-sec{position:relative;overflow:hidden}
 .test-sec::before{content:'"';position:absolute;top:40px;left:50%;transform:translateX(-50%);font-size:20rem;font-family:Georgia,serif;color:rgba(59,130,246,.025);line-height:1;pointer-events:none;z-index:0}
 .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;position:relative;z-index:1}
@@ -431,9 +496,9 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .test-card:nth-child(3)::before{background:linear-gradient(180deg,#06b6d4,#10b981)}
 .test-card:nth-child(2){transform:translateY(-8px)}
 .test-card::after{content:'';position:absolute;top:16px;right:20px;font-size:3rem;font-family:Georgia,serif;color:rgba(255,255,255,.03);line-height:1;pointer-events:none}
-.test-card:nth-child(1)::after{content:'①'}
-.test-card:nth-child(2)::after{content:'②'}
-.test-card:nth-child(3)::after{content:'③'}
+.test-card:nth-child(1)::after{content:'Γæá'}
+.test-card:nth-child(2)::after{content:'Γæí'}
+.test-card:nth-child(3)::after{content:'Γæó'}
 .test-card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:0 16px 32px rgba(0,0,0,.2)}
 .test-card:nth-child(2):hover{transform:translateY(-11px)}
 .stars{color:#fbbf24;font-size:.85rem;margin-bottom:1rem;letter-spacing:2px}
@@ -444,7 +509,7 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .t-author h5{font-size:.88rem;font-weight:600}
 .t-author p{font-size:.72rem;color:var(--muted)}
 
-/* ── FAQ ── */
+/* ΓöÇΓöÇ FAQ ΓöÇΓöÇ */
 .faq-sec{background:var(--bg2);position:relative;overflow:hidden}
 .faq-sec::before{content:'?';position:absolute;top:50%;right:-40px;transform:translateY(-50%);font-size:25rem;font-family:var(--ff);font-weight:800;color:rgba(255,255,255,.012);pointer-events:none}
 .faq-list{max-width:700px;margin:0 auto}
@@ -460,7 +525,7 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .faq-a p{padding:0 1.2rem 1.2rem;color:var(--dim);font-size:.88rem;line-height:1.8;opacity:0;transform:translateY(-8px);transition:opacity .4s .1s,transform .4s .1s var(--ease)}
 .faq-it.open .faq-a p{opacity:1;transform:translateY(0)}
 
-/* ── CTA ── */
+/* ΓöÇΓöÇ CTA ΓöÇΓöÇ */
 .cta-box{max-width:780px;margin:0 auto;text-align:center;padding:4rem 2rem;background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(139,92,246,.06),rgba(6,182,212,.04));border:1px solid rgba(59,130,246,.15);border-radius:var(--r);position:relative;overflow:hidden}
 .cta-box::before{content:'';position:absolute;inset:0;background:conic-gradient(from 0deg,rgba(59,130,246,.08),rgba(139,92,246,.08),rgba(6,182,212,.08),rgba(16,185,129,.08),rgba(59,130,246,.08));animation:cta-rotate 8s linear infinite;filter:blur(40px);opacity:.6;pointer-events:none}
 @keyframes cta-rotate{to{transform:rotate(360deg)}}
@@ -471,7 +536,7 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .cta-box p{color:var(--dim);font-size:1rem;margin-bottom:1.8rem;position:relative;z-index:1}
 .cta-box .btn1{position:relative;z-index:1}
 
-/* ── CONTACT ── */
+/* ΓöÇΓöÇ CONTACT ΓöÇΓöÇ */
 .con-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
 @media(max-width:768px){.con-grid{grid-template-columns:1fr}}
 .con-info h3{font-family:var(--ff);font-size:1.4rem;font-weight:600;margin-bottom:.8rem}
@@ -500,11 +565,11 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .sub-btn:hover{box-shadow:0 8px 25px rgba(59,130,246,.3);transform:translateY(-2px)}
 .sub-btn:hover::after{transform:translateX(100%);transition:transform .6s ease}
 
-/* ── PAGE-LEVEL: Section dividers ── */
+/* ΓöÇΓöÇ PAGE-LEVEL: Section dividers ΓöÇΓöÇ */
 .sec-divider{height:80px;position:relative;overflow:hidden;pointer-events:none}
 .sec-divider svg{position:absolute;width:100%;height:100%}
 
-/* ── PAGE-LEVEL: Section scroll indicators ── */
+/* ΓöÇΓöÇ PAGE-LEVEL: Section scroll indicators ΓöÇΓöÇ */
 .sec-indicator{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:12px;opacity:0;transition:opacity .5s}
 .sec-indicator.visible{opacity:1}
 .sec-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.1);cursor:pointer;transition:all .3s var(--ease);position:relative}
@@ -512,18 +577,18 @@ nav.scrolled{background:rgba(6,7,20,.95);border-bottom:1px solid var(--border);p
 .sec-dot::after{content:attr(data-label);position:absolute;right:20px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:.65rem;font-family:var(--fm);color:var(--muted);opacity:0;transition:opacity .3s;pointer-events:none}
 .sec-dot:hover::after{opacity:1}
 
-/* ── PAGE-LEVEL: Background gradient overlay ── */
+/* ΓöÇΓöÇ PAGE-LEVEL: Background gradient overlay ΓöÇΓöÇ */
 .bg-morph{position:fixed;inset:0;pointer-events:none;z-index:-1;transition:background 1.2s ease}
 
-/* ── PAGE-LEVEL: Horizontal scroll showcase ── */
+/* ΓöÇΓöÇ PAGE-LEVEL: Horizontal scroll showcase ΓöÇΓöÇ */
 .show-sec .ctn{overflow:hidden}
 .show-sec{overflow:hidden}
 
-/* ── PAGE-LEVEL: Section reveal masks ── */
+/* ΓöÇΓöÇ PAGE-LEVEL: Section reveal masks ΓöÇΓöÇ */
 .sec-reveal{clip-path:inset(8% 4% 8% 4% round 16px);transition:clip-path 0s}
 .sec-revealed{clip-path:inset(0% 0% 0% 0% round 0px)}
 
-/* ── FOOTER ── */
+/* ΓöÇΓöÇ FOOTER ΓöÇΓöÇ */
 footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:var(--bg)}
 .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem}
 @media(max-width:768px){.ft-inner{grid-template-columns:1fr 1fr;gap:1.5rem}}
@@ -534,7 +599,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 .ft-col a:hover{color:var(--text)}
 .ft-bot{max-width:1200px;margin:1.5rem auto 0;padding-top:1.2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:.75rem;color:var(--muted);flex-wrap:wrap;gap:.5rem}
 
-/* ── GSAP ANIM STATES ── */
+/* ΓöÇΓöÇ GSAP ANIM STATES ΓöÇΓöÇ */
 .gsap-ready .gs-hide{opacity:0;transform:translateY(30px) translateZ(0)}
 .gsap-ready .gs-left{opacity:0;transform:translateX(-30px) translateZ(0)}
 .gsap-ready .gs-right{opacity:0;transform:translateX(30px) translateZ(0)}
@@ -596,17 +661,17 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <div class="hero-ct">
 <div class="badge gs-hide"><span class="dot"></span>Available for new projects</div>
 <h1 class="gs-hide">We Engineer<br><span class="gt">Digital Dominance</span></h1>
-<p class="gs-hide">Custom websites, AI-powered workflows, autonomous trading bots, and intelligent automation — built by engineers who ship production-grade systems.</p>
+<p class="gs-hide">Custom websites, AI-powered workflows, autonomous trading bots, and intelligent automation ΓÇö built by engineers who ship production-grade systems.</p>
 <div class="term gs-scale">
 <div class="term-bar"><span class="td r"></span><span class="td y"></span><span class="td g"></span><div class="term-tabs"><span class="term-tab active">main</span><span class="term-tab">build</span><span class="term-tab">deploy</span></div></div>
-<div class="term-body" id="termBody"><span class="pr">❯ </span><span id="typeTarget"></span><span class="cur"></span></div>
-<div class="term-status"><span><span class="ts-dot"></span>connected · us-east-1</span><span>⚡ terminal-edge v2.4.0</span></div>
+<div class="term-body" id="termBody"><span class="pr">Γ¥» </span><span id="typeTarget"></span><span class="cur"></span></div>
+<div class="term-status"><span><span class="ts-dot"></span>connected ┬╖ us-east-1</span><span>ΓÜí terminal-edge v2.4.0</span></div>
 </div>
-<div class="hero-btns gs-hide"><a href="contact.html" class="btn1">Start Your Project →</a><a href="services.html" class="btn2">Explore Services</a></div>
+<div class="hero-btns gs-hide"><a href="contact.html" class="btn1">Start Your Project ΓåÆ</a><a href="services.html" class="btn2">Explore Services</a></div>
 </div>
 </section>
 
-<!-- STATS — Mission Control -->
+<!-- STATS ΓÇö Mission Control -->
 <section class="stats sec" id="stats">
 <div class="ctn">
 <div class="stats-header gs-hide">
@@ -659,101 +724,197 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 </div>
 </section>
 
-<!-- SERVICES — Bento Grid -->
-<section class="sec pad" id="services">
+<!-- SERVICES ΓÇö Bento Grid -->
+<section class="sec pad svc-section" id="services">
 <div class="ctn">
 <div class="tc gs-hide">
 <span class="lbl">What We Build</span>
 <h2 class="stitle">Four Pillars of <span class="gt">Digital Infrastructure</span></h2>
-<p class="sdesc" style="margin:0 auto 3rem">From pixel-perfect frontends to autonomous systems that trade markets at 3 AM — we engineer solutions that operate while you sleep.</p>
+<p class="sdesc" style="margin:0 auto 3rem">From pixel-perfect frontends to autonomous systems that trade markets at 3 AM ΓÇö we engineer solutions that operate while you sleep.</p>
 </div>
 <div class="svc-grid">
 
-<!-- Card 1: Custom Websites -->
+<!-- Card 1: Custom Websites ΓÇö Browser Preview -->
 <div class="svc-card gs-hide">
-<div class="svc-card-visual">
-<div class="svc-anim">
-<div class="svc-browser-mini">
-<div class="svc-browser-bar-mini"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
-<div class="svc-browser-body-mini">
-<div style="height:6px;width:40%;background:rgba(59,130,246,.3);border-radius:2px"></div>
-<div style="height:4px;width:70%;background:rgba(255,255,255,.06);border-radius:2px"></div>
-<div style="display:flex;gap:3px;margin-top:2px"><div style="flex:1;height:20px;border-radius:3px;background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.08))"></div><div style="flex:1;height:20px;border-radius:3px;background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(59,130,246,.04))"></div></div>
+<div class="svc-visual">
+<div class="svc-visual-inner">
+<div class="svc-browser">
+<div class="svc-browser-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><div class="url">https://your-brand.com</div></div>
+<div class="svc-browser-content">
+<!-- Nav -->
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)">
+<div style="font-family:var(--ff);font-size:.65rem;font-weight:700;color:var(--text)">YourBrand</div>
+<div style="display:flex;gap:10px"><span style="font-size:.45rem;color:var(--muted);font-family:var(--fm)">Products</span><span style="font-size:.45rem;color:var(--muted);font-family:var(--fm)">About</span><span style="font-size:.45rem;color:var(--muted);font-family:var(--fm)">Contact</span></div>
+</div>
+<!-- Hero area -->
+<div style="display:flex;gap:10px;align-items:center">
+<div style="flex:1">
+<div style="font-family:var(--ff);font-size:.7rem;font-weight:700;color:var(--text);margin-bottom:4px;line-height:1.3">Build Something<br><span style="background:linear-gradient(90deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Extraordinary</span></div>
+<div style="font-size:.4rem;color:var(--muted);margin-bottom:6px;line-height:1.5">Pixel-perfect interfaces that convert visitors into loyal customers.</div>
+<div style="display:flex;gap:4px"><span style="font-size:.35rem;padding:3px 8px;border-radius:4px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;font-family:var(--fm)">Get Started</span><span style="font-size:.35rem;padding:3px 8px;border-radius:4px;border:1px solid var(--border);color:var(--muted);font-family:var(--fm)">Learn More</span></div>
+</div>
+<div style="flex:0 0 70px;height:60px;border-radius:8px;background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(139,92,246,.1));display:grid;place-items:center">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#3b82f6" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10"/></svg>
+</div>
+</div>
+<!-- Stats row -->
+<div style="display:flex;gap:4px;margin-top:10px">
+<div style="flex:1;padding:5px;border-radius:4px;background:rgba(255,255,255,.03);border:1px solid var(--border);text-align:center"><div style="font-size:.55rem;font-weight:700;color:#3b82f6;font-family:var(--fm)">99.9%</div><div style="font-size:.3rem;color:var(--muted)">Uptime</div></div>
+<div style="flex:1;padding:5px;border-radius:4px;background:rgba(255,255,255,.03);border:1px solid var(--border);text-align:center"><div style="font-size:.55rem;font-weight:700;color:#10b981;font-family:var(--fm)">&lt;0.8s</div><div style="font-size:.3rem;color:var(--muted)">Load Time</div></div>
+<div style="flex:1;padding:5px;border-radius:4px;background:rgba(255,255,255,.03);border:1px solid var(--border);text-align:center"><div style="font-size:.55rem;font-weight:700;color:#8b5cf6;font-family:var(--fm)">100</div><div style="font-size:.3rem;color:var(--muted)">PageSpeed</div></div>
 </div>
 </div>
 </div>
 </div>
-<div class="svc-card-body">
-<div class="svc-card-num">01 — Web</div>
+</div>
+<div class="svc-content">
+<div class="svc-card-num">01 ΓÇö Web</div>
 <h3>Custom Websites</h3>
 <span class="price">From $500</span>
 <p>Performance-obsessed, mobile-first websites that convert visitors into customers. SEO-optimized, blazing fast, WCAG accessible.</p>
+<ul class="svc-features">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Sub-second load times with SSR & edge caching</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Responsive design ΓÇö flawless on every device</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Built-in analytics, SEO & accessibility</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>CMS integration for easy content updates</li>
+</ul>
 <div class="tags"><span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Headless CMS</span><span class="tag">E-Commerce</span></div>
+<a href="contact.html" class="svc-cta">Start a Project <span>ΓåÆ</span></a>
 </div>
 </div>
 
-<!-- Card 2: AI Workflows (tall, right side) -->
+<!-- Card 2: AI Workflows ΓÇö Code Editor Preview -->
 <div class="svc-card gs-hide">
-<div class="svc-card-visual">
-<div class="svc-anim">
-<div class="svc-code-block">
-<span class="ck">from</span> langchain <span class="ck">import</span> Agent<br>
-<span class="ck">from</span> vectordb <span class="ck">import</span> Pinecone<br><br>
-<span class="cp">agent</span> = Agent(<br>
-&nbsp;&nbsp;model=<span class="cs">"gpt-4"</span>,<br>
-&nbsp;&nbsp;tools=[search, extract],<br>
-&nbsp;&nbsp;memory=Pinecone(<span class="cs">"kb"</span>)<br>
+<div class="svc-visual">
+<div class="svc-visual-inner">
+<div class="svc-editor">
+<div class="svc-editor-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+<div class="svc-editor-tabs"><span class="svc-editor-tab active">agent.py</span><span class="svc-editor-tab">config.yaml</span><span class="svc-editor-tab">tools.py</span></div>
+</div>
+<div class="svc-editor-body">
+<div class="svc-editor-lines">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14</div>
+<div class="svc-editor-code" id="svcAiCode">
+<span class="cc"># Terminal Edge ΓÇö AI Agent Pipeline</span><br>
+<span class="ck">from</span> <span class="cf">langchain</span> <span class="ck">import</span> Agent, Tool<br>
+<span class="ck">from</span> <span class="cf">vectordb</span> <span class="ck">import</span> Pinecone<br>
+<br>
+<span class="cv">agent</span> = Agent(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;model=<span class="cs">"gpt-4-turbo"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;tools=[search, extract, summarize],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;memory=Pinecone(<span class="cs">"knowledge-base"</span>),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;guardrails=<span class="ct">True</span>,<br>
 )<br>
-<span class="cv">result</span> = agent.run(<span class="cs">"Analyze Q4 data"</span>)
+<br>
+<span class="cv">result</span> = agent.run(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;prompt=<span class="cs">"Analyze Q4 revenue and flag anomalies"</span><br>
+)
 </div>
 </div>
 </div>
-<div class="svc-card-body">
-<div class="svc-card-num">02 — Intelligence</div>
+</div>
+</div>
+<div class="svc-content">
+<div class="svc-card-num">02 ΓÇö Intelligence</div>
 <h3>AI Workflows & Agents</h3>
 <span class="price">From $1,500</span>
-<p>Custom AI pipelines — content generation, data extraction, customer support bots, RAG systems — all with structured outputs and guardrails.</p>
+<p>Custom AI pipelines ΓÇö content generation, data extraction, customer support bots, RAG systems ΓÇö all with structured outputs and guardrails.</p>
+<ul class="svc-features">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Multi-model orchestration (GPT, Claude, Gemini)</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>RAG with vector search for domain expertise</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Guardrails, structured output & validation</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>n8n / Zapier integration for automation</li>
+</ul>
 <div class="tags"><span class="tag">GPT / Claude</span><span class="tag">n8n</span><span class="tag">RAG</span><span class="tag">Vector DB</span></div>
+<a href="contact.html" class="svc-cta">Build an Agent <span>ΓåÆ</span></a>
 </div>
 </div>
 
-<!-- Card 3: Trading Bots -->
+<!-- Card 3: Trading & Scraping Bots ΓÇö Terminal Preview -->
 <div class="svc-card gs-hide">
-<div class="svc-card-visual">
-<div class="svc-anim">
-<svg viewBox="0 0 200 60" style="width:85%;max-width:240px;height:auto;filter:drop-shadow(0 0 8px rgba(6,182,212,.3))"><path d="M0,50 L20,45 L40,48 L60,30 L80,35 L100,20 L120,25 L140,10 L160,15 L180,8 L200,5" fill="none" stroke="#06b6d4" stroke-width="2"/><path d="M0,50 L20,45 L40,48 L60,30 L80,35 L100,20 L120,25 L140,10 L160,15 L180,8 L200,5 L200,60 L0,60Z" fill="url(#cyanGrad2)" opacity=".2"/><defs><linearGradient id="cyanGrad2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="transparent"/></linearGradient></defs><circle cx="140" cy="10" r="3" fill="#06b6d4"><animate attributeName="opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></circle></svg>
+<div class="svc-visual">
+<div class="svc-visual-inner">
+<div class="svc-term">
+<div class="svc-term-bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><span class="title">terminal-edge ΓÇö bot-engine</span></div>
+<div class="svc-term-body" id="svcTerminal">
+<span class="prompt">$</span> <span class="cmd">te-bot init --strategy=momentum</span><br>
+<span class="ok">Γ£ô</span> <span class="out">Strategy loaded: momentum-v3.2</span><br>
+<span class="ok">Γ£ô</span> <span class="out">Exchange: Binance Futures (testnet)</span><br>
+<span class="ok">Γ£ô</span> <span class="out">Risk engine: max_drawdown=5%, position_size=2%</span><br>
+<span class="prompt">$</span> <span class="cmd">te-bot backtest --range=90d</span><br>
+<span class="out">Running 2,160 candles...</span><br>
+<span class="ok">Γ£ô</span> <span class="out">Sharpe: 2.14 | Win rate: 67.3% | Max DD: 3.8%</span><br>
+<span class="prompt">$</span> <span class="cmd">te-bot deploy --live --notify=slack</span><br>
+<span class="ok">Γ£ô</span> <span class="out">Bot deployed ΓÇö monitoring on /dashboard</span><br>
+<span class="warn">ΓÜá</span> <span class="out">Kill switch armed at -5% daily PnL</span><br>
+<span class="prompt">$</span> <span class="cmd" id="svcTermCursor">_</span>
 </div>
 </div>
-<div class="svc-card-body">
-<div class="svc-card-num">03 — Automation</div>
+</div>
+</div>
+<div class="svc-content">
+<div class="svc-card-num">03 ΓÇö Automation</div>
 <h3>Trading & Scraping Bots</h3>
 <span class="price">Custom Quote</span>
-<p>Algorithmic trading systems, price monitors, web scrapers, and data pipelines — battle-tested with risk management and kill switches.</p>
+<p>Algorithmic trading systems, price monitors, web scrapers, and data pipelines ΓÇö battle-tested with risk management and kill switches.</p>
+<ul class="svc-features">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Backtested strategies with full reporting</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Real-time execution with &lt;50ms latency</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Risk management & automated kill switches</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Slack/Discord alerts & live dashboards</li>
+</ul>
 <div class="tags"><span class="tag">CCXT</span><span class="tag">Playwright</span><span class="tag">Backtesting</span><span class="tag">Risk Engine</span></div>
+<a href="contact.html" class="svc-cta">Get a Quote <span>ΓåÆ</span></a>
 </div>
 </div>
 
-<!-- Card 4: Custom Apps (full width) -->
+<!-- Card 4: Custom Applications ΓÇö Dashboard Preview -->
 <div class="svc-card gs-hide">
-<div class="svc-card-visual">
-<div class="svc-anim">
-<div class="svc-flow-visual">
-<div class="svc-flow-node" style="border-color:rgba(16,185,129,.3);color:#10b981"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/></svg> Mobile</div>
-<span class="svc-flow-arrow">→</span>
-<div class="svc-flow-node" style="border-color:rgba(59,130,246,.3);color:#3b82f6"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/></svg> API</div>
-<span class="svc-flow-arrow">→</span>
-<div class="svc-flow-node" style="border-color:rgba(139,92,246,.3);color:#8b5cf6"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg> DB</div>
-<span class="svc-flow-arrow">→</span>
-<div class="svc-flow-node" style="border-color:rgba(245,158,11,.3);color:#f59e0b"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/></svg> Dashboard</div>
+<div class="svc-visual">
+<div class="svc-visual-inner">
+<div class="svc-dash" style="display:flex;overflow:hidden">
+<div class="svc-dash-sidebar">
+<div class="si active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+<div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+<div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+<div class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+</div>
+<div class="svc-dash-main">
+<div style="font-size:.5rem;font-weight:600;color:var(--text);margin-bottom:6px;font-family:var(--ff)">Dashboard Overview</div>
+<div class="svc-dash-row">
+<div class="svc-dash-stat"><div class="svc-dash-stat-val" style="color:#10b981">$48.2K</div><div class="svc-dash-stat-lbl">Revenue</div></div>
+<div class="svc-dash-stat"><div class="svc-dash-stat-val" style="color:#3b82f6">1,247</div><div class="svc-dash-stat-lbl">Users</div></div>
+<div class="svc-dash-stat"><div class="svc-dash-stat-val" style="color:#8b5cf6">94.2%</div><div class="svc-dash-stat-lbl">Retention</div></div>
+</div>
+<!-- Mini chart area -->
+<div class="svc-dash-chart" id="svcDashChart">
+<svg viewBox="0 0 280 50" preserveAspectRatio="none" style="width:100%;height:100%">
+<defs><linearGradient id="chartGradSvc" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#10b981" stop-opacity=".3"/><stop offset="100%" stop-color="#10b981" stop-opacity="0"/></linearGradient></defs>
+<path d="M0,40 C20,38 40,35 60,30 C80,25 100,28 120,22 C140,16 160,20 180,15 C200,10 220,12 240,8 C260,5 280,3 280,3 L280,50 L0,50Z" fill="url(#chartGradSvc)"/>
+<path d="M0,40 C20,38 40,35 60,30 C80,25 100,28 120,22 C140,16 160,20 180,15 C200,10 220,12 240,8 C260,5 280,3 280,3" fill="none" stroke="#10b981" stroke-width="2"/>
+<circle cx="240" cy="8" r="3" fill="#10b981"><animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.5;1" dur="2s" repeatCount="indefinite"/></circle>
+</svg>
+</div>
+<div style="display:flex;gap:4px;margin-top:4px">
+<div style="flex:1;height:18px;border-radius:3px;background:rgba(255,255,255,.02);border:1px solid var(--border);display:flex;align-items:center;padding:0 5px"><div style="width:60%;height:4px;border-radius:2px;background:linear-gradient(90deg,#3b82f6,#8b5cf6)"></div></div>
+<div style="flex:1;height:18px;border-radius:3px;background:rgba(255,255,255,.02);border:1px solid var(--border);display:flex;align-items:center;padding:0 5px"><div style="width:80%;height:4px;border-radius:2px;background:linear-gradient(90deg,#10b981,#06b6d4)"></div></div>
 </div>
 </div>
 </div>
-<div class="svc-card-body">
-<div class="svc-card-num">04 — Full-Stack</div>
+</div>
+</div>
+<div class="svc-content">
+<div class="svc-card-num">04 ΓÇö Full-Stack</div>
 <h3>Custom Applications</h3>
 <span class="price">From $2,500</span>
-<p>Full-stack web & mobile apps — SaaS dashboards, internal tools, client portals, API integrations — tailored precisely to your workflow.</p>
+<p>Full-stack web & mobile apps ΓÇö SaaS dashboards, internal tools, client portals, API integrations ΓÇö tailored precisely to your workflow.</p>
+<ul class="svc-features">
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>End-to-end SaaS & internal tools</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Real-time dashboards with live data</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>REST & GraphQL API architecture</li>
+<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg>Auth, roles, payments & notifications</li>
+</ul>
 <div class="tags"><span class="tag">Full-Stack</span><span class="tag">Mobile</span><span class="tag">API</span><span class="tag">Dashboards</span></div>
+<a href="contact.html" class="svc-cta">Start Building <span>ΓåÆ</span></a>
 </div>
 </div>
 
@@ -799,9 +960,9 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Domain & competitor research</li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Success metrics definition</li>
 </ul>
-<span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1–2 days</span>
+<span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1ΓÇô2 days</span>
 </div></div>
-<span class="proc3d-hint">Click to explore ↓</span>
+<span class="proc3d-hint">Click to explore Γåô</span>
 </div>
 </div>
 
@@ -818,7 +979,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 </ul>
 <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>24 hours</span>
 </div></div>
-<span class="proc3d-hint">Click to explore ↓</span>
+<span class="proc3d-hint">Click to explore Γåô</span>
 </div>
 </div>
 
@@ -833,9 +994,9 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Live staging previews</li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>CI/CD + performance testing</li>
 </ul>
-<span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1–4 weeks</span>
+<span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1ΓÇô4 weeks</span>
 </div></div>
-<span class="proc3d-hint">Click to explore ↓</span>
+<span class="proc3d-hint">Click to explore Γåô</span>
 </div>
 </div>
 
@@ -850,9 +1011,9 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Monitoring & alerting</li>
 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>30 days priority support</li>
 </ul>
-<span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1–2 days</span>
+<span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1ΓÇô2 days</span>
 </div></div>
-<span class="proc3d-hint">Click to explore ↓</span>
+<span class="proc3d-hint">Click to explore Γåô</span>
 </div>
 </div>
 
@@ -884,7 +1045,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <div class="mock-hero-area" style="background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(139,92,246,.06));padding:1.2rem 1rem;gap:6px;align-items:flex-start">
 <div style="font-size:.55rem;font-family:var(--fm);color:var(--blue);letter-spacing:.1em;text-transform:uppercase">New Collection 2026</div>
 <div style="font-size:.7rem;font-family:var(--ff);font-weight:700;color:var(--text);line-height:1.2">Premium Streetwear<br><span style="color:var(--blue)">Engineered for You</span></div>
-<div style="font-size:.4rem;color:var(--dim);line-height:1.5;max-width:70%">Discover our latest drops — designed with precision, crafted for performance.</div>
+<div style="font-size:.4rem;color:var(--dim);line-height:1.5;max-width:70%">Discover our latest drops ΓÇö designed with precision, crafted for performance.</div>
 <div style="display:flex;gap:4px;margin-top:2px"><div style="padding:3px 10px;background:var(--blue);border-radius:3px;font-size:.4rem;color:#fff;font-family:var(--fm);font-weight:600">Shop Now</div><div style="padding:3px 10px;border:1px solid var(--border2);border-radius:3px;font-size:.4rem;color:var(--dim);font-family:var(--fm)">View Lookbook</div></div>
 </div>
 <div class="mock-grid-area" style="grid-template-columns:repeat(3,1fr);gap:5px;padding:8px 10px 10px">
@@ -896,7 +1057,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 </div>
 </div>
 <div class="show-info">
-<h4>Nova Retail — E-Commerce Platform</h4>
+<h4>Nova Retail ΓÇö E-Commerce Platform</h4>
 <p>Full-stack rebuild from Shopify to custom Next.js + Stripe. Product catalog, checkout, inventory management, and admin dashboard.</p>
 <div class="show-meta">
 <span class="show-badge" style="background:rgba(59,130,246,.12);color:var(--blue)">Web Development</span>
@@ -917,15 +1078,15 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <div class="mock-nav"><div class="mock-nav-logo" style="background:rgba(139,92,246,.3)"></div><div class="mock-nav-links"><span></span><span></span></div></div>
 <div class="mock-chat-area">
 <div class="mock-msg user">How do I reset my API key?</div>
-<div class="mock-msg bot">I can help with that! Go to Settings → API Keys → click "Regenerate". Your old key will be revoked immediately.</div>
+<div class="mock-msg bot">I can help with that! Go to Settings ΓåÆ API Keys ΓåÆ click "Regenerate". Your old key will be revoked immediately.</div>
 <div class="mock-msg user">Will that break my existing integrations?</div>
-<div class="mock-msg bot">Yes — you'll need to update the key in each connected app. I can list your active integrations if you'd like.</div>
+<div class="mock-msg bot">Yes ΓÇö you'll need to update the key in each connected app. I can list your active integrations if you'd like.</div>
 </div>
 </div>
 </div>
 </div>
 <div class="show-info">
-<h4>CloudSync — AI Support Agent</h4>
+<h4>CloudSync ΓÇö AI Support Agent</h4>
 <p>RAG-powered support bot trained on 2,400 knowledge base articles. Handles billing, technical, and account queries with structured fallback to human agents.</p>
 <div class="show-meta">
 <span class="show-badge" style="background:rgba(139,92,246,.12);color:var(--purple)">AI / Automation</span>
@@ -958,7 +1119,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 </div>
 </div>
 <div class="show-info">
-<h4>ArbEngine — Crypto Arbitrage Bot</h4>
+<h4>ArbEngine ΓÇö Crypto Arbitrage Bot</h4>
 <p>Multi-exchange arbitrage engine with CCXT adapter, real-time websocket feeds, risk manager (max position + daily loss limits), and immutable audit ledger.</p>
 <div class="show-meta">
 <span class="show-badge" style="background:rgba(6,182,212,.12);color:var(--cyan)">Trading Bot</span>
@@ -979,24 +1140,24 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <div class="mock-nav"><div class="mock-nav-logo" style="background:rgba(16,185,129,.3)"></div><div class="mock-nav-links"><span></span><span></span></div></div>
 <div class="mock-flow-area">
 <div class="mock-node" style="border-color:var(--orange);color:var(--orange)">Scrape</div>
-<span class="mock-arrow">→</span>
+<span class="mock-arrow">ΓåÆ</span>
 <div class="mock-node" style="border-color:var(--purple);color:var(--purple)">LLM</div>
-<span class="mock-arrow">→</span>
+<span class="mock-arrow">ΓåÆ</span>
 <div class="mock-node" style="border-color:var(--cyan);color:var(--cyan)">Filter</div>
-<span class="mock-arrow">→</span>
+<span class="mock-arrow">ΓåÆ</span>
 <div class="mock-node" style="border-color:var(--green);color:var(--green)">Store</div>
-<span class="mock-arrow">→</span>
+<span class="mock-arrow">ΓåÆ</span>
 <div class="mock-node" style="border-color:var(--blue);color:var(--blue)">Alert</div>
 </div>
 <div class="mock-stats-row" style="padding:0 12px 12px">
-<div class="mock-stat-box"><span style="color:var(--green)">✓ 14,200 runs</span></div>
+<div class="mock-stat-box"><span style="color:var(--green)">Γ£ô 14,200 runs</span></div>
 <div class="mock-stat-box"><span>99.7% success</span></div>
 </div>
 </div>
 </div>
 </div>
 <div class="show-info">
-<h4>DataFlow — Scraping & AI Pipeline</h4>
+<h4>DataFlow ΓÇö Scraping & AI Pipeline</h4>
 <p>Automated competitor monitoring: scrapes 500+ product pages daily, runs LLM extraction, deduplicates, and pushes structured data to client dashboards.</p>
 <div class="show-meta">
 <span class="show-badge" style="background:rgba(16,185,129,.12);color:var(--green)">Automation</span>
@@ -1017,18 +1178,18 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <h2 class="stitle">Built With <span class="gt2">Best-in-Class</span> Tools</h2>
 </div>
 <div class="tech-wrap gs-hide">
-<div class="tech-i"><span class="ico">⚛️</span><span>React</span></div>
-<div class="tech-i"><span class="ico">▲</span><span>Next.js</span></div>
-<div class="tech-i"><span class="ico">🟢</span><span>Node.js</span></div>
-<div class="tech-i"><span class="ico">🐍</span><span>Python</span></div>
-<div class="tech-i"><span class="ico">🐳</span><span>Docker</span></div>
-<div class="tech-i"><span class="ico">🤖</span><span>OpenAI</span></div>
-<div class="tech-i"><span class="ico">🧠</span><span>LangChain</span></div>
-<div class="tech-i"><span class="ico">🐘</span><span>Postgres</span></div>
-<div class="tech-i"><span class="ico">⚡</span><span>Redis</span></div>
-<div class="tech-i"><span class="ico">🔗</span><span>n8n</span></div>
-<div class="tech-i"><span class="ico">☁️</span><span>AWS</span></div>
-<div class="tech-i"><span class="ico">🔒</span><span>Auth0</span></div>
+<div class="tech-i"><span class="ico">ΓÜ¢∩╕Å</span><span>React</span></div>
+<div class="tech-i"><span class="ico">Γû▓</span><span>Next.js</span></div>
+<div class="tech-i"><span class="ico">≡ƒƒó</span><span>Node.js</span></div>
+<div class="tech-i"><span class="ico">≡ƒÉì</span><span>Python</span></div>
+<div class="tech-i"><span class="ico">≡ƒÉ│</span><span>Docker</span></div>
+<div class="tech-i"><span class="ico">≡ƒñû</span><span>OpenAI</span></div>
+<div class="tech-i"><span class="ico">≡ƒºá</span><span>LangChain</span></div>
+<div class="tech-i"><span class="ico">≡ƒÉÿ</span><span>Postgres</span></div>
+<div class="tech-i"><span class="ico">ΓÜí</span><span>Redis</span></div>
+<div class="tech-i"><span class="ico">≡ƒöù</span><span>n8n</span></div>
+<div class="tech-i"><span class="ico">Γÿü∩╕Å</span><span>AWS</span></div>
+<div class="tech-i"><span class="ico">≡ƒöÆ</span><span>Auth0</span></div>
 </div>
 </div>
 </section>
@@ -1076,7 +1237,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <div class="price-tier">Enterprise</div>
 <h3>Custom Build</h3>
 <div class="price-amt">Custom</div>
-<p class="pdesc">Trading bots, SaaS platforms, complex AI — fully bespoke.</p>
+<p class="pdesc">Trading bots, SaaS platforms, complex AI ΓÇö fully bespoke.</p>
 <ul class="price-features">
 <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.3 11.3 2.7 7.7" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Full architecture &amp; spec document</li>
 <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.3 11.3 2.7 7.7" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Trading bots with risk management</li>
@@ -1099,17 +1260,17 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 </div>
 <div class="test-grid">
 <div class="test-card gs-hide">
-<div class="stars">★★★★★</div>
+<div class="stars">ΓÿàΓÿàΓÿàΓÿàΓÿà</div>
 <blockquote>"Went from a rough idea to a live, polished platform in 10 days. The AI integration alone saved us 20 hours a week."</blockquote>
 <div class="t-author"><div class="t-avatar" style="background:rgba(59,130,246,.15);color:#3b82f6">MK</div><div><h5>Marcus K.</h5><p>Founder, CloudSync Pro</p></div></div>
 </div>
 <div class="test-card gs-hide">
-<div class="stars">★★★★★</div>
-<blockquote>"The trading bot exceeded every expectation. Proper risk management, clean dashboards — running autonomously for 4 months."</blockquote>
+<div class="stars">ΓÿàΓÿàΓÿàΓÿàΓÿà</div>
+<blockquote>"The trading bot exceeded every expectation. Proper risk management, clean dashboards ΓÇö running autonomously for 4 months."</blockquote>
 <div class="t-author"><div class="t-avatar" style="background:rgba(139,92,246,.15);color:#8b5cf6">JT</div><div><h5>Jordan T.</h5><p>Quantitative Trader</p></div></div>
 </div>
 <div class="test-card gs-hide">
-<div class="stars">★★★★★</div>
+<div class="stars">ΓÿàΓÿàΓÿàΓÿàΓÿà</div>
 <blockquote>"Our e-commerce site loads under 1 second, conversions up 280%. Finally, a dev who understands production systems."</blockquote>
 <div class="t-author"><div class="t-avatar" style="background:rgba(6,182,212,.15);color:#06b6d4">RP</div><div><h5>Rachel P.</h5><p>CEO, Nova Retail</p></div></div>
 </div>
@@ -1125,9 +1286,9 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <h2 class="stitle">Common <span class="gt">Questions</span></h2>
 </div>
 <div class="faq-list">
-<div class="faq-it gs-hide"><button class="faq-q">How fast can you deliver?<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>Landing pages: 5–7 days. Multi-page sites: 2–4 weeks. Complex systems (trading bots, AI pipelines): 4–8 weeks, scoped individually.</p></div></div>
+<div class="faq-it gs-hide"><button class="faq-q">How fast can you deliver?<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>Landing pages: 5ΓÇô7 days. Multi-page sites: 2ΓÇô4 weeks. Complex systems (trading bots, AI pipelines): 4ΓÇô8 weeks, scoped individually.</p></div></div>
 <div class="faq-it gs-hide"><button class="faq-q">Do I own the code?<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>Yes, 100%. Upon final payment, you receive full ownership of all source code, documentation, and assets. No vendor lock-in.</p></div></div>
-<div class="faq-it gs-hide"><button class="faq-q">What about changes after launch?<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>30 days free post-launch support included. After that, retainer or per-project basis. Monthly maintenance plans available ($200–$800/mo).</p></div></div>
+<div class="faq-it gs-hide"><button class="faq-q">What about changes after launch?<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>30 days free post-launch support included. After that, retainer or per-project basis. Monthly maintenance plans available ($200ΓÇô$800/mo).</p></div></div>
 <div class="faq-it gs-hide"><button class="faq-q">Can you build live trading bots?<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>Yes, safety first. All bots start in paper-trade mode. Live trading requires trade-only API keys (never withdrawal), signed risk acknowledgment, and configured loss limits and kill switches.</p></div></div>
 <div class="faq-it gs-hide"><button class="faq-q">What's your tech stack?<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>Best tool for each job: React/Next.js frontends, Node/Python backends, PostgreSQL + Redis, Docker deployment, n8n/LangChain for AI, CCXT for exchanges.</p></div></div>
 <div class="faq-it gs-hide"><button class="faq-q">Do you offer ongoing maintenance?<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="faq-a"><p>Absolutely. Monthly plans covering monitoring, security patches, performance tuning, and feature updates.</p></div></div>
@@ -1141,7 +1302,7 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <div class="cta-box gs-scale">
 <h2>Ready to Build Something <span class="gt">Exceptional</span>?</h2>
 <p>Let's turn your idea into a production-grade system. No meetings about meetings.</p>
-<a href="contact.html" class="btn1">Start Your Project →</a>
+<a href="contact.html" class="btn1">Start Your Project ΓåÆ</a>
 </div>
 </div>
 </section>
@@ -1160,13 +1321,13 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <p>Skip the sales funnel. You talk directly to the engineer who will build your system.</p>
 <div class="con-m"><div class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><h5>Email</h5><p>hello@terminaledge.dev</p></div></div>
 <div class="con-m"><div class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div><div><h5>Response Time</h5><p>Usually within 4 hours</p></div></div>
-<div class="con-m"><div class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div><h5>Location</h5><p>Remote · Worldwide</p></div></div>
+<div class="con-m"><div class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div><h5>Location</h5><p>Remote ┬╖ Worldwide</p></div></div>
 </div>
 <form class="con-form gs-right" id="contactForm" action="javascript:void(0)">
 <div class="fr"><div class="fg"><label>Your Name</label><input type="text" placeholder="John Doe" required/></div><div class="fg"><label>Email</label><input type="email" placeholder="john@company.com" required/></div></div>
-<div class="fr"><div class="fg"><label>Service</label><select><option value="">Select a service</option><option>Custom Website</option><option>AI Workflow / Agent</option><option>Trading / Scraping Bot</option><option>Custom Application</option><option>Something Else</option></select></div><div class="fg"><label>Budget Range</label><select><option value="">Select range</option><option>$500 – $1,000</option><option>$1,000 – $2,500</option><option>$2,500 – $5,000</option><option>$5,000 – $10,000</option><option>$10,000+</option></select></div></div>
+<div class="fr"><div class="fg"><label>Service</label><select><option value="">Select a service</option><option>Custom Website</option><option>AI Workflow / Agent</option><option>Trading / Scraping Bot</option><option>Custom Application</option><option>Something Else</option></select></div><div class="fg"><label>Budget Range</label><select><option value="">Select range</option><option>$500 ΓÇô $1,000</option><option>$1,000 ΓÇô $2,500</option><option>$2,500 ΓÇô $5,000</option><option>$5,000 ΓÇô $10,000</option><option>$10,000+</option></select></div></div>
 <div class="fg"><label>Project Details</label><textarea placeholder="Describe your project, goals, and any specific requirements..." required></textarea></div>
-<button type="submit" class="sub-btn">Send Message →</button>
+<button type="submit" class="sub-btn">Send Message ΓåÆ</button>
 </form>
 </div>
 </div>
@@ -1175,19 +1336,19 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 <!-- FOOTER -->
 <footer>
 <div class="ft-inner">
-<div class="ft-brand"><div class="logo"><span class="logo-box">TE</span>Terminal Edge</div><p>Elite digital engineering. Custom websites, AI systems, trading bots, and automation — built for performance and scale.</p></div>
+<div class="ft-brand"><div class="logo"><span class="logo-box">TE</span>Terminal Edge</div><p>Elite digital engineering. Custom websites, AI systems, trading bots, and automation ΓÇö built for performance and scale.</p></div>
 <div class="ft-col"><h5>Services</h5><a href="services.html">Custom Websites</a><a href="services.html">AI Workflows</a><a href="services.html">Trading Bots</a><a href="services.html">Custom Apps</a></div>
 <div class="ft-col"><h5>Company</h5><a href="work.html">Portfolio</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
 <div class="ft-col"><h5>Connect</h5><a href="https://github.com/mckoy8989-png" target="_blank" rel="noopener">GitHub</a><a href="mailto:hello@terminaledge.dev">Email Us</a></div>
 </div>
-<div class="ft-bot"><span>© 2025 Terminal Edge. All rights reserved.</span><span>Engineered with precision.</span></div>
+<div class="ft-bot"><span>┬⌐ 2025 Terminal Edge. All rights reserved.</span><span>Engineered with precision.</span></div>
 </footer>
 
 <script>
 (function(){
 'use strict';
 
-/* ── SCROLL BAR + NAV (throttled) ── */
+/* ΓöÇΓöÇ SCROLL BAR + NAV (throttled) ΓöÇΓöÇ */
 const sb=document.getElementById('scrollBar');
 const nb=document.getElementById('navbar');
 let scrollTick=false;
@@ -1203,37 +1364,37 @@ const bg=document.getElementById('burger'),mm=document.getElementById('mobMenu')
 bg.addEventListener('click',()=>{bg.classList.toggle('on');mm.classList.toggle('open');document.body.style.overflow=mm.classList.contains('open')?'hidden':''});
 document.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>{bg.classList.remove('on');mm.classList.remove('open');document.body.style.overflow=''}));
 
-/* ── TERMINAL TYPING ENGINE ── */
+/* ΓöÇΓöÇ TERMINAL TYPING ENGINE ΓöÇΓöÇ */
 const tb=document.getElementById('termBody');
 const seq=[
   // Each entry: { type:'cmd'|'out'|'progress'|'blank', text:string, html?:string, delay?:number }
-  {type:'out',html:'<span class="out-dim">▸ Terminal Edge CLI initialized</span>',delay:300},
-  {type:'out',html:'<span class="out-dim">▸ Session: <span class="cmd-val">te_29x7k</span> · Node: <span class="cmd-val">us-east-1</span></span>',delay:150},
+  {type:'out',html:'<span class="out-dim">Γû╕ Terminal Edge CLI initialized</span>',delay:300},
+  {type:'out',html:'<span class="out-dim">Γû╕ Session: <span class="cmd-val">te_29x7k</span> ┬╖ Node: <span class="cmd-val">us-east-1</span></span>',delay:150},
   {type:'blank'},
   {type:'cmd',text:'te deploy --service website --framework next --optimize',delay:500},
   {type:'progress',label:'Compiling',duration:1200},
-  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Build:</span> 47 pages · 12 API routes · <span class="cmd-val">3.2s</span>',delay:200},
-  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Lighthouse:</span> Perf <span class="out-ok">98</span> · A11y <span class="out-ok">100</span> · SEO <span class="out-ok">100</span>',delay:150},
-  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Deployed →</span> <span class="out-info">https://client.terminaledge.dev</span>',delay:600},
+  {type:'out',html:'<span class="out-ok">Γ£ô</span> <span class="out-label">Build:</span> 47 pages ┬╖ 12 API routes ┬╖ <span class="cmd-val">3.2s</span>',delay:200},
+  {type:'out',html:'<span class="out-ok">Γ£ô</span> <span class="out-label">Lighthouse:</span> Perf <span class="out-ok">98</span> ┬╖ A11y <span class="out-ok">100</span> ┬╖ SEO <span class="out-ok">100</span>',delay:150},
+  {type:'out',html:'<span class="out-ok">Γ£ô</span> <span class="out-label">Deployed ΓåÆ</span> <span class="out-info">https://client.terminaledge.dev</span>',delay:600},
   {type:'blank'},
   {type:'cmd',text:'te run --bot arbitrage --mode live --risk conservative',delay:500},
-  {type:'out',html:'<span class="out-info">⟳</span> Connecting to exchanges... <span class="out-ok">3/3 linked</span>',delay:400},
+  {type:'out',html:'<span class="out-info">Γƒ│</span> Connecting to exchanges... <span class="out-ok">3/3 linked</span>',delay:400},
   {type:'progress',label:'Calibrating',duration:800},
-  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Bot:</span> Arbitrage v4 · Kill-switch <span class="out-ok">armed</span> · PnL tracking <span class="out-ok">on</span>',delay:200},
-  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Status:</span> Scanning 14 pairs · Latency <span class="cmd-val">~2ms</span>',delay:600},
+  {type:'out',html:'<span class="out-ok">Γ£ô</span> <span class="out-label">Bot:</span> Arbitrage v4 ┬╖ Kill-switch <span class="out-ok">armed</span> ┬╖ PnL tracking <span class="out-ok">on</span>',delay:200},
+  {type:'out',html:'<span class="out-ok">Γ£ô</span> <span class="out-label">Status:</span> Scanning 14 pairs ┬╖ Latency <span class="cmd-val">~2ms</span>',delay:600},
   {type:'blank'},
   {type:'cmd',text:'te ai --pipeline support-agent --model gpt-4o --deploy',delay:500},
   {type:'progress',label:'Training',duration:1000},
-  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Agent:</span> 94% accuracy · <span class="cmd-val">78%</span> ticket deflection',delay:200},
-  {type:'out',html:'<span class="out-ok">✓</span> <span class="out-label">Endpoints:</span> /chat · /escalate · /analytics',delay:600},
+  {type:'out',html:'<span class="out-ok">Γ£ô</span> <span class="out-label">Agent:</span> 94% accuracy ┬╖ <span class="cmd-val">78%</span> ticket deflection',delay:200},
+  {type:'out',html:'<span class="out-ok">Γ£ô</span> <span class="out-label">Endpoints:</span> /chat ┬╖ /escalate ┬╖ /analytics',delay:600},
   {type:'blank'},
   {type:'cmd',text:'te status --all',delay:400},
-  {type:'out',html:'<span class="out-dim">┌─────────────────────────────────────┐</span>',delay:60},
-  {type:'out',html:'<span class="out-dim">│</span> <span class="out-label">Services</span>        <span class="out-ok">● ● ●</span>  <span class="out-ok">all healthy</span>  <span class="out-dim">│</span>',delay:60},
-  {type:'out',html:'<span class="out-dim">│</span> <span class="out-label">Uptime</span>          <span class="cmd-val">99.99%</span>        <span class="out-dim">│</span>',delay:60},
-  {type:'out',html:'<span class="out-dim">│</span> <span class="out-label">Active clients</span>  <span class="cmd-val">24</span>            <span class="out-dim">│</span>',delay:60},
-  {type:'out',html:'<span class="out-dim">│</span> <span class="out-label">Avg response</span>   <span class="cmd-val">&lt;200ms</span>        <span class="out-dim">│</span>',delay:60},
-  {type:'out',html:'<span class="out-dim">└─────────────────────────────────────┘</span>',delay:1200},
+  {type:'out',html:'<span class="out-dim">ΓöîΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ</span>',delay:60},
+  {type:'out',html:'<span class="out-dim">Γöé</span> <span class="out-label">Services</span>        <span class="out-ok">ΓùÅ ΓùÅ ΓùÅ</span>  <span class="out-ok">all healthy</span>  <span class="out-dim">Γöé</span>',delay:60},
+  {type:'out',html:'<span class="out-dim">Γöé</span> <span class="out-label">Uptime</span>          <span class="cmd-val">99.99%</span>        <span class="out-dim">Γöé</span>',delay:60},
+  {type:'out',html:'<span class="out-dim">Γöé</span> <span class="out-label">Active clients</span>  <span class="cmd-val">24</span>            <span class="out-dim">Γöé</span>',delay:60},
+  {type:'out',html:'<span class="out-dim">Γöé</span> <span class="out-label">Avg response</span>   <span class="cmd-val">&lt;200ms</span>        <span class="out-dim">Γöé</span>',delay:60},
+  {type:'out',html:'<span class="out-dim">ΓööΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÿ</span>',delay:1200},
 ];
 
 let si=0,ci=0;
@@ -1264,7 +1425,7 @@ function runProgress(label,duration,cb){
 
 function typeCmd(text,cb){
   const row=document.createElement('div');
-  row.innerHTML='<span class="pr">❯ </span><span id="typeTarget"></span><span class="cur"></span>';
+  row.innerHTML='<span class="pr">Γ¥» </span><span id="typeTarget"></span><span class="cur"></span>';
   tb.appendChild(row);
   tb.scrollTop=tb.scrollHeight;
   const tgt=document.getElementById('typeTarget');
@@ -1301,7 +1462,7 @@ function nextStep(){
 tb.innerHTML='';
 setTimeout(nextStep,600);
 
-/* ── GSAP ANIMATIONS ── */
+/* ΓöÇΓöÇ GSAP ANIMATIONS ΓöÇΓöÇ */
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({force3D:true});
 if(typeof ScrollToPlugin !== 'undefined') gsap.registerPlugin(ScrollToPlugin);
@@ -1311,7 +1472,7 @@ const htl=gsap.timeline({defaults:{ease:'power4.out',force3D:true}});
 htl.to('.hero-ct .gs-hide',{opacity:1,y:0,duration:1,stagger:.18})
    .to('.hero-ct .gs-scale',{opacity:1,scale:1,y:0,duration:1.1},'-=.5');
 
-/* ── Stats handled by slot machine rollers below ── */
+/* ΓöÇΓöÇ Stats handled by slot machine rollers below ΓöÇΓöÇ */
 
 // All gs-hide, gs-left, gs-right, gs-scale elements (batched)
 // Exclude elements handled by page-level scroll animations
@@ -1336,10 +1497,10 @@ ScrollTrigger.batch('.gs-scale:not(.hero-ct .gs-scale):not(.show-card):not(.cta-
 gsap.to('.hg1',{y:-80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1.5}});
 gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1.5}});
 
-/* ══════════════════════════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    PAGE-LEVEL INTERACTION 1: SECTION NAVIGATION DOTS
    Fixed side nav that tracks current section + click to scroll
-   ══════════════════════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const nav = document.getElementById('secNav');
   const dots = nav.querySelectorAll('.sec-dot');
@@ -1372,10 +1533,10 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
   });
 })();
 
-/* ══════════════════════════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    PAGE-LEVEL INTERACTION 2: BACKGROUND COLOR MORPHING
    Background gradient shifts as you scroll through sections
-   ══════════════════════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const morph = document.getElementById('bgMorph');
   if(!morph) return;
@@ -1403,10 +1564,10 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
   });
 })();
 
-/* ══════════════════════════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    PAGE-LEVEL INTERACTION 3: HORIZONTAL SCROLL SHOWCASE
    Section pins while projects scroll horizontally (desktop only)
-   ══════════════════════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const track = document.getElementById('showTrack');
   const sec = document.querySelector('.show-sec');
@@ -1430,28 +1591,45 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
   });
 })();
 
-/* ══════════════════════════════════════════════════════════════
-   PAGE-LEVEL INTERACTION 4: SERVICES — STAGGERED FLY-IN
-   Cards fly in from alternating sides as you scroll
-   ══════════════════════════════════════════════════════════════ */
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   PAGE-LEVEL INTERACTION 4: SERVICES ΓÇö PREMIUM SHOWCASE REVEAL
+   Cards slide in with visual element animations
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const cards = document.querySelectorAll('.svc-card');
   cards.forEach((card, i) => {
-    const fromX = i % 2 === 0 ? -120 : 120;
-    const fromRot = i % 2 === 0 ? -6 : 6;
+    const visual = card.querySelector('.svc-visual');
+    const content = card.querySelector('.svc-content');
+    const features = card.querySelectorAll('.svc-features li');
+    const tags = card.querySelectorAll('.tag');
+
+    /* Card entrance */
     gsap.fromTo(card,
-      {x:fromX, opacity:0, rotateY:fromRot},
-      {x:0, opacity:1, rotateY:0, duration:1.2, ease:'power3.out',
-        scrollTrigger:{trigger:card, start:'top 90%', once:true}
+      {y:80, opacity:0},
+      {y:0, opacity:1, duration:1, ease:'power3.out',
+        scrollTrigger:{trigger:card, start:'top 88%', once:true,
+          onEnter:function(){
+            /* Animate feature items */
+            gsap.fromTo(features, {x:-15, opacity:0}, {x:0, opacity:1, stagger:.08, duration:.5, ease:'power2.out', delay:.4});
+            /* Animate tags */
+            gsap.fromTo(tags, {scale:.8, opacity:0}, {scale:1, opacity:1, stagger:.05, duration:.3, ease:'back.out(2)', delay:.7});
+          }
+        }
       }
     );
   });
+
+  /* Terminal cursor blink */
+  const cursor = document.getElementById('svcTermCursor');
+  if(cursor){
+    gsap.to(cursor, {opacity:0, repeat:-1, yoyo:true, duration:.6, ease:'steps(1)'});
+  }
 })();
 
-/* ══════════════════════════════════════════════════════════════
-   PAGE-LEVEL INTERACTION 5: FEATURES — SCALE-BURST ENTRANCE
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   PAGE-LEVEL INTERACTION 5: FEATURES ΓÇö SCALE-BURST ENTRANCE
    Cards burst in from center with staggered scale
-   ══════════════════════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const cards = document.querySelectorAll('.feat-card');
   cards.forEach((card, i) => {
@@ -1464,10 +1642,10 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
   });
 })();
 
-/* ══════════════════════════════════════════════════════════════
-   PAGE-LEVEL INTERACTION 6: STATS — RING GAUGE ANIMATION
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   PAGE-LEVEL INTERACTION 6: STATS ΓÇö RING GAUGE ANIMATION
    SVG circles fill and numbers count up on scroll
-   ══════════════════════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const statsSec = document.getElementById('stats');
   if(!statsSec) return;
@@ -1497,10 +1675,10 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
   });
 })();
 
-/* ══════════════════════════════════════════════════════════════
-   PAGE-LEVEL INTERACTION 7: TECH — CASCADE RAIN ENTRANCE
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   PAGE-LEVEL INTERACTION 7: TECH ΓÇö CASCADE RAIN ENTRANCE
    Tech items rain in from top with stagger like falling tiles
-   ══════════════════════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const items = document.querySelectorAll('.tech-i');
   items.forEach((item, i) => {
@@ -1515,10 +1693,10 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
   });
 })();
 
-/* ══════════════════════════════════════════════════════════════
-   PAGE-LEVEL INTERACTION 8: PRICING — 3D FLIP ENTRANCE
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   PAGE-LEVEL INTERACTION 8: PRICING ΓÇö 3D FLIP ENTRANCE
    Cards flip in from bottom with stagger
-   ══════════════════════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const cards = document.querySelectorAll('.price-card');
   cards.forEach((card, i) => {
@@ -1531,10 +1709,10 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
   });
 })();
 
-/* ══════════════════════════════════════════════════════════════
-   PAGE-LEVEL INTERACTION 9: TESTIMONIALS — SLIDE FROM SIDES
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   PAGE-LEVEL INTERACTION 9: TESTIMONIALS ΓÇö SLIDE FROM SIDES
    Left card from left, middle from below, right from right
-   ══════════════════════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const cards = document.querySelectorAll('.test-card');
   const entrances = [
@@ -1553,10 +1731,10 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
   });
 })();
 
-/* ══════════════════════════════════════════════════════════════
-   PAGE-LEVEL INTERACTION 10: CTA — DRAMATIC ZOOM + GLOW
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   PAGE-LEVEL INTERACTION 10: CTA ΓÇö DRAMATIC ZOOM + GLOW
    CTA section zooms from far away and glows on arrival
-   ══════════════════════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const cta = document.querySelector('.cta-box');
   if(!cta) return;
@@ -1568,10 +1746,10 @@ gsap.to('.hg2',{y:80,scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom 
   );
 })();
 
-/* ══════════════════════════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    PAGE-LEVEL INTERACTION 11: PARALLAX SECTION HEADINGS
-   Section titles move slower than content — depth effect
-   ══════════════════════════════════════════════════════════════ */
+   Section titles move slower than content ΓÇö depth effect
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 // Parallax limited to first 3 headings/labels to reduce ScrollTrigger overhead
 const parallaxTitles = document.querySelectorAll('.stitle');
 for (let pi = 0; pi < Math.min(parallaxTitles.length, 3); pi++) {
@@ -1596,10 +1774,10 @@ for (let pi = 0; pi < Math.min(parallaxLabels.length, 3); pi++) {
   });
 }
 
-/* ══════════════════════════════════════════════════════════════
-   PAGE-LEVEL INTERACTION 12: CONTACT — CURTAIN REVEAL
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   PAGE-LEVEL INTERACTION 12: CONTACT ΓÇö CURTAIN REVEAL
    Left and right panels slide in from their sides
-   ══════════════════════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const conInfo = document.querySelector('.con-info');
   const conForm = document.querySelector('.con-form');
@@ -1621,16 +1799,16 @@ for (let pi = 0; pi < Math.min(parallaxLabels.length, 3); pi++) {
   }
 })();
 
-/* ── CONTACT FORM ── */
+/* ΓöÇΓöÇ CONTACT FORM ΓöÇΓöÇ */
 document.getElementById('contactForm').addEventListener('submit',e=>{
   e.preventDefault();const b=e.target.querySelector('.sub-btn');b.textContent='Sending...';b.style.opacity='.7';
-  setTimeout(()=>{b.textContent='✓ Message Sent!';b.style.opacity='1';b.style.background='linear-gradient(135deg,#10b981,#059669)';
-  setTimeout(()=>{b.textContent='Send Message →';b.style.background='';e.target.reset()},3000)},1500);
+  setTimeout(()=>{b.textContent='Γ£ô Message Sent!';b.style.opacity='1';b.style.background='linear-gradient(135deg,#10b981,#059669)';
+  setTimeout(()=>{b.textContent='Send Message ΓåÆ';b.style.background='';e.target.reset()},3000)},1500);
 });
 
-/* ══════════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    3D INTERACTIVE PROCESS CARDS
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const scene = document.getElementById('procScene');
   if(!scene) return;
@@ -1669,10 +1847,10 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
   updateTimeline(0);
 })();
 
-/* ══════════════════════════════════════════════
-   INTERACTIVE: STATS — SLOT MACHINE DIGIT ROLLERS
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE: STATS ΓÇö SLOT MACHINE DIGIT ROLLERS
    Each digit rolls independently like a mechanical counter
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const statEls = document.querySelectorAll('.stats-g > div');
   statEls.forEach(stat => {
@@ -1730,10 +1908,10 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
   });
 })();
 
-/* ══════════════════════════════════════════════
-   INTERACTIVE: SERVICES — FLIP CARDS
-   Click to flip 180° revealing detailed back face
-   ══════════════════════════════════════════════ */
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE: SERVICES ΓÇö FLIP CARDS
+   Click to flip 180┬░ revealing detailed back face
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const svcCards = document.querySelectorAll('.svc-card');
   const backContent = [
@@ -1752,7 +1930,7 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
     back.style.cssText = 'position:absolute;inset:0;padding:2rem;backface-visibility:hidden;transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:center;background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(139,92,246,.06));border-radius:inherit;z-index:2;';
     const bc = backContent[i];
     if(bc){
-      back.innerHTML = '<h4 style="font-family:var(--ff);font-size:1.1rem;margin-bottom:1rem;color:var(--blue)">'+bc.title+' — Details</h4><ul style="list-style:none;padding:0;margin:0">'+bc.items.map(item=>'<li style="display:flex;align-items:center;gap:.5rem;padding:.35rem 0;font-size:.85rem;color:var(--dim)"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.3 11.3 2.7 7.7" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'+item+'</li>').join('')+'</ul><p style="font-size:.7rem;color:var(--muted);margin-top:1rem;font-family:var(--fm)">Click to flip back</p>';
+      back.innerHTML = '<h4 style="font-family:var(--ff);font-size:1.1rem;margin-bottom:1rem;color:var(--blue)">'+bc.title+' ΓÇö Details</h4><ul style="list-style:none;padding:0;margin:0">'+bc.items.map(item=>'<li style="display:flex;align-items:center;gap:.5rem;padding:.35rem 0;font-size:.85rem;color:var(--dim)"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6.3 11.3 2.7 7.7" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'+item+'</li>').join('')+'</ul><p style="font-size:.7rem;color:var(--muted);margin-top:1rem;font-family:var(--fm)">Click to flip back</p>';
     }
     card.appendChild(back);
     
@@ -1783,10 +1961,10 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
   });
 })();
 
-/* ══════════════════════════════════════════════
-   INTERACTIVE: FEATURES — PARALLAX DEPTH LAYERS
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE: FEATURES ΓÇö PARALLAX DEPTH LAYERS
    Icon/number moves independently from text creating depth
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   document.querySelectorAll('.feat-card').forEach(card => {
     const numEl = card.querySelector('.feat-num');
@@ -1814,11 +1992,11 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
   });
 })();
 
-/* ══════════════════════════════════════════════
-   INTERACTIVE: TECH — ORBITING CONSTELLATION
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE: TECH ΓÇö ORBITING CONSTELLATION
    Items gently orbit, connection lines appear on hover,
    hovered item pulls neighbors toward it
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const wrap = document.querySelector('.tech-wrap');
   if(!wrap) return;
@@ -1885,10 +2063,10 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
   });
 })();
 
-/* ══════════════════════════════════════════════
-   INTERACTIVE: PRICING — HOLOGRAPHIC SHIMMER
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE: PRICING ΓÇö HOLOGRAPHIC SHIMMER
    Iridescent gradient that shifts with cursor angle
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   document.querySelectorAll('.price-card').forEach(card => {
     const spot = card.querySelector('.price-spotlight');
@@ -1927,10 +2105,10 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
   });
 })();
 
-/* ══════════════════════════════════════════════
-   INTERACTIVE: TESTIMONIALS — CAROUSEL + SPOTLIGHT
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE: TESTIMONIALS ΓÇö CAROUSEL + SPOTLIGHT
    Auto-scrolling with perspective rotation between cards
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const grid = document.querySelector('.test-grid');
   if(!grid) return;
@@ -1977,10 +2155,10 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
   spotlightCard(0);
 })();
 
-/* ══════════════════════════════════════════════
-   INTERACTIVE: FAQ — TERMINAL TYPEWRITER REVEAL
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE: FAQ ΓÇö TERMINAL TYPEWRITER REVEAL
    Answer types out character by character with cursor blink
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const faqItems = document.querySelectorAll('.faq-it');
   const typingMap = new WeakMap();
@@ -2029,10 +2207,10 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
   });
 })();
 
-/* ══════════════════════════════════════════════
-   INTERACTIVE: CTA — AURORA BOREALIS WAVES
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE: CTA ΓÇö AURORA BOREALIS WAVES
    Flowing gradient ribbons that react to mouse
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const cta = document.querySelector('.cta-box');
   if(!cta) return;
@@ -2114,11 +2292,11 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
   });
 })();
 
-/* ══════════════════════════════════════════════
-   INTERACTIVE: SHOWCASE — LIVE MOCKUP ANIMATIONS
-   Browser mockups come alive on hover — progress bars,
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE: SHOWCASE ΓÇö LIVE MOCKUP ANIMATIONS
+   Browser mockups come alive on hover ΓÇö progress bars,
    typing indicators, chart animations
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const showCards = document.querySelectorAll('.show-card');
   showCards.forEach((card, idx) => {
@@ -2126,7 +2304,7 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
     if(!body) return;
     
     card.addEventListener('mouseenter', () => {
-      // Card 1: E-commerce — grid cards pulse in sequence
+      // Card 1: E-commerce ΓÇö grid cards pulse in sequence
       if(idx === 0){
         const gridCards = body.querySelectorAll('.mock-grid-card');
         gridCards.forEach((gc, i) => {
@@ -2139,7 +2317,7 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
           }, i * 200);
         });
       }
-      // Card 2: Chat bot — typing indicator appears
+      // Card 2: Chat bot ΓÇö typing indicator appears
       if(idx === 1){
         const chatArea = body.querySelector('.mock-chat-area');
         if(chatArea){
@@ -2153,7 +2331,7 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
           }, 1200);
         }
       }
-      // Card 3: Trading — chart line draws
+      // Card 3: Trading ΓÇö chart line draws
       if(idx === 2){
         const path = body.querySelector('path');
         if(path && !path.dataset.animated){
@@ -2172,7 +2350,7 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
           }, 3000);
         }
       }
-      // Card 4: Pipeline — nodes light up in sequence
+      // Card 4: Pipeline ΓÇö nodes light up in sequence
       if(idx === 3){
         const nodes = body.querySelectorAll('.mock-node');
         const arrows = body.querySelectorAll('.mock-arrow');
@@ -2195,10 +2373,10 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
   });
 })();
 
-/* ══════════════════════════════════════════════
-   INTERACTIVE: CONTACT — LIQUID FILL + RIPPLE LABELS
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE: CONTACT ΓÇö LIQUID FILL + RIPPLE LABELS
    Input fields fill with color from bottom on focus
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   document.querySelectorAll('.fg input, .fg select, .fg textarea').forEach(input => {
     // Create liquid fill background
@@ -2230,10 +2408,10 @@ document.getElementById('contactForm').addEventListener('submit',e=>{
   });
 })();
 
-/* ══════════════════════════════════════════════
-   INTERACTIVE: CONTACT METHODS — STAGGER ENTRANCE + PULSE
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE: CONTACT METHODS ΓÇö STAGGER ENTRANCE + PULSE
    Cards stagger in with unique entrance and have heartbeat on hover
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 document.querySelectorAll('.con-m').forEach((item, i) => {
   const icon = item.querySelector('.mi');
   item.addEventListener('mouseenter', () => {
@@ -2256,10 +2434,10 @@ document.querySelectorAll('.con-m').forEach((item, i) => {
   });
 });
 
-/* ══════════════════════════════════════════════
-   INTERACTIVE: SUBMIT BUTTON — PARTICLE VORTEX
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE: SUBMIT BUTTON ΓÇö PARTICLE VORTEX
    Particles spiral outward on click
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const btn = document.querySelector('.sub-btn');
   if(!btn) return;
@@ -2292,11 +2470,11 @@ document.querySelectorAll('.con-m').forEach((item, i) => {
   });
 })();
 
-/* ═══════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    ADDITIONAL INTERACTIVE ENHANCEMENTS
-   ═══════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 
-/* ── 1. MAGNETIC CURSOR ON ALL CTA BUTTONS ── */
+/* ΓöÇΓöÇ 1. MAGNETIC CURSOR ON ALL CTA BUTTONS ΓöÇΓöÇ */
 document.querySelectorAll('.btn1, .nav-cta, [class*="cta"]').forEach(btn => {
   if (btn.tagName === 'SECTION' || btn.tagName === 'DIV') return;
   btn.addEventListener('mousemove', e => {
@@ -2311,7 +2489,7 @@ document.querySelectorAll('.btn1, .nav-cta, [class*="cta"]').forEach(btn => {
   });
 });
 
-/* ── 2. HERO TEXT MORPHING GLOW ── */
+/* ΓöÇΓöÇ 2. HERO TEXT MORPHING GLOW ΓöÇΓöÇ */
 (function initHeroTextGlow() {
   const heroTitle = document.querySelector('.hero-title');
   if (!heroTitle) return;
@@ -2349,7 +2527,7 @@ document.querySelectorAll('.btn1, .nav-cta, [class*="cta"]').forEach(btn => {
   }, 3000);
 })();
 
-/* ── 3. SECTION CARDS SPOTLIGHT GRADIENT ── */
+/* ΓöÇΓöÇ 3. SECTION CARDS SPOTLIGHT GRADIENT ΓöÇΓöÇ */
 document.querySelectorAll('.svc-card, .feature-card, .testimonial-card').forEach(card => {
   card.addEventListener('mousemove', e => {
     const rect = card.getBoundingClientRect();
@@ -2360,7 +2538,7 @@ document.querySelectorAll('.svc-card, .feature-card, .testimonial-card').forEach
   card.addEventListener('mouseleave', () => { card.style.background = ''; });
 });
 
-/* ── 4. SMOOTH SCROLL-TRIGGERED SECTION GLOW ── */
+/* ΓöÇΓöÇ 4. SMOOTH SCROLL-TRIGGERED SECTION GLOW ΓöÇΓöÇ */
 (function initSectionGlows() {
   document.querySelectorAll('.sec').forEach(sec => {
     ScrollTrigger.create({
@@ -2381,7 +2559,7 @@ document.querySelectorAll('.svc-card, .feature-card, .testimonial-card').forEach
   });
 })();
 
-/* ── 5. FOOTER LINK HOVER STAGGER ── */
+/* ΓöÇΓöÇ 5. FOOTER LINK HOVER STAGGER ΓöÇΓöÇ */
 document.querySelectorAll('.ft-col').forEach(col => {
   col.addEventListener('mouseenter', () => {
     const links = col.querySelectorAll('a');
@@ -2397,7 +2575,7 @@ document.querySelectorAll('.ft-col').forEach(col => {
 
 })();
 
-/* GSAP fallback — if animations haven't fired after 3s, reveal everything */
+/* GSAP fallback ΓÇö if animations haven't fired after 3s, reveal everything */
 setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
 </script>
 <script src="effects.js"></script>

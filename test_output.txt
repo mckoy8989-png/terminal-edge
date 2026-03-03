@@ -1,0 +1,138 @@
+
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+ TERMINAL EDGE ΓÇö FULL SITE TEST SUITE
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+
+ΓöÇΓöÇ 1. STRUCTURAL TESTS (per page) ΓöÇΓöÇ
+  Γ£à index: no horizontal overflow
+  Γ£à index: no console errors
+  Γ£à index: nav has all page links
+  Γ£à index: footer present
+  Γ£à index: no zero-height sections
+  Γ¥î index: mobile no overflow (375px): overflow=1065px
+  Γ£à index: burger visible on mobile
+  Γ£à services: no horizontal overflow
+  Γ£à services: no console errors
+  Γ£à services: nav has all page links
+  Γ£à services: footer present
+  Γ£à services: no zero-height sections
+  Γ£à services: mobile no overflow (375px)
+  Γ£à services: burger visible on mobile
+  Γ£à work: no horizontal overflow
+  Γ£à work: no console errors
+  Γ£à work: nav has all page links
+  Γ£à work: footer present
+  Γ£à work: no zero-height sections
+  Γ£à work: mobile no overflow (375px)
+  Γ£à work: burger visible on mobile
+  Γ£à pricing: no horizontal overflow
+  Γ£à pricing: no console errors
+  Γ£à pricing: nav has all page links
+  Γ£à pricing: footer present
+  Γ£à pricing: no zero-height sections
+  Γ£à pricing: mobile no overflow (375px)
+  Γ£à pricing: burger visible on mobile
+  Γ£à faq: no horizontal overflow
+  Γ£à faq: no console errors
+  Γ£à faq: nav has all page links
+  Γ£à faq: footer present
+  Γ£à faq: no zero-height sections
+  Γ£à faq: mobile no overflow (375px)
+  Γ£à faq: burger visible on mobile
+  Γ£à contact: no horizontal overflow
+  Γ£à contact: no console errors
+  Γ£à contact: nav has all page links
+  Γ£à contact: footer present
+  Γ£à contact: no zero-height sections
+  Γ£à contact: mobile no overflow (375px)
+  Γ£à contact: burger visible on mobile
+
+ΓöÇΓöÇ 2. NAVIGATION TESTS ΓöÇΓöÇ
+  Γ£à indexΓåÆservices.html: navigation works
+  Γ£à indexΓåÆwork.html: navigation works
+  Γ£à indexΓåÆpricing.html: navigation works
+  Γ£à indexΓåÆfaq.html: navigation works
+  Γ£à indexΓåÆcontact.html: navigation works
+  Γ£à logo links to index.html
+
+ΓöÇΓöÇ 3. INTERACTIVE FEATURE TESTS ΓöÇΓöÇ
+  Γ£à faq: accordion opens on click
+  Γ£à faq: category filter exists
+  Γ£à contact: form and submit button exist
+  Γ£à work: filter tabs exist
+  Γ£à pricing: FAQ accordion works
+
+ΓöÇΓöÇ 4. STRESS TESTS ΓöÇΓöÇ
+  Γ£à avg page load: 644ms
+  Γ£à slowest page (index): 1039ms
+  Γ£à 6 concurrent tabs: 1294ms
+  Γ£à index: DOM size (840 nodes)
+  Γ£à services: DOM size (508 nodes)
+  Γ£à work: DOM size (697 nodes)
+  Γ£à pricing: DOM size (392 nodes)
+  Γ£à faq: DOM size (274 nodes)
+  Γ£à contact: DOM size (249 nodes)
+  Γ£à services memory: 10MB
+
+ΓöÇΓöÇ 5. RED TEAM / SECURITY TESTS ΓöÇΓöÇ
+  Γ£à index: XSS hash injection blocked
+  Γ£à index: no inline event handlers
+  Γ£à index: blank links have noopener
+  Γ£à index: no secrets in HTML
+  Γ£à services: XSS hash injection blocked
+  Γ£à services: no inline event handlers
+  Γ£à services: blank links have noopener
+  Γ£à services: no secrets in HTML
+  Γ£à work: XSS hash injection blocked
+  Γ£à work: no inline event handlers
+  Γ£à work: blank links have noopener
+  Γ£à work: no secrets in HTML
+  Γ£à pricing: XSS hash injection blocked
+  Γ£à pricing: no inline event handlers
+  Γ£à pricing: blank links have noopener
+  Γ£à pricing: no secrets in HTML
+  Γ£à faq: XSS hash injection blocked
+  Γ£à faq: no inline event handlers
+  Γ£à faq: blank links have noopener
+  Γ£à faq: no secrets in HTML
+  Γ£à contact: XSS hash injection blocked
+  Γ£à contact: no inline event handlers
+  Γ£à contact: blank links have noopener
+  Γ£à contact: no secrets in HTML
+  Γ£à contact: XSS form input safe
+  Γ£à prototype pollution resistant
+
+ΓöÇΓöÇ 6. ACCESSIBILITY TESTS ΓöÇΓöÇ
+  Γ£à index: html lang attribute
+  Γ£à index: meta viewport
+  Γ£à index: touch targets (3 small)
+  Γ£à services: html lang attribute
+  Γ£à services: meta viewport
+  Γ£à services: touch targets (1 small)
+  Γ£à work: html lang attribute
+  Γ£à work: meta viewport
+  Γ£à work: touch targets (1 small)
+  Γ£à pricing: html lang attribute
+  Γ£à pricing: meta viewport
+  Γ£à pricing: touch targets (1 small)
+  Γ£à faq: html lang attribute
+  Γ£à faq: meta viewport
+  Γ£à faq: touch targets (1 small)
+  Γ£à contact: html lang attribute
+  Γ£à contact: meta viewport
+  Γ£à contact: touch targets (1 small)
+
+ΓöÇΓöÇ 7. CONSISTENCY TESTS ΓöÇΓöÇ
+  Γ£à all pages use same body font
+  Γ£à all pages have same nav link count
+  Γ£à index: scroll progress bar
+  Γ£à services: scroll progress bar
+  Γ£à work: scroll progress bar
+  Γ£à pricing: scroll progress bar
+  Γ£à faq: scroll progress bar
+  Γ£à contact: scroll progress bar
+
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+ RESULTS: 114/115 PASSED, 1 FAILED
+ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+

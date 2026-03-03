@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Terminal Edge — Our Work</title>
-<meta name="description" content="Explore 47+ projects shipped — custom websites, AI agents, trading bots, and automation pipelines built by Terminal Edge."/>
+<title>Terminal Edge ΓÇö Our Work</title>
+<meta name="description" content="Explore 47+ projects shipped ΓÇö custom websites, AI agents, trading bots, and automation pipelines built by Terminal Edge."/>
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" as="script"/>
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" as="script"/>
@@ -17,11 +17,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
 <style>
-/* ══════════════════════════════════════════════
-   WORK PAGE — Page-Specific Styles
-   ══════════════════════════════════════════════ */
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   WORK PAGE ΓÇö Page-Specific Styles
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 
-/* ── FILTER TABS ── */
+/* ΓöÇΓöÇ FILTER TABS ΓöÇΓöÇ */
 .filter-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:3.5rem}
 .filter-btn{padding:.55rem 1.4rem;border-radius:100px;font-size:.82rem;font-weight:600;font-family:var(--ff);color:var(--dim);background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:transform .35s var(--ease),color .35s,border-color .35s,box-shadow .35s,background .35s;position:relative;overflow:hidden}
 .filter-btn::before{content:'';position:absolute;inset:0;border-radius:100px;background:var(--grad1);opacity:0;transition:opacity .35s var(--ease);z-index:0}
@@ -32,20 +32,20 @@
 .filter-count{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;border-radius:100px;background:rgba(255,255,255,.1);font-size:.65rem;font-family:var(--fm);padding:0 .35rem;margin-left:.4rem}
 .filter-btn.active .filter-count{background:rgba(255,255,255,.2)}
 
-/* ── PROJECT GRID ── */
+/* ΓöÇΓöÇ PROJECT GRID ΓöÇΓöÇ */
 .proj-sec{position:relative;overflow:hidden}
 .proj-sec::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(59,130,246,.02) 1px,transparent 1px);background-size:48px 48px;pointer-events:none}
 .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;position:relative;z-index:1}
 @media(max-width:900px){.proj-grid{grid-template-columns:1fr}}
 
-/* ── CASE STUDY CARD ── */
+/* ΓöÇΓöÇ CASE STUDY CARD ΓöÇΓöÇ */
 .cs-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;position:relative;transition:transform .45s var(--ease),background .45s,box-shadow .45s,border-color .45s}
 .cs-card::before{content:'';position:absolute;inset:-1px;border-radius:var(--r);padding:1px;background:linear-gradient(135deg,transparent 30%,var(--blue),var(--purple),transparent 80%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .45s;z-index:2;pointer-events:none}
 .cs-card:hover{transform:translateY(-6px);background:var(--surface2);box-shadow:0 24px 60px rgba(0,0,0,.4)}
 .cs-card:hover::before{opacity:1}
 .cs-card.hidden{display:none}
 
-/* ── BROWSER MOCKUP ── */
+/* ΓöÇΓöÇ BROWSER MOCKUP ΓöÇΓöÇ */
 .browser{background:var(--bg2);border-bottom:1px solid var(--border);overflow:hidden}
 .browser-chrome{display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:rgba(255,255,255,.03);border-bottom:1px solid var(--border)}
 .browser-dots{display:flex;gap:5px}
@@ -57,7 +57,7 @@
 .browser-url svg{flex-shrink:0;opacity:.4}
 .browser-viewport{height:220px;position:relative;overflow:hidden;padding:1rem}
 
-/* ── CARD BODY ── */
+/* ΓöÇΓöÇ CARD BODY ΓöÇΓöÇ */
 .cs-body{padding:1.5rem 1.6rem 1.8rem}
 .cs-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:.75rem}
 .cs-cat{font-size:.62rem;font-family:var(--fm);font-weight:700;text-transform:uppercase;letter-spacing:.14em;padding:.25rem .65rem;border-radius:100px;color:#fff}
@@ -72,19 +72,19 @@
 .cs-client{font-size:.8rem;color:var(--muted);margin-bottom:.6rem;font-family:var(--fm)}
 .cs-desc{font-size:.88rem;color:var(--dim);line-height:1.65;margin-bottom:1.2rem}
 
-/* ── METRICS ── */
+/* ΓöÇΓöÇ METRICS ΓöÇΓöÇ */
 .cs-metrics{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.2rem}
 .metric{display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .7rem;border-radius:var(--rxs);background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:.72rem;font-family:var(--fm);color:var(--text);transition:border-color .3s,background .3s,transform .3s var(--ease)}
 .metric svg{width:14px;height:14px;flex-shrink:0}
 .metric .mv{font-weight:700}
 .cs-card:hover .metric{border-color:rgba(59,130,246,.2);background:rgba(59,130,246,.05);transform:translateY(-1px)}
 
-/* ── TECH TAGS ── */
+/* ΓöÇΓöÇ TECH TAGS ΓöÇΓöÇ */
 .cs-tags{display:flex;flex-wrap:wrap;gap:.35rem}
 .cs-tags .tag{transition:all .3s}
 .cs-card:hover .cs-tags .tag{border-color:rgba(139,92,246,.2);background:rgba(139,92,246,.05)}
 
-/* ── MOCKUP: NOVA (E-COMMERCE) ── */
+/* ΓöÇΓöÇ MOCKUP: NOVA (E-COMMERCE) ΓöÇΓöÇ */
 .mock-nova{display:grid;grid-template-rows:auto 1fr;height:100%;gap:.5rem}
 .mock-nova-hero{background:linear-gradient(135deg,rgba(59,130,246,.2),rgba(139,92,246,.15));border-radius:6px;padding:.7rem;display:flex;align-items:center;gap:.5rem;height:55px}
 .mock-nova-hero-txt{flex:1}
@@ -99,7 +99,7 @@
 .mock-prod-title{height:4px;width:65%;background:rgba(255,255,255,.12);border-radius:2px}
 .mock-prod-price{height:4px;width:35%;background:rgba(59,130,246,.3);border-radius:2px}
 
-/* ── MOCKUP: CLOUDSYNC (CHAT) ── */
+/* ΓöÇΓöÇ MOCKUP: CLOUDSYNC (CHAT) ΓöÇΓöÇ */
 .mock-chat{display:flex;flex-direction:column;height:100%;gap:.35rem}
 .mock-chat-msg{max-width:80%;padding:.45rem .65rem;border-radius:8px;font-size:.55rem;font-family:var(--fm);line-height:1.4}
 .mock-chat-msg.bot{align-self:flex-start;background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.15);color:var(--dim)}
@@ -114,7 +114,7 @@
 .mock-chat-input span{width:24px;height:24px;border-radius:6px;background:var(--grad3);display:grid;place-items:center}
 .mock-chat-input span svg{width:12px;height:12px}
 
-/* ── MOCKUP: ARBENGINE (TRADING) ── */
+/* ΓöÇΓöÇ MOCKUP: ARBENGINE (TRADING) ΓöÇΓöÇ */
 .mock-trading{display:flex;flex-direction:column;height:100%;gap:.5rem}
 .mock-trading-header{display:flex;justify-content:space-between;align-items:center}
 .mock-trading-pair{font-size:.6rem;font-family:var(--fm);color:var(--green);font-weight:700}
@@ -126,7 +126,7 @@
 .mock-trading-stat .stl{font-size:.45rem;color:var(--muted);font-family:var(--fm);text-transform:uppercase}
 .mock-trading-stat .stv{font-size:.6rem;color:var(--text);font-family:var(--fm);font-weight:700}
 
-/* ── MOCKUP: DATAFLOW (PIPELINE) ── */
+/* ΓöÇΓöÇ MOCKUP: DATAFLOW (PIPELINE) ΓöÇΓöÇ */
 .mock-pipeline{display:flex;flex-direction:column;height:100%;justify-content:center;gap:.4rem}
 .mock-pipe-row{display:flex;align-items:center;gap:0;justify-content:center}
 .mock-pipe-node{padding:.35rem .55rem;border-radius:6px;font-size:.55rem;font-family:var(--fm);font-weight:600;display:flex;align-items:center;gap:.3rem;white-space:nowrap}
@@ -141,7 +141,7 @@
 .mock-pipe-status span{font-size:.5rem;font-family:var(--fm);color:var(--muted);display:flex;align-items:center;gap:.25rem}
 .mock-pipe-status .live-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 
-/* ── MOCKUP: MEDCONNECT (CALENDAR) ── */
+/* ΓöÇΓöÇ MOCKUP: MEDCONNECT (CALENDAR) ΓöÇΓöÇ */
 .mock-med{display:flex;flex-direction:column;height:100%;gap:.45rem}
 .mock-med-header{display:flex;justify-content:space-between;align-items:center}
 .mock-med-header span{font-size:.6rem;font-family:var(--fm);color:var(--text);font-weight:600}
@@ -156,7 +156,7 @@
 .mock-med-slot .dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
 .mock-med-slot span:last-child{font-size:.5rem;font-family:var(--fm);color:var(--dim)}
 
-/* ── MOCKUP: TRENDSENSE (SENTIMENT) ── */
+/* ΓöÇΓöÇ MOCKUP: TRENDSENSE (SENTIMENT) ΓöÇΓöÇ */
 .mock-sentiment{display:flex;flex-direction:column;height:100%;gap:.5rem}
 .mock-senti-header{display:flex;justify-content:space-between;align-items:center}
 .mock-senti-header span{font-size:.6rem;font-family:var(--fm);color:var(--text);font-weight:600}
@@ -176,7 +176,7 @@
 .mock-senti-plat{font-size:.48rem;font-family:var(--fm);color:var(--muted);display:flex;align-items:center;gap:.2rem}
 .mock-senti-plat .plat-dot{width:5px;height:5px;border-radius:50%}
 
-/* ── STATS / RESULTS ── */
+/* ΓöÇΓöÇ STATS / RESULTS ΓöÇΓöÇ */
 .results-sec{background:var(--bg2);position:relative;overflow:hidden}
 .results-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(59,130,246,.03),transparent 30%,transparent 70%,rgba(16,185,129,.03));pointer-events:none}
 .results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative;z-index:1}
@@ -201,7 +201,7 @@
 .result-num{font-family:var(--ff);font-size:clamp(2rem,5vw,2.8rem);font-weight:700;line-height:1;margin-bottom:.4rem}
 .result-label{font-size:.85rem;color:var(--dim)}
 
-/* ── PROCESS 3D INTERACTIVE ── */
+/* ΓöÇΓöÇ PROCESS 3D INTERACTIVE ΓöÇΓöÇ */
 .work-proc-sec{background:var(--bg2);position:relative;overflow:hidden}
 .work-proc-sec::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(139,92,246,.02),transparent 30%,transparent 70%,rgba(59,130,246,.02));pointer-events:none}
 
@@ -298,7 +298,7 @@
 
 <div class="scroll-bar" id="scrollBar"></div>
 
-<!-- ══ NAV ══ -->
+<!-- ΓòÉΓòÉ NAV ΓòÉΓòÉ -->
 <nav id="navbar">
 <div class="nav-w">
 <a href="index.html" class="logo"><span class="logo-box">TE</span>Terminal Edge</a>
@@ -320,9 +320,9 @@
 <a href="contact.html" data-close class="btn1" style="margin-top:.5rem">Start a Project</a>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     SECTION 1 — PAGE HERO
-     ══════════════════════════════════════════════ -->
+<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+     SECTION 1 ΓÇö PAGE HERO
+     ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
 <section class="page-hero">
   <canvas id="heroCanvas" style="display:none"></canvas>
   <div class="hero-glow hg1" style="background:#3b82f6;width:min(500px,80vw);height:min(500px,80vw);top:-150px;left:0"></div>
@@ -330,7 +330,7 @@
   <div class="page-hero-ct">
     <div class="badge gs-hide"><span class="dot"></span> Portfolio &amp; Case Studies</div>
     <h1 class="gs-hide">Our <span class="gt">Work</span></h1>
-    <p class="gs-hide">Real projects. Measurable results. Every build is engineered for performance, scale, and revenue impact — from concept to deployment.</p>
+    <p class="gs-hide">Real projects. Measurable results. Every build is engineered for performance, scale, and revenue impact ΓÇö from concept to deployment.</p>
     <div class="gs-hide" style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.5rem">
       <span style="display:inline-flex;align-items:center;gap:.4rem;padding:.45rem 1rem;border-radius:100px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.15);font-family:var(--fm);font-size:.78rem;color:var(--blue);font-weight:600">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
@@ -344,9 +344,9 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     SECTION 2 — FILTER + CASE STUDY CARDS
-     ══════════════════════════════════════════════ -->
+<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+     SECTION 2 ΓÇö FILTER + CASE STUDY CARDS
+     ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
 <section class="sec pad proj-sec">
   <div class="ctn">
     <div class="tc gs-hide">
@@ -368,7 +368,7 @@
     <!-- Project Grid -->
     <div class="proj-grid" id="projGrid">
 
-      <!-- ─── CARD 1: Nova Retail ─── -->
+      <!-- ΓöÇΓöÇΓöÇ CARD 1: Nova Retail ΓöÇΓöÇΓöÇ -->
       <div class="cs-card gs-hide" data-category="website">
         <div class="browser">
           <div class="browser-chrome">
@@ -425,7 +425,7 @@
         </div>
       </div>
 
-      <!-- ─── CARD 2: CloudSync ─── -->
+      <!-- ΓöÇΓöÇΓöÇ CARD 2: CloudSync ΓöÇΓöÇΓöÇ -->
       <div class="cs-card gs-hide" data-category="ai">
         <div class="browser">
           <div class="browser-chrome">
@@ -437,9 +437,9 @@
           </div>
           <div class="browser-viewport">
             <div class="mock-chat">
-              <div class="mock-chat-msg bot">👋 Hi! I'm the CloudSync support agent. How can I help you today?</div>
+              <div class="mock-chat-msg bot">≡ƒæï Hi! I'm the CloudSync support agent. How can I help you today?</div>
               <div class="mock-chat-msg usr">I can't connect my S3 bucket. Getting a permissions error.</div>
-              <div class="mock-chat-msg bot">I see — that's usually an IAM policy issue. Let me pull up your configuration and walk you through the fix…</div>
+              <div class="mock-chat-msg bot">I see ΓÇö that's usually an IAM policy issue. Let me pull up your configuration and walk you through the fixΓÇª</div>
               <div class="mock-chat-typing"><span></span><span></span><span></span></div>
               <div class="mock-chat-input">
                 <div></div>
@@ -475,7 +475,7 @@
         </div>
       </div>
 
-      <!-- ─── CARD 3: ArbEngine ─── -->
+      <!-- ΓöÇΓöÇΓöÇ CARD 3: ArbEngine ΓöÇΓöÇΓöÇ -->
       <div class="cs-card gs-hide" data-category="trading">
         <div class="browser">
           <div class="browser-chrome">
@@ -488,7 +488,7 @@
           <div class="browser-viewport">
             <div class="mock-trading">
               <div class="mock-trading-header">
-                <span class="mock-trading-pair">ETH/USDT ▲ $3,847.22</span>
+                <span class="mock-trading-pair">ETH/USDT Γû▓ $3,847.22</span>
                 <span class="mock-trading-pnl">+12.4% MTD</span>
               </div>
               <div class="mock-chart-area">
@@ -542,7 +542,7 @@
         </div>
       </div>
 
-      <!-- ─── CARD 4: DataFlow ─── -->
+      <!-- ΓöÇΓöÇΓöÇ CARD 4: DataFlow ΓöÇΓöÇΓöÇ -->
       <div class="cs-card gs-hide" data-category="automation">
         <div class="browser">
           <div class="browser-chrome">
@@ -559,22 +559,22 @@
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
                   Scrape
                 </div>
-                <span class="mock-pipe-arrow">→</span>
+                <span class="mock-pipe-arrow">ΓåÆ</span>
                 <div class="mock-pipe-node n2">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4c0 3-4 6-4 6s-4-3-4-6a4 4 0 0 1 4-4z"/><circle cx="12" cy="14" r="4"/><path d="M12 18v4"/></svg>
                   LLM
                 </div>
-                <span class="mock-pipe-arrow">→</span>
+                <span class="mock-pipe-arrow">ΓåÆ</span>
                 <div class="mock-pipe-node n3">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
                   Filter
                 </div>
-                <span class="mock-pipe-arrow">→</span>
+                <span class="mock-pipe-arrow">ΓåÆ</span>
                 <div class="mock-pipe-node n4">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73L13 2.27a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
                   Store
                 </div>
-                <span class="mock-pipe-arrow">→</span>
+                <span class="mock-pipe-arrow">ΓåÆ</span>
                 <div class="mock-pipe-node n5">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
                   Alert
@@ -583,7 +583,7 @@
               <div class="mock-pipe-status">
                 <span><span class="live-dot"></span> Pipeline Active</span>
                 <span>517 pages today</span>
-                <span style="color:var(--green)">✓ 99.7% success</span>
+                <span style="color:var(--green)">Γ£ô 99.7% success</span>
               </div>
             </div>
           </div>
@@ -615,7 +615,7 @@
         </div>
       </div>
 
-      <!-- ─── CARD 5: MedConnect ─── -->
+      <!-- ΓöÇΓöÇΓöÇ CARD 5: MedConnect ΓöÇΓöÇΓöÇ -->
       <div class="cs-card gs-hide" data-category="app">
         <div class="browser">
           <div class="browser-chrome">
@@ -629,7 +629,7 @@
             <div class="mock-med">
               <div class="mock-med-header">
                 <span>June 2025</span>
-                <div class="mock-med-nav"><span>‹</span><span>›</span></div>
+                <div class="mock-med-nav"><span>ΓÇ╣</span><span>ΓÇ║</span></div>
               </div>
               <div class="mock-cal-grid">
                 <div class="mock-cal-cell head">Mo</div><div class="mock-cal-cell head">Tu</div><div class="mock-cal-cell head">We</div><div class="mock-cal-cell head">Th</div><div class="mock-cal-cell head">Fr</div><div class="mock-cal-cell head">Sa</div><div class="mock-cal-cell head">Su</div>
@@ -639,8 +639,8 @@
                 <div class="mock-cal-cell booked">16</div><div class="mock-cal-cell">17</div><div class="mock-cal-cell">18</div><div class="mock-cal-cell">19</div><div class="mock-cal-cell booked">20</div><div class="mock-cal-cell">21</div><div class="mock-cal-cell">22</div>
                 <div class="mock-cal-cell">23</div><div class="mock-cal-cell">24</div><div class="mock-cal-cell booked">25</div><div class="mock-cal-cell">26</div><div class="mock-cal-cell">27</div><div class="mock-cal-cell">28</div><div class="mock-cal-cell">29</div>
               </div>
-              <div class="mock-med-slot"><span class="dot"></span><span>Dr. Rivera — 10:30 AM — Cardiology</span></div>
-              <div class="mock-med-slot"><span class="dot" style="background:var(--blue)"></span><span>Dr. Chen — 2:00 PM — Follow-up</span></div>
+              <div class="mock-med-slot"><span class="dot"></span><span>Dr. Rivera ΓÇö 10:30 AM ΓÇö Cardiology</span></div>
+              <div class="mock-med-slot"><span class="dot" style="background:var(--blue)"></span><span>Dr. Chen ΓÇö 2:00 PM ΓÇö Follow-up</span></div>
             </div>
           </div>
         </div>
@@ -671,7 +671,7 @@
         </div>
       </div>
 
-      <!-- ─── CARD 6: TrendSense ─── -->
+      <!-- ΓöÇΓöÇΓöÇ CARD 6: TrendSense ΓöÇΓöÇΓöÇ -->
       <div class="cs-card gs-hide" data-category="ai">
         <div class="browser">
           <div class="browser-chrome">
@@ -685,7 +685,7 @@
             <div class="mock-sentiment">
               <div class="mock-senti-header">
                 <span>Sentiment Overview</span>
-                <span class="mock-senti-badge">● Live</span>
+                <span class="mock-senti-badge">ΓùÅ Live</span>
               </div>
               <div style="display:flex;align-items:center;gap:1rem">
                 <div class="mock-gauge">
@@ -763,14 +763,14 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     SECTION 3 — RESULTS / NUMBERS
-     ══════════════════════════════════════════════ -->
+<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+     SECTION 3 ΓÇö RESULTS / NUMBERS
+     ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
 <section class="sec pad results-sec">
   <div class="ctn tc">
     <span class="lbl gs-hide">Impact</span>
     <h2 class="stitle gs-hide">Numbers That <span class="gt2">Matter</span></h2>
-    <p class="sdesc gs-hide" style="margin-left:auto;margin-right:auto">We don't just build — we deliver measurable outcomes that move the needle for every client.</p>
+    <p class="sdesc gs-hide" style="margin-left:auto;margin-right:auto">We don't just build ΓÇö we deliver measurable outcomes that move the needle for every client.</p>
 
     <div class="results-grid">
       <div class="result-card gs-scale">
@@ -805,14 +805,14 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     SECTION 4 — PROCESS OVERVIEW
-     ══════════════════════════════════════════════ -->
+<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+     SECTION 4 ΓÇö PROCESS OVERVIEW
+     ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
 <section class="sec pad work-proc-sec">
   <div class="ctn tc">
     <span class="lbl gs-hide">How We Work</span>
     <h2 class="stitle gs-hide">From Idea to <span class="gt3">Production</span></h2>
-    <p class="sdesc gs-hide" style="margin-left:auto;margin-right:auto">Every project follows a battle-tested four-phase process — transparent, fast, and built around your timeline. <strong>Click each step</strong> to explore.</p>
+    <p class="sdesc gs-hide" style="margin-left:auto;margin-right:auto">Every project follows a battle-tested four-phase process ΓÇö transparent, fast, and built around your timeline. <strong>Click each step</strong> to explore.</p>
 
     <div class="proc-scene gs-hide" id="procScene">
       <!-- Connecting timeline bar -->
@@ -836,10 +836,10 @@
                   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Success metrics definition</li>
                   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Technical feasibility audit</li>
                 </ul>
-                <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1–2 days</span>
+                <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1ΓÇô2 days</span>
               </div>
             </div>
-            <span class="proc3d-hint">Click to explore ↓</span>
+            <span class="proc3d-hint">Click to explore Γåô</span>
           </div>
         </div>
 
@@ -848,7 +848,7 @@
           <div class="proc3d-inner">
             <div class="proc3d-orb">02</div>
             <h4 class="proc3d-name">Spec</h4>
-            <p class="proc3d-desc">Detailed technical specification with milestones, architecture decisions, and a fixed timeline — before any code is written.</p>
+            <p class="proc3d-desc">Detailed technical specification with milestones, architecture decisions, and a fixed timeline ΓÇö before any code is written.</p>
             <div class="proc3d-detail">
               <div class="proc3d-detail-inner">
                 <ul class="proc3d-checklist">
@@ -857,10 +857,10 @@
                   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Tech stack & API contracts</li>
                   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Fixed price proposal</li>
                 </ul>
-                <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2–3 days</span>
+                <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>2ΓÇô3 days</span>
               </div>
             </div>
-            <span class="proc3d-hint">Click to explore ↓</span>
+            <span class="proc3d-hint">Click to explore Γåô</span>
           </div>
         </div>
 
@@ -878,10 +878,10 @@
                   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>CI/CD pipeline setup</li>
                   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Performance testing & optimization</li>
                 </ul>
-                <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1–4 weeks</span>
+                <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1ΓÇô4 weeks</span>
               </div>
             </div>
-            <span class="proc3d-hint">Click to explore ↓</span>
+            <span class="proc3d-hint">Click to explore Γåô</span>
           </div>
         </div>
 
@@ -890,7 +890,7 @@
           <div class="proc3d-inner">
             <div class="proc3d-orb">04</div>
             <h4 class="proc3d-name">Ship</h4>
-            <p class="proc3d-desc">Production deployment, monitoring setup, documentation handoff, and 30 days of priority support — you launch with confidence.</p>
+            <p class="proc3d-desc">Production deployment, monitoring setup, documentation handoff, and 30 days of priority support ΓÇö you launch with confidence.</p>
             <div class="proc3d-detail">
               <div class="proc3d-detail-inner">
                 <ul class="proc3d-checklist">
@@ -899,10 +899,10 @@
                   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Full documentation handoff</li>
                   <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>30 days priority support</li>
                 </ul>
-                <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1–2 days</span>
+                <span class="proc3d-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>1ΓÇô2 days</span>
               </div>
             </div>
-            <span class="proc3d-hint">Click to explore ↓</span>
+            <span class="proc3d-hint">Click to explore Γåô</span>
           </div>
         </div>
       </div>
@@ -910,37 +910,37 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════
-     SECTION 5 — CTA
-     ══════════════════════════════════════════════ -->
+<!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+     SECTION 5 ΓÇö CTA
+     ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
 <section class="sec pad work-cta-sec">
   <div class="ctn">
     <div class="cta-box gs-scale">
       <h2>Have a project in mind?</h2>
-      <p>Let's talk scope, timeline, and budget — most projects kick off within 48 hours of our first call.</p>
-      <a href="contact.html" class="btn1">Start a Project →</a>
+      <p>Let's talk scope, timeline, and budget ΓÇö most projects kick off within 48 hours of our first call.</p>
+      <a href="contact.html" class="btn1">Start a Project ΓåÆ</a>
     </div>
   </div>
 </section>
 
-<!-- ══ FOOTER ══ -->
+<!-- ΓòÉΓòÉ FOOTER ΓòÉΓòÉ -->
 <footer>
 <div class="ft-inner">
-<div class="ft-brand"><div class="logo"><span class="logo-box">TE</span>Terminal Edge</div><p>Elite digital engineering. Custom websites, AI systems, trading bots, and automation — built for performance and scale.</p></div>
+<div class="ft-brand"><div class="logo"><span class="logo-box">TE</span>Terminal Edge</div><p>Elite digital engineering. Custom websites, AI systems, trading bots, and automation ΓÇö built for performance and scale.</p></div>
 <div class="ft-col"><h5>Services</h5><a href="services.html">Custom Websites</a><a href="services.html">AI Workflows</a><a href="services.html">Trading Bots</a><a href="services.html">Custom Apps</a></div>
 <div class="ft-col"><h5>Company</h5><a href="work.html">Portfolio</a><a href="pricing.html">Pricing</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
 <div class="ft-col"><h5>Connect</h5><a href="https://github.com/mckoy8989-png" target="_blank" rel="noopener">GitHub</a><a href="mailto:hello@terminaledge.dev">Email Us</a></div>
 </div>
-<div class="ft-bot"><span>© 2025 Terminal Edge. All rights reserved.</span><span>Engineered with precision.</span></div>
+<div class="ft-bot"><span>┬⌐ 2025 Terminal Edge. All rights reserved.</span><span>Engineered with precision.</span></div>
 </footer>
 
 <script>
 (function(){
 'use strict';
 
-/* ══════════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    SCROLL PROGRESS + NAV (throttled)
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 const sb=document.getElementById('scrollBar');
 const nb=document.getElementById('navbar');
 let scrollTick=false;
@@ -953,16 +953,16 @@ addEventListener('scroll',()=>{
   })}
 },{passive:true});
 
-/* ══════════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    BURGER MENU
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 const bg=document.getElementById('burger'),mm=document.getElementById('mobMenu');
 bg.addEventListener('click',()=>{bg.classList.toggle('on');mm.classList.toggle('open');document.body.style.overflow=mm.classList.contains('open')?'hidden':''});
 document.querySelectorAll('[data-close]').forEach(a=>a.addEventListener('click',()=>{bg.classList.remove('on');mm.classList.remove('open');document.body.style.overflow=''}));
 
-/* ══════════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    FILTER SYSTEM
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 const filterBtns=document.querySelectorAll('.filter-btn');
 const cards=document.querySelectorAll('.cs-card');
 
@@ -989,9 +989,9 @@ filterBtns.forEach(btn=>{
   });
 });
 
-/* ══════════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    GSAP ANIMATIONS
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 gsap.registerPlugin(ScrollTrigger);
 gsap.config({force3D:true});
 
@@ -1023,9 +1023,9 @@ ScrollTrigger.batch('.gs-scale',{
   onEnter:batch=>gsap.to(batch,{opacity:1,scale:1,y:0,duration:.9,stagger:.08,ease:'power3.out',force3D:true})
 });
 
-/* ══════════════════════════════════════════════
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
    3D INTERACTIVE PROCESS CARDS
-   ══════════════════════════════════════════════ */
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 (function(){
   const scene = document.getElementById('procScene');
   if(!scene) return;
@@ -1061,8 +1061,8 @@ ScrollTrigger.batch('.gs-scale',{
       const y = e.clientY - rect.top;
       const cx = rect.width / 2;
       const cy = rect.height / 2;
-      const rotY = ((x - cx) / cx) * 12;   // max ±12deg
-      const rotX = ((cy - y) / cy) * 8;    // max ±8deg
+      const rotY = ((x - cx) / cx) * 12;   // max ┬▒12deg
+      const rotX = ((cy - y) / cy) * 8;    // max ┬▒8deg
       card.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.03,1.03,1.03)`;
     });
 
@@ -1075,11 +1075,11 @@ ScrollTrigger.batch('.gs-scale',{
   updateTimeline(0);
 })();
 
-/* ═══════════════════════════════════════════
-   INTERACTIVE ENHANCEMENTS — Work Page
-   ═══════════════════════════════════════════ */
+/* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
+   INTERACTIVE ENHANCEMENTS ΓÇö Work Page
+   ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
 
-/* ── 1. CASE STUDY CARD 3D TILT ── */
+/* ΓöÇΓöÇ 1. CASE STUDY CARD 3D TILT ΓöÇΓöÇ */
 document.querySelectorAll('.cs-card').forEach(card => {
   card.style.transition = 'transform 0.15s ease-out';
   card.style.transformStyle = 'preserve-3d';
@@ -1096,7 +1096,7 @@ document.querySelectorAll('.cs-card').forEach(card => {
   });
 });
 
-/* ── 2. BROWSER VIEWPORT LIVE ANIMATIONS ── */
+/* ΓöÇΓöÇ 2. BROWSER VIEWPORT LIVE ANIMATIONS ΓöÇΓöÇ */
 (function initBrowserMocks() {
   // Nova Retail: Product pulse animation
   document.querySelectorAll('.mock-prod-img').forEach((img, i) => {
@@ -1143,7 +1143,7 @@ document.querySelectorAll('.cs-card').forEach(card => {
   });
 })();
 
-/* ── 3. RESULT CARD INTERACTIVE HOVER ── */
+/* ΓöÇΓöÇ 3. RESULT CARD INTERACTIVE HOVER ΓöÇΓöÇ */
 document.querySelectorAll('.result-card').forEach(card => {
   card.style.cursor = 'pointer';
   card.addEventListener('mouseenter', () => {
@@ -1165,7 +1165,7 @@ document.querySelectorAll('.result-card').forEach(card => {
   });
 });
 
-/* ── 4. MAGNETIC CURSOR ON CTA BUTTONS ── */
+/* ΓöÇΓöÇ 4. MAGNETIC CURSOR ON CTA BUTTONS ΓöÇΓöÇ */
 document.querySelectorAll('.btn1, .nav-cta').forEach(btn => {
   btn.addEventListener('mousemove', e => {
     const rect = btn.getBoundingClientRect();
@@ -1179,7 +1179,7 @@ document.querySelectorAll('.btn1, .nav-cta').forEach(btn => {
   });
 });
 
-/* ── 5. CARD SPOTLIGHT GRADIENT ── */
+/* ΓöÇΓöÇ 5. CARD SPOTLIGHT GRADIENT ΓöÇΓöÇ */
 document.querySelectorAll('.cs-card .cs-body').forEach(body => {
   body.addEventListener('mousemove', e => {
     const rect = body.getBoundingClientRect();
@@ -1190,7 +1190,7 @@ document.querySelectorAll('.cs-card .cs-body').forEach(body => {
   body.addEventListener('mouseleave', () => { body.style.background = ''; });
 });
 
-/* ── 6. FILTER COUNT ANIMATION ── */
+/* ΓöÇΓöÇ 6. FILTER COUNT ANIMATION ΓöÇΓöÇ */
 const filterBtnsEnhanced = document.querySelectorAll('.filter-btn');
 filterBtnsEnhanced.forEach(btn => {
   const count = btn.querySelector('.filter-count');
@@ -1200,7 +1200,7 @@ filterBtnsEnhanced.forEach(btn => {
   });
 });
 
-/* ── 7. HERO GLOW MOUSE PARALLAX ── */
+/* ΓöÇΓöÇ 7. HERO GLOW MOUSE PARALLAX ΓöÇΓöÇ */
 document.querySelector('.page-hero')?.addEventListener('mousemove', e => {
   const glows = document.querySelectorAll('.page-hero .hero-glow');
   const rect = document.querySelector('.page-hero').getBoundingClientRect();
@@ -1212,7 +1212,7 @@ document.querySelector('.page-hero')?.addEventListener('mousemove', e => {
   });
 });
 
-/* ── 8. METRIC VALUE HOVER HIGHLIGHT ── */
+/* ΓöÇΓöÇ 8. METRIC VALUE HOVER HIGHLIGHT ΓöÇΓöÇ */
 document.querySelectorAll('.cs-metrics .metric').forEach(m => {
   m.style.cursor = 'default';
   m.addEventListener('mouseenter', () => {
