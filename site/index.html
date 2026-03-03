@@ -12,8 +12,7 @@
 <link rel="preload" href="lib/gsap.min.js" as="script"/><link rel="preload" href="lib/ScrollTrigger.min.js" as="script"/><script src="lib/gsap.min.js"></script>
 <script src="lib/ScrollTrigger.min.js"></script>
 <script src="lib/ScrollToPlugin.min.js"></script>
-<script src="lib/three.min.js" defer></script>
-<script src="lib/lenis.min.js" defer></script>
+
 <link rel="stylesheet" href="styles.css"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -615,8 +614,23 @@ footer{border-top:1px solid var(--border);padding:3rem 1.5rem 1.5rem;background:
 .page-transition{position:fixed;inset:0;background:var(--bg);z-index:9999;opacity:0;pointer-events:none;transition:opacity .2s ease}
 .page-transition.active{opacity:1;pointer-events:all}
 .show-card,.svc-card,.price-card,.feat-card,.faq-it,.test-card,.cta-box{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+
+/* ── HERO AMBIENT BACKGROUND (replaces Three.js particles) ── */
+.hero{position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;z-index:0;background:
+  radial-gradient(ellipse 60% 50% at 25% 40%, rgba(59,130,246,.12) 0%, transparent 70%),
+  radial-gradient(ellipse 50% 60% at 75% 60%, rgba(139,92,246,.10) 0%, transparent 70%),
+  radial-gradient(ellipse 40% 40% at 50% 30%, rgba(6,182,212,.08) 0%, transparent 60%);
+  animation:heroAmbient 8s ease-in-out infinite alternate}
+@keyframes heroAmbient{0%{opacity:.7;transform:scale(1) translateY(0)}100%{opacity:1;transform:scale(1.05) translateY(-10px)}}
+.hero-ct{position:relative;z-index:1}
+
+/* ── CUSTOM CURSOR (desktop only, no JS rAF needed) ── */
+@media(min-width:769px) and (pointer:fine){
+  body{cursor:none}
+  a,button,.btn,.svc-card,.feat-card,.show-card,.price-card{cursor:none}
+}
 </style>
-<link rel="stylesheet" href="effects.css"/>
 <script>document.documentElement.classList.add('gsap-ready');</script><script>var gf=document.getElementById("gfonts");if(gf){gf.onload=function(){gf.media="all"}};</script>
 </head>
 <body>
@@ -2259,6 +2273,6 @@ document.querySelectorAll('.btn1, .nav-cta').forEach(function(btn){
 /* Fallback — if animations haven't fired after 2s, reveal everything */
 setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.classList.add('revealed');el.style.opacity='1';el.style.transform='none'}})},2000);
 </script>
-<script src="effects.js" defer></script>
+
 </body>
 </html>

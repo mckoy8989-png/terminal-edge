@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="styles.css"/>
 <link rel="preload" href="lib/gsap.min.js" as="script"/><link rel="preload" href="lib/ScrollTrigger.min.js" as="script"/><script src="lib/gsap.min.js"></script>
 <script src="lib/ScrollTrigger.min.js"></script>
-<script src="lib/lenis.min.js" defer></script>
 <style>
 /* ══════════════════════════════════════════════
    WORK PAGE — Page-Specific Styles
@@ -289,7 +288,6 @@
 .work-cta-sec::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:200px;background:radial-gradient(ellipse,rgba(59,130,246,.04),transparent 60%);pointer-events:none}
 .page-transition{position:fixed;inset:0;background:var(--bg,#060714);z-index:9999;opacity:0;pointer-events:none;transition:opacity .2s ease}.page-transition.active{opacity:1;pointer-events:all}
 </style>
-<link rel="stylesheet" href="effects.css"/>
 <script>document.documentElement.classList.add('gsap-ready');</script><script>var gf=document.getElementById("gfonts");if(gf){gf.onload=function(){gf.media="all"}};</script>
 </head>
 <body><div class="page-transition" id="pageTransition"></div>
@@ -1235,6 +1233,5 @@ document.querySelectorAll('.cs-metrics .metric').forEach(m => {
 setTimeout(function(){document.querySelectorAll('.gs-hide,.gs-left,.gs-right,.gs-scale').forEach(function(el){if(getComputedStyle(el).opacity==='0'){el.style.opacity='1';el.style.transform='none'}})},3000);
 
 </script>
-<script src="effects.js" defer></script>
 </body>
 </html>
