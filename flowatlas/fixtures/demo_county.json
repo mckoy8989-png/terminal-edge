@@ -1,0 +1,121 @@
+{
+  "_comment": "SYNTHETIC DATA. Not a real county. Exists so the pipeline runs end to end offline. Never quote these figures as a finding.",
+  "area": {
+    "name": "Demo County, Demo State (SYNTHETIC)",
+    "total_households": 150000,
+    "median_income": 74500,
+    "households_by_band": {
+      "lt25": 22000,
+      "25to50": 31000,
+      "50to75": 28000,
+      "75to100": 21000,
+      "100to150": 24000,
+      "150to200": 11000,
+      "gte200": 13000
+    }
+  },
+  "business_patterns": [
+    {
+      "naics": "4451",
+      "establishments": 62,
+      "annual_payroll": 62000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "4452",
+      "establishments": 24,
+      "annual_payroll": 7000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "7225",
+      "establishments": 520,
+      "annual_payroll": 290000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "7224",
+      "establishments": 88,
+      "annual_payroll": 36000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "4471",
+      "establishments": 76,
+      "annual_payroll": 38000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "8111",
+      "establishments": 198,
+      "annual_payroll": 76000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "4413",
+      "establishments": 52,
+      "annual_payroll": 21000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "4461",
+      "establishments": 68,
+      "annual_payroll": 54000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "452",
+      "establishments": 22,
+      "annual_payroll": 96000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "448",
+      "establishments": 126,
+      "annual_payroll": 48000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "442",
+      "establishments": 54,
+      "annual_payroll": 27000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "4431",
+      "establishments": 29,
+      "annual_payroll": 21000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "444",
+      "establishments": 58,
+      "annual_payroll": 78000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "451",
+      "establishments": 68,
+      "annual_payroll": 24000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "8121",
+      "establishments": 176,
+      "annual_payroll": 0,
+      "payroll_suppressed": true
+    },
+    {
+      "naics": "8123",
+      "establishments": 42,
+      "annual_payroll": 6000000,
+      "payroll_suppressed": false
+    },
+    {
+      "naics": "713",
+      "establishments": 56,
+      "annual_payroll": 32000000,
+      "payroll_suppressed": false
+    }
+  ]
+}
