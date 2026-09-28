@@ -155,6 +155,8 @@ def render_screen(options: list[ScreenedOption], capital: float) -> str:
     add("  discounted hard where operator density says the field is full")
     add("=" * 78)
 
+    blind = [o for o in options if o.no_data]
+    options = [o for o in options if not o.no_data]
     protected = [o for o in options if o.barrier != "none"]
     open_field = [o for o in options if o.barrier == "none"]
 
@@ -184,6 +186,13 @@ def render_screen(options: list[ScreenedOption], capital: float) -> str:
         d = f"{o.operators_per_1k:.1f}/1k" if o.operators_per_1k is not None else "  n/a "
         add(f"  {SAT_MARK[o.saturation]}{o.label:<26} {money(o.startup_capital):>7}"
             f"   {d:>9}   [{o.saturation}]   score {o.screen_score:,.0f}")
+
+    if blind:
+        add("")
+        add("  NOT RANKED — no competitor count in this data, so no verdict")
+        add("  " + "-" * 74)
+        for o in blind:
+            add(f"      {o.label:<26} {money(o.startup_capital):>7}   count operators by hand")
 
     add("")
     add("  " + "-" * 74)
@@ -285,11 +294,21 @@ def main(argv: list[str] | None = None) -> int:
     if args.screen:
         if args.capital is None:
             p.error("--screen needs --capital, e.g. --capital 5000")
-        establishments = sum(r.establishments for r in records)
-        food = sum(r.establishments for r in records if r.category == "restaurants")
+        establishments = area.total_establishments
+        if establishments is None and hasattr(client, "commercial_base"):
+            try:
+                establishments = client.commercial_base(state, county)
+            except SourceError:
+                establishments = None
+        if establishments is None:
+            establishments = sum(r.establishments for r in records)
+        food = area.food_establishments
+        if food is None:
+            food = sum(r.establishments for r in records if r.category == "restaurants")
         print(render_screen(
             screen(services, area.total_households, establishments, food,
-                   capital=args.capital),
+                   capital=args.capital, owner_rate=area.owner_rate,
+                   pre1980_share=area.pre1980_share),
             args.capital,
         ))
     else:

@@ -75,6 +75,12 @@ class AreaProfile:
     households_by_band: dict[str, int] = field(default_factory=dict)
     total_households: int = 0
     median_income: int | None = None
+    # Local structure that shifts demand away from national averages. All
+    # optional; when absent the model uses national calibration unchanged.
+    owner_rate: float | None = None          # owner-occupied share of households
+    pre1980_share: float | None = None       # housing stock built before 1980
+    total_establishments: int | None = None  # full commercial base, all NAICS
+    food_establishments: int | None = None
 
     @property
     def is_empty(self) -> bool:
@@ -198,6 +204,26 @@ class CensusClient:
             )
         return out
 
+    def commercial_base(self, state_fips: str, county_fips: str) -> int | None:
+        """All-sector employer establishments: CBP's NAICS "00" total row.
+
+        Compliance trades bill the whole commercial base — offices, clinics,
+        warehouses — not just the retail NAICS the storefront model maps.
+        """
+        url = (
+            f"{CENSUS_BASE}/{self.cbp_year}/cbp"
+            f"?get=NAICS2017,ESTAB,PAYANN,EMP"
+            f"&for=county:{county_fips}&in=state:{state_fips}"
+            f"{self._key_param()}"
+        )
+        rows = _get_json(url)
+        header = rows[0]
+        for values in rows[1:]:
+            rec = dict(zip(header, values))
+            if (rec.get("NAICS2017") or "").strip() == "00":
+                return _safe_int(rec.get("ESTAB")) or None
+        return None
+
     def nonemployers(self, state_fips: str, county_fips: str) -> list[NonemployerRecord]:
         """Nonemployer businesses and their receipts, by NAICS.
 
@@ -260,7 +286,14 @@ class FixtureClient:
             households_by_band=a["households_by_band"],
             total_households=a["total_households"],
             median_income=a.get("median_income"),
+            owner_rate=a.get("owner_rate"),
+            pre1980_share=a.get("pre1980_share"),
+            total_establishments=a.get("total_establishments"),
+            food_establishments=a.get("food_establishments"),
         )
+
+    def commercial_base(self, state_fips: str, county_fips: str) -> int | None:
+        return self.blob["area"].get("total_establishments")
 
     def nonemployers(self, state_fips: str, county_fips: str) -> list[NonemployerRecord]:
         out = []

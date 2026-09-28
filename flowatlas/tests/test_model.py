@@ -342,3 +342,47 @@ def test_every_service_category_has_a_barrier_and_benchmark():
     for c in SERVICE_SHARES:
         assert c in ENTRY_BARRIER, c
         assert c in SATURATION_BENCHMARK, c
+
+
+def test_appliance_repair_matches_national_market():
+    """REGRESSION: the first driver implied an $11.9B US market against a
+    published $6.8B. Demand for the whole country must land within 15%."""
+    from flowatlas.reference import APPLIANCE_REPAIR_US_MARKET, US_HOUSEHOLDS
+    national = model_compliance_demand(US_HOUSEHOLDS, 0, 0)["appliance_repair"]
+    assert abs(national / APPLIANCE_REPAIR_US_MARKET - 1) < 0.15, f"${national/1e9:.1f}B"
+
+
+def test_screen_never_ranks_a_trade_with_no_supply_data():
+    """REGRESSION: the screen used to rank a no-data service trade on its full
+    demand — the false vacuum, reintroduced one layer up."""
+    area = AreaProfile(name="t", households_by_band={"100to150": 50_000},
+                       total_households=50_000)
+    services = build_service_report(area, nonemployers=[])
+    options = screen(services, 50_000, 1_000, capital=5_000)
+    for o in options:
+        if o.no_data:
+            assert o.annual_demand == 0 and o.screen_score == 0
+
+
+def test_owner_rate_scales_owner_driven_services_only():
+    base = AreaProfile(name="a", households_by_band={"100to150": 10_000},
+                       total_households=10_000)
+    rent = AreaProfile(name="b", households_by_band={"100to150": 10_000},
+                       total_households=10_000, owner_rate=0.325)
+    d0, d1 = model_service_demand(base), model_service_demand(rent)
+    assert abs(d1["lawn_landscape"].value / d0["lawn_landscape"].value - 0.5) < 1e-9
+    assert d1["cleaning"].value == d0["cleaning"].value  # renters buy cleaning too
+
+
+def test_travis_fixture_is_consistent_with_its_sources():
+    """The researched Travis County inputs must reproduce what they cite."""
+    import json
+    blob = json.load(open("fixtures/travis_county.json"))
+    a = blob["area"]
+    assert sum(a["households_by_band"].values()) == a["total_households"] == 583_747
+    share = lambda k: a["households_by_band"][k] / a["total_households"]
+    assert abs(share("100to150") - 0.166) < 0.001
+    assert abs(share("gte200") - 0.204) < 0.001
+    below_100k = sum(share(k) for k in ("lt25", "25to50", "50to75", "75to100"))
+    assert 0.49 < below_100k < 0.53, "must be consistent with a ~$97K median"
+    assert "_provenance" in blob

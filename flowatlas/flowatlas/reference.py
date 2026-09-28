@@ -552,7 +552,10 @@ COMPLIANCE_DRIVER = {
     },
     "appliance_repair": {
         "per_establishment": 0.0,
-        "per_household": 0.42,        # service calls per household per year
+        # CALIBRATION: first pass used 0.42 calls/household/yr, implying an
+        # $11.9B national market. IBISWorld puts US appliance repair at $6.8B
+        # (2024) — about $51 per household per year. 0.24 x $215 matches it.
+        "per_household": 0.24,
         "annual_price": 215.0,
         "frequency": 1.0,
     },
@@ -585,3 +588,28 @@ WHY_UNCROWDED = {
     "rrp_lead_renovation": "cheapest credential here, and it converts an unlicensed handyman into a legal bidder on older housing",
     "hood_cleaning":       "mandated frequency, insurance-enforced, and the equipment cost keeps the field thin",
 }
+
+
+# ==========================================================================
+# LOCAL STRUCTURE ADJUSTMENTS
+#
+# The service and compliance demand tables are calibrated on national
+# averages. Two local facts move them materially, and Travis County is a
+# good example of both: it is far more renter-heavy than the nation, and its
+# housing stock is much newer.
+# ==========================================================================
+
+NATIONAL_OWNER_RATE = 0.65      # ACS 2019-2023 owner-occupied share, US
+NATIONAL_PRE1980_SHARE = 0.48   # approximate US share of units built before 1980
+
+# Services bought overwhelmingly by OWNERS — renters do not hire lawn,
+# pool, pest or repair work for a home they do not own. Demand for these
+# scales with the local owner rate relative to the national one.
+OWNER_DRIVEN_SERVICES = {
+    "lawn_landscape", "pool_service", "pest_control",
+    "home_repair", "exterior_cleaning",
+}
+
+# External anchor for the appliance repair driver (IBISWorld, 2024 US).
+APPLIANCE_REPAIR_US_MARKET = 6.8e9
+US_HOUSEHOLDS = 132_000_000

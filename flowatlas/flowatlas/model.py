@@ -342,6 +342,7 @@ class ServiceResult:
 
 
 def model_service_demand(area: AreaProfile) -> dict[str, Estimate]:
+    from .reference import NATIONAL_OWNER_RATE, OWNER_DRIVEN_SERVICES
     totals = {c: 0.0 for c in SERVICE_CATEGORIES}
     for band in BAND_KEYS:
         households = area.households_by_band.get(band, 0)
@@ -351,6 +352,10 @@ def model_service_demand(area: AreaProfile) -> dict[str, Estimate]:
         denom = sum(SERVICE_SHARES.values()) or 1.0
         for category, share in SERVICE_SHARES.items():
             totals[category] += spend * (share / denom)
+    if area.owner_rate:
+        factor = area.owner_rate / NATIONAL_OWNER_RATE
+        for category in OWNER_DRIVEN_SERVICES:
+            totals[category] *= factor
     return {c: Estimate(v, DEMAND_ERROR) for c, v in totals.items()}
 
 
@@ -452,6 +457,7 @@ class ScreenedOption:
     households: int
     why: str | None = None
     authority: str | None = None
+    no_data: bool = False
 
     @property
     def operators_per_1k(self) -> float | None:
@@ -503,6 +509,8 @@ def model_compliance_demand(
     households: int,
     establishments: int,
     food_establishments: int = 0,
+    owner_rate: float | None = None,
+    pre1980_share: float | None = None,
 ) -> dict[str, float]:
     """Annual billable demand for regulation-driven trades.
 
@@ -518,7 +526,17 @@ def model_compliance_demand(
             + households * d.get("per_household", 0.0)
             + food_establishments * d.get("per_food_establishment", 0.0)
         )
-        out[category] = units * d["annual_price"] * d.get("frequency", 1.0)
+        value = units * d["annual_price"] * d.get("frequency", 1.0)
+
+        from .reference import NATIONAL_OWNER_RATE, NATIONAL_PRE1980_SHARE
+        hh_part = households * d.get("per_household", 0.0) * d["annual_price"] * d.get("frequency", 1.0)
+        # Residential backflow is irrigation on owned homes.
+        if category == "backflow_testing" and owner_rate:
+            value += hh_part * (owner_rate / NATIONAL_OWNER_RATE - 1)
+        # Lead-safe work only exists in pre-1978 housing.
+        if category == "rrp_lead_renovation" and pre1980_share is not None:
+            value += hh_part * (pre1980_share / NATIONAL_PRE1980_SHARE - 1)
+        out[category] = value
     return out
 
 
@@ -528,6 +546,8 @@ def screen(
     establishments: int,
     food_establishments: int = 0,
     capital: float | None = None,
+    owner_rate: float | None = None,
+    pre1980_share: float | None = None,
 ) -> list[ScreenedOption]:
     """Every low-capital option, saturation-aware and barrier-weighted."""
     options: list[ScreenedOption] = []
@@ -539,13 +559,21 @@ def screen(
                 label=r.label,
                 startup_capital=r.startup_capital,
                 barrier=ENTRY_BARRIER.get(r.category, BARRIER_NONE),
-                annual_demand=max(r.gap_low, 0.0),
+                # REGRESSION: a trade with demand and NO observed supply used
+                # to rank on its full demand here, as if it had no
+                # competitors — the false vacuum the service report already
+                # guarded against. No supply data means no ranking.
+                annual_demand=0.0 if r.no_supply_data else max(r.gap_low, 0.0),
                 operators=r.operators if r.operators > 0 else None,
                 households=households,
+                no_data=r.no_supply_data,
             )
         )
 
-    compliance = model_compliance_demand(households, establishments, food_establishments)
+    compliance = model_compliance_demand(
+        households, establishments, food_establishments,
+        owner_rate=owner_rate, pre1980_share=pre1980_share,
+    )
     for category, demand in compliance.items():
         options.append(
             ScreenedOption(

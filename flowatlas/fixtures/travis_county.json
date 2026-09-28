@@ -1,0 +1,37 @@
+{
+  "_comment": "Travis County, TX (FIPS 48453), assembled by web research because api.census.gov is blocked from the build environment. Published figures, not a live API pull. Every field is marked SOURCED or ESTIMATED in _provenance. Re-run with --live for the real thing.",
+  "_provenance": {
+    "total_households": "SOURCED \u2014 583,747, ACS 2019-2023 5-yr via Census QuickFacts",
+    "median_income": "SOURCED \u2014 $97,169, ACS 2019-2023 5-yr (2023 dollars)",
+    "income 100to150": "SOURCED \u2014 16.6% of households",
+    "income gte200": "SOURCED \u2014 20.4% of households",
+    "income lt25, 25to50, 50to75, 75to100, 150to200": "ESTIMATED \u2014 full bracket table not reachable. Constrained to the sourced <$10K share of 4.7%, the two sourced brackets above, and the sourced median: 51% of households below $100K puts the modeled median near $98K against the published $97,169.",
+    "owner_rate": "SOURCED \u2014 53.0% owner-occupied, ACS 2019-2023 (US: 65.0%)",
+    "pre1980_share": "ESTIMATED \u2014 0.22, inferred from a sourced median year built of 1999. No published pre-1980 share found.",
+    "total_establishments": "SOURCED \u2014 42,837 private employer establishments, County Business Patterns 2023",
+    "nonemployer_total": "SOURCED \u2014 147,031 nonemployer establishments, Nonemployer Statistics 2022 (not broken out by industry here)",
+    "food_establishments": "ESTIMATED \u2014 ~9% of establishments, a typical national share. Only affects hood cleaning, which is over a $5K budget.",
+    "nonemployers by NAICS": "NOT AVAILABLE \u2014 per-trade counts could not be retrieved by search, so service trades carry no competitor count and are not ranked."
+  },
+  "area": {
+    "name": "Travis County, TX (48453) \u2014 researched inputs, not live",
+    "total_households": 583747,
+    "median_income": 97169,
+    "households_by_band": {
+      "lt25": 64212,
+      "25to50": 75887,
+      "50to75": 81725,
+      "75to100": 75887,
+      "100to150": 96902,
+      "150to200": 70050,
+      "gte200": 119084
+    },
+    "owner_rate": 0.53,
+    "pre1980_share": 0.22,
+    "total_establishments": 42837,
+    "food_establishments": 3855,
+    "nonemployer_total": 147031
+  },
+  "business_patterns": [],
+  "nonemployers": []
+}
