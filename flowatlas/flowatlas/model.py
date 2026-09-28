@@ -165,8 +165,14 @@ def model_supply(records: list[SupplyRecord]) -> tuple[dict[str, Estimate], dict
     estabs: dict[str, int] = {c: 0 for c in CATEGORIES}
     suppressed: dict[str, int] = {c: 0 for c in CATEGORIES}
 
+    # CBP returns every NAICS level in one response — 445, 4451, 44511 and
+    # 445110 are the same grocery stores. Keep only the deepest level present
+    # or each store is counted once per level.
+    from .reference import collapse_naics_hierarchy
+    keep = collapse_naics_hierarchy([r.naics for r in records])
+
     for rec in records:
-        if rec.category not in payroll:
+        if rec.category not in payroll or rec.naics not in keep:
             continue
         payroll[rec.category] += rec.annual_payroll
         estabs[rec.category] += rec.establishments

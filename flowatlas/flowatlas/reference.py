@@ -23,9 +23,13 @@ INCOME_BANDS = [
     ("25to50",   37_500, ["006", "007", "008", "009", "010"]),
     ("50to75",   62_500, ["011", "012"]),
     ("75to100",  87_500, ["013"]),
-    ("100to150", 125_000, ["014"]),
-    ("150to200", 175_000, ["015"]),
-    ("gte200",   275_000, ["016", "017"]),
+    # B19001 buckets: 014 $100-124,999 · 015 $125-149,999 ·
+    #                  016 $150-199,999 · 017 $200,000+
+    # REGRESSION: these were once shifted one bucket high, which modeled every
+    # $125-200K household as richer than it is. tests/test_live_path.py pins it.
+    ("100to150", 125_000, ["014", "015"]),
+    ("150to200", 175_000, ["016"]),
+    ("gte200",   275_000, ["017"]),
 ]
 
 BAND_KEYS = [b[0] for b in INCOME_BANDS]
