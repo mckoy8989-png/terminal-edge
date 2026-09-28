@@ -248,3 +248,97 @@ def test_revenue_per_operator_is_sane():
 def test_every_service_category_has_a_capital_figure():
     for category in SERVICE_SHARES:
         assert category in SERVICE_STARTUP_CAPITAL, category
+
+
+# ---------------------------------------------------------------------------
+# The screen
+# ---------------------------------------------------------------------------
+
+from flowatlas.model import model_compliance_demand, screen  # noqa: E402
+from flowatlas.reference import (  # noqa: E402
+    COMPLIANCE_CATEGORIES,
+    COMPLIANCE_DRIVER,
+    COMPLIANCE_STARTUP,
+    ENTRY_BARRIER,
+    SATURATION_BENCHMARK,
+)
+
+
+def _demo_screen(capital=5_000):
+    client = FixtureClient("fixtures/demo_county.json")
+    area = client.area_profile("", "")
+    records = client.business_patterns("", "")
+    services = build_service_report(area, client.nonemployers("", ""), records)
+    estabs = sum(r.establishments for r in records)
+    food = sum(r.establishments for r in records if r.category == "restaurants")
+    return screen(services, area.total_households, estabs, food, capital=capital)
+
+
+def test_screen_flags_the_universally_recommended_gigs_as_saturated():
+    """REGRESSION: the model used to return lawn care, cleaning and pressure
+    washing as top picks — the three most recommended low-capital businesses
+    in existence, which is why they sit at subsistence margins."""
+    by_cat = {o.category: o for o in _demo_screen()}
+    assert by_cat["cleaning"].saturation == "SATURATED"
+    assert by_cat["lawn_landscape"].saturation == "SATURATED"
+
+
+def test_barrier_protected_outranks_open_field():
+    """A credential-gated trade must beat a zero-barrier one at similar demand."""
+    options = _demo_screen()
+    top = options[0]
+    assert top.barrier != "none", f"top pick {top.label} has no entry barrier"
+
+
+def test_zero_barrier_is_discounted():
+    """Same demand, same capital — the open-field version must score lower."""
+    from flowatlas.model import ScreenedOption
+    gated = ScreenedOption("backflow_testing", "x", 3_000, "mandate",
+                           1_000_000, None, 100_000)
+    open_ = ScreenedOption("cleaning", "y", 3_000, "none",
+                           1_000_000, None, 100_000)
+    assert gated.screen_score > open_.screen_score * 3
+
+
+def test_saturation_thresholds():
+    from flowatlas.model import ScreenedOption
+    bench = SATURATION_BENCHMARK["cleaning"]
+    hh = 100_000
+    full = ScreenedOption("cleaning", "x", 1, "none", 1, int(bench * hh / 1000), hh)
+    thin = ScreenedOption("cleaning", "x", 1, "none", 1, int(bench * hh / 1000 * 0.2), hh)
+    assert full.saturation == "SATURATED"
+    assert thin.saturation == "THIN"
+
+
+def test_unknown_density_when_no_naics():
+    from flowatlas.model import ScreenedOption
+    o = ScreenedOption("backflow_testing", "x", 1, "mandate", 1, None, 100_000)
+    assert o.operators_per_1k is None
+    assert o.saturation == "UNKNOWN"
+
+
+def test_compliance_demand_scales_with_commercial_base():
+    small = model_compliance_demand(10_000, 500, 40)
+    large = model_compliance_demand(10_000, 5_000, 400)
+    assert large["fire_extinguisher"] > small["fire_extinguisher"] * 5
+    assert large["backflow_testing"] > small["backflow_testing"]
+    # Household-driven trades must NOT move with the commercial base.
+    assert small["appliance_repair"] == large["appliance_repair"]
+
+
+def test_capital_filter_excludes_over_budget_compliance():
+    picks = {o.category for o in _demo_screen(5_000)}
+    assert "hood_cleaning" not in picks, "hood cleaning is $9K and must be filtered"
+    assert "backflow_testing" in picks
+
+
+def test_every_compliance_category_is_complete():
+    for c in COMPLIANCE_CATEGORIES:
+        assert c in COMPLIANCE_STARTUP
+        assert c in COMPLIANCE_DRIVER
+
+
+def test_every_service_category_has_a_barrier_and_benchmark():
+    for c in SERVICE_SHARES:
+        assert c in ENTRY_BARRIER, c
+        assert c in SATURATION_BENCHMARK, c

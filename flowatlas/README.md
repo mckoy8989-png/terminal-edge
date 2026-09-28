@@ -103,6 +103,39 @@ not a vacuum. Those rows are flagged `NO SUPPLY DATA` and excluded from the
 ranking, because "no competitors" is the most dangerous thing this tool could
 wrongly tell someone.
 
+## The screen — why ranking by demand-per-dollar isn't analysis
+
+Ranking unserved demand per dollar of capital returned lawn care, house
+cleaning and pressure washing. Those are the three most recommended
+low-capital businesses in existence, and they sit at subsistence margins
+**precisely because** that ranking is the one everyone else runs too.
+
+A gap anyone can enter on Monday is already priced away. The missing variable
+was the **entry barrier**.
+
+```bash
+python3 -m flowatlas --services-only --screen --capital 5000
+```
+
+Four barrier tiers — `none`, `equipment`, `license`, `mandate` — weight the
+score from 0.25x to 2.2x. Operator density per 1,000 households flags a trade
+`SATURATED`, `WORKABLE` or `THIN`, and saturation applies a further 0.3x
+discount. The universally-recommended gigs now sort to the bottom, with a test
+pinning that.
+
+It also adds **compliance trades**, whose demand is created by regulation
+rather than preference: backflow assembly testing, fire extinguisher service,
+lead-safe renovation, appliance repair, hood cleaning. That demand is
+inelastic, calendar-driven and recurring, and it is invisible to anyone
+searching for a business to start because it is not consumer-facing. Demand
+scales with the commercial building stock, not household income, so it uses a
+separate driver.
+
+These trades have **no clean NAICS code**, so the tool reports density as
+`UNKNOWN` and says to count competitors by hand rather than inventing a
+number. Licensing details change — every entry names its authority and must be
+verified before money is committed.
+
 ## The calibration trap
 
 The first version of `RETAIL_PROPENSITY` was low by about half, and nothing

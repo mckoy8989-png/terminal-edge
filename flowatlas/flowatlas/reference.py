@@ -426,3 +426,158 @@ SERVICE_LICENSE_NOTE = {
     "home_repair":    "varies sharply — some states license general contractors, Texas does not",
     "lawn_landscape": "pesticide application is licensed even where mowing is not",
 }
+
+
+# ==========================================================================
+# SATURATION AND ENTRY BARRIER
+#
+# The first service model ranked by unserved demand per dollar of capital and
+# returned lawn care, house cleaning and pressure washing — the three most
+# recommended low-capital businesses in existence. That is not a finding. It
+# is what any list returns, and those trades sit at subsistence margins
+# precisely BECAUSE the ranking that produced them is the ranking everyone
+# else runs too.
+#
+# The missing variable is the entry barrier. A trade anyone can start on
+# Monday with a credit card saturates to the floor by definition. A trade
+# requiring a license obtainable in three weeks for $900 has a fraction of the
+# competition — not because it is harder, but because the barrier filters out
+# the impulse entrant.
+#
+# So the screen is: real demand, LOW operator density, and a barrier that a
+# committed person can clear inside their budget.
+# ==========================================================================
+
+BARRIER_NONE = "none"          # start Monday, no credential
+BARRIER_EQUIPMENT = "equipment"  # capital specificity is the only filter
+BARRIER_LICENSE = "license"      # state credential, weeks to obtain
+BARRIER_MANDATE = "mandate"      # licensed AND demand is legally recurring
+
+BARRIER_RANK = {
+    BARRIER_NONE: 0,
+    BARRIER_EQUIPMENT: 1,
+    BARRIER_LICENSE: 2,
+    BARRIER_MANDATE: 3,
+}
+
+ENTRY_BARRIER = {
+    # The obvious tier — zero credential, maximum competition
+    "cleaning":          BARRIER_NONE,
+    "lawn_landscape":    BARRIER_NONE,
+    "exterior_cleaning": BARRIER_NONE,
+    "junk_hauling":      BARRIER_NONE,
+    "auto_detailing":    BARRIER_NONE,
+    "home_repair":       BARRIER_NONE,
+    "moving":            BARRIER_LICENSE,
+    "pool_service":      BARRIER_EQUIPMENT,
+    "pest_control":      BARRIER_LICENSE,
+}
+
+# Operators per 1,000 households above which a trade is treated as saturated.
+# Calibrated so the three universally-recommended gigs land above the line.
+SATURATION_BENCHMARK = {
+    "cleaning":          4.0,
+    "lawn_landscape":    6.0,
+    "exterior_cleaning": 1.0,
+    "junk_hauling":      0.6,
+    "auto_detailing":    1.2,
+    "home_repair":       3.0,
+    "moving":            0.8,
+    "pool_service":      1.5,
+    "pest_control":      1.0,
+}
+
+
+# ==========================================================================
+# COMPLIANCE TRADES
+#
+# Demand here is created by regulation, not preference. That makes it
+# inelastic, calendar-driven and recurring, and it is invisible to anyone
+# searching "business to start with $5000" because it is not consumer-facing.
+#
+# Demand scales with COMMERCIAL ESTABLISHMENTS and building stock, not with
+# household income — so these need a different driver than the service model.
+#
+# LICENSING CHANGES. Every entry below must be verified with the named agency
+# before a dollar is committed. Figures are typical, not quoted.
+# ==========================================================================
+
+COMPLIANCE_CATEGORIES = [
+    "backflow_testing",
+    "fire_extinguisher",
+    "appliance_repair",
+    "rrp_lead_renovation",
+    "hood_cleaning",
+]
+
+COMPLIANCE_LABEL = {
+    "backflow_testing":    "Backflow assembly testing",
+    "fire_extinguisher":   "Fire extinguisher service",
+    "appliance_repair":    "Appliance repair",
+    "rrp_lead_renovation": "Lead-safe renovation (RRP)",
+    "hood_cleaning":       "Kitchen exhaust hood cleaning",
+}
+
+COMPLIANCE_STARTUP = {
+    "backflow_testing":    2_600,   # course + test gauge + license
+    "fire_extinguisher":   3_400,   # license + recharge gear + stock
+    "appliance_repair":    4_000,   # tools, meters, training, parts float
+    "rrp_lead_renovation":   900,   # EPA firm + renovator certification
+    "hood_cleaning":       9_000,   # over a $5K budget — shown for contrast
+}
+
+COMPLIANCE_BARRIER = {c: BARRIER_MANDATE for c in COMPLIANCE_CATEGORIES}
+COMPLIANCE_BARRIER["appliance_repair"] = BARRIER_EQUIPMENT
+
+# What creates the demand, and how it is computed from available data.
+COMPLIANCE_DRIVER = {
+    "backflow_testing": {
+        "per_establishment": 1.3,     # assemblies per commercial site
+        "per_household": 0.18,        # share of homes with irrigation backflow
+        "annual_price": 95.0,
+        "frequency": 1.0,             # annual test required by the water utility
+    },
+    "fire_extinguisher": {
+        "per_establishment": 4.2,     # extinguishers per commercial site
+        "per_household": 0.0,
+        # Blended annual revenue per extinguisher: the $14 inspection tag plus
+        # amortised 6-year maintenance, hydrotest and recharge work, which is
+        # where the actual margin sits.
+        "annual_price": 26.0,
+        "frequency": 1.0,             # annual inspection required
+    },
+    "appliance_repair": {
+        "per_establishment": 0.0,
+        "per_household": 0.42,        # service calls per household per year
+        "annual_price": 215.0,
+        "frequency": 1.0,
+    },
+    "rrp_lead_renovation": {
+        "per_establishment": 0.0,
+        "per_household": 0.05,        # pre-1978 stock share needing certified work
+        "annual_price": 620.0,
+        "frequency": 1.0,
+    },
+    "hood_cleaning": {
+        "per_establishment": 0.0,
+        "per_food_establishment": 1.0,
+        "annual_price": 450.0,
+        "frequency": 3.2,             # NFPA 96 interval by cooking volume
+    },
+}
+
+COMPLIANCE_AUTHORITY = {
+    "backflow_testing":    "TCEQ backflow prevention assembly tester licence; water utility enforces the annual test",
+    "fire_extinguisher":   "State Fire Marshal licence; annual inspection required in commercial occupancies",
+    "appliance_repair":    "no licence in most states; the barrier is skill and the aging technician base",
+    "rrp_lead_renovation": "EPA RRP firm + certified renovator; required for paid work on pre-1978 housing",
+    "hood_cleaning":       "NFPA 96 interval; insurers demand the certificate",
+}
+
+WHY_UNCROWDED = {
+    "backflow_testing":    "annual legal mandate, a licence that filters casual entrants, and a 20-minute job that bills like an hour",
+    "fire_extinguisher":   "route density compounds — one strip mall is a dozen accounts on one visit",
+    "appliance_repair":    "the technician base is aging out faster than it is replaced while appliances get harder to self-repair",
+    "rrp_lead_renovation": "cheapest credential here, and it converts an unlicensed handyman into a legal bidder on older housing",
+    "hood_cleaning":       "mandated frequency, insurance-enforced, and the equipment cost keeps the field thin",
+}

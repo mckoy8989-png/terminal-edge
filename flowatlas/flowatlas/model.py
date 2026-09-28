@@ -409,3 +409,153 @@ def affordable(results: list[ServiceResult], capital: float) -> list[ServiceResu
     """What this much money can actually start, best opportunity first."""
     reachable = [r for r in results if r.startup_capital <= capital]
     return sorted(reachable, key=lambda r: r.opportunity_score, reverse=True)
+
+
+# ==========================================================================
+# THE SCREEN
+#
+# Demand per dollar of capital, on its own, returns whatever everyone else's
+# ranking returns. Adding saturation and entry barrier is what turns it into
+# an analysis.
+# ==========================================================================
+
+from .reference import (  # noqa: E402
+    BARRIER_MANDATE,
+    BARRIER_NONE,
+    BARRIER_RANK,
+    COMPLIANCE_AUTHORITY,
+    COMPLIANCE_BARRIER,
+    COMPLIANCE_CATEGORIES,
+    COMPLIANCE_DRIVER,
+    COMPLIANCE_LABEL,
+    COMPLIANCE_STARTUP,
+    ENTRY_BARRIER,
+    SATURATION_BENCHMARK,
+    WHY_UNCROWDED,
+)
+
+
+@dataclass
+class ScreenedOption:
+    category: str
+    label: str
+    startup_capital: int
+    barrier: str
+    annual_demand: float
+    operators: int | None          # None when the trade has no clean NAICS
+    households: int
+    why: str | None = None
+    authority: str | None = None
+
+    @property
+    def operators_per_1k(self) -> float | None:
+        if self.operators is None or self.households <= 0:
+            return None
+        return self.operators / (self.households / 1000)
+
+    @property
+    def saturation(self) -> str:
+        """SATURATED / WORKABLE / THIN / UNKNOWN."""
+        density = self.operators_per_1k
+        if density is None:
+            return "UNKNOWN"
+        bench = SATURATION_BENCHMARK.get(self.category)
+        if bench is None:
+            return "UNKNOWN"
+        if density >= bench:
+            return "SATURATED"
+        if density >= bench * 0.5:
+            return "WORKABLE"
+        return "THIN"
+
+    @property
+    def demand_per_operator(self) -> float | None:
+        if not self.operators:
+            return None
+        return self.annual_demand / self.operators
+
+    @property
+    def screen_score(self) -> float:
+        """Demand per dollar of capital, weighted by how protected the trade is.
+
+        A zero-barrier trade is discounted hard: its unserved demand is
+        visible to everyone running the same arithmetic, so it is already
+        priced away. Barrier tiers are what make a gap durable.
+        """
+        if self.startup_capital <= 0:
+            return 0.0
+        base = self.annual_demand / self.startup_capital
+        weight = {0: 0.25, 1: 0.7, 2: 1.4, 3: 2.2}[BARRIER_RANK[self.barrier]]
+        if self.saturation == "SATURATED":
+            weight *= 0.3
+        elif self.saturation == "THIN":
+            weight *= 1.3
+        return base * weight
+
+
+def model_compliance_demand(
+    households: int,
+    establishments: int,
+    food_establishments: int = 0,
+) -> dict[str, float]:
+    """Annual billable demand for regulation-driven trades.
+
+    Driven by commercial building stock and housing, not household income —
+    these are not consumer purchases, they are legal obligations on a
+    calendar.
+    """
+    out: dict[str, float] = {}
+    for category in COMPLIANCE_CATEGORIES:
+        d = COMPLIANCE_DRIVER[category]
+        units = (
+            establishments * d.get("per_establishment", 0.0)
+            + households * d.get("per_household", 0.0)
+            + food_establishments * d.get("per_food_establishment", 0.0)
+        )
+        out[category] = units * d["annual_price"] * d.get("frequency", 1.0)
+    return out
+
+
+def screen(
+    services: list[ServiceResult],
+    households: int,
+    establishments: int,
+    food_establishments: int = 0,
+    capital: float | None = None,
+) -> list[ScreenedOption]:
+    """Every low-capital option, saturation-aware and barrier-weighted."""
+    options: list[ScreenedOption] = []
+
+    for r in services:
+        options.append(
+            ScreenedOption(
+                category=r.category,
+                label=r.label,
+                startup_capital=r.startup_capital,
+                barrier=ENTRY_BARRIER.get(r.category, BARRIER_NONE),
+                annual_demand=max(r.gap_low, 0.0),
+                operators=r.operators if r.operators > 0 else None,
+                households=households,
+            )
+        )
+
+    compliance = model_compliance_demand(households, establishments, food_establishments)
+    for category, demand in compliance.items():
+        options.append(
+            ScreenedOption(
+                category=category,
+                label=COMPLIANCE_LABEL[category],
+                startup_capital=COMPLIANCE_STARTUP[category],
+                barrier=COMPLIANCE_BARRIER[category],
+                annual_demand=demand,
+                operators=None,  # no clean NAICS; counted by hand, not by data
+                households=households,
+                why=WHY_UNCROWDED.get(category),
+                authority=COMPLIANCE_AUTHORITY.get(category),
+            )
+        )
+
+    if capital is not None:
+        options = [o for o in options if o.startup_capital <= capital]
+
+    return sorted(options, key=lambda o: o.screen_score, reverse=True)

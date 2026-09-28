@@ -10,8 +10,8 @@ import argparse
 import csv
 import sys
 
-from .model import (GapReport, ServiceResult, affordable, build_report,
-                    build_service_report, money)
+from .model import (GapReport, ScreenedOption, ServiceResult, affordable,
+                    build_report, build_service_report, money, screen)
 from .sources import CensusClient, FixtureClient, SourceError
 
 BAR_WIDTH = 22
@@ -142,6 +142,66 @@ def render_services(results: list[ServiceResult], capital: float | None) -> str:
     return "\n".join(L)
 
 
+SAT_MARK = {"SATURATED": "!! ", "WORKABLE": " . ", "THIN": " + ", "UNKNOWN": " ? "}
+
+
+def render_screen(options: list[ScreenedOption], capital: float) -> str:
+    L: list[str] = []
+    add = L.append
+    add("")
+    add("=" * 78)
+    add(f"  SCREEN — what {money(capital)} can start, ranked by durability")
+    add("  demand per dollar of capital, weighted by entry barrier,")
+    add("  discounted hard where operator density says the field is full")
+    add("=" * 78)
+
+    protected = [o for o in options if o.barrier != "none"]
+    open_field = [o for o in options if o.barrier == "none"]
+
+    add("")
+    add("  BARRIER-PROTECTED — a credential or equipment filter thins the field")
+    add("  " + "-" * 74)
+    for o in protected:
+        add("")
+        add(f"  {SAT_MARK[o.saturation]}{o.label}")
+        add(f"      entry            {money(o.startup_capital)}   barrier: {o.barrier}")
+        add(f"      annual demand    {money(o.annual_demand)}")
+        if o.operators_per_1k is not None:
+            add(f"      density          {o.operators_per_1k:.1f} operators / 1,000 households"
+                f"   [{o.saturation}]")
+        else:
+            add(f"      density          no clean NAICS code — count competitors by hand")
+        if o.why:
+            add(f"      why thin         {o.why}")
+        if o.authority:
+            add(f"      authority        {o.authority}")
+        add(f"      score            {o.screen_score:,.0f}")
+
+    add("")
+    add("  OPEN FIELD — no credential required, so everyone can and does")
+    add("  " + "-" * 74)
+    for o in open_field:
+        d = f"{o.operators_per_1k:.1f}/1k" if o.operators_per_1k is not None else "  n/a "
+        add(f"  {SAT_MARK[o.saturation]}{o.label:<26} {money(o.startup_capital):>7}"
+            f"   {d:>9}   [{o.saturation}]   score {o.screen_score:,.0f}")
+
+    add("")
+    add("  " + "-" * 74)
+    add("  !! saturated    . workable    + thin    ? no density data")
+    add("")
+    add("  CAVEAT: commercial demand above is driven by the establishment count")
+    add("  this run could see. Compliance trades bill the WHOLE commercial base")
+    add("  — offices, schools, warehouses, clinics — not just the retail NAICS")
+    add("  the storefront model tracks, so those figures are a floor, not a total.")
+    add("")
+    add("  The open-field trades are not ranked low because demand is absent.")
+    add("  They rank low because their unserved demand is visible to everyone")
+    add("  running this same arithmetic, and a gap anyone can enter on Monday")
+    add("  is already priced away. The barrier IS the opportunity.")
+    add("=" * 78)
+    return "\n".join(L)
+
+
 def write_csv(report: GapReport, path: str) -> None:
     with open(path, "w", newline="") as fh:
         w = csv.writer(fh)
@@ -183,6 +243,8 @@ def main(argv: list[str] | None = None) -> int:
                         "can start, e.g. --capital 5000")
     p.add_argument("--services-only", action="store_true",
                    help="skip the storefront model entirely")
+    p.add_argument("--screen", action="store_true",
+                   help="saturation- and barrier-aware screen; needs --capital")
     p.add_argument("--csv", help="also write the full table to this path")
     args = p.parse_args(argv)
 
@@ -219,7 +281,19 @@ def main(argv: list[str] | None = None) -> int:
         print(render(report, top=args.top))
 
     services = build_service_report(area, nonemp, records)
-    print(render_services(services, args.capital))
+
+    if args.screen:
+        if args.capital is None:
+            p.error("--screen needs --capital, e.g. --capital 5000")
+        establishments = sum(r.establishments for r in records)
+        food = sum(r.establishments for r in records if r.category == "restaurants")
+        print(render_screen(
+            screen(services, area.total_households, establishments, food,
+                   capital=args.capital),
+            args.capital,
+        ))
+    else:
+        print(render_services(services, args.capital))
 
     if args.csv:
         write_csv(report, args.csv)
