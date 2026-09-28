@@ -132,3 +132,119 @@ def test_report_totals_are_consistent():
     report = build_report(client.area_profile("", ""), client.business_patterns("", ""))
     assert abs(report.total_demand - sum(r.demand.value for r in report.results)) < 1
     assert report.total_households == 150_000
+
+
+# ---------------------------------------------------------------------------
+# Service universe
+# ---------------------------------------------------------------------------
+
+from flowatlas.model import (  # noqa: E402
+    affordable,
+    build_service_report,
+    model_service_demand,
+    model_service_supply,
+)
+from flowatlas.reference import (  # noqa: E402
+    SERVICE_CALIBRATION_TARGET,
+    SERVICE_SHARES,
+    SERVICE_STARTUP_CAPITAL,
+    collapse_naics_hierarchy,
+    service_naics_weights,
+)
+from flowatlas.sources import NonemployerRecord  # noqa: E402
+
+
+def test_service_calibration():
+    """Paid household services should land near $2-3K per household per year."""
+    n = 1_000_000
+    area = AreaProfile(
+        name="calibration",
+        households_by_band={b: int(n * s) for b, s in US_DISTRIBUTION.items()},
+        total_households=n,
+    )
+    per_household = sum(e.value for e in model_service_demand(area).values()) / n
+    lo, hi = SERVICE_CALIBRATION_TARGET
+    assert lo <= per_household <= hi, f"${per_household:,.0f}/household is outside ${lo:,}-${hi:,}"
+
+
+def test_service_shares_sum_to_one():
+    assert abs(sum(SERVICE_SHARES.values()) - 1.0) < 1e-9
+
+
+def test_shared_naics_splits_across_categories():
+    """REGRESSION: 561790 holds both pool service and pressure washing.
+
+    Mapping it to one category invented a total vacuum in the other, which the
+    model reported as 100% leakage — the most dangerous possible output.
+    """
+    weights = service_naics_weights("561790")
+    assert "pool_service" in weights and "exterior_cleaning" in weights
+    assert sum(weights.values()) <= 1.0
+
+    supply, operators = model_service_supply(
+        [NonemployerRecord("561790", "pool_service", 100, 10_000_000)]
+    )
+    assert supply["pool_service"].value > 0
+    assert supply["exterior_cleaning"].value > 0
+    assert operators["pool_service"] > 0
+    assert operators["exterior_cleaning"] > 0
+
+
+def test_naics_hierarchy_collapse_prevents_double_count():
+    """REGRESSION: NAICS 238 contains 238220. Summing both counts plumbers twice."""
+    assert collapse_naics_hierarchy(["238", "238220"]) == {"238220"}
+    assert collapse_naics_hierarchy(["238"]) == {"238"}
+    assert collapse_naics_hierarchy(["238220", "561730"]) == {"238220", "561730"}
+
+    both = model_service_supply([
+        NonemployerRecord("238", "home_repair", 980, 88_000_000),
+        NonemployerRecord("238220", "home_repair", 410, 41_000_000),
+    ])[1]
+    assert both["home_repair"] == 410, "parent NAICS must be dropped, not summed"
+
+
+def test_zero_supply_flags_as_no_data_not_opportunity():
+    """A category with demand and no observed supply is a coding gap."""
+    area = AreaProfile(name="t", households_by_band={"100to150": 10_000},
+                       total_households=10_000)
+    results = build_service_report(area, nonemployers=[])
+    for r in results:
+        assert r.no_supply_data
+        assert r.opportunity_score == 0.0, "no-data must never rank as opportunity"
+
+
+def test_affordable_respects_capital_and_ranks_by_score():
+    client = FixtureClient("fixtures/demo_county.json")
+    area = client.area_profile("", "")
+    results = build_service_report(area, client.nonemployers("", ""),
+                                   client.business_patterns("", ""))
+    picks = affordable(results, 5_000)
+    assert picks, "the demo county should offer something under $5K"
+    assert all(r.startup_capital <= 5_000 for r in picks)
+    scores = [r.opportunity_score for r in picks]
+    assert scores == sorted(scores, reverse=True)
+    # Moving costs $12K and must be excluded.
+    assert "moving" not in {r.category for r in picks}
+
+
+def test_tiny_capital_returns_nothing():
+    client = FixtureClient("fixtures/demo_county.json")
+    area = client.area_profile("", "")
+    results = build_service_report(area, client.nonemployers("", ""))
+    assert affordable(results, 100) == []
+
+
+def test_revenue_per_operator_is_sane():
+    """What existing operators actually bill — the key entry number."""
+    client = FixtureClient("fixtures/demo_county.json")
+    area = client.area_profile("", "")
+    results = build_service_report(area, client.nonemployers("", ""),
+                                   client.business_patterns("", ""))
+    for r in results:
+        if r.operators > 0:
+            assert 5_000 < r.revenue_per_operator < 5_000_000, r.label
+
+
+def test_every_service_category_has_a_capital_figure():
+    for category in SERVICE_SHARES:
+        assert category in SERVICE_STARTUP_CAPITAL, category

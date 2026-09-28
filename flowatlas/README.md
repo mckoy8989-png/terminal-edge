@@ -53,6 +53,56 @@ tells a person what they could actually start.
 Every figure is reported as a range. Three stacked models cannot produce a
 point estimate honestly.
 
+## Two universes
+
+The model runs **two parallel markets**, because they are genuinely different
+economies and the first version only saw one of them.
+
+**Storefront** — NAICS 44-45 retail, 722 food service, 812 personal services.
+Supply from County Business Patterns. Entry capital starts around $95,000.
+
+**Service** — lawn, cleaning, repair, pool, pest, hauling, moving, detailing.
+Supply from **Nonemployer Statistics**. Entry capital from $1,200.
+
+That second universe was missing entirely from the first build, and the
+omission was structural. CBP counts only establishments **with payroll** —
+about 8.1M. Nonemployer Statistics counts businesses with none: roughly 29M.
+**Nonemployers are ~77% of all US businesses by count** and a few percent of
+receipts. The storefront model could not see any of them, which made it
+useless to anyone asking what they could start with a few thousand dollars.
+
+```bash
+python3 -m flowatlas --services-only --capital 5000
+```
+
+Filters to what that money can actually start, ranked by unserved demand per
+dollar of entry cost, and reports what existing operators bill — the number
+that tells you what you would be joining rather than what the market could
+theoretically absorb.
+
+## Two bugs this found, both of which would have given bad advice
+
+**A shared NAICS code invented an empty market.** Code 561790 "Other Services
+to Buildings and Dwellings" contains *both* pool cleaning and pressure
+washing. Mapping it to one category left the other showing zero operators and
+100% leakage — reading as a wide-open market with no competitors. A NAICS code
+can now split across categories by weight.
+
+**A NAICS parent was summed with its own child.** Census reports 238
+"Specialty Trade Contractors" *and* 238220 "Plumbing and HVAC" in the same
+response. Adding both counted every plumber twice, inflating handyman
+competition from 410 operators to 1,390. `collapse_naics_hierarchy` now keeps
+only the deepest level present.
+
+Both have regression tests. Both are the kind of error that looks completely
+plausible in output.
+
+**Zero observed supply is never reported as opportunity.** A category with
+demand and no operators is almost always a coding gap or a suppressed cell,
+not a vacuum. Those rows are flagged `NO SUPPLY DATA` and excluded from the
+ranking, because "no competitors" is the most dangerous thing this tool could
+wrongly tell someone.
+
 ## The calibration trap
 
 The first version of `RETAIL_PROPENSITY` was low by about half, and nothing
@@ -104,6 +154,10 @@ tests/
 
 ## Known gaps in this phase
 
+- **Regional adjustment for pools.** `SERVICE_SHARES["pool_service"]` is a
+  national average. Texas, Arizona, Florida and Nevada carry several times the
+  national pool density; the Northeast carries a fraction. Scale it against
+  local housing stock before trusting any pool number.
 - **Trade area is the whole county.** Real trade areas are drive-time
   isochrones. Hook OSRM or Valhalla against OpenStreetMap and swap the
   geography; the model doesn't care what shape the area is.

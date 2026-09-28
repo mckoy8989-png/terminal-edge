@@ -10,7 +10,8 @@ import argparse
 import csv
 import sys
 
-from .model import GapReport, build_report, money
+from .model import (GapReport, ServiceResult, affordable, build_report,
+                    build_service_report, money)
 from .sources import CensusClient, FixtureClient, SourceError
 
 BAR_WIDTH = 22
@@ -85,6 +86,62 @@ def render(report: GapReport, *, top: int) -> str:
     return "\n".join(L)
 
 
+def render_services(results: list[ServiceResult], capital: float | None) -> str:
+    L: list[str] = []
+    add = L.append
+    add("")
+    add("=" * 78)
+    add("  SERVICE UNIVERSE — businesses with no storefront")
+    add("  supply measured from Nonemployer Statistics: actual receipts,")
+    add("  covering the ~77% of US businesses that have no payroll")
+    add("=" * 78)
+
+    if capital is not None:
+        shown = affordable(results, capital)
+        add(f"  filtered to what {money(capital)} can start")
+        if not shown:
+            cheapest = min(results, key=lambda r: r.startup_capital)
+            add("")
+            add(f"  Nothing on this list opens for {money(capital)}.")
+            add(f"  The cheapest entry is {cheapest.label} at "
+                f"{money(cheapest.startup_capital)}.")
+            return "\n".join(L)
+    else:
+        shown = sorted(results, key=lambda r: r.opportunity_score, reverse=True)
+
+    no_data = [r for r in shown if r.no_supply_data]
+    for r in shown:
+        if r.gap_low <= 0 or r.no_supply_data:
+            continue
+        add("")
+        add(f"  {r.label}")
+        add(f"    entry cost       {money(r.startup_capital)}")
+        add(f"    unserved demand  {money(r.gap)}   (conservative {money(r.gap_low)})")
+        add(f"    leakage          {r.leakage_ratio*100:.0f}% of local demand")
+        add(f"    existing         {r.operators:,} operators billing "
+            f"{money(r.revenue_per_operator)} each on average")
+        add(f"    room for         ~{r.operators_supportable:.0f} more at that "
+            f"average billing")
+        if r.license_note:
+            add(f"    license          {r.license_note}")
+
+    if no_data:
+        add("")
+        add("  NO SUPPLY DATA — not an opportunity, a blind spot:")
+        for r in no_data:
+            add(f"    {r.label:<26} no operators found in NAICS. Almost")
+            add(f"    {'':<26} certainly a coding gap, not an empty market.")
+            add(f"    {'':<26} Count competitors by hand before believing it.")
+
+    saturated = [r for r in shown if r.gap_low <= 0 and not r.no_supply_data]
+    if saturated:
+        add("")
+        add("  Already saturated — supply meets or exceeds local demand:")
+        for r in saturated:
+            add(f"    {r.label:<26} {r.operators:,} operators")
+    return "\n".join(L)
+
+
 def write_csv(report: GapReport, path: str) -> None:
     with open(path, "w", newline="") as fh:
         w = csv.writer(fh)
@@ -121,6 +178,11 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--acs-year", type=int, default=2022)
     p.add_argument("--cbp-year", type=int, default=2022)
     p.add_argument("--top", type=int, default=8, help="how many leakage rows to print")
+    p.add_argument("--capital", type=float,
+                   help="filter the service universe to what this much money "
+                        "can start, e.g. --capital 5000")
+    p.add_argument("--services-only", action="store_true",
+                   help="skip the storefront model entirely")
     p.add_argument("--csv", help="also write the full table to this path")
     args = p.parse_args(argv)
 
@@ -146,8 +208,18 @@ def main(argv: list[str] | None = None) -> int:
               file=sys.stderr)
         return 3
 
+    try:
+        nonemp = client.nonemployers(state, county)
+    except SourceError as exc:
+        print(f"warning: nonemployer data unavailable ({exc})", file=sys.stderr)
+        nonemp = []
+
     report = build_report(area, records)
-    print(render(report, top=args.top))
+    if not args.services_only:
+        print(render(report, top=args.top))
+
+    services = build_service_report(area, nonemp, records)
+    print(render_services(services, args.capital))
 
     if args.csv:
         write_csv(report, args.csv)

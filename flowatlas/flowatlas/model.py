@@ -240,3 +240,172 @@ def _money(v: float) -> str:
 
 
 money = _money
+
+
+# ==========================================================================
+# THE SERVICE UNIVERSE
+#
+# Parallel model for businesses that have no storefront. Demand is paid
+# household services; supply comes from Nonemployer Statistics receipts, which
+# are actual revenue rather than a payroll-ratio estimate.
+#
+# This is where a person with a few thousand dollars actually competes.
+# ==========================================================================
+
+from .reference import (  # noqa: E402
+    SERVICE_CATEGORIES,
+    SERVICE_LABEL,
+    SERVICE_LICENSE_NOTE,
+    SERVICE_PROPENSITY,
+    SERVICE_REVENUE_PER_PAYROLL,
+    SERVICE_SHARES,
+    SERVICE_STARTUP_CAPITAL,
+    collapse_naics_hierarchy,
+    service_naics_weights,
+)
+from .sources import NonemployerRecord  # noqa: E402
+
+# Nonemployer receipts are reported, not modeled, so the supply side here is
+# tighter than anything in the retail universe.
+SUPPLY_ERROR_RECEIPTS = 0.10
+
+
+@dataclass
+class ServiceResult:
+    category: str
+    label: str
+    demand: Estimate
+    supply: Estimate
+    operators: int
+    license_note: str | None
+
+    @property
+    def gap(self) -> float:
+        return self.demand.value - self.supply.value
+
+    @property
+    def gap_low(self) -> float:
+        return self.demand.low - self.supply.high
+
+    @property
+    def leakage_ratio(self) -> float:
+        if self.demand.value <= 0:
+            return 0.0
+        return self.gap / self.demand.value
+
+    @property
+    def no_supply_data(self) -> bool:
+        """True when we observed no supply at all for a category with demand.
+
+        This is almost never a real vacuum. It means the trade has no clean
+        NAICS code, or Census suppressed the cell. Reporting it as 100%
+        leakage would be the single most dangerous output this tool could
+        produce, so it is flagged and excluded from the ranking instead.
+        """
+        return self.supply.value <= 0 and self.demand.value > 0
+
+    @property
+    def startup_capital(self) -> int:
+        return SERVICE_STARTUP_CAPITAL.get(self.category, 5_000)
+
+    @property
+    def revenue_per_operator(self) -> float:
+        """What the average existing operator actually bills.
+
+        The single most useful number on this page for someone deciding
+        whether to enter: it is roughly what you would be joining, not what
+        the market could theoretically support.
+        """
+        if self.operators <= 0:
+            return 0.0
+        return self.supply.value / self.operators
+
+    @property
+    def operators_supportable(self) -> float:
+        """How many more operators the unserved demand could carry."""
+        rpo = self.revenue_per_operator
+        if rpo <= 0 or self.gap_low <= 0:
+            return 0.0
+        return self.gap_low / rpo
+
+    @property
+    def opportunity_score(self) -> float:
+        if self.gap_low <= 0 or self.no_supply_data:
+            return 0.0
+        return self.gap_low / self.startup_capital
+
+
+def model_service_demand(area: AreaProfile) -> dict[str, Estimate]:
+    totals = {c: 0.0 for c in SERVICE_CATEGORIES}
+    for band in BAND_KEYS:
+        households = area.households_by_band.get(band, 0)
+        if households <= 0:
+            continue
+        spend = households * BAND_MIDPOINT[band] * SERVICE_PROPENSITY[band]
+        denom = sum(SERVICE_SHARES.values()) or 1.0
+        for category, share in SERVICE_SHARES.items():
+            totals[category] += spend * (share / denom)
+    return {c: Estimate(v, DEMAND_ERROR) for c, v in totals.items()}
+
+
+def model_service_supply(
+    nonemployers: list[NonemployerRecord],
+    employers: list[SupplyRecord] | None = None,
+) -> tuple[dict[str, Estimate], dict[str, int]]:
+    """Nonemployer receipts, plus any employer firms in the same trades."""
+    receipts = {c: 0.0 for c in SERVICE_CATEGORIES}
+    operators = {c: 0.0 for c in SERVICE_CATEGORIES}
+
+    # Drop parent NAICS codes when their children are also present, or every
+    # business inside the child gets counted twice.
+    keep = collapse_naics_hierarchy([r.naics for r in nonemployers])
+    for rec in nonemployers:
+        if rec.naics not in keep:
+            continue
+        for category, weight in service_naics_weights(rec.naics).items():
+            if category in receipts:
+                receipts[category] += rec.receipts * weight
+                operators[category] += rec.establishments * weight
+
+    # Employer firms in these trades compete for the same work — a 30-crew
+    # landscaping company wants the same lawns as the guy with one trailer.
+    emp = employers or []
+    emp_keep = collapse_naics_hierarchy([r.naics for r in emp])
+    for rec in emp:
+        if rec.naics not in emp_keep or not rec.annual_payroll:
+            continue
+        for category, weight in service_naics_weights(rec.naics).items():
+            if category in receipts:
+                ratio = SERVICE_REVENUE_PER_PAYROLL.get(category, 2.6)
+                receipts[category] += rec.annual_payroll * ratio * weight
+                operators[category] += rec.establishments * weight
+
+    supply = {c: Estimate(receipts[c], SUPPLY_ERROR_RECEIPTS)
+              for c in SERVICE_CATEGORIES}
+    return supply, {c: int(round(v)) for c, v in operators.items()}
+
+
+def build_service_report(
+    area: AreaProfile,
+    nonemployers: list[NonemployerRecord],
+    employers: list[SupplyRecord] | None = None,
+) -> list[ServiceResult]:
+    demand = model_service_demand(area)
+    supply, operators = model_service_supply(nonemployers, employers)
+    return [
+        ServiceResult(
+            category=c,
+            label=SERVICE_LABEL[c],
+            demand=demand[c],
+            supply=supply[c],
+            operators=operators[c],
+            license_note=SERVICE_LICENSE_NOTE.get(c),
+        )
+        for c in SERVICE_CATEGORIES
+    ]
+
+
+def affordable(results: list[ServiceResult], capital: float) -> list[ServiceResult]:
+    """What this much money can actually start, best opportunity first."""
+    reachable = [r for r in results if r.startup_capital <= capital]
+    return sorted(reachable, key=lambda r: r.opportunity_score, reverse=True)

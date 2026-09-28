@@ -117,5 +117,52 @@
       "annual_payroll": 32000000,
       "payroll_suppressed": false
     }
+  ],
+  "nonemployers": [
+    {
+      "naics": "561730",
+      "establishments": 1240,
+      "receipts": 62000000
+    },
+    {
+      "naics": "238220",
+      "establishments": 410,
+      "receipts": 41000000
+    },
+    {
+      "naics": "238",
+      "establishments": 980,
+      "receipts": 88000000
+    },
+    {
+      "naics": "561720",
+      "establishments": 730,
+      "receipts": 29000000
+    },
+    {
+      "naics": "561710",
+      "establishments": 118,
+      "receipts": 11000000
+    },
+    {
+      "naics": "811192",
+      "establishments": 206,
+      "receipts": 9400000
+    },
+    {
+      "naics": "484210",
+      "establishments": 94,
+      "receipts": 7800000
+    },
+    {
+      "naics": "562111",
+      "establishments": 61,
+      "receipts": 4100000
+    },
+    {
+      "naics": "561790",
+      "establishments": 142,
+      "receipts": 8600000
+    }
   ]
 }

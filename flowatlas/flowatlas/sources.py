@@ -20,7 +20,7 @@ import urllib.request
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from .reference import INCOME_BANDS, category_for_naics
+from .reference import INCOME_BANDS, category_for_naics, service_category_for_naics
 
 CENSUS_BASE = "https://api.census.gov/data"
 USASPENDING_BASE = "https://api.usaspending.gov/api/v2"
@@ -82,6 +82,25 @@ class AreaProfile:
 
 
 @dataclass
+class NonemployerRecord:
+    """One NAICS line from Census Nonemployer Statistics.
+
+    Nonemployers are businesses with no payroll — sole proprietors, one-truck
+    operations, the single-operator trades. About 29M of them nationally
+    against ~8.1M employer establishments, so they are roughly 77% of all US
+    businesses by count and only a few percent of receipts.
+
+    Unlike CBP this reports ACTUAL RECEIPTS, so no payroll-ratio estimate is
+    needed. It is the better supply measurement wherever it is available.
+    """
+
+    naics: str
+    category: str
+    establishments: int
+    receipts: int  # dollars
+
+
+@dataclass
 class SupplyRecord:
     """One NAICS line of supply-side input, already mapped to a category."""
 
@@ -99,10 +118,11 @@ class CensusClient:
     """Census ACS (demand side) and County Business Patterns (supply side)."""
 
     def __init__(self, api_key: str | None = None, acs_year: int = 2022,
-                 cbp_year: int = 2022):
+                 cbp_year: int = 2022, nes_year: int = 2021):
         self.api_key = api_key or os.environ.get("CENSUS_API_KEY")
         self.acs_year = acs_year
         self.cbp_year = cbp_year
+        self.nes_year = nes_year
 
     def _key_param(self) -> str:
         return f"&key={self.api_key}" if self.api_key else ""
@@ -178,6 +198,40 @@ class CensusClient:
             )
         return out
 
+    def nonemployers(self, state_fips: str, county_fips: str) -> list[NonemployerRecord]:
+        """Nonemployer businesses and their receipts, by NAICS.
+
+        NES runs further behind than CBP — typically three to four years — so
+        nes_year defaults lower. Label the vintage anywhere you show it.
+        """
+        url = (
+            f"{CENSUS_BASE}/{self.nes_year}/nonemp"
+            f"?get=NAICS2017,NESTAB,RCPTOT"
+            f"&for=county:{county_fips}&in=state:{state_fips}"
+            f"{self._key_param()}"
+        )
+        rows = _get_json(url)
+        header = rows[0]
+        out: list[NonemployerRecord] = []
+        for values in rows[1:]:
+            rec = dict(zip(header, values))
+            naics = (rec.get("NAICS2017") or "").strip()
+            category = service_category_for_naics(naics)
+            if not category:
+                continue
+            out.append(
+                NonemployerRecord(
+                    naics=naics,
+                    category=category,
+                    establishments=_safe_int(rec.get("NESTAB")),
+                    # NES reports receipts in THOUSANDS of dollars.
+                    receipts=_safe_int(rec.get("RCPTOT")) * 1000,
+                )
+            )
+        return out
+
+
+
 
 def _safe_int(v) -> int:
     try:
@@ -207,6 +261,20 @@ class FixtureClient:
             total_households=a["total_households"],
             median_income=a.get("median_income"),
         )
+
+    def nonemployers(self, state_fips: str, county_fips: str) -> list[NonemployerRecord]:
+        out = []
+        for r in self.blob.get("nonemployers", []):
+            category = service_category_for_naics(r["naics"])
+            if not category:
+                continue
+            out.append(
+                NonemployerRecord(
+                    naics=r["naics"], category=category,
+                    establishments=r["establishments"], receipts=r["receipts"],
+                )
+            )
+        return out
 
     def business_patterns(self, state_fips: str, county_fips: str) -> list[SupplyRecord]:
         out = []
